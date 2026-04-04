@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactForm from "@/components/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -61,62 +62,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact form */}
-          <form className="space-y-6" action="#">
-            <div>
-              <label
-                htmlFor="name"
-                className="mb-2 block text-sm text-muted"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                className="w-full rounded-lg border border-border bg-surface-light px-4 py-3 text-foreground placeholder-muted/50 outline-none transition-colors focus:border-accent"
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="mb-2 block text-sm text-muted"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                className="w-full rounded-lg border border-border bg-surface-light px-4 py-3 text-foreground placeholder-muted/50 outline-none transition-colors focus:border-accent"
-                placeholder="you@example.com"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="message"
-                className="mb-2 block text-sm text-muted"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={5}
-                required
-                className="w-full resize-none rounded-lg border border-border bg-surface-light px-4 py-3 text-foreground placeholder-muted/50 outline-none transition-colors focus:border-accent"
-                placeholder="Tell us about your project..."
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full rounded-full bg-foreground py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
-            >
-              Send Message
-            </button>
-          </form>
+          <ContactForm idPrefix="contact" />
         </div>
 
         <p className="mt-16 text-center text-sm text-muted">
