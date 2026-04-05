@@ -2,32 +2,85 @@
 
 import { useState } from "react";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+
+const LIMITS = {
+  name: { min: 2, max: 80 },
+  message: { min: 10, max: 2000 },
+};
 
 type FieldErrors = Record<string, string>;
 
+function validateFields(fields: { name: string; email: string; message: string }): FieldErrors {
+  const errors: FieldErrors = {};
+  const name = fields.name.trim();
+  const message = fields.message.trim();
+
+  if (name.length < LIMITS.name.min) {
+    errors.name = `Name must be at least ${LIMITS.name.min} characters`;
+  } else if (name.length > LIMITS.name.max) {
+    errors.name = `Name must be at most ${LIMITS.name.max} characters`;
+  }
+
+  if (!fields.email.trim()) {
+    errors.email = "Email is required";
+  }
+
+  if (message.length < LIMITS.message.min) {
+    errors.message = `Message must be at least ${LIMITS.message.min} characters`;
+  } else if (message.length > LIMITS.message.max) {
+    errors.message = `Message must be at most ${LIMITS.message.max} characters`;
+  }
+
+  return errors;
+}
+
 export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
   const [fields, setFields] = useState({ name: "", email: "", message: "" });
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
-  const id = (name: string) => (idPrefix ? `${idPrefix}-${name}` : name);
+  const fieldId = (name: string) => (idPrefix ? `${idPrefix}-${name}` : name);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    // Client-side validation
+    const clientErrors = validateFields(fields);
+    if (Object.keys(clientErrors).length > 0) {
+      setFieldErrors(clientErrors);
+      setStatus("error");
+      setErrorMessage("");
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
     setFieldErrors({});
 
+    let res: Response;
     try {
-      const res = await fetch(`${API_BASE}/api/contact`, {
+      res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({ ...fields, company: honeypot }),
       });
+    } catch {
+      setErrorMessage("Could not reach the server. Please check your connection and try again.");
+      setStatus("error");
+      return;
+    }
 
+    try {
       const data = await res.json();
+
+      if (res.status === 429) {
+        setErrorMessage(data.message || "Too many requests. Please wait a few minutes.");
+        setStatus("error");
+        return;
+      }
 
       if (!res.ok) {
         if (data.errors && Array.isArray(data.errors)) {
@@ -36,8 +89,10 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
             errs[err.field] = err.message;
           }
           setFieldErrors(errs);
+          setErrorMessage("Please fix the errors above and try again.");
+        } else {
+          setErrorMessage(data.message || "Something went wrong. Please try again.");
         }
-        setErrorMessage(data.message || "Please check your input and try again.");
         setStatus("error");
         return;
       }
@@ -45,7 +100,7 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
       setStatus("success");
       setFields({ name: "", email: "", message: "" });
     } catch {
-      setErrorMessage("Could not reach the server. Please try again later.");
+      setErrorMessage("Received an unexpected response from the server.");
       setStatus("error");
     }
   }
@@ -69,17 +124,37 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
     );
   }
 
+  const messageLen = fields.message.trim().length;
+
   return (
-    <form className="space-y-6" onSubmit={handleSubmit}>
+    <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+      {/* Honeypot — hidden from humans, visible to bots */}
+      <div
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", height: 0, overflow: "hidden" }}
+      >
+        <label htmlFor={fieldId("company")}>Company</label>
+        <input
+          type="text"
+          id={fieldId("company")}
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
+
       <div>
-        <label htmlFor={id("name")} className="mb-2 block text-sm text-muted">
+        <label htmlFor={fieldId("name")} className="mb-2 block text-sm text-muted">
           Name
         </label>
         <input
           type="text"
-          id={id("name")}
+          id={fieldId("name")}
           name="name"
           required
+          maxLength={LIMITS.name.max}
           value={fields.name}
           onChange={(e) => setFields({ ...fields, name: e.target.value })}
           className="w-full rounded-lg border border-border bg-surface-light px-4 py-3 text-foreground placeholder-muted/50 outline-none transition-colors focus:border-accent"
@@ -90,12 +165,12 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
         )}
       </div>
       <div>
-        <label htmlFor={id("email")} className="mb-2 block text-sm text-muted">
+        <label htmlFor={fieldId("email")} className="mb-2 block text-sm text-muted">
           Email
         </label>
         <input
           type="email"
-          id={id("email")}
+          id={fieldId("email")}
           name="email"
           required
           value={fields.email}
@@ -108,14 +183,22 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
         )}
       </div>
       <div>
-        <label htmlFor={id("message")} className="mb-2 block text-sm text-muted">
-          Message
-        </label>
+        <div className="mb-2 flex items-center justify-between">
+          <label htmlFor={fieldId("message")} className="text-sm text-muted">
+            Message
+          </label>
+          <span
+            className={`text-xs ${messageLen > LIMITS.message.max ? "text-red-400" : "text-muted"}`}
+          >
+            {messageLen} / {LIMITS.message.max}
+          </span>
+        </div>
         <textarea
-          id={id("message")}
+          id={fieldId("message")}
           name="message"
           rows={5}
           required
+          maxLength={LIMITS.message.max}
           value={fields.message}
           onChange={(e) => setFields({ ...fields, message: e.target.value })}
           className="w-full resize-none rounded-lg border border-border bg-surface-light px-4 py-3 text-foreground placeholder-muted/50 outline-none transition-colors focus:border-accent"
@@ -126,7 +209,7 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
         )}
       </div>
 
-      {status === "error" && !Object.keys(fieldErrors).length && (
+      {status === "error" && errorMessage && (
         <p className="rounded-lg border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-400">
           {errorMessage}
         </p>
