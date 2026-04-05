@@ -7,14 +7,50 @@ import nodemailer from "nodemailer";
 import { z } from "zod";
 
 const app = express();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 4000;
-const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:3000";
 
-const allowedOrigins = CORS_ORIGIN.split(",").map((s) => s.trim());
+const rawCorsOrigins = process.env.CORS_ORIGIN || "";
+const explicitAllowedOrigins = rawCorsOrigins
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+const localDevOriginPattern = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+
+function isAllowedOrigin(origin?: string): boolean {
+  if (!origin) return true;
+  if (explicitAllowedOrigins.includes(origin)) return true;
+  if (process.env.NODE_ENV !== "production" && localDevOriginPattern.test(origin)) return true;
+  return false;
+}
 
 app.use(helmet());
-app.use(cors({ origin: allowedOrigins }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (isAllowedOrigin(origin)) {
+        if (origin) console.log(`[cors] allowed origin: ${origin}`);
+        return callback(null, true);
+      }
+      console.warn(`[cors] blocked origin: ${origin}`);
+      callback(new Error("CORS origin not allowed"));
+    },
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: false,
+  })
+);
 app.use(express.json());
+
+// CORS error handler
+app.use((err: Error, _req: express.Request, res: express.Response, next: express.NextFunction) => {
+  if (err.message === "CORS origin not allowed") {
+    res.status(403).json({ ok: false, message: "Origin not allowed." });
+    return;
+  }
+  next(err);
+});
 
 // ── Global rate limit ──
 
