@@ -136,7 +136,7 @@ async function verifyTurnstile(token: string | undefined, remoteip: string | und
 
 // ── Health ──
 
-app.get("/health", (_req, res) => {
+app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
 });
 
