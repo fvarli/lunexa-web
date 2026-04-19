@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import CookieConsent from "@/components/cookie-consent";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -117,6 +118,8 @@ export default function RootLayout({
         </header>
 
         {children}
+
+        <CookieConsent />
 
         {/* ── Footer ── */}
         <footer className="border-t border-border/50 py-12">
