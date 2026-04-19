@@ -116,7 +116,10 @@ function escapeHtml(input: string): string {
 async function verifyTurnstile(token: string | undefined, remoteip: string | undefined): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
   if (!secret) return true; // skip in local dev when not configured
-  if (!token) return false;
+  if (!token) {
+    console.warn("[turnstile] no token in request body");
+    return false;
+  }
 
   try {
     const body = new URLSearchParams({ secret, response: token });
@@ -126,8 +129,21 @@ async function verifyTurnstile(token: string | undefined, remoteip: string | und
       method: "POST",
       body,
     });
-    const data = (await resp.json()) as { success?: boolean };
-    return data.success === true;
+    const data = (await resp.json()) as {
+      success?: boolean;
+      "error-codes"?: string[];
+      hostname?: string;
+      action?: string;
+    };
+
+    if (!data.success) {
+      console.warn("[turnstile] verification failed", {
+        errors: data["error-codes"],
+        hostname: data.hostname,
+      });
+      return false;
+    }
+    return true;
   } catch (err) {
     console.error("[turnstile] verify error:", err);
     return false;
