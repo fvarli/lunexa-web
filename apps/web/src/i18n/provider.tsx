@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useSyncExternalStore, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { DEFAULT_LOCALE, LOCALES, STORAGE_KEY, type Locale } from "./config";
 import { dictionaries, type Dictionary } from "./dictionaries";
 
@@ -12,30 +12,14 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 const LOCALE_CHANGE_EVENT = "lunexa:locale-change";
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
 
-function subscribe(callback: () => void): () => void {
-  window.addEventListener(LOCALE_CHANGE_EVENT, callback);
-  window.addEventListener("storage", callback);
-  return () => {
-    window.removeEventListener(LOCALE_CHANGE_EVENT, callback);
-    window.removeEventListener("storage", callback);
-  };
+function isLocale(value: string | undefined | null): value is Locale {
+  return !!value && (LOCALES as readonly string[]).includes(value);
 }
 
-function getSnapshot(): Locale {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && (LOCALES as readonly string[]).includes(stored)) {
-      return stored as Locale;
-    }
-  } catch {
-    // ignore
-  }
-  return DEFAULT_LOCALE;
-}
-
-function getServerSnapshot(): Locale {
-  return DEFAULT_LOCALE;
+function writeCookie(locale: Locale) {
+  document.cookie = `${STORAGE_KEY}=${locale}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
 }
 
 function resolveKey(dict: Dictionary, path: string): string {
@@ -51,10 +35,38 @@ function resolveKey(dict: Dictionary, path: string): string {
   return typeof node === "string" ? node : path;
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const locale = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+export function LanguageProvider({
+  children,
+  initialLocale,
+}: {
+  children: ReactNode;
+  initialLocale: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
+
+  // Cross-tab sync: react to changes from other tabs/windows
+  useEffect(() => {
+    function onExternal() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (isLocale(stored) && stored !== locale) {
+          setLocaleState(stored);
+        }
+      } catch {
+        // ignore
+      }
+    }
+    window.addEventListener("storage", onExternal);
+    window.addEventListener(LOCALE_CHANGE_EVENT, onExternal);
+    return () => {
+      window.removeEventListener("storage", onExternal);
+      window.removeEventListener(LOCALE_CHANGE_EVENT, onExternal);
+    };
+  }, [locale]);
 
   const setLocale = (next: Locale) => {
+    setLocaleState(next);
+    writeCookie(next);
     try {
       localStorage.setItem(STORAGE_KEY, next);
       window.dispatchEvent(new CustomEvent(LOCALE_CHANGE_EVENT));
@@ -63,7 +75,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const dict = dictionaries[locale];
+  const dict = dictionaries[locale] ?? dictionaries[DEFAULT_LOCALE];
   const t = (path: string) => resolveKey(dict, path);
 
   return (

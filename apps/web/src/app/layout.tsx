@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import CookieConsent from "@/components/cookie-consent";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import { LanguageProvider } from "@/i18n/provider";
+import { DEFAULT_LOCALE, LOCALES, STORAGE_KEY, type Locale } from "@/i18n/config";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -67,14 +69,21 @@ const jsonLd = {
     "Lunexa builds simple, fast, and intelligent mobile and web applications.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get(STORAGE_KEY)?.value;
+  const initialLocale: Locale =
+    cookieLocale && (LOCALES as readonly string[]).includes(cookieLocale)
+      ? (cookieLocale as Locale)
+      : DEFAULT_LOCALE;
+
   return (
     <html
-      lang="en"
+      lang={initialLocale}
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <head>
@@ -84,7 +93,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="min-h-screen flex flex-col font-sans">
-        <LanguageProvider>
+        <LanguageProvider initialLocale={initialLocale}>
           <SiteHeader />
           {children}
           <CookieConsent />
