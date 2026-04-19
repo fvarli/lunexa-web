@@ -2,6 +2,7 @@
 
 import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { useT } from "@/i18n/provider";
 
 const STORAGE_KEY = "lunexa-cookie-consent";
 
@@ -33,6 +34,7 @@ function getServerSnapshot(): string {
 }
 
 export default function CookieConsent() {
+  const { t } = useT();
   const stored = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [dismissed, setDismissed] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
@@ -71,23 +73,20 @@ export default function CookieConsent() {
               id="cookie-consent-title"
               className="text-sm font-semibold text-foreground"
             >
-              Cookie Notice
+              {t("cookie.title")}
             </h2>
             <p
               id="cookie-consent-desc"
               className="mt-2 text-sm leading-relaxed text-muted"
             >
-              We use cookies to give you a better experience. Necessary cookies
-              are required for the site to function. You can manage analytics
-              and marketing cookies according to your preferences. For more
-              information, see our{" "}
+              {t("cookie.description_prefix")}
               <Link
                 href="/privacy"
                 className="text-accent transition-opacity hover:opacity-80"
               >
-                Privacy Policy
+                {t("cookie.privacy_link")}
               </Link>
-              .
+              {t("cookie.description_suffix")}
             </p>
           </div>
 
@@ -103,10 +102,10 @@ export default function CookieConsent() {
                 />
                 <label htmlFor="cookie-necessary" className="text-sm">
                   <span className="block font-medium text-foreground">
-                    Necessary cookies
+                    {t("cookie.necessary_title")}
                   </span>
                   <span className="text-muted">
-                    Required for core site functionality. Cannot be disabled.
+                    {t("cookie.necessary_desc")}
                   </span>
                 </label>
               </div>
@@ -122,10 +121,10 @@ export default function CookieConsent() {
                 />
                 <label htmlFor="cookie-analytics" className="text-sm">
                   <span className="block font-medium text-foreground">
-                    Analytics cookies
+                    {t("cookie.analytics_title")}
                   </span>
                   <span className="text-muted">
-                    For page performance and usage statistics.
+                    {t("cookie.analytics_desc")}
                   </span>
                 </label>
               </div>
@@ -141,10 +140,10 @@ export default function CookieConsent() {
                 />
                 <label htmlFor="cookie-marketing" className="text-sm">
                   <span className="block font-medium text-foreground">
-                    Marketing cookies
+                    {t("cookie.marketing_title")}
                   </span>
                   <span className="text-muted">
-                    For personalized content and advertising.
+                    {t("cookie.marketing_desc")}
                   </span>
                 </label>
               </div>
@@ -159,7 +158,7 @@ export default function CookieConsent() {
               }
               className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
             >
-              Accept All
+              {t("cookie.accept_all")}
             </button>
             <button
               type="button"
@@ -168,7 +167,7 @@ export default function CookieConsent() {
               }
               className="rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-muted"
             >
-              Reject
+              {t("cookie.reject")}
             </button>
             {showPreferences ? (
               <button
@@ -176,7 +175,7 @@ export default function CookieConsent() {
                 onClick={() => save(prefs)}
                 className="rounded-full border border-accent/50 bg-accent/10 px-5 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
               >
-                Save Preferences
+                {t("cookie.save")}
               </button>
             ) : (
               <button
@@ -184,7 +183,7 @@ export default function CookieConsent() {
                 onClick={() => setShowPreferences(true)}
                 className="text-sm text-muted underline-offset-4 transition-colors hover:text-foreground hover:underline"
               >
-                Manage Preferences
+                {t("cookie.manage")}
               </button>
             )}
           </div>
