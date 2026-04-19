@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
 const LIMITS = {
   name: { min: 2, max: 80 },
@@ -38,9 +40,11 @@ function validateFields(fields: { name: string; email: string; message: string }
 export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
   const [fields, setFields] = useState({ name: "", email: "", message: "" });
   const [honeypot, setHoneypot] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
 
   const fieldId = (name: string) => (idPrefix ? `${idPrefix}-${name}` : name);
 
@@ -56,6 +60,12 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
       return;
     }
 
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setStatus("error");
+      setErrorMessage("Please complete the captcha before submitting.");
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
     setFieldErrors({});
@@ -65,11 +75,13 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
       res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...fields, company: honeypot }),
+        body: JSON.stringify({ ...fields, company: honeypot, turnstileToken }),
       });
     } catch {
       setErrorMessage("Could not reach the server. Please check your connection and try again.");
       setStatus("error");
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
       return;
     }
 
@@ -79,6 +91,8 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
       if (res.status === 429) {
         setErrorMessage(data.message || "Too many requests. Please wait a few minutes.");
         setStatus("error");
+        turnstileRef.current?.reset();
+        setTurnstileToken("");
         return;
       }
 
@@ -94,14 +108,20 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
           setErrorMessage(data.message || "Something went wrong. Please try again.");
         }
         setStatus("error");
+        turnstileRef.current?.reset();
+        setTurnstileToken("");
         return;
       }
 
       setStatus("success");
       setFields({ name: "", email: "", message: "" });
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     } catch {
       setErrorMessage("Received an unexpected response from the server.");
       setStatus("error");
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     }
   }
 
@@ -208,6 +228,17 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
           <p className="mt-1 text-sm text-red-400">{fieldErrors.message}</p>
         )}
       </div>
+
+      {TURNSTILE_SITE_KEY && (
+        <Turnstile
+          ref={turnstileRef}
+          siteKey={TURNSTILE_SITE_KEY}
+          onSuccess={setTurnstileToken}
+          onExpire={() => setTurnstileToken("")}
+          onError={() => setTurnstileToken("")}
+          options={{ theme: "dark", size: "flexible" }}
+        />
+      )}
 
       {status === "error" && errorMessage && (
         <p className="rounded-lg border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-400">

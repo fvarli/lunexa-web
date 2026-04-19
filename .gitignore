@@ -11,3 +11,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .idea
+.claude/
+apps/web/.env.production
+apps/api/.env.production

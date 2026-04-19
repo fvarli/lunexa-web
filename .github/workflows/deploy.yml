@@ -1,0 +1,96 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: lunexa-prod-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+          CORS_ORIGIN: ${{ vars.CORS_ORIGIN }}
+          CONTACT_RECEIVER: ${{ vars.CONTACT_RECEIVER }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SECURE: ${{ vars.SMTP_SECURE }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          ENABLE_AUTOREPLY: ${{ vars.ENABLE_AUTOREPLY }}
+          TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+          port: ${{ secrets.PROD_SSH_PORT }}
+          script_stop: true
+          envs: DEPLOY_PATH,CORS_ORIGIN,CONTACT_RECEIVER,SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,ENABLE_AUTOREPLY,TURNSTILE_SECRET_KEY,NEXT_PUBLIC_TURNSTILE_SITE_KEY
+          script: |
+            set -euo pipefail
+
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+            cd ${DEPLOY_PATH}
+
+            echo "==> Pulling latest code"
+            git fetch --all
+            git reset --hard origin/main
+
+            echo "==> Writing apps/api/.env"
+            cat > apps/api/.env <<EOF
+            NODE_ENV=production
+            PORT=4000
+            CORS_ORIGIN=${CORS_ORIGIN}
+            SMTP_HOST=${SMTP_HOST}
+            SMTP_PORT=${SMTP_PORT}
+            SMTP_SECURE=${SMTP_SECURE}
+            SMTP_USER=${SMTP_USER}
+            SMTP_PASS=${SMTP_PASS}
+            CONTACT_RECEIVER=${CONTACT_RECEIVER}
+            ENABLE_AUTOREPLY=${ENABLE_AUTOREPLY}
+            TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
+            EOF
+
+            echo "==> Writing apps/web/.env.production"
+            cat > apps/web/.env.production <<EOF
+            NEXT_PUBLIC_API_BASE_URL=
+            NEXT_PUBLIC_TURNSTILE_SITE_KEY=${NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+            EOF
+
+            echo "==> Building API"
+            cd apps/api
+            npm ci
+            npm run build
+            cd ../..
+
+            echo "==> Building Web"
+            cd apps/web
+            npm ci
+            npm run build
+            cd ../..
+
+            echo "==> Reloading pm2 processes"
+            pm2 reload ecosystem.config.js --update-env || pm2 start ecosystem.config.js
+            pm2 save
+
+            echo "==> Deploy complete"
+
+      - name: Smoke check
+        run: |
+          curl -fsS https://uselunexa.com/ >/dev/null
+          curl -fsS https://uselunexa.com/api/health | grep -q '"ok":true'

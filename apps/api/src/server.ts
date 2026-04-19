@@ -113,6 +113,27 @@ function escapeHtml(input: string): string {
     .replace(/'/g, "&#39;");
 }
 
+async function verifyTurnstile(token: string | undefined, remoteip: string | undefined): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // skip in local dev when not configured
+  if (!token) return false;
+
+  try {
+    const body = new URLSearchParams({ secret, response: token });
+    if (remoteip) body.append("remoteip", remoteip);
+
+    const resp = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      body,
+    });
+    const data = (await resp.json()) as { success?: boolean };
+    return data.success === true;
+  } catch (err) {
+    console.error("[turnstile] verify error:", err);
+    return false;
+  }
+}
+
 // ── Health ──
 
 app.get("/health", (_req, res) => {
@@ -141,6 +162,12 @@ app.post("/api/contact", jsonBody, contactLimiter, async (req, res) => {
     // Honeypot check — bots fill hidden fields
     if (req.body.company) {
       res.json({ ok: true, message: "Message received successfully." });
+      return;
+    }
+
+    const turnstileOk = await verifyTurnstile(req.body.turnstileToken, req.ip);
+    if (!turnstileOk) {
+      res.status(400).json({ ok: false, message: "Captcha verification failed. Please try again." });
       return;
     }
 
@@ -218,6 +245,8 @@ app.post("/api/contact", jsonBody, contactLimiter, async (req, res) => {
 
 // ── Start ──
 
-app.listen(PORT, () => {
-  console.log(`API listening on port ${PORT}`);
+const HOST = process.env.NODE_ENV === "production" ? "127.0.0.1" : "0.0.0.0";
+
+app.listen(Number(PORT), HOST, () => {
+  console.log(`API listening on ${HOST}:${PORT}`);
 });
