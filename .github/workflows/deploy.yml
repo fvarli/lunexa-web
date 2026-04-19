@@ -52,25 +52,23 @@ jobs:
             git reset --hard origin/main
 
             echo "==> Writing apps/api/.env"
-            cat > apps/api/.env <<EOF
-            NODE_ENV=production
-            PORT=4000
-            CORS_ORIGIN=${CORS_ORIGIN}
-            SMTP_HOST=${SMTP_HOST}
-            SMTP_PORT=${SMTP_PORT}
-            SMTP_SECURE=${SMTP_SECURE}
-            SMTP_USER=${SMTP_USER}
-            SMTP_PASS=${SMTP_PASS}
-            CONTACT_RECEIVER=${CONTACT_RECEIVER}
-            ENABLE_AUTOREPLY=${ENABLE_AUTOREPLY}
-            TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
-            EOF
+            echo "NODE_ENV=production" > apps/api/.env
+            echo "PORT=4000" >> apps/api/.env
+            echo "CORS_ORIGIN=${CORS_ORIGIN}" >> apps/api/.env
+            echo "SMTP_HOST=${SMTP_HOST}" >> apps/api/.env
+            echo "SMTP_PORT=${SMTP_PORT}" >> apps/api/.env
+            echo "SMTP_SECURE=${SMTP_SECURE}" >> apps/api/.env
+            echo "SMTP_USER=${SMTP_USER}" >> apps/api/.env
+            echo "SMTP_PASS=${SMTP_PASS}" >> apps/api/.env
+            echo "CONTACT_RECEIVER=${CONTACT_RECEIVER}" >> apps/api/.env
+            echo "ENABLE_AUTOREPLY=${ENABLE_AUTOREPLY}" >> apps/api/.env
+            echo "TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}" >> apps/api/.env
+            chmod 600 apps/api/.env
 
             echo "==> Writing apps/web/.env.production"
-            cat > apps/web/.env.production <<EOF
-            NEXT_PUBLIC_API_BASE_URL=
-            NEXT_PUBLIC_TURNSTILE_SITE_KEY=${NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-            EOF
+            echo "NEXT_PUBLIC_API_BASE_URL=" > apps/web/.env.production
+            echo "NEXT_PUBLIC_TURNSTILE_SITE_KEY=${NEXT_PUBLIC_TURNSTILE_SITE_KEY}" >> apps/web/.env.production
+            chmod 600 apps/web/.env.production
 
             echo "==> Building API"
             cd apps/api
