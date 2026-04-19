@@ -88,9 +88,9 @@ jobs:
             pm2 reload ecosystem.config.js --update-env || pm2 start ecosystem.config.js
             pm2 save
 
-            echo "==> Deploy complete"
+            echo "==> Smoke check (internal, bypasses Cloudflare)"
+            sleep 3
+            curl -fsS http://127.0.0.1:4000/api/health | grep -q '"ok":true'
+            curl -fsSI http://127.0.0.1:3001/ | head -1 | grep -q '200'
 
-      - name: Smoke check
-        run: |
-          curl -fsS https://uselunexa.com/ >/dev/null
-          curl -fsS https://uselunexa.com/api/health | grep -q '"ok":true'
+            echo "==> Deploy complete"
