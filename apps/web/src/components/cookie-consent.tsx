@@ -60,23 +60,23 @@ export default function CookieConsent() {
               id="cookie-consent-title"
               className="text-sm font-semibold text-foreground"
             >
-              Çerez Aydınlatma Metni
+              Cookie Notice
             </h2>
             <p
               id="cookie-consent-desc"
               className="mt-2 text-sm leading-relaxed text-muted"
             >
-              Size daha iyi bir deneyim sunmak için çerezler kullanıyoruz.
-              Zorunlu çerezler sitenin çalışması için gereklidir. Analitik ve
-              pazarlama çerezlerini tercihlerinize göre yönetebilirsiniz.
-              Detaylı bilgi için{" "}
+              We use cookies to give you a better experience. Necessary cookies
+              are required for the site to function. You can manage analytics
+              and marketing cookies according to your preferences. For more
+              information, see our{" "}
               <Link
                 href="/privacy"
                 className="text-accent transition-opacity hover:opacity-80"
               >
-                Gizlilik Politikası
-              </Link>{" "}
-              sayfamızı inceleyebilirsiniz.
+                Privacy Policy
+              </Link>
+              .
             </p>
           </div>
 
@@ -92,11 +92,10 @@ export default function CookieConsent() {
                 />
                 <label htmlFor="cookie-necessary" className="text-sm">
                   <span className="block font-medium text-foreground">
-                    Zorunlu çerezler
+                    Necessary cookies
                   </span>
                   <span className="text-muted">
-                    Sitenin temel işlevleri için gereklidir. Devre dışı
-                    bırakılamaz.
+                    Required for core site functionality. Cannot be disabled.
                   </span>
                 </label>
               </div>
@@ -112,10 +111,10 @@ export default function CookieConsent() {
                 />
                 <label htmlFor="cookie-analytics" className="text-sm">
                   <span className="block font-medium text-foreground">
-                    Analitik çerezler
+                    Analytics cookies
                   </span>
                   <span className="text-muted">
-                    Sayfa performansı ve kullanım istatistikleri için.
+                    For page performance and usage statistics.
                   </span>
                 </label>
               </div>
@@ -131,10 +130,10 @@ export default function CookieConsent() {
                 />
                 <label htmlFor="cookie-marketing" className="text-sm">
                   <span className="block font-medium text-foreground">
-                    Pazarlama çerezleri
+                    Marketing cookies
                   </span>
                   <span className="text-muted">
-                    Kişiselleştirilmiş içerik ve reklam için.
+                    For personalized content and advertising.
                   </span>
                 </label>
               </div>
@@ -149,7 +148,7 @@ export default function CookieConsent() {
               }
               className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
             >
-              Tümünü Kabul Et
+              Accept All
             </button>
             <button
               type="button"
@@ -158,7 +157,7 @@ export default function CookieConsent() {
               }
               className="rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-muted"
             >
-              Reddet
+              Reject
             </button>
             {showPreferences ? (
               <button
@@ -166,7 +165,7 @@ export default function CookieConsent() {
                 onClick={() => save(prefs)}
                 className="rounded-full border border-accent/50 bg-accent/10 px-5 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
               >
-                Tercihleri Kaydet
+                Save Preferences
               </button>
             ) : (
               <button
@@ -174,7 +173,7 @@ export default function CookieConsent() {
                 onClick={() => setShowPreferences(true)}
                 className="text-sm text-muted underline-offset-4 transition-colors hover:text-foreground hover:underline"
               >
-                Tercihleri Yönet
+                Manage Preferences
               </button>
             )}
           </div>
