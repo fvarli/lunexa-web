@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 
 const STORAGE_KEY = "lunexa-cookie-consent";
@@ -15,23 +15,32 @@ type StoredConsent = Preferences & {
   timestamp: number;
 };
 
+function subscribe(callback: () => void): () => void {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function getSnapshot(): string | null {
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function getServerSnapshot(): string {
+  return "__ssr__";
+}
+
 export default function CookieConsent() {
-  const [visible, setVisible] = useState(false);
+  const stored = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const [dismissed, setDismissed] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
   const [prefs, setPrefs] = useState<Preferences>({
     necessary: true,
     analytics: false,
     marketing: false,
   });
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (!stored) setVisible(true);
-    } catch {
-      setVisible(true);
-    }
-  }, []);
 
   function save(next: Preferences) {
     const payload: StoredConsent = { ...next, timestamp: Date.now() };
@@ -41,8 +50,10 @@ export default function CookieConsent() {
     } catch {
       // localStorage unavailable — session-only dismiss
     }
-    setVisible(false);
+    setDismissed(true);
   }
+
+  const visible = stored === null && !dismissed;
 
   if (!visible) return null;
 
