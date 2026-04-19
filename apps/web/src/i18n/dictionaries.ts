@@ -137,6 +137,71 @@ const en = {
     manage: "Manage Preferences",
     save: "Save Preferences",
   },
+  privacy_page: {
+    eyebrow: "Legal",
+    heading: "Privacy Policy",
+    last_updated: "Last updated: April 2026",
+    overview_title: "Overview",
+    overview_body:
+      "Lunexa (\u201cwe\u201d, \u201cus\u201d) operates the website uselunexa.com. This policy explains what information we collect when you visit our site or use our contact form, and how we handle it.",
+    collect_title: "What we collect",
+    collect_p1:
+      "When you submit our contact form, we collect your name, email address, and message content. We use this information solely to respond to your inquiry.",
+    collect_p2:
+      "Our web server may automatically log standard technical data such as your IP address, browser type, and pages visited. This data is used for security monitoring and basic analytics only.",
+    usage_title: "How we use your data",
+    usage_item_1: "To respond to messages you send through our contact form",
+    usage_item_2: "To monitor and maintain the security of our website",
+    usage_item_3: "To understand general usage patterns and improve our site",
+    usage_body:
+      "We do not sell, rent, or share your personal information with third parties for marketing purposes.",
+    retention_title: "Data retention",
+    retention_body:
+      "Contact form submissions are retained only as long as necessary to address your inquiry. Server logs are retained for up to 90 days for security purposes.",
+    cookies_title: "Cookies",
+    cookies_body:
+      "This website uses essential cookies for basic functionality and may use optional analytics cookies based on your consent preferences.",
+    rights_title: "Your rights",
+    rights_body_prefix:
+      "You may request access to, correction of, or deletion of any personal data we hold about you. To make a request, contact us at ",
+    rights_body_suffix: ".",
+    changes_title: "Changes to this policy",
+    changes_body:
+      "We may update this policy from time to time. Changes will be posted on this page with an updated revision date.",
+    contact_title: "Contact",
+    contact_body_prefix:
+      "If you have questions about this privacy policy, reach us at ",
+    contact_body_suffix: ".",
+  },
+  terms_page: {
+    eyebrow: "Legal",
+    heading: "Terms of Use",
+    last_updated: "Last updated: April 2026",
+    agreement_title: "Agreement",
+    agreement_body:
+      "By accessing and using uselunexa.com, you agree to these terms. If you do not agree, please do not use this website.",
+    use_title: "Use of this website",
+    use_body:
+      "This website is provided for informational purposes about Lunexa and its services. You may browse the site and use the contact form to reach us. You agree not to misuse the site, including submitting false information, attempting to disrupt its operation, or using automated tools to scrape its content.",
+    ip_title: "Intellectual property",
+    ip_body:
+      "All content on this website \u2014 including text, design, graphics, and code \u2014 is the property of Lunexa unless otherwise stated. You may not reproduce, distribute, or create derivative works from our content without prior written permission.",
+    form_title: "Contact form",
+    form_body:
+      "When you submit a message through our contact form, you grant us permission to use the information you provide to respond to your inquiry. We make no guarantees about response times. Messages containing harmful, abusive, or spam content may be discarded without response.",
+    disclaimer_title: "Disclaimer",
+    disclaimer_body:
+      "This website and its content are provided \u201cas is\u201d without warranties of any kind, express or implied. Lunexa does not guarantee that the site will be available at all times or free from errors.",
+    liability_title: "Limitation of liability",
+    liability_body:
+      "To the fullest extent permitted by law, Lunexa shall not be liable for any indirect, incidental, or consequential damages arising from your use of this website.",
+    changes_title: "Changes",
+    changes_body:
+      "We may revise these terms at any time. Continued use of the website after changes are posted constitutes acceptance of the updated terms.",
+    contact_title: "Contact",
+    contact_body_prefix: "Questions about these terms? Reach us at ",
+    contact_body_suffix: ".",
+  },
   language: {
     switcher_label: "Language",
   },
@@ -278,6 +343,71 @@ const tr: Dictionary = {
     manage: "Tercihleri Yönet",
     save: "Tercihleri Kaydet",
   },
+  privacy_page: {
+    eyebrow: "Yasal",
+    heading: "Gizlilik Politikası",
+    last_updated: "Son güncelleme: Nisan 2026",
+    overview_title: "Genel Bakış",
+    overview_body:
+      "Lunexa (\u201cbiz\u201d) uselunexa.com web sitesini işletir. Bu politika, sitemizi ziyaret ettiğinizde veya iletişim formumuzu kullandığınızda hangi bilgileri topladığımızı ve bunları nasıl işlediğimizi açıklar.",
+    collect_title: "Hangi bilgileri topluyoruz",
+    collect_p1:
+      "İletişim formumuzu gönderdiğinizde adınızı, e-posta adresinizi ve mesaj içeriğinizi topluyoruz. Bu bilgileri yalnızca talebinizi yanıtlamak için kullanırız.",
+    collect_p2:
+      "Web sunucumuz; IP adresiniz, tarayıcı türünüz ve ziyaret edilen sayfalar gibi standart teknik verileri otomatik olarak kaydedebilir. Bu veriler yalnızca güvenlik takibi ve temel analiz amacıyla kullanılır.",
+    usage_title: "Verilerinizi nasıl kullanıyoruz",
+    usage_item_1: "İletişim formu üzerinden gönderdiğiniz mesajlara yanıt vermek için",
+    usage_item_2: "Sitemizin güvenliğini izlemek ve sürdürmek için",
+    usage_item_3: "Genel kullanım örüntülerini anlamak ve sitemizi iyileştirmek için",
+    usage_body:
+      "Kişisel bilgilerinizi pazarlama amacıyla üçüncü taraflarla paylaşmıyoruz, satmıyoruz veya kiralamıyoruz.",
+    retention_title: "Veri saklama",
+    retention_body:
+      "İletişim formu gönderimleri yalnızca talebinizi ele almak için gerekli süre boyunca saklanır. Sunucu logları güvenlik amacıyla en fazla 90 gün süreyle saklanır.",
+    cookies_title: "Çerezler",
+    cookies_body:
+      "Bu web sitesi temel işlevsellik için zorunlu çerezler kullanır ve onay tercihlerinize göre isteğe bağlı analitik çerezleri kullanabilir.",
+    rights_title: "Haklarınız",
+    rights_body_prefix:
+      "Sizinle ilgili tuttuğumuz kişisel verilere erişme, düzeltilmesini veya silinmesini talep etme hakkına sahipsiniz. Talep iletmek için şu adrese yazın: ",
+    rights_body_suffix: ".",
+    changes_title: "Politika değişiklikleri",
+    changes_body:
+      "Bu politikayı zaman zaman güncelleyebiliriz. Değişiklikler, güncellenmiş bir revizyon tarihiyle bu sayfada yayınlanır.",
+    contact_title: "İletişim",
+    contact_body_prefix:
+      "Bu gizlilik politikasıyla ilgili sorularınız için bizimle iletişime geçin: ",
+    contact_body_suffix: ".",
+  },
+  terms_page: {
+    eyebrow: "Yasal",
+    heading: "Kullanım Şartları",
+    last_updated: "Son güncelleme: Nisan 2026",
+    agreement_title: "Anlaşma",
+    agreement_body:
+      "uselunexa.com'a erişerek ve kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız, lütfen bu web sitesini kullanmayın.",
+    use_title: "Bu web sitesinin kullanımı",
+    use_body:
+      "Bu web sitesi Lunexa ve hizmetleri hakkında bilgi verme amacıyla sunulmaktadır. Siteyi gezebilir, bize ulaşmak için iletişim formunu kullanabilirsiniz. Yanlış bilgi göndermek, çalışmasını aksatmaya çalışmak veya içeriği kazımak için otomatik araçlar kullanmak dahil, siteyi kötüye kullanmayacağınızı kabul edersiniz.",
+    ip_title: "Fikri mülkiyet",
+    ip_body:
+      "Bu web sitesindeki tüm içerik \u2014 metin, tasarım, grafik ve kod dahil \u2014 aksi belirtilmedikçe Lunexa'nın mülküdür. Önceden yazılı izin almadan içeriğimizi çoğaltamaz, dağıtamaz veya türev çalışmalar oluşturamazsınız.",
+    form_title: "İletişim formu",
+    form_body:
+      "İletişim formumuz üzerinden bir mesaj gönderdiğinizde, sağladığınız bilgileri talebinize yanıt vermek için kullanmamıza izin vermiş olursunuz. Yanıt süreleri konusunda garanti vermiyoruz. Zararlı, saldırgan veya spam içerikli mesajlar yanıtlanmadan atılabilir.",
+    disclaimer_title: "Sorumluluk reddi",
+    disclaimer_body:
+      "Bu web sitesi ve içeriği, herhangi bir açık veya zımni garanti olmaksızın \u201colduğu gibi\u201d sunulmaktadır. Lunexa, sitenin her zaman erişilebilir veya hatasız olacağını garanti etmez.",
+    liability_title: "Sorumluluğun sınırlandırılması",
+    liability_body:
+      "Yasaların izin verdiği en geniş ölçüde, Lunexa bu web sitesinin kullanımından kaynaklanan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
+    changes_title: "Değişiklikler",
+    changes_body:
+      "Bu şartları herhangi bir zamanda değiştirebiliriz. Değişiklikler yayınlandıktan sonra web sitesini kullanmaya devam etmeniz, güncellenmiş şartları kabul ettiğiniz anlamına gelir.",
+    contact_title: "İletişim",
+    contact_body_prefix: "Bu şartlarla ilgili sorular için bize ulaşın: ",
+    contact_body_suffix: ".",
+  },
   language: {
     switcher_label: "Dil",
   },
@@ -418,6 +548,71 @@ const es: Dictionary = {
     reject: "Rechazar",
     manage: "Gestionar Preferencias",
     save: "Guardar Preferencias",
+  },
+  privacy_page: {
+    eyebrow: "Legal",
+    heading: "Política de Privacidad",
+    last_updated: "Última actualización: Abril 2026",
+    overview_title: "Resumen",
+    overview_body:
+      "Lunexa (\u201cnosotros\u201d) opera el sitio web uselunexa.com. Esta política explica qué información recopilamos cuando visitas nuestro sitio o usas nuestro formulario de contacto, y cómo la tratamos.",
+    collect_title: "Qué recopilamos",
+    collect_p1:
+      "Cuando envías nuestro formulario de contacto, recopilamos tu nombre, correo electrónico y el contenido del mensaje. Usamos esta información solo para responder a tu consulta.",
+    collect_p2:
+      "Nuestro servidor web puede registrar automáticamente datos técnicos estándar como tu dirección IP, tipo de navegador y páginas visitadas. Estos datos se usan solo para monitoreo de seguridad y analítica básica.",
+    usage_title: "Cómo usamos tus datos",
+    usage_item_1: "Para responder a los mensajes enviados a través de nuestro formulario",
+    usage_item_2: "Para monitorear y mantener la seguridad de nuestro sitio",
+    usage_item_3: "Para entender patrones generales de uso y mejorar el sitio",
+    usage_body:
+      "No vendemos, alquilamos ni compartimos tu información personal con terceros con fines de marketing.",
+    retention_title: "Retención de datos",
+    retention_body:
+      "Los envíos del formulario de contacto se conservan solo el tiempo necesario para atender tu consulta. Los registros del servidor se conservan hasta 90 días por motivos de seguridad.",
+    cookies_title: "Cookies",
+    cookies_body:
+      "Este sitio usa cookies esenciales para el funcionamiento básico y puede usar cookies analíticas opcionales según tus preferencias de consentimiento.",
+    rights_title: "Tus derechos",
+    rights_body_prefix:
+      "Puedes solicitar acceso, corrección o eliminación de cualquier dato personal que tengamos sobre ti. Para hacer una solicitud, contáctanos en ",
+    rights_body_suffix: ".",
+    changes_title: "Cambios en esta política",
+    changes_body:
+      "Podemos actualizar esta política periódicamente. Los cambios se publicarán en esta página con una fecha de revisión actualizada.",
+    contact_title: "Contacto",
+    contact_body_prefix:
+      "Si tienes preguntas sobre esta política de privacidad, contáctanos en ",
+    contact_body_suffix: ".",
+  },
+  terms_page: {
+    eyebrow: "Legal",
+    heading: "Términos de Uso",
+    last_updated: "Última actualización: Abril 2026",
+    agreement_title: "Acuerdo",
+    agreement_body:
+      "Al acceder y utilizar uselunexa.com, aceptas estos términos. Si no estás de acuerdo, por favor no uses este sitio web.",
+    use_title: "Uso de este sitio",
+    use_body:
+      "Este sitio se proporciona con fines informativos sobre Lunexa y sus servicios. Puedes navegar por el sitio y usar el formulario de contacto para comunicarte con nosotros. Aceptas no hacer un mal uso del sitio, incluido el envío de información falsa, intentar interrumpir su funcionamiento o usar herramientas automatizadas para extraer su contenido.",
+    ip_title: "Propiedad intelectual",
+    ip_body:
+      "Todo el contenido de este sitio web \u2014 incluidos texto, diseño, gráficos y código \u2014 es propiedad de Lunexa salvo que se indique lo contrario. No puedes reproducir, distribuir ni crear obras derivadas de nuestro contenido sin permiso previo por escrito.",
+    form_title: "Formulario de contacto",
+    form_body:
+      "Al enviar un mensaje a través de nuestro formulario, nos otorgas permiso para usar la información proporcionada para responder a tu consulta. No garantizamos tiempos de respuesta. Los mensajes con contenido dañino, abusivo o spam pueden descartarse sin respuesta.",
+    disclaimer_title: "Descargo de responsabilidad",
+    disclaimer_body:
+      "Este sitio web y su contenido se proporcionan \u201ctal cual\u201d sin garantías de ningún tipo, expresas o implícitas. Lunexa no garantiza que el sitio esté disponible en todo momento o libre de errores.",
+    liability_title: "Limitación de responsabilidad",
+    liability_body:
+      "En la máxima medida permitida por la ley, Lunexa no será responsable de ningún daño indirecto, incidental o consecuente derivado del uso de este sitio web.",
+    changes_title: "Cambios",
+    changes_body:
+      "Podemos modificar estos términos en cualquier momento. El uso continuado del sitio después de publicar los cambios constituye la aceptación de los términos actualizados.",
+    contact_title: "Contacto",
+    contact_body_prefix: "¿Preguntas sobre estos términos? Contáctanos en ",
+    contact_body_suffix: ".",
   },
   language: {
     switcher_label: "Idioma",
