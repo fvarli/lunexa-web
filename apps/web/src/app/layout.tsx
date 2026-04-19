@@ -88,24 +88,24 @@ export default function RootLayout({
               Lunexa
             </Link>
             <nav className="hidden items-center gap-8 text-sm text-muted sm:flex">
-              <a
+              <Link
                 href="/#about"
                 className="transition-colors hover:text-foreground"
               >
                 About
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/#work"
                 className="transition-colors hover:text-foreground"
               >
                 What We Build
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/#principles"
                 className="transition-colors hover:text-foreground"
               >
                 Principles
-              </a>
+              </Link>
               <Link
                 href="/contact"
                 className="transition-colors hover:text-foreground"
