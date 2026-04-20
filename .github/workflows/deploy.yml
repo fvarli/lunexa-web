@@ -32,13 +32,15 @@ jobs:
           ENABLE_AUTOREPLY: ${{ vars.ENABLE_AUTOREPLY }}
           TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
           NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+          NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
+          NEXT_PUBLIC_GSC_VERIFICATION: ${{ vars.NEXT_PUBLIC_GSC_VERIFICATION }}
         with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.PROD_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
           port: ${{ secrets.PROD_SSH_PORT }}
           script_stop: true
-          envs: DEPLOY_PATH,CORS_ORIGIN,CONTACT_RECEIVER,SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,ENABLE_AUTOREPLY,TURNSTILE_SECRET_KEY,NEXT_PUBLIC_TURNSTILE_SITE_KEY
+          envs: DEPLOY_PATH,CORS_ORIGIN,CONTACT_RECEIVER,SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,ENABLE_AUTOREPLY,TURNSTILE_SECRET_KEY,NEXT_PUBLIC_TURNSTILE_SITE_KEY,NEXT_PUBLIC_GA_ID,NEXT_PUBLIC_GSC_VERIFICATION
           script: |
             set -euo pipefail
 
@@ -68,6 +70,8 @@ jobs:
             echo "==> Writing apps/web/.env.production"
             echo "NEXT_PUBLIC_API_BASE_URL=" > apps/web/.env.production
             echo "NEXT_PUBLIC_TURNSTILE_SITE_KEY=${NEXT_PUBLIC_TURNSTILE_SITE_KEY}" >> apps/web/.env.production
+            echo "NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID}" >> apps/web/.env.production
+            echo "NEXT_PUBLIC_GSC_VERIFICATION=${NEXT_PUBLIC_GSC_VERIFICATION}" >> apps/web/.env.production
             chmod 600 apps/web/.env.production
 
             echo "==> Building API"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
+import Analytics from "@/components/analytics";
 import CookieConsent from "@/components/cookie-consent";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
@@ -57,6 +58,9 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
 };
 
 const jsonLd = {
@@ -99,6 +103,7 @@ export default async function RootLayout({
           <CookieConsent />
           <SiteFooter />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
