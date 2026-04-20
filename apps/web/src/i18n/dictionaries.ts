@@ -123,10 +123,22 @@ const en = {
   cookie: {
     title: "Cookie Notice",
     description_prefix:
-      "This site uses essential and analytics cookies (including Google Analytics) to understand how visitors interact with our content and improve the experience. By continuing to browse, you agree to this. See our ",
+      "We use essential and analytics cookies (including Google Analytics) to run and improve the site. Marketing cookies are optional. See our ",
     privacy_link: "Privacy Policy",
     description_suffix: " for details.",
-    acknowledge: "Got it",
+    necessary_title: "Necessary cookies",
+    necessary_desc:
+      "Required for core site functionality such as security, session, and preferences.",
+    analytics_title: "Analytics cookies",
+    analytics_desc:
+      "Required for operating and improving our service. We use Google Analytics to measure usage. These cannot be disabled on this site.",
+    marketing_title: "Marketing cookies",
+    marketing_desc: "For personalized content and advertising.",
+    required_label: "Always on",
+    accept_all: "Accept All",
+    reject: "Reject",
+    manage: "Manage Preferences",
+    save: "Save Preferences",
   },
   privacy_page: {
     eyebrow: "Legal",
@@ -320,10 +332,22 @@ const tr: Dictionary = {
   cookie: {
     title: "Çerez Bildirimi",
     description_prefix:
-      "Bu site, ziyaretçilerin içerikle nasıl etkileşime girdiğini anlamak ve deneyimi iyileştirmek için zorunlu ve analitik çerezleri (Google Analytics dahil) kullanır. Gezinmeye devam ederek bunu kabul edersiniz. Detaylar için ",
+      "Siteyi çalıştırmak ve geliştirmek için zorunlu ve analitik çerezleri (Google Analytics dahil) kullanıyoruz. Pazarlama çerezleri isteğe bağlıdır. Detaylar için ",
     privacy_link: "Gizlilik Politikası",
     description_suffix: " sayfamızı inceleyebilirsiniz.",
-    acknowledge: "Anladım",
+    necessary_title: "Zorunlu çerezler",
+    necessary_desc:
+      "Güvenlik, oturum ve tercihler gibi temel site işlevleri için gereklidir.",
+    analytics_title: "Analitik çerezler",
+    analytics_desc:
+      "Hizmetimizi işletmek ve geliştirmek için gereklidir. Kullanımı ölçmek için Google Analytics kullanıyoruz. Bu sitede devre dışı bırakılamaz.",
+    marketing_title: "Pazarlama çerezleri",
+    marketing_desc: "Kişiselleştirilmiş içerik ve reklam için.",
+    required_label: "Zorunlu",
+    accept_all: "Tümünü Kabul Et",
+    reject: "Reddet",
+    manage: "Tercihleri Yönet",
+    save: "Tercihleri Kaydet",
   },
   privacy_page: {
     eyebrow: "Yasal",
@@ -517,10 +541,22 @@ const es: Dictionary = {
   cookie: {
     title: "Aviso de Cookies",
     description_prefix:
-      "Este sitio usa cookies esenciales y analíticas (incluyendo Google Analytics) para entender cómo los visitantes interactúan con nuestro contenido y mejorar la experiencia. Al continuar navegando, aceptas esto. Consulta nuestra ",
+      "Usamos cookies esenciales y analíticas (incluyendo Google Analytics) para operar y mejorar el sitio. Las cookies de marketing son opcionales. Consulta nuestra ",
     privacy_link: "Política de Privacidad",
     description_suffix: " para más detalles.",
-    acknowledge: "Entendido",
+    necessary_title: "Cookies necesarias",
+    necessary_desc:
+      "Requeridas para el funcionamiento básico del sitio, como seguridad, sesión y preferencias.",
+    analytics_title: "Cookies de análisis",
+    analytics_desc:
+      "Requeridas para operar y mejorar nuestro servicio. Usamos Google Analytics para medir el uso. No se pueden desactivar en este sitio.",
+    marketing_title: "Cookies de marketing",
+    marketing_desc: "Para contenido personalizado y publicidad.",
+    required_label: "Siempre activo",
+    accept_all: "Aceptar Todo",
+    reject: "Rechazar",
+    manage: "Gestionar Preferencias",
+    save: "Guardar Preferencias",
   },
   privacy_page: {
     eyebrow: "Legal",
