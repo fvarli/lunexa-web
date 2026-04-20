@@ -1,8 +1,8 @@
 # Lunexa Web
 
-Official web presence for Lunexa — the marketing site at [uselunexa.com](https://uselunexa.com) and its contact-form API.
+**Status:** Live at [uselunexa.com](https://uselunexa.com)
 
-Lunexa builds simple, fast, and intelligent digital products. The name comes from *Luna* (moon — clarity in darkness) and *exa* (exponential scale).
+Official web presence for Lunexa — the marketing site and its contact-form API. Lunexa builds simple, fast, and intelligent digital products. The name comes from *Luna* (moon — clarity in darkness) and *exa* (exponential scale).
 
 ## Stack
 
@@ -12,8 +12,10 @@ Lunexa builds simple, fast, and intelligent digital products. The name comes fro
 | Backend | Node.js 22, Express 5, TypeScript, Zod, Helmet, express-rate-limit, Nodemailer |
 | Email | Zoho SMTP (transactional) |
 | Bot protection | Cloudflare Turnstile + honeypot + per-IP rate limits |
-| Edge | Cloudflare (DNS, TLS, WAF, caching) |
-| Server | Ubuntu 24.04 VPS, Nginx (reverse proxy), pm2 (process manager) |
+| Edge | Cloudflare (DNS, TLS, WAF, caching, bot fight, cache rules) |
+| Server | Ubuntu 24.04 VPS (DigitalOcean), Nginx (reverse proxy), pm2 (process manager) |
+| Analytics | Google Analytics 4 (always-on, disclosed) + Google Search Console |
+| Uptime | BetterStack monitoring `/api/health` |
 | CI/CD | GitHub Actions (build + SSH deploy + weekly `npm audit`) |
 
 ## Repo layout
@@ -21,35 +23,72 @@ Lunexa builds simple, fast, and intelligent digital products. The name comes fro
 ```
 lunexa-web/
 ├── apps/
-│   ├── web/                    Next.js 16 marketing site
-│   │   ├── src/app/            App Router pages, metadata files
-│   │   │   ├── page.tsx        Homepage (server wrapper)
-│   │   │   ├── contact/        Contact page
-│   │   │   ├── privacy/        Privacy policy
-│   │   │   ├── terms/          Terms of use
-│   │   │   ├── icon.svg        Favicon (crescent moon)
-│   │   │   ├── opengraph-image.tsx  Dynamic OG image
-│   │   │   ├── robots.ts       Dynamic robots.txt
-│   │   │   └── sitemap.ts      Dynamic sitemap.xml
-│   │   ├── src/components/     Client components (header, footer, forms, etc.)
-│   │   └── src/i18n/           Locale config, dictionaries (en/tr/es), provider
-│   └── api/                    Express contact-form API
-│       └── src/server.ts       Single-file server: CORS, rate-limit, validate, verify, mail
+│   ├── web/                        Next.js 16 marketing site
+│   │   ├── next.config.ts          Cache-Control headers, poweredByHeader off
+│   │   ├── src/app/
+│   │   │   ├── page.tsx            Homepage (server wrapper → client content)
+│   │   │   ├── contact/            Contact page
+│   │   │   ├── privacy/            Privacy policy (3 locales)
+│   │   │   ├── terms/              Terms of use (3 locales)
+│   │   │   ├── layout.tsx          Root layout — cookie-based SSR locale
+│   │   │   ├── icon.svg            Favicon (crescent moon)
+│   │   │   ├── apple-icon.svg      iOS home-screen icon
+│   │   │   ├── opengraph-image.tsx Dynamic 1200×630 OG image
+│   │   │   ├── robots.ts           Dynamic robots.txt
+│   │   │   └── sitemap.ts          Dynamic sitemap.xml
+│   │   ├── src/components/         analytics, cookie-consent, contact-form,
+│   │   │                           site-header, site-footer, language-switcher,
+│   │   │                           home-content, *-page-content (client shells)
+│   │   └── src/i18n/               config.ts, dictionaries.ts (en/tr/es), provider.tsx
+│   └── api/                        Express contact-form API
+│       └── src/server.ts           Single file: CORS, rate-limit, Turnstile, SMTP
 ├── .github/workflows/
-│   ├── ci.yml                  Typecheck, lint, build (api + web, parallel)
-│   ├── deploy.yml              SSH deploy on CI success (pulls, writes env, builds, pm2 reload)
-│   └── security-audit.yml      Weekly `npm audit` on both apps
-└── ecosystem.config.js         pm2 process definitions (lunexa-api:4000, lunexa-web:3001)
+│   ├── ci.yml                      Typecheck + lint + build (api + web, parallel)
+│   ├── deploy.yml                  SSH deploy on CI success (pulls, writes env, builds, pm2 reload)
+│   └── security-audit.yml          Weekly `npm audit` on both apps
+├── ecosystem.config.js             pm2 definitions (lunexa-api:4000, lunexa-web:3001)
+└── README.md
 ```
 
 ## Features
 
-- **Internationalization** — English / Turkish / Spanish via lightweight custom Context provider (no external i18n library).
+- **Internationalization** — English / Turkish / Spanish. Flash-free: locale cookie read server-side in `layout.tsx` so `<html lang>` and initial render match the user's saved preference. No hydration swap, no FOUC. Custom lightweight provider (no external i18n library).
 - **Contact form** — Zod validation, honeypot, Turnstile, 5 requests / 15 min rate limit, HTML-escaped email, SMTP via Zoho.
-- **SEO** — per-page metadata, dynamic OG image, `robots.txt`, `sitemap.xml`, JSON-LD organization schema.
-- **Cookie consent** — KVKK/GDPR-compliant banner with accept/reject/manage-preferences, localStorage-persisted, dispatches `cookie-consent:updated` event for downstream analytics wiring.
-- **Security** — Helmet, strict CORS allowlist (dev fallback to localhost pattern), request body 10 KB cap, nginx security headers (CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy).
-- **Production binding** — API binds to `127.0.0.1:4000` in production, not reachable from the public internet; Nginx alone proxies `/api/*` to it.
+- **SEO** — per-page metadata, dynamic OG image, `robots.txt`, `sitemap.xml`, JSON-LD organization schema, Google Search Console verification via `metadata.verification.google`.
+- **Analytics** — Google Analytics 4, always on, transparently disclosed in the cookie banner and privacy policy. Users are informed that analytics cookies cannot be disabled on this site; a link to Google's opt-out browser add-on is provided on the privacy page.
+- **Cookie notice** — three categories (Necessary, Analytics, Marketing). Necessary and Analytics shown as locked "Always on". Marketing is the only toggleable category. Choice persisted in `localStorage`.
+- **Security** — Helmet, strict CORS allowlist (with dev localhost fallback), request body 10 KB cap, nginx-level CSP / HSTS / X-Frame-Options / Referrer-Policy / Permissions-Policy headers.
+- **Production binding** — API binds to `127.0.0.1:4000` in production, not reachable from the public internet. Nginx alone proxies `/api/*` to it.
+
+## Performance & CDN
+
+Origin sits behind Cloudflare (orange cloud). Key edge settings configured via the Cloudflare dashboard:
+
+| Setting | Value | Purpose |
+|---------|-------|---------|
+| Auto-Minify | HTML, CSS, JS on | Smaller payloads |
+| Brotli | On | Better compression than gzip |
+| Image Polish | Lossless | Compress images without quality loss |
+| Caching Level | Standard | CF decides based on content type |
+| Browser Cache TTL | 4 hours | Client-side fallback |
+| Always Online | On | Serves archive if origin down |
+| HTTP/3 (QUIC) | On | Faster connection setup |
+| 0-RTT Resumption | On | Skip handshake on repeat visits |
+
+**Cache Rules** (unlimited on free tier, configured in Caching → Cache Rules):
+
+| Rule | Match | Action |
+|------|-------|--------|
+| Static chunks | `/_next/static/*` | Edge TTL 1 month, Browser TTL 1 year |
+| Icons + OG | `/icon.svg`, `/apple-icon.svg`, `/opengraph-image` | Edge TTL 1 week, Browser TTL 1 day |
+| API bypass | `/api/*` | Bypass cache (never stale contact POSTs) |
+
+Next.js cooperates via:
+- `poweredByHeader: false` in `next.config.ts`
+- Explicit `Cache-Control` headers for icon/OG routes
+- Default `public, max-age=31536000, immutable` on `/_next/static/*`
+
+After each deploy the Cloudflare cache should be purged (**Caching → Purge Everything**) so new JS chunks are fetched rather than served from stale edge.
 
 ## Local development
 
@@ -62,7 +101,7 @@ lunexa-web/
 
 ```bash
 cd apps/api
-cp .env.example .env     # then fill SMTP creds + TURNSTILE_SECRET_KEY (optional in dev)
+cp .env.example .env     # fill SMTP creds + TURNSTILE_SECRET_KEY (optional in dev)
 npm install
 npm run dev              # tsx watch, listens on :4000
 ```
@@ -76,7 +115,7 @@ npm install
 npm run dev                  # listens on :3000
 ```
 
-Visit [http://localhost:3000](http://localhost:3000). The contact form submits to the local API on `:4000`. In dev, Turnstile is skipped if `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is empty.
+Visit [http://localhost:3000](http://localhost:3000). The contact form submits to the local API on `:4000`. In dev, Turnstile is skipped if `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is empty, and GA4 is disabled if `NEXT_PUBLIC_GA_ID` is empty.
 
 ### Scripts
 
@@ -117,6 +156,8 @@ API (`apps/api`):
 |-----|-----|------|
 | `NEXT_PUBLIC_API_BASE_URL` | `http://localhost:4000` | empty (same-origin via nginx) |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | empty (widget hidden) | Cloudflare Turnstile site key |
+| `NEXT_PUBLIC_GA_ID` | empty (analytics off) | `G-XXXXXXXXXX` from GA4 |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | empty | Search Console HTML-tag `content` value |
 
 > `.env` and `.env.local` are gitignored. `.env.production` is also gitignored — production values live on the VPS and are written by the deploy workflow from GitHub Secrets/Variables.
 
@@ -124,7 +165,7 @@ API (`apps/api`):
 
 ### Overview
 
-GitHub Actions pulls the latest `main`, writes `.env` files on the VPS from repo Secrets/Variables, builds both apps, and reloads pm2. Nginx terminates TLS (Let's Encrypt), Cloudflare sits in front for caching and WAF.
+GitHub Actions pulls the latest `main`, writes `.env` files on the VPS from repo Secrets/Variables, builds both apps, and reloads pm2. Nginx terminates TLS (Let's Encrypt), Cloudflare sits in front for caching, WAF, and bot protection.
 
 ```
 Browser → Cloudflare → Nginx (:443) ├─ /api/  → Express (127.0.0.1:4000)
@@ -149,6 +190,8 @@ Browser → Cloudflare → Nginx (:443) ├─ /api/  → Express (127.0.0.1:400
 | `SMTP_SECURE` | `true` |
 | `ENABLE_AUTOREPLY` | `false` |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile client-side key |
+| `NEXT_PUBLIC_GA_ID` | GA4 Measurement ID (`G-XXXXXXXXXX`) |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | Search Console `content` value |
 
 ### First-time server setup
 
@@ -159,14 +202,15 @@ Browser → Cloudflare → Nginx (:443) ├─ /api/  → Express (127.0.0.1:400
 5. `pm2 start ecosystem.config.js && pm2 save`
 6. Configure Nginx vhost to reverse-proxy `/api/` → `127.0.0.1:4000` and `/` → `127.0.0.1:3001`, reload nginx.
 7. Point DNS to the VPS with Cloudflare proxy enabled (orange cloud).
+8. In Cloudflare dashboard: apply the cache rules and optimization toggles listed in **Performance & CDN** above.
 
-After that, every push to `main` triggers CI, then deploy runs automatically.
+After that, every push to `main` triggers CI, then deploy runs automatically. Remember to purge Cloudflare cache after each deploy.
 
 ## CI / security
 
 - **CI** — on every push/PR: typecheck + lint + build for both apps in parallel.
-- **Deploy** — runs only after CI success on `main` (or manual `workflow_dispatch`). Concurrency group `lunexa-prod-deploy` cancels in-flight deploys.
-- **Security audit** — weekly `npm audit --audit-level=moderate` on both apps; runtime dependencies block the job if a moderate-or-higher advisory appears.
+- **Deploy** — runs only after CI success on `main` (or manual `workflow_dispatch`). Concurrency group `lunexa-prod-deploy` cancels in-flight deploys. Internal smoke check (`curl 127.0.0.1:4000/api/health`) runs after pm2 reload, bypassing Cloudflare.
+- **Security audit** — weekly `npm audit --audit-level=moderate` on both apps. Runtime dependencies block the job if a moderate-or-higher advisory appears.
 
 ## Routes
 
@@ -174,12 +218,12 @@ After that, every push to `main` triggers CI, then deploy runs automatically.
 |------|-------------|
 | `/` | Homepage (hero, about, work, principles, contact form) |
 | `/contact` | Standalone contact page with additional info |
-| `/privacy` | Privacy Policy |
-| `/terms` | Terms of Use |
+| `/privacy` | Privacy Policy (en/tr/es) |
+| `/terms` | Terms of Use (en/tr/es) |
 | `/robots.txt` | Generated from `src/app/robots.ts` |
 | `/sitemap.xml` | Generated from `src/app/sitemap.ts` |
 | `/opengraph-image` | Dynamic 1200×630 OG image |
-| `/icon.svg` | Favicon |
+| `/icon.svg`, `/apple-icon.svg` | Favicons |
 | `/api/health` | API health check → `{ ok: true }` |
 | `/api/contact` | Contact form submission endpoint |
 
