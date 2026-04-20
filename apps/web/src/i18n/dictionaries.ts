@@ -123,19 +123,10 @@ const en = {
   cookie: {
     title: "Cookie Notice",
     description_prefix:
-      "We use cookies to give you a better experience. Necessary cookies are required for the site to function. You can manage analytics and marketing cookies according to your preferences. For more information, see our ",
+      "This site uses essential and analytics cookies (including Google Analytics) to understand how visitors interact with our content and improve the experience. By continuing to browse, you agree to this. See our ",
     privacy_link: "Privacy Policy",
-    description_suffix: ".",
-    necessary_title: "Necessary cookies",
-    necessary_desc: "Required for core site functionality. Cannot be disabled.",
-    analytics_title: "Analytics cookies",
-    analytics_desc: "For page performance and usage statistics.",
-    marketing_title: "Marketing cookies",
-    marketing_desc: "For personalized content and advertising.",
-    accept_all: "Accept All",
-    reject: "Reject",
-    manage: "Manage Preferences",
-    save: "Save Preferences",
+    description_suffix: " for details.",
+    acknowledge: "Got it",
   },
   privacy_page: {
     eyebrow: "Legal",
@@ -158,9 +149,9 @@ const en = {
     retention_title: "Data retention",
     retention_body:
       "Contact form submissions are retained only as long as necessary to address your inquiry. Server logs are retained for up to 90 days for security purposes.",
-    cookies_title: "Cookies",
+    cookies_title: "Cookies and Analytics",
     cookies_body:
-      "This website uses essential cookies for basic functionality and may use optional analytics cookies based on your consent preferences.",
+      "This website uses essential cookies for core functionality and analytics cookies for understanding site usage. We use Google Analytics 4, which sets cookies (such as _ga and _ga_*) and collects anonymized data including page views, device type, browser, approximate geographic location, and referring source. This data is processed by Google in the United States. By browsing this website, you agree to this use. If you prefer to opt out site-wide, you can install the Google Analytics Opt-out Browser Add-on at https://tools.google.com/dlpage/gaoptout.",
     rights_title: "Your rights",
     rights_body_prefix:
       "You may request access to, correction of, or deletion of any personal data we hold about you. To make a request, contact us at ",
@@ -329,19 +320,10 @@ const tr: Dictionary = {
   cookie: {
     title: "Çerez Bildirimi",
     description_prefix:
-      "Size daha iyi bir deneyim sunmak için çerezler kullanıyoruz. Zorunlu çerezler sitenin çalışması için gereklidir. Analitik ve pazarlama çerezlerini tercihlerinize göre yönetebilirsiniz. Detaylı bilgi için ",
+      "Bu site, ziyaretçilerin içerikle nasıl etkileşime girdiğini anlamak ve deneyimi iyileştirmek için zorunlu ve analitik çerezleri (Google Analytics dahil) kullanır. Gezinmeye devam ederek bunu kabul edersiniz. Detaylar için ",
     privacy_link: "Gizlilik Politikası",
     description_suffix: " sayfamızı inceleyebilirsiniz.",
-    necessary_title: "Zorunlu çerezler",
-    necessary_desc: "Sitenin temel işlevleri için gereklidir. Devre dışı bırakılamaz.",
-    analytics_title: "Analitik çerezler",
-    analytics_desc: "Sayfa performansı ve kullanım istatistikleri için.",
-    marketing_title: "Pazarlama çerezleri",
-    marketing_desc: "Kişiselleştirilmiş içerik ve reklam için.",
-    accept_all: "Tümünü Kabul Et",
-    reject: "Reddet",
-    manage: "Tercihleri Yönet",
-    save: "Tercihleri Kaydet",
+    acknowledge: "Anladım",
   },
   privacy_page: {
     eyebrow: "Yasal",
@@ -364,9 +346,9 @@ const tr: Dictionary = {
     retention_title: "Veri saklama",
     retention_body:
       "İletişim formu gönderimleri yalnızca talebinizi ele almak için gerekli süre boyunca saklanır. Sunucu logları güvenlik amacıyla en fazla 90 gün süreyle saklanır.",
-    cookies_title: "Çerezler",
+    cookies_title: "Çerezler ve Analitik",
     cookies_body:
-      "Bu web sitesi temel işlevsellik için zorunlu çerezler kullanır ve onay tercihlerinize göre isteğe bağlı analitik çerezleri kullanabilir.",
+      "Bu web sitesi; temel işlevsellik için zorunlu çerezler ve site kullanımını anlamak için analitik çerezler kullanır. Google Analytics 4 kullanıyoruz; bu hizmet tarayıcınıza çerezler (_ga ve _ga_* gibi) yerleştirir ve sayfa görüntülemeleri, cihaz tipi, tarayıcı, yaklaşık coğrafi konum ve yönlendiren kaynak gibi anonim verileri toplar. Bu veriler Google tarafından Amerika Birleşik Devletleri'nde işlenir. Bu web sitesinde gezinerek bu kullanımı kabul etmiş olursunuz. Site genelinde devre dışı bırakmayı tercih ederseniz https://tools.google.com/dlpage/gaoptout adresinden Google Analytics Devre Dışı Bırakma tarayıcı eklentisini yükleyebilirsiniz.",
     rights_title: "Haklarınız",
     rights_body_prefix:
       "Sizinle ilgili tuttuğumuz kişisel verilere erişme, düzeltilmesini veya silinmesini talep etme hakkına sahipsiniz. Talep iletmek için şu adrese yazın: ",
@@ -535,19 +517,10 @@ const es: Dictionary = {
   cookie: {
     title: "Aviso de Cookies",
     description_prefix:
-      "Usamos cookies para ofrecerte una mejor experiencia. Las cookies necesarias son indispensables para el funcionamiento del sitio. Puedes gestionar las cookies de análisis y marketing según tus preferencias. Para más información, consulta nuestra ",
+      "Este sitio usa cookies esenciales y analíticas (incluyendo Google Analytics) para entender cómo los visitantes interactúan con nuestro contenido y mejorar la experiencia. Al continuar navegando, aceptas esto. Consulta nuestra ",
     privacy_link: "Política de Privacidad",
-    description_suffix: ".",
-    necessary_title: "Cookies necesarias",
-    necessary_desc: "Requeridas para el funcionamiento básico. No se pueden desactivar.",
-    analytics_title: "Cookies de análisis",
-    analytics_desc: "Para rendimiento del sitio y estadísticas de uso.",
-    marketing_title: "Cookies de marketing",
-    marketing_desc: "Para contenido personalizado y publicidad.",
-    accept_all: "Aceptar Todo",
-    reject: "Rechazar",
-    manage: "Gestionar Preferencias",
-    save: "Guardar Preferencias",
+    description_suffix: " para más detalles.",
+    acknowledge: "Entendido",
   },
   privacy_page: {
     eyebrow: "Legal",
@@ -570,9 +543,9 @@ const es: Dictionary = {
     retention_title: "Retención de datos",
     retention_body:
       "Los envíos del formulario de contacto se conservan solo el tiempo necesario para atender tu consulta. Los registros del servidor se conservan hasta 90 días por motivos de seguridad.",
-    cookies_title: "Cookies",
+    cookies_title: "Cookies y Análisis",
     cookies_body:
-      "Este sitio usa cookies esenciales para el funcionamiento básico y puede usar cookies analíticas opcionales según tus preferencias de consentimiento.",
+      "Este sitio web utiliza cookies esenciales para el funcionamiento básico y cookies analíticas para entender el uso del sitio. Usamos Google Analytics 4, que establece cookies (como _ga y _ga_*) y recopila datos anónimos como páginas vistas, tipo de dispositivo, navegador, ubicación geográfica aproximada y fuente de referencia. Google procesa estos datos en los Estados Unidos. Al navegar por este sitio, aceptas este uso. Si prefieres darte de baja en todo el sitio, puedes instalar el complemento del navegador para inhabilitar Google Analytics en https://tools.google.com/dlpage/gaoptout.",
     rights_title: "Tus derechos",
     rights_body_prefix:
       "Puedes solicitar acceso, corrección o eliminación de cualquier dato personal que tengamos sobre ti. Para hacer una solicitud, contáctanos en ",
