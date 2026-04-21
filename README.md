@@ -229,6 +229,36 @@ Browser → Cloudflare → Nginx (:443) ├─ /api/  → Express (127.0.0.1:400
 
 After that, every push to `main` triggers CI, then deploy runs automatically. Remember to purge Cloudflare cache after each deploy.
 
+## Docker (local parity)
+
+Both apps are containerizable. Production still runs natively via pm2 behind nginx — the Docker path is for local parity, running against a different kernel, or rehoming to a new VPS quickly.
+
+```bash
+# at repo root
+docker compose build
+docker compose up
+
+# visit http://localhost:3001  (web)
+# api is proxied by Next.js on the same origin via NEXT_PUBLIC_API_BASE_URL
+```
+
+- `apps/api/Dockerfile` — multi-stage `node:22-alpine`, non-root `lunexa` user, `curl`-based `HEALTHCHECK` on `/api/health`.
+- `apps/web/Dockerfile` — multi-stage with `output: "standalone"` in `next.config.ts` (~120 MB runner vs. ~1 GB without).
+- `docker-compose.yml` — ports bind to `127.0.0.1` only (not exposed to LAN), web `depends_on` api's health status.
+
+Env vars can be set inline or via a `.env` file at the repo root (compose auto-loads it):
+
+```bash
+# .env (gitignored)
+SMTP_HOST=smtppro.zoho.eu
+SMTP_USER=hello@uselunexa.com
+SMTP_PASS=...
+TURNSTILE_SECRET_KEY=...
+NEWSLETTER_SECRET=$(openssl rand -hex 32)
+```
+
+**Not for production as-is.** Prod still uses pm2 + nginx for better SMTP/port isolation and the existing CI/CD flow.
+
 ## CI / security
 
 - **CI** — on every push/PR: typecheck + lint + build for both apps in parallel.
