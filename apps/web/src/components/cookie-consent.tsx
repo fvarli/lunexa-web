@@ -79,7 +79,7 @@ export default function CookieConsent() {
               {t("cookie.description_prefix")}
               <Link
                 href="/privacy"
-                className="text-accent transition-opacity hover:opacity-80"
+                className="text-accent underline underline-offset-2 decoration-accent/50 transition-opacity hover:decoration-accent hover:opacity-80"
               >
                 {t("cookie.privacy_link")}
               </Link>
