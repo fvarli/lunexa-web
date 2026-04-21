@@ -200,17 +200,67 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
         subject: "New contact inquiry — Lunexa",
         text: [`Name: ${name}`, `Email: ${email}`, `Date: ${timestamp}`, "", message].join("\n"),
         html: `
-          <div style="font-family: -apple-system, sans-serif; max-width: 520px; color: #222;">
-            <h2 style="font-size: 18px; margin-bottom: 20px; color: #111;">New contact inquiry</h2>
-            <table style="border-collapse: collapse; width: 100%; margin-bottom: 20px;">
-              <tr><td style="padding: 6px 12px 6px 0; color: #666; width: 60px;">Name</td><td style="padding: 6px 0;">${safeName}</td></tr>
-              <tr><td style="padding: 6px 12px 6px 0; color: #666;">Email</td><td style="padding: 6px 0;"><a href="mailto:${safeEmail}" style="color: #5b4dc7;">${safeEmail}</a></td></tr>
-              <tr><td style="padding: 6px 12px 6px 0; color: #666;">Date</td><td style="padding: 6px 0;">${timestamp}</td></tr>
-            </table>
-            <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 16px 0;" />
-            <p style="white-space: pre-wrap; line-height: 1.6; color: #333;">${safeMessage}</p>
-          </div>
-        `,
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>New contact inquiry</title>
+  </head>
+  <body style="margin:0;padding:0;background-color:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#18181b;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f4f5;padding:32px 16px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+            <tr>
+              <td style="padding:24px 32px;background-color:#0f0f0f;color:#ffffff;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="middle">
+                      <span style="display:inline-block;width:28px;height:28px;border-radius:8px;background-color:#a78bfa;vertical-align:middle;"></span>
+                      <span style="display:inline-block;margin-left:10px;font-size:16px;font-weight:600;letter-spacing:0.01em;vertical-align:middle;">Lunexa</span>
+                    </td>
+                    <td align="right" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#a1a1aa;">
+                      Contact
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:32px;">
+                <h1 style="margin:0 0 24px 0;font-size:18px;font-weight:600;color:#18181b;letter-spacing:-0.01em;">New contact inquiry</h1>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                  <tr>
+                    <td style="padding:10px 0;border-bottom:1px solid #e4e4e7;font-size:13px;color:#71717a;width:88px;vertical-align:top;">Name</td>
+                    <td style="padding:10px 0;border-bottom:1px solid #e4e4e7;font-size:14px;color:#18181b;">${safeName}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:10px 0;border-bottom:1px solid #e4e4e7;font-size:13px;color:#71717a;vertical-align:top;">Email</td>
+                    <td style="padding:10px 0;border-bottom:1px solid #e4e4e7;font-size:14px;"><a href="mailto:${safeEmail}" style="color:#7c3aed;text-decoration:none;">${safeEmail}</a></td>
+                  </tr>
+                  <tr>
+                    <td style="padding:10px 0;border-bottom:1px solid #e4e4e7;font-size:13px;color:#71717a;vertical-align:top;">Date</td>
+                    <td style="padding:10px 0;border-bottom:1px solid #e4e4e7;font-size:14px;color:#18181b;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;">${timestamp}</td>
+                  </tr>
+                </table>
+                <div style="margin-top:24px;padding:16px;background-color:#fafafa;border-radius:8px;">
+                  <p style="margin:0 0 6px 0;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#71717a;">Message</p>
+                  <p style="margin:0;white-space:pre-wrap;line-height:1.65;font-size:14px;color:#27272a;">${safeMessage}</p>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:16px 32px 24px 32px;font-size:12px;color:#a1a1aa;text-align:center;">
+                Reply directly to this email to respond to ${safeName}.
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`,
       });
 
       if (process.env.ENABLE_AUTOREPLY === "true") {
