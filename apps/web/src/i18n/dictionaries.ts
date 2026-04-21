@@ -140,6 +140,19 @@ const en = {
     manage: "Manage Preferences",
     save: "Save Preferences",
   },
+  notfound: {
+    eyebrow: "404",
+    heading: "Page not found",
+    body: "The page you're looking for doesn't exist or has moved.",
+    home: "Go home",
+  },
+  error: {
+    eyebrow: "Error",
+    heading: "Something went wrong",
+    body: "An unexpected error occurred. You can try again or go back home.",
+    retry: "Try again",
+    home: "Go home",
+  },
   privacy_page: {
     eyebrow: "Legal",
     heading: "Privacy Policy",
@@ -349,6 +362,19 @@ const tr: Dictionary = {
     manage: "Tercihleri Yönet",
     save: "Tercihleri Kaydet",
   },
+  notfound: {
+    eyebrow: "404",
+    heading: "Sayfa bulunamadı",
+    body: "Aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+    home: "Ana sayfaya dön",
+  },
+  error: {
+    eyebrow: "Hata",
+    heading: "Bir şeyler ters gitti",
+    body: "Beklenmeyen bir hata oluştu. Tekrar deneyebilir veya ana sayfaya dönebilirsiniz.",
+    retry: "Tekrar dene",
+    home: "Ana sayfaya dön",
+  },
   privacy_page: {
     eyebrow: "Yasal",
     heading: "Gizlilik Politikası",
@@ -557,6 +583,19 @@ const es: Dictionary = {
     reject: "Rechazar",
     manage: "Gestionar Preferencias",
     save: "Guardar Preferencias",
+  },
+  notfound: {
+    eyebrow: "404",
+    heading: "Página no encontrada",
+    body: "La página que buscas no existe o ha sido movida.",
+    home: "Ir al inicio",
+  },
+  error: {
+    eyebrow: "Error",
+    heading: "Algo salió mal",
+    body: "Ocurrió un error inesperado. Puedes intentarlo de nuevo o volver al inicio.",
+    retry: "Reintentar",
+    home: "Ir al inicio",
   },
   privacy_page: {
     eyebrow: "Legal",
