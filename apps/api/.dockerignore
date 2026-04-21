@@ -1,0 +1,11 @@
+node_modules
+dist
+tests
+vitest.config.ts
+.env
+.env.local
+.env.production
+*.log
+.DS_Store
+Dockerfile
+.dockerignore
