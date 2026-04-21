@@ -225,6 +225,37 @@ const en = {
     switch_to_light: "Switch to light theme",
     switch_to_dark: "Switch to dark theme",
   },
+  newsletter: {
+    eyebrow: "Newsletter",
+    heading: "Stay in the loop",
+    subtitle:
+      "Occasional notes on what we're building. No spam, unsubscribe any time.",
+    email_label: "Email",
+    email_placeholder: "you@example.com",
+    consent_prefix: "I agree to receive the Lunexa newsletter and have read the ",
+    privacy_link: "Privacy Policy",
+    consent_suffix: ".",
+    submit: "Subscribe",
+    submitting: "Sending...",
+    sent_title: "Check your inbox",
+    sent_body:
+      "We sent you a confirmation link. Open it within 15 minutes to complete the subscription.",
+    consent_required: "Please accept the newsletter terms to continue.",
+    rate_limit: "Too many requests. Please wait a few minutes.",
+    network_error: "Could not reach the server. Please try again.",
+    generic_error: "Something went wrong. Please try again.",
+  },
+  newsletter_confirmed: {
+    eyebrow_ok: "Newsletter",
+    eyebrow_err: "Link expired",
+    ok_title: "Subscription confirmed",
+    ok_body:
+      "You're on the list. We'll reach out occasionally with what we're building.",
+    expired_title: "This link is no longer valid",
+    expired_body:
+      "Confirmation links expire after 15 minutes. You can request a new one from the homepage.",
+    home: "Go home",
+  },
 };
 
 const tr: Dictionary = {
@@ -451,6 +482,37 @@ const tr: Dictionary = {
     switch_to_light: "Açık temaya geç",
     switch_to_dark: "Koyu temaya geç",
   },
+  newsletter: {
+    eyebrow: "Bülten",
+    heading: "Gündemi kaçırmayın",
+    subtitle:
+      "Neler yaptığımıza dair arada gelen notlar. Spam yok, dilediğiniz zaman çıkabilirsiniz.",
+    email_label: "E-posta",
+    email_placeholder: "siz@ornek.com",
+    consent_prefix: "Lunexa bültenini almayı kabul ediyorum ve ",
+    privacy_link: "Gizlilik Politikası",
+    consent_suffix: "'nı okudum.",
+    submit: "Abone Ol",
+    submitting: "Gönderiliyor...",
+    sent_title: "Gelen kutunuza bakın",
+    sent_body:
+      "Size bir doğrulama bağlantısı gönderdik. Aboneliği tamamlamak için 15 dakika içinde açın.",
+    consent_required: "Devam etmek için bülten şartlarını kabul edin.",
+    rate_limit: "Çok fazla istek. Birkaç dakika sonra tekrar deneyin.",
+    network_error: "Sunucuya ulaşılamadı. Lütfen tekrar deneyin.",
+    generic_error: "Bir şeyler ters gitti. Tekrar deneyin.",
+  },
+  newsletter_confirmed: {
+    eyebrow_ok: "Bülten",
+    eyebrow_err: "Bağlantı süresi doldu",
+    ok_title: "Aboneliğiniz onaylandı",
+    ok_body:
+      "Listedesiniz. Neler yaptığımıza dair arada size ulaşacağız.",
+    expired_title: "Bu bağlantı artık geçerli değil",
+    expired_body:
+      "Onay bağlantıları 15 dakika sonra sona erer. Ana sayfadan yeni bir tane talep edebilirsiniz.",
+    home: "Ana sayfaya dön",
+  },
 };
 
 const es: Dictionary = {
@@ -676,6 +738,37 @@ const es: Dictionary = {
   theme: {
     switch_to_light: "Cambiar a tema claro",
     switch_to_dark: "Cambiar a tema oscuro",
+  },
+  newsletter: {
+    eyebrow: "Boletín",
+    heading: "Mantente al día",
+    subtitle:
+      "Notas ocasionales sobre lo que estamos construyendo. Sin spam, puedes darte de baja cuando quieras.",
+    email_label: "Correo",
+    email_placeholder: "tu@ejemplo.com",
+    consent_prefix: "Acepto recibir el boletín de Lunexa y he leído la ",
+    privacy_link: "Política de Privacidad",
+    consent_suffix: ".",
+    submit: "Suscribirme",
+    submitting: "Enviando...",
+    sent_title: "Revisa tu bandeja",
+    sent_body:
+      "Te enviamos un enlace de confirmación. Ábrelo en los próximos 15 minutos para completar la suscripción.",
+    consent_required: "Acepta los términos del boletín para continuar.",
+    rate_limit: "Demasiadas solicitudes. Espera unos minutos.",
+    network_error: "No se pudo contactar con el servidor. Inténtalo de nuevo.",
+    generic_error: "Algo salió mal. Inténtalo de nuevo.",
+  },
+  newsletter_confirmed: {
+    eyebrow_ok: "Boletín",
+    eyebrow_err: "Enlace caducado",
+    ok_title: "Suscripción confirmada",
+    ok_body:
+      "Estás en la lista. Te escribiremos de vez en cuando con lo que estamos construyendo.",
+    expired_title: "Este enlace ya no es válido",
+    expired_body:
+      "Los enlaces de confirmación caducan en 15 minutos. Puedes solicitar uno nuevo desde la página principal.",
+    home: "Ir al inicio",
   },
 };
 

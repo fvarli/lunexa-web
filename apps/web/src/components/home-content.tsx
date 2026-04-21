@@ -1,6 +1,7 @@
 "use client";
 
 import ContactForm from "@/components/contact-form";
+import NewsletterForm from "@/components/newsletter-form";
 import { useT } from "@/i18n/provider";
 
 export default function HomeContent() {
@@ -167,10 +168,31 @@ export default function HomeContent() {
         </div>
       </section>
 
+      {/* ── Newsletter ── */}
+      <section
+        id="newsletter"
+        className="border-t border-border/50 py-24 sm:py-32"
+      >
+        <div className="mx-auto max-w-xl px-6">
+          <div className="text-center">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent">
+              {t("newsletter.eyebrow")}
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              {t("newsletter.heading")}
+            </h2>
+            <p className="mt-4 text-muted">{t("newsletter.subtitle")}</p>
+          </div>
+          <div className="mt-10">
+            <NewsletterForm />
+          </div>
+        </div>
+      </section>
+
       {/* ── Contact (UI only) ── */}
       <section
         id="contact"
-        className="border-t border-border/50 py-24 sm:py-32"
+        className="border-t border-border/50 bg-surface py-24 sm:py-32"
       >
         <div className="mx-auto max-w-xl px-6">
           <div className="text-center">

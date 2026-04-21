@@ -4,6 +4,7 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import nodemailer from "nodemailer";
 import type { Transporter } from "nodemailer";
+import jwt from "jsonwebtoken";
 import { z } from "zod";
 
 // ── Shared helpers (exported for tests) ──
@@ -40,6 +41,44 @@ export async function verifyTurnstile(
   }
 }
 
+export const newsletterSchema = z.object({
+  email: z
+    .string()
+    .transform((v) => v.trim().toLowerCase())
+    .pipe(z.string().email("Invalid email address").max(254, "Email is too long")),
+  consent: z.literal(true, {
+    message: "You must accept the newsletter terms",
+  }),
+});
+
+export function signSubscriptionToken(email: string, secret: string): string {
+  return jwt.sign({ email, purpose: "newsletter-confirm" }, secret, {
+    expiresIn: "15m",
+  });
+}
+
+export function verifySubscriptionToken(
+  token: string,
+  secret: string
+): { email: string } | null {
+  try {
+    const decoded = jwt.verify(token, secret) as {
+      email?: unknown;
+      purpose?: unknown;
+    };
+    if (
+      decoded &&
+      decoded.purpose === "newsletter-confirm" &&
+      typeof decoded.email === "string"
+    ) {
+      return { email: decoded.email };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export const contactSchema = z.object({
   name: z
     .string()
@@ -64,6 +103,7 @@ export type CreateAppOptions = {
   rateLimits?: {
     globalMax?: number;
     contactMax?: number;
+    newsletterMax?: number;
     windowMs?: number;
   };
 };
@@ -140,6 +180,15 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
   const contactLimiter = rateLimit({
     windowMs,
     max: rateLimits?.contactMax ?? 5,
+    message: {
+      ok: false,
+      message: "Too many requests. Please try again in a few minutes.",
+    },
+  });
+
+  const newsletterLimiter = rateLimit({
+    windowMs,
+    max: rateLimits?.newsletterMax ?? 3,
     message: {
       ok: false,
       message: "Too many requests. Please try again in a few minutes.",
@@ -285,6 +334,154 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
     } catch (err) {
       console.error("[contact] error:", err);
       res.status(500).json({ ok: false, message: "Something went wrong. Please try again later." });
+    }
+  });
+
+  // ── Newsletter (double opt-in) ──
+
+  const siteBaseUrl = process.env.SITE_BASE_URL || "https://uselunexa.com";
+
+  app.post(
+    "/api/newsletter/subscribe",
+    jsonBody,
+    newsletterLimiter,
+    async (req, res) => {
+      try {
+        const result = newsletterSchema.safeParse(req.body);
+        if (!result.success) {
+          const errors = result.error.issues.map((issue) => ({
+            field: issue.path.join("."),
+            message: issue.message,
+          }));
+          res.status(400).json({ ok: false, errors });
+          return;
+        }
+
+        const { email } = result.data;
+        const secret = process.env.NEWSLETTER_SECRET;
+        if (!secret) {
+          console.error("[newsletter] NEWSLETTER_SECRET is not configured");
+          res.status(503).json({
+            ok: false,
+            message: "Newsletter is temporarily unavailable.",
+          });
+          return;
+        }
+
+        const token = signSubscriptionToken(email, secret);
+        const confirmUrl = `${siteBaseUrl}/api/newsletter/confirm?token=${encodeURIComponent(token)}`;
+        const safeEmail = escapeHtml(email);
+
+        await mailer.sendMail({
+          from: `"Lunexa" <${process.env.SMTP_USER}>`,
+          to: email,
+          subject: "Confirm your Lunexa newsletter subscription",
+          text: [
+            "Hi,",
+            "",
+            "Please confirm your Lunexa newsletter subscription by opening the link below within 15 minutes:",
+            "",
+            confirmUrl,
+            "",
+            "If you did not request this, you can safely ignore this email.",
+            "",
+            "— Lunexa",
+            "https://uselunexa.com",
+          ].join("\n"),
+          html: `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Confirm your newsletter subscription</title>
+  </head>
+  <body style="margin:0;padding:0;background-color:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#18181b;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f4f5;padding:32px 16px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+            <tr>
+              <td style="padding:24px 32px;background-color:#0f0f0f;color:#ffffff;">
+                <span style="display:inline-block;width:28px;height:28px;border-radius:8px;background-color:#a78bfa;vertical-align:middle;"></span>
+                <span style="display:inline-block;margin-left:10px;font-size:16px;font-weight:600;vertical-align:middle;">Lunexa</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:32px;">
+                <h1 style="margin:0 0 12px 0;font-size:22px;font-weight:600;color:#18181b;letter-spacing:-0.02em;">Confirm your subscription</h1>
+                <p style="margin:0 0 24px 0;font-size:14px;line-height:1.65;color:#52525b;">
+                  You asked to subscribe to the Lunexa newsletter as
+                  <strong style="color:#18181b;">${safeEmail}</strong>. Please confirm within 15 minutes:
+                </p>
+                <p style="margin:0 0 24px 0;">
+                  <a href="${confirmUrl}" style="display:inline-block;padding:12px 28px;background-color:#18181b;color:#ffffff;font-size:14px;font-weight:500;text-decoration:none;border-radius:9999px;">Confirm subscription</a>
+                </p>
+                <p style="margin:0 0 12px 0;font-size:12px;color:#71717a;">Or paste this link into your browser:</p>
+                <p style="margin:0 0 24px 0;font-size:12px;word-break:break-all;"><a href="${confirmUrl}" style="color:#7c3aed;text-decoration:none;">${confirmUrl}</a></p>
+                <p style="margin:0;font-size:12px;color:#a1a1aa;">If you didn't request this, you can safely ignore this email.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`,
+        });
+
+        console.log("[newsletter] confirmation requested", {
+          timestamp: new Date().toISOString(),
+        });
+        res.json({
+          ok: true,
+          message: "Check your inbox to confirm your subscription.",
+        });
+      } catch (err) {
+        console.error("[newsletter] subscribe error:", err);
+        res.status(500).json({
+          ok: false,
+          message: "Something went wrong. Please try again later.",
+        });
+      }
+    }
+  );
+
+  app.get("/api/newsletter/confirm", async (req, res) => {
+    const secret = process.env.NEWSLETTER_SECRET;
+    const token = typeof req.query.token === "string" ? req.query.token : "";
+
+    if (!secret || !token) {
+      res.redirect(`${siteBaseUrl}/newsletter/confirmed?status=expired`);
+      return;
+    }
+
+    const decoded = verifySubscriptionToken(token, secret);
+    if (!decoded) {
+      res.redirect(`${siteBaseUrl}/newsletter/confirmed?status=expired`);
+      return;
+    }
+
+    try {
+      await mailer.sendMail({
+        from: `"Lunexa Newsletter" <${process.env.SMTP_USER}>`,
+        to: process.env.CONTACT_RECEIVER,
+        subject: "New confirmed newsletter subscriber",
+        text: [
+          `Confirmed subscriber: ${decoded.email}`,
+          `Date: ${new Date().toISOString()}`,
+          "",
+          "Add this address to the newsletter list.",
+        ].join("\n"),
+      });
+
+      console.log("[newsletter] confirmed", {
+        timestamp: new Date().toISOString(),
+      });
+      res.redirect(`${siteBaseUrl}/newsletter/confirmed?status=ok`);
+    } catch (err) {
+      console.error("[newsletter] confirm error:", err);
+      res.redirect(`${siteBaseUrl}/newsletter/confirmed?status=error`);
     }
   });
 
