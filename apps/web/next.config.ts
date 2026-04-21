@@ -13,6 +13,13 @@ const securityHeaders = [
     value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
   },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  // ── CSP ──
+  // Currently shipping Report-Only. To enforce:
+  //   1. Watch browser Console for a few days and confirm no legit script/style
+  //      is being reported as a violation.
+  //   2. Change the header key below from "Content-Security-Policy-Report-Only"
+  //      to "Content-Security-Policy". Keep the same value.
+  //   3. Deploy, re-check Console + Lighthouse. Revert if anything breaks.
   {
     key: "Content-Security-Policy-Report-Only",
     value: [
