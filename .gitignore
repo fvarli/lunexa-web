@@ -14,3 +14,6 @@ pnpm-debug.log*
 .claude/
 apps/web/.env.production
 apps/api/.env.production
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/blob-report/
