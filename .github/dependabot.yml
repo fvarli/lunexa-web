@@ -34,6 +34,20 @@ updates:
     commit-message:
       prefix: "chore(web)"
       include: "scope"
+    ignore:
+      # ESLint 10 breaks eslint-config-next / eslint-plugin-react
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      # TypeScript 6 not fully validated against Next.js 16 yet
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # React majors should be intentional, not auto-merged
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
     groups:
       web-minor-patch:
         update-types:
