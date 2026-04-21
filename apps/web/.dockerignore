@@ -1,0 +1,14 @@
+node_modules
+.next
+tests
+test-results
+playwright-report
+blob-report
+playwright.config.ts
+.env
+.env.local
+.env.production
+*.log
+.DS_Store
+Dockerfile
+.dockerignore
