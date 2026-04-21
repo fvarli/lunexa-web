@@ -221,6 +221,10 @@ const en = {
   language: {
     switcher_label: "Language",
   },
+  theme: {
+    switch_to_light: "Switch to light theme",
+    switch_to_dark: "Switch to dark theme",
+  },
 };
 
 const tr: Dictionary = {
@@ -443,6 +447,10 @@ const tr: Dictionary = {
   language: {
     switcher_label: "Dil",
   },
+  theme: {
+    switch_to_light: "Açık temaya geç",
+    switch_to_dark: "Koyu temaya geç",
+  },
 };
 
 const es: Dictionary = {
@@ -664,6 +672,10 @@ const es: Dictionary = {
   },
   language: {
     switcher_label: "Idioma",
+  },
+  theme: {
+    switch_to_light: "Cambiar a tema claro",
+    switch_to_dark: "Cambiar a tema oscuro",
   },
 };
 

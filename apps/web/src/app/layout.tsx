@@ -7,6 +7,13 @@ import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import { LanguageProvider } from "@/i18n/provider";
 import { DEFAULT_LOCALE, LOCALES, STORAGE_KEY, type Locale } from "@/i18n/config";
+import { ThemeProvider } from "@/theme/provider";
+import {
+  DEFAULT_THEME,
+  THEMES,
+  THEME_STORAGE_KEY,
+  type Theme,
+} from "@/theme/config";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -117,9 +124,16 @@ export default async function RootLayout({
       ? (cookieLocale as Locale)
       : DEFAULT_LOCALE;
 
+  const cookieTheme = cookieStore.get(THEME_STORAGE_KEY)?.value;
+  const initialTheme: Theme =
+    cookieTheme && (THEMES as readonly string[]).includes(cookieTheme)
+      ? (cookieTheme as Theme)
+      : DEFAULT_THEME;
+
   return (
     <html
       lang={initialLocale}
+      data-theme={initialTheme}
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <head>
@@ -129,12 +143,14 @@ export default async function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="min-h-screen flex flex-col font-sans">
-        <LanguageProvider initialLocale={initialLocale}>
-          <SiteHeader />
-          {children}
-          <CookieConsent />
-          <SiteFooter />
-        </LanguageProvider>
+        <ThemeProvider initialTheme={initialTheme}>
+          <LanguageProvider initialLocale={initialLocale}>
+            <SiteHeader />
+            {children}
+            <CookieConsent />
+            <SiteFooter />
+          </LanguageProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

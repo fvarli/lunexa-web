@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import LanguageSwitcher from "./language-switcher";
+import ThemeToggle from "./theme-toggle";
 
 export default function SiteHeader() {
   const { t } = useT();
@@ -39,7 +40,10 @@ export default function SiteHeader() {
               {t("nav.contact")}
             </Link>
           </nav>
-          <LanguageSwitcher />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </header>

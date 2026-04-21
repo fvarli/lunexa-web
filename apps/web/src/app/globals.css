@@ -1,27 +1,54 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #050505;
-  --color-foreground: #e8e8e8;
-  --color-muted: #888888;
-  --color-surface: #0f0f0f;
-  --color-surface-light: #1a1a1a;
-  --color-border: #222222;
-  --color-accent: #a78bfa;
+  --color-background: var(--lunexa-background);
+  --color-foreground: var(--lunexa-foreground);
+  --color-muted: var(--lunexa-muted);
+  --color-surface: var(--lunexa-surface);
+  --color-surface-light: var(--lunexa-surface-light);
+  --color-border: var(--lunexa-border);
+  --color-accent: var(--lunexa-accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+:root,
+[data-theme="dark"] {
+  --lunexa-background: #050505;
+  --lunexa-foreground: #e8e8e8;
+  --lunexa-muted: #888888;
+  --lunexa-surface: #0f0f0f;
+  --lunexa-surface-light: #1a1a1a;
+  --lunexa-border: #222222;
+  --lunexa-accent: #a78bfa;
+}
+
+[data-theme="light"] {
+  --lunexa-background: #fafafa;
+  --lunexa-foreground: #0a0a0a;
+  --lunexa-muted: #585858;
+  --lunexa-surface: #f2f2f2;
+  --lunexa-surface-light: #e8e8e8;
+  --lunexa-border: #d8d8d8;
+  --lunexa-accent: #7c3aed;
+}
+
 html {
   scroll-behavior: smooth;
+  color-scheme: dark light;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 ::selection {
   background: var(--color-accent);
-  color: #050505;
+  color: var(--color-background);
 }
