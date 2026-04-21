@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PrivacyPageContent from "@/components/privacy-page-content";
+import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -9,5 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  return <PrivacyPageContent />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://uselunexa.com/" },
+          { name: "Privacy Policy", url: "https://uselunexa.com/privacy" },
+        ]}
+      />
+      <PrivacyPageContent />
+    </>
+  );
 }

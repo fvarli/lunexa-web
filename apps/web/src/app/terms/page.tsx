@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TermsPageContent from "@/components/terms-page-content";
+import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
@@ -9,5 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
-  return <TermsPageContent />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://uselunexa.com/" },
+          { name: "Terms of Use", url: "https://uselunexa.com/terms" },
+        ]}
+      />
+      <TermsPageContent />
+    </>
+  );
 }

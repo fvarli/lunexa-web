@@ -69,12 +69,40 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Lunexa",
-  url: "https://uselunexa.com",
-  email: "hello@uselunexa.com",
-  description:
-    "Lunexa builds simple, fast, and intelligent mobile and web applications.",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://uselunexa.com/#organization",
+      name: "Lunexa",
+      url: "https://uselunexa.com",
+      email: "hello@uselunexa.com",
+      description:
+        "Lunexa builds simple, fast, and intelligent mobile and web applications.",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://uselunexa.com/icon.svg",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://uselunexa.com/#website",
+      url: "https://uselunexa.com",
+      name: "Lunexa",
+      publisher: { "@id": "https://uselunexa.com/#organization" },
+      inLanguage: ["en", "tr", "es"],
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://uselunexa.com/#sitenav",
+      name: ["About", "What We Build", "Principles", "Contact"],
+      url: [
+        "https://uselunexa.com/#about",
+        "https://uselunexa.com/#work",
+        "https://uselunexa.com/#principles",
+        "https://uselunexa.com/contact",
+      ],
+    },
+  ],
 };
 
 export default async function RootLayout({
