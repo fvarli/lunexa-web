@@ -5,7 +5,17 @@ import rateLimit from "express-rate-limit";
 import nodemailer from "nodemailer";
 import type { Transporter } from "nodemailer";
 import jwt from "jsonwebtoken";
+import { createHash } from "node:crypto";
 import { z } from "zod";
+import { prisma as defaultPrisma } from "./db";
+
+type NewsletterDb = {
+  subscriber: {
+    upsert: (args: unknown) => Promise<unknown>;
+    update: (args: unknown) => Promise<unknown>;
+    findUnique: (args: unknown) => Promise<unknown>;
+  };
+};
 
 // ── Shared helpers (exported for tests) ──
 
@@ -79,6 +89,40 @@ export function verifySubscriptionToken(
   }
 }
 
+export function signUnsubscribeToken(email: string, secret: string): string {
+  return jwt.sign({ email, purpose: "newsletter-unsubscribe" }, secret, {
+    expiresIn: "30d",
+  });
+}
+
+export function verifyUnsubscribeToken(
+  token: string,
+  secret: string
+): { email: string } | null {
+  try {
+    const decoded = jwt.verify(token, secret) as {
+      email?: unknown;
+      purpose?: unknown;
+    };
+    if (
+      decoded &&
+      decoded.purpose === "newsletter-unsubscribe" &&
+      typeof decoded.email === "string"
+    ) {
+      return { email: decoded.email };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+export function hashIp(ip: string | undefined, pepper: string | undefined): string | null {
+  if (!ip) return null;
+  const salt = pepper ?? "lunexa-newsletter";
+  return createHash("sha256").update(`${salt}::${ip}`).digest("hex");
+}
+
 export const contactSchema = z.object({
   name: z
     .string()
@@ -99,6 +143,8 @@ export const contactSchema = z.object({
 export type CreateAppOptions = {
   /** Inject a mock transporter for tests. */
   transporter?: Transporter;
+  /** Inject a Prisma-compatible client for tests. */
+  db?: NewsletterDb;
   /** Override rate limits (useful for tests). */
   rateLimits?: {
     globalMax?: number;
@@ -108,7 +154,8 @@ export type CreateAppOptions = {
   };
 };
 
-export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
+export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}) {
+  const prisma = db ?? (defaultPrisma as unknown as NewsletterDb);
   const app = express();
   app.set("trust proxy", 1);
 
@@ -369,7 +416,9 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
         }
 
         const token = signSubscriptionToken(email, secret);
+        const unsubToken = signUnsubscribeToken(email, secret);
         const confirmUrl = `${siteBaseUrl}/api/newsletter/confirm?token=${encodeURIComponent(token)}`;
+        const unsubscribeUrl = `${siteBaseUrl}/api/newsletter/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
         const safeEmail = escapeHtml(email);
 
         await mailer.sendMail({
@@ -387,6 +436,8 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
             "",
             "— Lunexa",
             "https://uselunexa.com",
+            "",
+            `Don't want these emails? Unsubscribe: ${unsubscribeUrl}`,
           ].join("\n"),
           html: `
 <!DOCTYPE html>
@@ -420,6 +471,11 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
                 <p style="margin:0 0 12px 0;font-size:12px;color:#71717a;">Or paste this link into your browser:</p>
                 <p style="margin:0 0 24px 0;font-size:12px;word-break:break-all;"><a href="${confirmUrl}" style="color:#7c3aed;text-decoration:none;">${confirmUrl}</a></p>
                 <p style="margin:0;font-size:12px;color:#a1a1aa;">If you didn't request this, you can safely ignore this email.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:16px 32px 24px 32px;font-size:12px;color:#a1a1aa;text-align:center;border-top:1px solid #e4e4e7;">
+                Don't want these emails? <a href="${unsubscribeUrl}" style="color:#71717a;text-decoration:underline;">Unsubscribe</a>.
               </td>
             </tr>
           </table>
@@ -463,6 +519,19 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
     }
 
     try {
+      const ipHash = hashIp(req.ip, secret);
+      await prisma.subscriber.upsert({
+        where: { email: decoded.email },
+        create: {
+          email: decoded.email,
+          ipHash,
+        },
+        update: {
+          unsubscribedAt: null,
+          confirmedAt: new Date(),
+        },
+      });
+
       await mailer.sendMail({
         from: `"Lunexa Newsletter" <${process.env.SMTP_USER}>`,
         to: process.env.CONTACT_RECEIVER,
@@ -471,7 +540,7 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
           `Confirmed subscriber: ${decoded.email}`,
           `Date: ${new Date().toISOString()}`,
           "",
-          "Add this address to the newsletter list.",
+          "Stored in the subscribers table.",
         ].join("\n"),
       });
 
@@ -482,6 +551,41 @@ export function createApp({ transporter, rateLimits }: CreateAppOptions = {}) {
     } catch (err) {
       console.error("[newsletter] confirm error:", err);
       res.redirect(`${siteBaseUrl}/newsletter/confirmed?status=error`);
+    }
+  });
+
+  app.get("/api/newsletter/unsubscribe", async (req, res) => {
+    const secret = process.env.NEWSLETTER_SECRET;
+    const token = typeof req.query.token === "string" ? req.query.token : "";
+
+    if (!secret || !token) {
+      res.redirect(`${siteBaseUrl}/newsletter/unsubscribed?status=expired`);
+      return;
+    }
+
+    const decoded = verifyUnsubscribeToken(token, secret);
+    if (!decoded) {
+      res.redirect(`${siteBaseUrl}/newsletter/unsubscribed?status=expired`);
+      return;
+    }
+
+    try {
+      await prisma.subscriber.update({
+        where: { email: decoded.email },
+        data: { unsubscribedAt: new Date() },
+      }).catch((err: unknown) => {
+        // Record not found — still return OK to avoid leaking which emails are on the list
+        const code = (err as { code?: string })?.code;
+        if (code !== "P2025") throw err;
+      });
+
+      console.log("[newsletter] unsubscribed", {
+        timestamp: new Date().toISOString(),
+      });
+      res.redirect(`${siteBaseUrl}/newsletter/unsubscribed?status=ok`);
+    } catch (err) {
+      console.error("[newsletter] unsubscribe error:", err);
+      res.redirect(`${siteBaseUrl}/newsletter/unsubscribed?status=error`);
     }
   });
 
