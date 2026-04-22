@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LOCALES, type Locale } from "@/i18n/config";
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/i18n/config";
 
 const BASE = "https://uselunexa.com";
 
@@ -9,16 +9,28 @@ const OG_LOCALE: Record<Locale, string> = {
   es: "es_ES",
 };
 
-export function alternatesFor(path: string, locale: Locale) {
+/**
+ * Build the public URL for a (locale, path) pair.
+ * DEFAULT_LOCALE (English) has no prefix — its canonical is /path.
+ * Other locales are prefixed: /tr/path, /es/path.
+ */
+export function urlFor(locale: Locale, path: string): string {
   const suffix = path === "/" ? "" : path;
+  if (locale === DEFAULT_LOCALE) {
+    return suffix ? `${BASE}${suffix}` : BASE;
+  }
+  return `${BASE}/${locale}${suffix}`;
+}
+
+export function alternatesFor(path: string, locale: Locale) {
   const languages: Record<string, string> = {};
   for (const l of LOCALES) {
-    languages[l] = `${BASE}/${l}${suffix}`;
+    languages[l] = urlFor(l, path);
   }
-  languages["x-default"] = `${BASE}/en${suffix}`;
+  languages["x-default"] = urlFor(DEFAULT_LOCALE, path);
 
   return {
-    canonical: `${BASE}/${locale}${suffix}`,
+    canonical: urlFor(locale, path),
     languages,
   };
 }
@@ -224,7 +236,7 @@ export function buildPageMetadata(
     openGraph: {
       title: t.title,
       description: t.description,
-      url: `${BASE}/${locale}${path === "/" ? "" : path}`,
+      url: urlFor(locale, path),
       siteName: "Lunexa",
       type: "website",
       ...openGraphLocale(locale),

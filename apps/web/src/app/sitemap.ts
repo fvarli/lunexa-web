@@ -1,13 +1,12 @@
 import type { MetadataRoute } from "next";
-import { LOCALES } from "@/i18n/config";
+import { DEFAULT_LOCALE, LOCALES } from "@/i18n/config";
+import { urlFor } from "@/seo/meta";
 
 type Route = {
   path: string;
   priority: number;
   changeFrequency: "daily" | "weekly" | "monthly" | "yearly";
 };
-
-const BASE = "https://uselunexa.com";
 
 const ROUTES: Route[] = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
@@ -22,15 +21,10 @@ const ROUTES: Route[] = [
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ];
 
-function urlFor(locale: string, path: string): string {
-  const suffix = path === "/" ? "" : path;
-  return `${BASE}/${locale}${suffix}`;
-}
-
-function localesLanguagesMap(path: string): Record<string, string> {
+function languagesMap(path: string): Record<string, string> {
   const map: Record<string, string> = {};
   for (const l of LOCALES) map[l] = urlFor(l, path);
-  map["x-default"] = urlFor("en", path);
+  map["x-default"] = urlFor(DEFAULT_LOCALE, path);
   return map;
 }
 
@@ -45,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: now,
         changeFrequency: route.changeFrequency,
         priority: route.priority,
-        alternates: { languages: localesLanguagesMap(route.path) },
+        alternates: { languages: languagesMap(route.path) },
       });
     }
   }

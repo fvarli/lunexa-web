@@ -32,16 +32,30 @@ function writeCookie(locale: Locale) {
 }
 
 function replaceLocaleSegment(pathname: string, next: Locale): string {
+  // segments like ["", "tr", "contact"] or ["", "contact"] (English default has no prefix)
   const segments = pathname.split("/");
-  // segments looks like ["", "en", "contact"] — index 1 is the current locale
-  if (segments.length < 2) return `/${next}`;
-  if ((LOCALES as readonly string[]).includes(segments[1])) {
-    segments[1] = next;
-  } else {
-    segments.splice(1, 0, next);
+  if (segments.length < 2) {
+    return next === DEFAULT_LOCALE ? "/" : `/${next}`;
   }
+
+  const hasLocalePrefix = (LOCALES as readonly string[]).includes(segments[1]);
+
+  if (hasLocalePrefix) {
+    if (next === DEFAULT_LOCALE) {
+      // switching to English — strip the prefix
+      segments.splice(1, 1);
+    } else {
+      segments[1] = next;
+    }
+  } else {
+    // no prefix currently (English) — prepend only when leaving English
+    if (next !== DEFAULT_LOCALE) {
+      segments.splice(1, 0, next);
+    }
+  }
+
   const joined = segments.join("/");
-  return joined || `/${next}`;
+  return joined || "/";
 }
 
 export function LanguageProvider({

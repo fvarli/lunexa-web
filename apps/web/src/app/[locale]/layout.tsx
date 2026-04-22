@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/i18n/provider";
 import { LOCALES, type Locale } from "@/i18n/config";
 import { ThemeProvider } from "@/theme/provider";
 import { DEFAULT_THEME, THEMES, THEME_STORAGE_KEY, type Theme } from "@/theme/config";
+import { urlFor } from "@/seo/meta";
 
 function buildJsonLd(locale: Locale) {
   const base = "https://uselunexa.com";
@@ -63,10 +64,10 @@ function buildJsonLd(locale: Locale) {
         "@id": `${base}/#sitenav-${locale}`,
         name: ["About", "Services", "Blog", "Contact"],
         url: [
-          `${base}/${locale}/about`,
-          `${base}/${locale}/services`,
-          `${base}/${locale}/blog`,
-          `${base}/${locale}/contact`,
+          urlFor(locale, "/about"),
+          urlFor(locale, "/services"),
+          urlFor(locale, "/blog"),
+          urlFor(locale, "/contact"),
         ],
       },
     ],
