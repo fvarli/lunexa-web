@@ -36,13 +36,14 @@ jobs:
           NEXT_PUBLIC_GSC_VERIFICATION: ${{ vars.NEXT_PUBLIC_GSC_VERIFICATION }}
           NEWSLETTER_SECRET: ${{ secrets.NEWSLETTER_SECRET }}
           SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.PROD_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
           port: ${{ secrets.PROD_SSH_PORT }}
           script_stop: true
-          envs: DEPLOY_PATH,CORS_ORIGIN,CONTACT_RECEIVER,SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,ENABLE_AUTOREPLY,TURNSTILE_SECRET_KEY,NEXT_PUBLIC_TURNSTILE_SITE_KEY,NEXT_PUBLIC_GA_ID,NEXT_PUBLIC_GSC_VERIFICATION,NEWSLETTER_SECRET,SITE_BASE_URL
+          envs: DEPLOY_PATH,CORS_ORIGIN,CONTACT_RECEIVER,SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,ENABLE_AUTOREPLY,TURNSTILE_SECRET_KEY,NEXT_PUBLIC_TURNSTILE_SITE_KEY,NEXT_PUBLIC_GA_ID,NEXT_PUBLIC_GSC_VERIFICATION,NEWSLETTER_SECRET,SITE_BASE_URL,DATABASE_URL
           script: |
             set -euo pipefail
 
@@ -69,6 +70,7 @@ jobs:
             echo "TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}" >> apps/api/.env
             echo "NEWSLETTER_SECRET=${NEWSLETTER_SECRET}" >> apps/api/.env
             echo "SITE_BASE_URL=${SITE_BASE_URL}" >> apps/api/.env
+            echo "DATABASE_URL=${DATABASE_URL}" >> apps/api/.env
             chmod 600 apps/api/.env
 
             echo "==> Writing apps/web/.env.production"
@@ -81,6 +83,8 @@ jobs:
             echo "==> Building API"
             cd apps/api
             npm ci
+            npx prisma generate
+            npx prisma migrate deploy
             npm run build
             cd ../..
 
