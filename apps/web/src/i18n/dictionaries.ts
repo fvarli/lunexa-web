@@ -256,6 +256,17 @@ const en = {
       "Confirmation links expire after 15 minutes. You can request a new one from the homepage.",
     home: "Go home",
   },
+  newsletter_unsubscribed: {
+    eyebrow_ok: "Newsletter",
+    eyebrow_err: "Link expired",
+    ok_title: "You're unsubscribed",
+    ok_body:
+      "You won't receive any more newsletter emails from us. You can resubscribe any time from the homepage.",
+    expired_title: "This link is no longer valid",
+    expired_body:
+      "Unsubscribe links expire after 30 days. If you still want to opt out, contact hello@uselunexa.com.",
+    home: "Go home",
+  },
 };
 
 const tr: Dictionary = {
@@ -513,6 +524,17 @@ const tr: Dictionary = {
       "Onay bağlantıları 15 dakika sonra sona erer. Ana sayfadan yeni bir tane talep edebilirsiniz.",
     home: "Ana sayfaya dön",
   },
+  newsletter_unsubscribed: {
+    eyebrow_ok: "Bülten",
+    eyebrow_err: "Bağlantı süresi doldu",
+    ok_title: "Abonelikten çıktınız",
+    ok_body:
+      "Bundan sonra bülten e-postası almayacaksınız. İstediğiniz zaman ana sayfadan yeniden abone olabilirsiniz.",
+    expired_title: "Bu bağlantı artık geçerli değil",
+    expired_body:
+      "Abonelikten çıkma bağlantıları 30 gün sonra geçersiz olur. Hâlâ çıkmak istiyorsanız hello@uselunexa.com adresine yazın.",
+    home: "Ana sayfaya dön",
+  },
 };
 
 const es: Dictionary = {
@@ -768,6 +790,17 @@ const es: Dictionary = {
     expired_title: "Este enlace ya no es válido",
     expired_body:
       "Los enlaces de confirmación caducan en 15 minutos. Puedes solicitar uno nuevo desde la página principal.",
+    home: "Ir al inicio",
+  },
+  newsletter_unsubscribed: {
+    eyebrow_ok: "Boletín",
+    eyebrow_err: "Enlace caducado",
+    ok_title: "Te has dado de baja",
+    ok_body:
+      "Ya no recibirás más correos del boletín. Puedes volver a suscribirte cuando quieras desde la página principal.",
+    expired_title: "Este enlace ya no es válido",
+    expired_body:
+      "Los enlaces de baja caducan después de 30 días. Si aún quieres darte de baja, escribe a hello@uselunexa.com.",
     home: "Ir al inicio",
   },
 };
