@@ -29,7 +29,7 @@ function detectLocaleFromAcceptLanguage(header: string | null): Locale | null {
   return null;
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const segments = pathname.split("/");
   const maybeLocale = segments[1];

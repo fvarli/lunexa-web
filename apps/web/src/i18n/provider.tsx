@@ -73,7 +73,7 @@ export function LanguageProvider({
 
   const setLocale = (next: Locale) => {
     if (next === locale) return;
-    writeCookie(next); // soft hint so middleware knows preference on future root visits
+    writeCookie(next); // soft hint so proxy knows preference on future root visits
     const nextPath = replaceLocaleSegment(pathname ?? "/", next);
     router.push(nextPath);
     router.refresh();

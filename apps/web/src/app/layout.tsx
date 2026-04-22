@@ -55,8 +55,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // The middleware sets x-locale on the request. Fallback to cookie / Accept-Language
-  // if middleware was skipped (e.g., for asset routes it does run on).
+  // The proxy sets x-locale on the request. Fallback to cookie / Accept-Language
+  // if proxy was skipped (e.g., for asset routes it doesn't run on).
   const hdrs = await headers();
   const cookieStore = await cookies();
 
