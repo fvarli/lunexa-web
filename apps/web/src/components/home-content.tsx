@@ -2,6 +2,7 @@
 
 import ContactForm from "@/components/contact-form";
 import NewsletterForm from "@/components/newsletter-form";
+import HomeFaq from "@/components/home-faq";
 import { useT } from "@/i18n/provider";
 
 export default function HomeContent() {
@@ -167,6 +168,8 @@ export default function HomeContent() {
           </div>
         </div>
       </section>
+
+      <HomeFaq />
 
       {/* ── Newsletter ── */}
       <section

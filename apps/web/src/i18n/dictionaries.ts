@@ -72,6 +72,28 @@ const en = {
       "We are preparing our first wave of products. Stay close — the launch is near.",
     badge: "In development",
   },
+  faq: {
+    eyebrow: "FAQ",
+    heading: "Common questions",
+    items: [
+      {
+        q: "What kinds of products do you build?",
+        a: "Mobile applications (iOS and Android, native or cross-platform), web platforms (marketing sites, SaaS dashboards, content hubs), and intelligent systems that integrate LLMs and automation into real products.",
+      },
+      {
+        q: "What is your engagement model?",
+        a: "We work in fixed-scope engagements for new builds and retainers for ongoing product work. Every project is led end-to-end by a senior practitioner — no handoff chains.",
+      },
+      {
+        q: "What stack do you use?",
+        a: "Next.js, React, TypeScript, and Node on the web; Swift, Kotlin, and React Native on mobile; PostgreSQL, Redis, and cloud primitives for data; OpenAI, Anthropic, and self-hosted models for AI. We pick the boring, durable option unless there's a reason not to.",
+      },
+      {
+        q: "Do you support existing codebases?",
+        a: "Yes. We frequently pick up legacy apps that need a performance pass, a redesign, or a migration. We'll audit first, then scope the work.",
+      },
+    ],
+  },
   contact_section: {
     eyebrow: "Contact",
     heading: "Let's talk",
@@ -344,6 +366,28 @@ const tr: Dictionary = {
       "İlk ürün dalgamızı hazırlıyoruz. Yakın durun — lansman yaklaştı.",
     badge: "Geliştirme aşamasında",
   },
+  faq: {
+    eyebrow: "SSS",
+    heading: "Sık sorulan sorular",
+    items: [
+      {
+        q: "Ne tür ürünler geliştiriyorsunuz?",
+        a: "Mobil uygulamalar (iOS ve Android, native veya cross-platform), web platformları (pazarlama siteleri, SaaS panelleri, içerik merkezleri) ve LLM'leri ve otomasyonu gerçek ürünlere entegre eden akıllı sistemler.",
+      },
+      {
+        q: "Çalışma modeliniz nedir?",
+        a: "Yeni geliştirmeler için sabit kapsamlı angajmanlar, süregelen ürün işleri için retainer ile çalışırız. Her proje uçtan uca kıdemli bir uygulayıcı tarafından yürütülür — teslim zinciri yok.",
+      },
+      {
+        q: "Hangi teknoloji yığınını kullanıyorsunuz?",
+        a: "Web'de Next.js, React, TypeScript ve Node; mobilde Swift, Kotlin ve React Native; veri için PostgreSQL, Redis ve bulut primitifleri; AI için OpenAI, Anthropic ve self-hosted modeller. Gerek olmadıkça sıkıcı, kalıcı olanı seçeriz.",
+      },
+      {
+        q: "Mevcut kod tabanlarını destekliyor musunuz?",
+        a: "Evet. Performans gözden geçirmesi, yeniden tasarım veya göç gerektiren legacy uygulamaları sıkça devralırız. Önce audit yapar, sonra işi kapsamlandırırız.",
+      },
+    ],
+  },
   contact_section: {
     eyebrow: "İletişim",
     heading: "Konuşalım",
@@ -615,6 +659,28 @@ const es: Dictionary = {
     subtitle:
       "Estamos preparando nuestra primera ola de productos. Mantente cerca — el lanzamiento está próximo.",
     badge: "En desarrollo",
+  },
+  faq: {
+    eyebrow: "FAQ",
+    heading: "Preguntas frecuentes",
+    items: [
+      {
+        q: "¿Qué tipo de productos construyen?",
+        a: "Aplicaciones móviles (iOS y Android, nativas o multiplataforma), plataformas web (sitios de marketing, dashboards SaaS, hubs de contenido) y sistemas inteligentes que integran LLMs y automatización en productos reales.",
+      },
+      {
+        q: "¿Cuál es su modelo de colaboración?",
+        a: "Trabajamos con alcance fijo para nuevos proyectos y con retainer para trabajo continuo. Cada proyecto lo lidera de principio a fin un profesional sénior — sin cadenas de entrega.",
+      },
+      {
+        q: "¿Qué stack usan?",
+        a: "Next.js, React, TypeScript y Node en web; Swift, Kotlin y React Native en móvil; PostgreSQL, Redis y primitivas cloud para datos; OpenAI, Anthropic y modelos self-hosted para IA. Elegimos la opción aburrida y duradera salvo que haya razón para no hacerlo.",
+      },
+      {
+        q: "¿Aceptan bases de código existentes?",
+        a: "Sí. Frecuentemente recogemos apps legacy que necesitan mejora de rendimiento, rediseño o migración. Primero auditamos, luego definimos el alcance.",
+      },
+    ],
   },
   contact_section: {
     eyebrow: "Contacto",
