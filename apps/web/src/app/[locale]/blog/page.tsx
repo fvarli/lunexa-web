@@ -3,6 +3,7 @@ import BlogIndexContent from "@/components/blog-index-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
 import { buildPageMetadata, BLOG_INDEX_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
+import { listPosts } from "@/blog";
 
 export async function generateMetadata({
   params,
@@ -25,6 +26,8 @@ export default async function BlogIndexPage({
   const safe = ((LOCALES as readonly string[]).includes(locale)
     ? locale
     : "en") as Locale;
+  const posts = await listPosts(safe);
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -33,7 +36,7 @@ export default async function BlogIndexPage({
           { name: "Blog", url: urlFor(safe, "/blog") },
         ]}
       />
-      <BlogIndexContent />
+      <BlogIndexContent posts={posts} />
     </>
   );
 }
