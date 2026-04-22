@@ -163,6 +163,8 @@ const en = {
     collect_title: "What we collect",
     collect_p1:
       "When you submit our contact form, we collect your name, email address, and message content. We use this information solely to respond to your inquiry.",
+    collect_newsletter:
+      "When you confirm a newsletter subscription, we additionally record your IP address, user agent (browser/device string), referring URL, preferred language, and the version of the consent text you accepted. This data supports abuse prevention, deliverability troubleshooting, and legal compliance. It is retained for as long as your subscription is active and is removed when you unsubscribe or request account deletion.",
     collect_p2:
       "Our web server may automatically log standard technical data such as your IP address, browser type, and pages visited. This data is used for security monitoring and basic analytics only.",
     usage_title: "How we use your data",
@@ -431,6 +433,8 @@ const tr: Dictionary = {
     collect_title: "Hangi bilgileri topluyoruz",
     collect_p1:
       "İletişim formumuzu gönderdiğinizde adınızı, e-posta adresinizi ve mesaj içeriğinizi topluyoruz. Bu bilgileri yalnızca talebinizi yanıtlamak için kullanırız.",
+    collect_newsletter:
+      "Bülten aboneliğinizi onayladığınızda ek olarak IP adresinizi, kullanıcı aracısı (tarayıcı/cihaz bilgisi) kaydınızı, yönlendiren URL'yi, tercih ettiğiniz dili ve kabul ettiğiniz onay metninin sürümünü kaydediyoruz. Bu veriler kötüye kullanımın önlenmesi, teslimat sorunlarının giderilmesi ve yasal uyumluluk için kullanılır. Aboneliğiniz aktif olduğu sürece saklanır; abonelikten çıkmanız veya hesap silme talebinde bulunmanız durumunda kaldırılır.",
     collect_p2:
       "Web sunucumuz; IP adresiniz, tarayıcı türünüz ve ziyaret edilen sayfalar gibi standart teknik verileri otomatik olarak kaydedebilir. Bu veriler yalnızca güvenlik takibi ve temel analiz amacıyla kullanılır.",
     usage_title: "Verilerinizi nasıl kullanıyoruz",
@@ -699,6 +703,8 @@ const es: Dictionary = {
     collect_title: "Qué recopilamos",
     collect_p1:
       "Cuando envías nuestro formulario de contacto, recopilamos tu nombre, correo electrónico y el contenido del mensaje. Usamos esta información solo para responder a tu consulta.",
+    collect_newsletter:
+      "Cuando confirmas una suscripción al boletín, además registramos tu dirección IP, el agente de usuario (navegador/dispositivo), la URL de referencia, tu idioma preferido y la versión del texto de consentimiento que aceptaste. Estos datos se usan para prevenir abusos, resolver problemas de entrega y cumplir requisitos legales. Se conservan mientras tu suscripción esté activa y se eliminan cuando te das de baja o solicitas el borrado de tu cuenta.",
     collect_p2:
       "Nuestro servidor web puede registrar automáticamente datos técnicos estándar como tu dirección IP, tipo de navegador y páginas visitadas. Estos datos se usan solo para monitoreo de seguridad y analítica básica.",
     usage_title: "Cómo usamos tus datos",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import Analytics from "@/components/analytics";
 import CookieConsent from "@/components/cookie-consent";
 import SiteHeader from "@/components/site-header";
@@ -118,11 +118,40 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
+  const headerStore = await headers();
   const cookieLocale = cookieStore.get(STORAGE_KEY)?.value;
+
+  // 1. Cookie wins if it's a supported locale
+  // 2. Otherwise parse Accept-Language q-values; pick the first supported
+  // 3. Otherwise fall back to DEFAULT_LOCALE
+  function detectLocaleFromAcceptLanguage(header: string | null): Locale | null {
+    if (!header) return null;
+    const entries = header
+      .split(",")
+      .map((part) => {
+        const [tag, ...params] = part.trim().split(";");
+        const q = params
+          .map((p) => p.trim())
+          .find((p) => p.startsWith("q="));
+        const quality = q ? parseFloat(q.slice(2)) : 1;
+        return { tag: tag.toLowerCase(), quality: isNaN(quality) ? 1 : quality };
+      })
+      .sort((a, b) => b.quality - a.quality);
+
+    for (const { tag } of entries) {
+      const primary = tag.split("-")[0];
+      if ((LOCALES as readonly string[]).includes(primary)) {
+        return primary as Locale;
+      }
+    }
+    return null;
+  }
+
   const initialLocale: Locale =
     cookieLocale && (LOCALES as readonly string[]).includes(cookieLocale)
       ? (cookieLocale as Locale)
-      : DEFAULT_LOCALE;
+      : detectLocaleFromAcceptLanguage(headerStore.get("accept-language")) ??
+        DEFAULT_LOCALE;
 
   const cookieTheme = cookieStore.get(THEME_STORAGE_KEY)?.value;
   const initialTheme: Theme =

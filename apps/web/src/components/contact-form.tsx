@@ -15,7 +15,7 @@ const LIMITS = {
 type FieldErrors = Record<string, string>;
 
 export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
-  const { t } = useT();
+  const { t, locale } = useT();
 
   function validateFields(fields: { name: string; email: string; message: string }): FieldErrors {
     const errors: FieldErrors = {};
@@ -77,7 +77,7 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
       res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...fields, company: honeypot, turnstileToken }),
+        body: JSON.stringify({ ...fields, company: honeypot, turnstileToken, locale }),
       });
     } catch {
       setErrorMessage(t("form.errors.network"));

@@ -31,6 +31,7 @@ export default function PrivacyPageContent() {
               {t("privacy_page.collect_title")}
             </h2>
             <p>{t("privacy_page.collect_p1")}</p>
+            <p className="mt-3">{t("privacy_page.collect_newsletter")}</p>
             <p className="mt-3">{t("privacy_page.collect_p2")}</p>
           </section>
 

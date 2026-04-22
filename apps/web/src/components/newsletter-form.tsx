@@ -7,7 +7,7 @@ import { useT } from "@/i18n/provider";
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 
 export default function NewsletterForm() {
-  const { t } = useT();
+  const { t, locale } = useT();
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
@@ -29,7 +29,7 @@ export default function NewsletterForm() {
       const res = await fetch(`${API_BASE}/api/newsletter/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, consent }),
+        body: JSON.stringify({ email, consent, locale }),
       });
 
       if (res.status === 429) {
