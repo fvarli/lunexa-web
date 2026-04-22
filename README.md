@@ -10,6 +10,7 @@ Official web presence for Lunexa — the marketing site and its contact-form API
 |-------|------|
 | Frontend | Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4 |
 | Backend | Node.js 22, Express 5, TypeScript, Zod, Helmet, express-rate-limit, Nodemailer |
+| Database | PostgreSQL 16 (newsletter subscribers) via Prisma 7 + `@prisma/adapter-pg` |
 | Email | Zoho SMTP (transactional) |
 | Bot protection | Cloudflare Turnstile + honeypot + per-IP rate limits |
 | Edge | Cloudflare (DNS, TLS, WAF, caching, bot fight, cache rules) |
@@ -172,6 +173,9 @@ API (`apps/api`):
 | `CONTACT_RECEIVER` | yes (prod) | Inbox that receives submissions |
 | `ENABLE_AUTOREPLY` | no | `true` sends a confirmation email to the sender |
 | `TURNSTILE_SECRET_KEY` | no | Omit in dev to skip captcha verification |
+| `NEWSLETTER_SECRET` | yes (prod) | 32-byte random — signs JWTs for confirm + unsubscribe links |
+| `SITE_BASE_URL` | no | Base URL for confirmation links (defaults to `https://uselunexa.com`) |
+| `DATABASE_URL` | yes (prod) | PostgreSQL connection string; DB must have `citext` extension |
 
 ### Web (`apps/web/.env.local` / `.env.production`)
 
@@ -202,6 +206,8 @@ Browser → Cloudflare → Nginx (:443) ├─ /api/  → Express (127.0.0.1:400
 | `PROD_HOST` / `PROD_USER` / `PROD_SSH_KEY` / `PROD_SSH_PORT` | SSH deploy target |
 | `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` | Zoho SMTP credentials |
 | `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile server-side secret |
+| `NEWSLETTER_SECRET` | Newsletter JWT signing secret (rotate once a year) |
+| `DATABASE_URL` | `postgresql://lunexa_api:…@127.0.0.1:5432/lunexa?schema=public` |
 
 ### GitHub variables
 
@@ -215,6 +221,7 @@ Browser → Cloudflare → Nginx (:443) ├─ /api/  → Express (127.0.0.1:400
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile client-side key |
 | `NEXT_PUBLIC_GA_ID` | GA4 Measurement ID (`G-XXXXXXXXXX`) |
 | `NEXT_PUBLIC_GSC_VERIFICATION` | Search Console `content` value |
+| `SITE_BASE_URL` | `https://uselunexa.com` |
 
 ### First-time server setup
 
@@ -228,6 +235,73 @@ Browser → Cloudflare → Nginx (:443) ├─ /api/  → Express (127.0.0.1:400
 8. In Cloudflare dashboard: apply the cache rules and optimization toggles listed in **Performance & CDN** above.
 
 After that, every push to `main` triggers CI, then deploy runs automatically. Remember to purge Cloudflare cache after each deploy.
+
+## Newsletter & database
+
+Newsletter subscribers are persisted in a PostgreSQL database via Prisma 7 + `@prisma/adapter-pg`.
+
+### Flow (double opt-in, KVKK compliant)
+
+1. `POST /api/newsletter/subscribe` — Zod-validated email + consent flag → issues a 15-minute JWT → sends a confirmation email via Zoho SMTP. **No DB write yet** (prevents pre-confirm spam rows).
+2. User clicks the confirmation link in their inbox → `GET /api/newsletter/confirm?token=…`:
+   - Verifies JWT
+   - `prisma.subscriber.upsert` — idempotent re-subscribe (resets `unsubscribed_at`, bumps `confirmed_at`)
+   - Emails the admin (`CONTACT_RECEIVER`) for awareness
+   - Redirects to `/newsletter/confirmed?status=ok`
+3. Every outbound newsletter email ships with a signed 30-day unsubscribe link → `GET /api/newsletter/unsubscribe?token=…`:
+   - Soft-deletes via `unsubscribedAt = now()`
+   - Swallows Prisma `P2025` (row not found) to avoid leaking list membership
+   - Redirects to `/newsletter/unsubscribed?status=ok`
+
+### Schema
+
+Single `subscribers` table (`apps/api/prisma/schema.prisma`):
+
+| Column | Type | Notes |
+|--------|------|-------|
+| `id` | `bigserial` | PK |
+| `email` | `citext UNIQUE` | requires the `citext` extension — case-insensitive matching |
+| `confirmed_at` | `timestamptz` | defaults to `now()` |
+| `unsubscribed_at` | `timestamptz NULL` | soft-delete marker; partial index filters active rows |
+| `locale` | `varchar(8) NULL` | reserved for future segmented sends |
+| `ip_hash` | `text NULL` | `sha256(NEWSLETTER_SECRET::ip)` — never the raw IP |
+
+### Local setup
+
+```bash
+# On the dev machine with a local postgres running
+sudo -u postgres psql -c "CREATE USER lunexa_api WITH PASSWORD 'devpass';"
+sudo -u postgres psql -c "CREATE DATABASE lunexa OWNER lunexa_api;"
+sudo -u postgres psql -d lunexa -c "CREATE EXTENSION IF NOT EXISTS citext;"
+
+# apps/api/.env
+DATABASE_URL=postgresql://lunexa_api:devpass@127.0.0.1:5432/lunexa?schema=public
+
+cd apps/api
+npm run db:generate      # prisma generate
+npm run db:migrate       # prisma migrate dev (creates dev migration + applies)
+```
+
+### Production migrations
+
+Deploy workflow (`.github/workflows/deploy.yml`) runs `npx prisma generate && npx prisma migrate deploy` before `npm run build` on every push to `main`. Migrations are idempotent; second deploy of the same state is a no-op.
+
+### Admin operations
+
+No admin UI yet. Inspect subscribers directly:
+
+```sql
+SELECT email, confirmed_at, unsubscribed_at FROM subscribers
+ WHERE unsubscribed_at IS NULL
+ ORDER BY confirmed_at DESC;
+```
+
+To blast a newsletter, export active subscribers:
+
+```sql
+COPY (SELECT email FROM subscribers WHERE unsubscribed_at IS NULL)
+  TO '/tmp/subscribers.csv' WITH CSV;
+```
 
 ## Docker (local parity)
 
