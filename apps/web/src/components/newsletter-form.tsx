@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 
@@ -92,7 +93,7 @@ export default function NewsletterForm() {
         <span>
           {t("newsletter.consent_prefix")}
           <Link
-            href="/privacy"
+            href={localeHref(locale, "/privacy")}
             className="text-accent underline underline-offset-2 decoration-accent/50 hover:decoration-accent"
           >
             {t("newsletter.privacy_link")}

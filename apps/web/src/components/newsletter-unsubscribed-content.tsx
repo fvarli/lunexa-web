@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 
 export default function NewsletterUnsubscribedContent() {
-  const { t } = useT();
+  const { t, locale } = useT();
   const params = useSearchParams();
   const status = params.get("status");
 
@@ -31,7 +32,7 @@ export default function NewsletterUnsubscribedContent() {
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-muted">{body}</p>
         <Link
-          href="/"
+          href={localeHref(locale, "/")}
           className="mt-10 inline-block rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
         >
           {t("newsletter_unsubscribed.home")}

@@ -3,9 +3,10 @@
 import Link from "next/link";
 import ContactForm from "@/components/contact-form";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 
 export default function ContactPageContent() {
-  const { t } = useT();
+  const { t, locale } = useT();
 
   return (
     <main className="flex-1 pt-24 pb-16 sm:pt-32 sm:pb-24">
@@ -59,7 +60,7 @@ export default function ContactPageContent() {
 
         <p className="mt-16 text-center text-sm text-muted">
           {t("contact_page.agreement_prefix")}
-          <Link href="/privacy" className="text-accent hover:underline">
+          <Link href={localeHref(locale, "/privacy")} className="text-accent hover:underline">
             {t("contact_page.privacy_link")}
           </Link>
           {t("contact_page.agreement_suffix")}

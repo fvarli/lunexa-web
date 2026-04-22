@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { DEFAULT_LOCALE, LOCALES, STORAGE_KEY, type Locale } from "./config";
 import { dictionaries, type Dictionary } from "./dictionaries";
 
@@ -11,16 +12,7 @@ type LanguageContextValue = {
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
-const LOCALE_CHANGE_EVENT = "lunexa:locale-change";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
-
-function isLocale(value: string | undefined | null): value is Locale {
-  return !!value && (LOCALES as readonly string[]).includes(value);
-}
-
-function writeCookie(locale: Locale) {
-  document.cookie = `${STORAGE_KEY}=${locale}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
-}
 
 function resolveKey(dict: Dictionary, path: string): string {
   const parts = path.split(".");
@@ -35,6 +27,23 @@ function resolveKey(dict: Dictionary, path: string): string {
   return typeof node === "string" ? node : path;
 }
 
+function writeCookie(locale: Locale) {
+  document.cookie = `${STORAGE_KEY}=${locale}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
+}
+
+function replaceLocaleSegment(pathname: string, next: Locale): string {
+  const segments = pathname.split("/");
+  // segments looks like ["", "en", "contact"] — index 1 is the current locale
+  if (segments.length < 2) return `/${next}`;
+  if ((LOCALES as readonly string[]).includes(segments[1])) {
+    segments[1] = next;
+  } else {
+    segments.splice(1, 0, next);
+  }
+  const joined = segments.join("/");
+  return joined || `/${next}`;
+}
+
 export function LanguageProvider({
   children,
   initialLocale,
@@ -42,37 +51,18 @@ export function LanguageProvider({
   children: ReactNode;
   initialLocale: Locale;
 }) {
-  const [locale, setLocaleState] = useState<Locale>(initialLocale);
+  const router = useRouter();
+  const pathname = usePathname();
 
-  // Cross-tab sync: react to changes from other tabs/windows
-  useEffect(() => {
-    function onExternal() {
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (isLocale(stored) && stored !== locale) {
-          setLocaleState(stored);
-        }
-      } catch {
-        // ignore
-      }
-    }
-    window.addEventListener("storage", onExternal);
-    window.addEventListener(LOCALE_CHANGE_EVENT, onExternal);
-    return () => {
-      window.removeEventListener("storage", onExternal);
-      window.removeEventListener(LOCALE_CHANGE_EVENT, onExternal);
-    };
-  }, [locale]);
+  // URL is the source of truth; we don't mutate locale state outside of navigation.
+  const locale = initialLocale;
 
   const setLocale = (next: Locale) => {
-    setLocaleState(next);
-    writeCookie(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, next);
-      window.dispatchEvent(new CustomEvent(LOCALE_CHANGE_EVENT));
-    } catch {
-      // ignore
-    }
+    if (next === locale) return;
+    writeCookie(next); // soft hint so middleware knows preference on future root visits
+    const nextPath = replaceLocaleSegment(pathname ?? "/", next);
+    router.push(nextPath);
+    router.refresh();
   };
 
   const dict = dictionaries[locale] ?? dictionaries[DEFAULT_LOCALE];

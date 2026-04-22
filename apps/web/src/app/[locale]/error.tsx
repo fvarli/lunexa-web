@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 
 export default function ErrorBoundary({
   error,
@@ -11,7 +12,7 @@ export default function ErrorBoundary({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const { t } = useT();
+  const { t, locale } = useT();
 
   useEffect(() => {
     if (process.env.NODE_ENV !== "production") {
@@ -45,7 +46,7 @@ export default function ErrorBoundary({
             {t("error.retry")}
           </button>
           <Link
-            href="/"
+            href={localeHref(locale, "/")}
             className="rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground transition-colors hover:border-muted"
           >
             {t("error.home")}

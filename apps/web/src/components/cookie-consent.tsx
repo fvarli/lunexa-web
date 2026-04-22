@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 
 const STORAGE_KEY = "lunexa-cookie-consent";
 
@@ -31,7 +32,7 @@ function getServerSnapshot(): string {
 }
 
 export default function CookieConsent() {
-  const { t } = useT();
+  const { t, locale } = useT();
   const stored = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [dismissed, setDismissed] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
@@ -78,7 +79,7 @@ export default function CookieConsent() {
             >
               {t("cookie.description_prefix")}
               <Link
-                href="/privacy"
+                href={localeHref(locale, "/privacy")}
                 className="text-accent underline underline-offset-2 decoration-accent/50 transition-opacity hover:decoration-accent hover:opacity-80"
               >
                 {t("cookie.privacy_link")}

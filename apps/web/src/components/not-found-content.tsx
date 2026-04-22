@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 
 export default function NotFoundContent() {
-  const { t } = useT();
+  const { t, locale } = useT();
 
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-32">
@@ -19,7 +20,7 @@ export default function NotFoundContent() {
           {t("notfound.body")}
         </p>
         <Link
-          href="/"
+          href={localeHref(locale, "/")}
           className="mt-10 inline-block rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
         >
           {t("notfound.home")}
