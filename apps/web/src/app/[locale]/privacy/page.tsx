@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PrivacyPageContent from "@/components/privacy-page-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
-import { buildPageMetadata, PRIVACY_META } from "@/seo/meta";
+import { buildPageMetadata, PRIVACY_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
 export async function generateMetadata({
@@ -22,12 +22,15 @@ export default async function PrivacyPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const safe = ((LOCALES as readonly string[]).includes(locale)
+    ? locale
+    : "en") as Locale;
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: `https://uselunexa.com/${locale}` },
-          { name: "Privacy Policy", url: `https://uselunexa.com/${locale}/privacy` },
+          { name: "Home", url: urlFor(safe, "/") },
+          { name: "Privacy Policy", url: urlFor(safe, "/privacy") },
         ]}
       />
       <PrivacyPageContent />

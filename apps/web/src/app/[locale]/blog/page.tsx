@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import BlogIndexContent from "@/components/blog-index-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
-import { buildPageMetadata, BLOG_INDEX_META } from "@/seo/meta";
+import { buildPageMetadata, BLOG_INDEX_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
 export async function generateMetadata({
@@ -22,12 +22,15 @@ export default async function BlogIndexPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const safe = ((LOCALES as readonly string[]).includes(locale)
+    ? locale
+    : "en") as Locale;
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: `https://uselunexa.com/${locale}` },
-          { name: "Blog", url: `https://uselunexa.com/${locale}/blog` },
+          { name: "Home", url: urlFor(safe, "/") },
+          { name: "Blog", url: urlFor(safe, "/blog") },
         ]}
       />
       <BlogIndexContent />

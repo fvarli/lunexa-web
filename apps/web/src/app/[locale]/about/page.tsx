@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AboutPageContent from "@/components/about-page-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
-import { buildPageMetadata, ABOUT_META } from "@/seo/meta";
+import { buildPageMetadata, ABOUT_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
 export async function generateMetadata({
@@ -22,12 +22,15 @@ export default async function AboutPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const safe = ((LOCALES as readonly string[]).includes(locale)
+    ? locale
+    : "en") as Locale;
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: `https://uselunexa.com/${locale}` },
-          { name: "About", url: `https://uselunexa.com/${locale}/about` },
+          { name: "Home", url: urlFor(safe, "/") },
+          { name: "About", url: urlFor(safe, "/about") },
         ]}
       />
       <AboutPageContent />

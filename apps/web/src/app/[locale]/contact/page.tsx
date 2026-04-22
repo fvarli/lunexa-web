@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ContactPageContent from "@/components/contact-page-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
-import { buildPageMetadata, CONTACT_META } from "@/seo/meta";
+import { buildPageMetadata, CONTACT_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
 export async function generateMetadata({
@@ -22,12 +22,15 @@ export default async function ContactPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const safe = ((LOCALES as readonly string[]).includes(locale)
+    ? locale
+    : "en") as Locale;
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: `https://uselunexa.com/${locale}` },
-          { name: "Contact", url: `https://uselunexa.com/${locale}/contact` },
+          { name: "Home", url: urlFor(safe, "/") },
+          { name: "Contact", url: urlFor(safe, "/contact") },
         ]}
       />
       <ContactPageContent />

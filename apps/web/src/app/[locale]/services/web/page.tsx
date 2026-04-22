@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ServiceDetailContent from "@/components/service-detail-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
-import { buildPageMetadata, SERVICES_WEB_META } from "@/seo/meta";
+import { buildPageMetadata, SERVICES_WEB_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
 export async function generateMetadata({
@@ -22,13 +22,16 @@ export default async function ServiceWebPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const safe = ((LOCALES as readonly string[]).includes(locale)
+    ? locale
+    : "en") as Locale;
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: `https://uselunexa.com/${locale}` },
-          { name: "Services", url: `https://uselunexa.com/${locale}/services` },
-          { name: "Web", url: `https://uselunexa.com/${locale}/services/web` },
+          { name: "Home", url: urlFor(safe, "/") },
+          { name: "Services", url: urlFor(safe, "/services") },
+          { name: "Web", url: urlFor(safe, "/services/web") },
         ]}
       />
       <ServiceDetailContent slug="web" />
