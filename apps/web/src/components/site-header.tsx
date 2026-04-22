@@ -19,22 +19,22 @@ export default function SiteHeader() {
         <div className="flex items-center gap-4 sm:gap-6">
           <nav className="hidden items-center gap-8 text-sm text-muted sm:flex">
             <Link
-              href={href("/#about")}
+              href={href("/about")}
               className="transition-colors hover:text-foreground"
             >
               {t("nav.about")}
             </Link>
             <Link
-              href={href("/#work")}
+              href={href("/services")}
               className="transition-colors hover:text-foreground"
             >
-              {t("nav.work")}
+              {t("nav.services")}
             </Link>
             <Link
-              href={href("/#principles")}
+              href={href("/blog")}
               className="transition-colors hover:text-foreground"
             >
-              {t("nav.principles")}
+              {t("nav.blog")}
             </Link>
             <Link
               href={href("/contact")}

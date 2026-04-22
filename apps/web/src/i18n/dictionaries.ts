@@ -7,6 +7,8 @@ const en = {
     about: "About",
     work: "What We Build",
     principles: "Principles",
+    services: "Services",
+    blog: "Blog",
     contact: "Contact",
   },
   hero: {
@@ -276,6 +278,8 @@ const tr: Dictionary = {
     about: "Hakkımızda",
     work: "Neler Yapıyoruz",
     principles: "İlkelerimiz",
+    services: "Hizmetler",
+    blog: "Blog",
     contact: "İletişim",
   },
   hero: {
@@ -546,6 +550,8 @@ const es: Dictionary = {
     about: "Nosotros",
     work: "Qué Hacemos",
     principles: "Principios",
+    services: "Servicios",
+    blog: "Blog",
     contact: "Contacto",
   },
   hero: {
