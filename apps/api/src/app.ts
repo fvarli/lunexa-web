@@ -17,6 +17,14 @@ type NewsletterDb = {
   };
 };
 
+/**
+ * Version tag for the newsletter consent copy the user accepted.
+ * Bump this string whenever the wording in cookie banner / consent
+ * checkbox / privacy policy changes so we can prove which version
+ * each subscriber agreed to.
+ */
+export const NEWSLETTER_CONSENT_VERSION = "2026-04-22";
+
 // ── Shared helpers (exported for tests) ──
 
 export function escapeHtml(input: string): string {
@@ -520,15 +528,31 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
 
     try {
       const ipHash = hashIp(req.ip, secret);
+      const ip = req.ip ?? null;
+      const userAgent = req.get("user-agent") ?? null;
+      const referer = req.get("referer") ?? null;
+      const locale = req.get("accept-language")?.split(",")[0]?.slice(0, 8) ?? null;
+
       await prisma.subscriber.upsert({
         where: { email: decoded.email },
         create: {
           email: decoded.email,
+          ip,
           ipHash,
+          userAgent,
+          referer,
+          locale,
+          consentVersion: NEWSLETTER_CONSENT_VERSION,
         },
         update: {
           unsubscribedAt: null,
           confirmedAt: new Date(),
+          ip,
+          ipHash,
+          userAgent,
+          referer,
+          locale,
+          consentVersion: NEWSLETTER_CONSENT_VERSION,
         },
       });
 

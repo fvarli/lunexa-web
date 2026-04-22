@@ -14,7 +14,13 @@ model Subscriber {
   confirmedAt     DateTime  @default(now()) @map("confirmed_at") @db.Timestamptz(6)
   unsubscribedAt  DateTime? @map("unsubscribed_at") @db.Timestamptz(6)
   locale          String?   @db.VarChar(8)
+  ip              String?   @db.Inet
   ipHash          String?   @map("ip_hash")
+  userAgent       String?   @map("user_agent")
+  referer         String?
+  consentVersion  String?   @map("consent_version") @db.VarChar(16)
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("subscribers")
 }

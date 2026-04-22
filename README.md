@@ -261,10 +261,16 @@ Single `subscribers` table (`apps/api/prisma/schema.prisma`):
 |--------|------|-------|
 | `id` | `bigserial` | PK |
 | `email` | `citext UNIQUE` | requires the `citext` extension — case-insensitive matching |
-| `confirmed_at` | `timestamptz` | defaults to `now()` |
-| `unsubscribed_at` | `timestamptz NULL` | soft-delete marker; partial index filters active rows |
-| `locale` | `varchar(8) NULL` | reserved for future segmented sends |
-| `ip_hash` | `text NULL` | `sha256(NEWSLETTER_SECRET::ip)` — never the raw IP |
+| `confirmed_at` | `timestamptz` | defaults to `now()`; bumped on re-subscribe |
+| `unsubscribed_at` | `timestamptz NULL` | soft-delete marker |
+| `locale` | `varchar(8) NULL` | populated from `Accept-Language` (e.g. `tr-TR`) |
+| `ip` | `inet NULL` | raw IP at confirmation — **PII, disclose in privacy policy** |
+| `ip_hash` | `text NULL` | `sha256(NEWSLETTER_SECRET::ip)` — complementary non-PII identifier |
+| `user_agent` | `text NULL` | browser/device string at confirmation |
+| `referer` | `text NULL` | `Referer` header — campaign attribution |
+| `consent_version` | `varchar(16) NULL` | tag of the consent copy the user accepted; bump when wording changes (legal defense) |
+| `created_at` | `timestamptz` | row creation, defaults to `now()` |
+| `updated_at` | `timestamptz` | `@updatedAt` — Prisma writes it on every `update/upsert` |
 
 ### Local setup
 

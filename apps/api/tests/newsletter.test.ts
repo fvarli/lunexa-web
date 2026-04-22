@@ -112,19 +112,35 @@ describe("GET /api/newsletter/confirm", () => {
     const app = createApp({ transporter, db });
 
     const token = signSubscriptionToken("jane@example.com", SECRET);
-    const res = await request(app).get(`/api/newsletter/confirm?token=${token}`);
+    const res = await request(app)
+      .get(`/api/newsletter/confirm?token=${token}`)
+      .set("User-Agent", "Mozilla/5.0 Test")
+      .set("Referer", "https://example.com/src")
+      .set("Accept-Language", "tr-TR,tr;q=0.9");
 
     expect(res.status).toBe(302);
     expect(res.headers.location).toContain("status=ok");
     expect(db.subscriber.upsert).toHaveBeenCalledTimes(1);
     const upsertArg = db.subscriber.upsert.mock.calls[0][0] as {
       where: { email: string };
-      create: { email: string };
-      update: { unsubscribedAt: null };
+      create: {
+        email: string;
+        userAgent?: string | null;
+        referer?: string | null;
+        locale?: string | null;
+        consentVersion?: string | null;
+        ipHash?: string | null;
+      };
+      update: { unsubscribedAt: null; consentVersion?: string | null };
     };
     expect(upsertArg.where.email).toBe("jane@example.com");
     expect(upsertArg.create.email).toBe("jane@example.com");
     expect(upsertArg.update.unsubscribedAt).toBeNull();
+    expect(upsertArg.create.userAgent).toBe("Mozilla/5.0 Test");
+    expect(upsertArg.create.referer).toBe("https://example.com/src");
+    expect(upsertArg.create.locale).toBe("tr-TR");
+    expect(upsertArg.create.consentVersion).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(upsertArg.create.ipHash).toBeTruthy();
 
     expect(transporter.sendMail).toHaveBeenCalledTimes(1);
     const mailArg = (transporter.sendMail as ReturnType<typeof vi.fn>).mock.calls[0][0];
