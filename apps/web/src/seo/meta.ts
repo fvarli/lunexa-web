@@ -46,19 +46,19 @@ type PageCopy = Record<Locale, { title: string; description: string }>;
 
 export const HOME_META: PageCopy = {
   en: {
-    title: "Lunexa — Simple, Fast, Intelligent Digital Products",
+    title: "Digital Product Studio — Mobile, Web & AI",
     description:
-      "Lunexa is a digital product studio. We design and build mobile apps, web platforms, and intelligent systems with clarity, precision, and purpose.",
+      "Lunexa is a digital product studio. We design and build mobile apps, web platforms, and AI-powered systems — with clarity, precision, and craft.",
   },
   tr: {
-    title: "Lunexa — Sade, Hızlı, Akıllı Dijital Ürünler",
+    title: "Dijital Ürün Stüdyosu — Mobil, Web ve AI",
     description:
-      "Lunexa, dijital ürün stüdyosudur. Mobil uygulamalar, web platformları ve akıllı sistemleri netlik, hassasiyet ve amaçla tasarlar ve geliştiririz.",
+      "Lunexa, dijital ürün stüdyosudur. Mobil uygulamalar, web platformları ve AI destekli sistemler geliştiriyoruz — netlik, hassasiyet ve zanaatla.",
   },
   es: {
-    title: "Lunexa — Productos Digitales Simples, Rápidos e Inteligentes",
+    title: "Estudio de Productos Digitales — Móvil, Web e IA",
     description:
-      "Lunexa es un estudio de productos digitales. Diseñamos y construimos aplicaciones móviles, plataformas web y sistemas inteligentes con claridad, precisión y propósito.",
+      "Lunexa es un estudio de productos digitales. Diseñamos y construimos apps móviles, plataformas web y sistemas con IA — con claridad, precisión y artesanía.",
   },
 };
 
@@ -135,73 +135,73 @@ export const ABOUT_META: PageCopy = {
 
 export const SERVICES_META: PageCopy = {
   en: {
-    title: "Services — What We Build",
+    title: "Custom Software Development Services",
     description:
-      "Mobile applications, web platforms, and intelligent systems built with modern stacks and delivered with care. Explore what Lunexa can build for you.",
+      "Custom software development by Lunexa: mobile apps, web platforms, and intelligent systems. From first wireframe to production traffic, end-to-end.",
   },
   tr: {
-    title: "Hizmetler — Neler Yapıyoruz",
+    title: "Özel Yazılım Geliştirme Hizmetleri",
     description:
-      "Modern yığınlarla inşa edilmiş ve özenle teslim edilen mobil uygulamalar, web platformları ve akıllı sistemler. Lunexa'nın sizin için neler yapabileceğini keşfedin.",
+      "Lunexa'dan özel yazılım geliştirme: mobil uygulamalar, web platformları ve akıllı sistemler. İlk wireframe'den üretim trafiğine uçtan uca.",
   },
   es: {
-    title: "Servicios — Qué Construimos",
+    title: "Servicios de Desarrollo de Software a Medida",
     description:
-      "Aplicaciones móviles, plataformas web y sistemas inteligentes construidos con stacks modernos y entregados con cuidado. Descubre qué puede construir Lunexa para ti.",
+      "Desarrollo de software a medida por Lunexa: apps móviles, plataformas web y sistemas inteligentes. Del primer wireframe al tráfico en producción, de principio a fin.",
   },
 };
 
 export const SERVICES_MOBILE_META: PageCopy = {
   en: {
-    title: "Mobile Applications",
+    title: "Mobile App Development Agency",
     description:
-      "Native and cross-platform mobile app development by Lunexa. iOS and Android with performance, reliability, and great UX at the core.",
+      "Mobile app development agency building native and cross-platform iOS and Android apps. Swift, Kotlin, React Native — shipped with craft and performance.",
   },
   tr: {
-    title: "Mobil Uygulamalar",
+    title: "Mobil Uygulama Geliştirme Ajansı",
     description:
-      "Lunexa tarafından native ve cross-platform mobil uygulama geliştirme. Performans, güvenilirlik ve harika kullanıcı deneyimi merkezde olacak şekilde iOS ve Android.",
+      "Native ve cross-platform iOS ve Android uygulamaları geliştiren mobil uygulama ajansı. Swift, Kotlin, React Native — zanaat ve performansla teslim edilir.",
   },
   es: {
-    title: "Aplicaciones Móviles",
+    title: "Agencia de Desarrollo de Apps Móviles",
     description:
-      "Desarrollo de aplicaciones móviles nativas y multiplataforma por Lunexa. iOS y Android con rendimiento, fiabilidad y gran UX en el centro.",
+      "Agencia de desarrollo de apps móviles construyendo apps nativas y multiplataforma para iOS y Android. Swift, Kotlin, React Native — con artesanía y rendimiento.",
   },
 };
 
 export const SERVICES_WEB_META: PageCopy = {
   en: {
-    title: "Web Platforms",
+    title: "Web Platform Development",
     description:
-      "Fast, accessible, SEO-optimized web platforms built with Next.js, React, and modern infrastructure. From marketing sites to complex SaaS.",
+      "Web platform development with Next.js, React, and modern infrastructure. Fast, accessible, SEO-optimized — from marketing sites to complex SaaS dashboards.",
   },
   tr: {
-    title: "Web Platformları",
+    title: "Web Platformu Geliştirme",
     description:
-      "Next.js, React ve modern altyapıyla inşa edilmiş hızlı, erişilebilir, SEO uyumlu web platformları. Pazarlama sitelerinden karmaşık SaaS'lara kadar.",
+      "Next.js, React ve modern altyapı ile web platformu geliştirme. Hızlı, erişilebilir, SEO uyumlu — pazarlama sitelerinden karmaşık SaaS panellerine.",
   },
   es: {
-    title: "Plataformas Web",
+    title: "Desarrollo de Plataformas Web",
     description:
-      "Plataformas web rápidas, accesibles y optimizadas para SEO construidas con Next.js, React y infraestructura moderna. Desde sitios de marketing hasta SaaS complejo.",
+      "Desarrollo de plataformas web con Next.js, React e infraestructura moderna. Rápidas, accesibles y optimizadas para SEO — desde sitios de marketing hasta SaaS complejo.",
   },
 };
 
 export const SERVICES_INTELLIGENT_META: PageCopy = {
   en: {
-    title: "Intelligent Systems",
+    title: "AI Integration Services",
     description:
-      "AI integrations, LLM-powered features, retrieval augmented generation, and automation. We help teams apply modern intelligence to real products.",
+      "AI integration services for real products: LLM-powered features, retrieval augmented generation, and workflow automation. Pragmatic intelligence, shipped.",
   },
   tr: {
-    title: "Akıllı Sistemler",
+    title: "AI Entegrasyon Hizmetleri",
     description:
-      "AI entegrasyonları, LLM tabanlı özellikler, retrieval augmented generation ve otomasyon. Ekiplerin modern zekayı gerçek ürünlere uygulamasına yardımcı oluyoruz.",
+      "Gerçek ürünler için AI entegrasyon hizmetleri: LLM tabanlı özellikler, retrieval augmented generation ve iş akışı otomasyonu. Pragmatik, teslim edilen zekâ.",
   },
   es: {
-    title: "Sistemas Inteligentes",
+    title: "Servicios de Integración de IA",
     description:
-      "Integraciones de IA, funciones potenciadas por LLM, generación aumentada por recuperación y automatización. Ayudamos a los equipos a aplicar inteligencia moderna a productos reales.",
+      "Servicios de integración de IA para productos reales: funciones con LLM, generación aumentada por recuperación y automatización. Inteligencia pragmática, entregada.",
   },
 };
 
