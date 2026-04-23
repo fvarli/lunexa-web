@@ -65,6 +65,15 @@ export async function verifyTurnstile(
 }
 
 export const newsletterSchema = z.object({
+  name: z
+    .string()
+    .transform((v) => v.trim())
+    .pipe(
+      z
+        .string()
+        .min(2, "Name must be at least 2 characters")
+        .max(120, "Name must be at most 120 characters")
+    ),
   email: z
     .string()
     .transform((v) => v.trim().toLowerCase())
@@ -75,8 +84,12 @@ export const newsletterSchema = z.object({
   locale: z.enum(["en", "tr", "es"]).optional(),
 });
 
-export function signSubscriptionToken(email: string, secret: string): string {
-  return jwt.sign({ email, purpose: "newsletter-confirm" }, secret, {
+export function signSubscriptionToken(
+  email: string,
+  name: string,
+  secret: string
+): string {
+  return jwt.sign({ email, name, purpose: "newsletter-confirm" }, secret, {
     expiresIn: "15m",
   });
 }
@@ -84,18 +97,20 @@ export function signSubscriptionToken(email: string, secret: string): string {
 export function verifySubscriptionToken(
   token: string,
   secret: string
-): { email: string } | null {
+): { email: string; name: string } | null {
   try {
     const decoded = jwt.verify(token, secret) as {
       email?: unknown;
+      name?: unknown;
       purpose?: unknown;
     };
     if (
       decoded &&
       decoded.purpose === "newsletter-confirm" &&
-      typeof decoded.email === "string"
+      typeof decoded.email === "string" &&
+      typeof decoded.name === "string"
     ) {
-      return { email: decoded.email };
+      return { email: decoded.email, name: decoded.name };
     }
     return null;
   } catch {
@@ -413,7 +428,7 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
           return;
         }
 
-        const { email } = result.data;
+        const { email, name } = result.data;
         const secret = process.env.NEWSLETTER_SECRET;
         if (!secret) {
           console.error("[newsletter] NEWSLETTER_SECRET is not configured");
@@ -424,15 +439,17 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
           return;
         }
 
-        const token = signSubscriptionToken(email, secret);
+        const token = signSubscriptionToken(email, name, secret);
         const unsubToken = signUnsubscribeToken(email, secret);
         const confirmUrl = `${siteBaseUrl}/api/newsletter/confirm?token=${encodeURIComponent(token)}`;
         const unsubscribeUrl = `${siteBaseUrl}/api/newsletter/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
         const safeEmail = escapeHtml(email);
+        const safeName = escapeHtml(name);
 
         const emailLocale = resolveEmailLocale(result.data.locale);
         const mail = newsletterConfirmation(emailLocale, {
           safeEmail,
+          safeName,
           confirmUrl,
           unsubscribeUrl,
         });
@@ -488,6 +505,7 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
         where: { email: decoded.email },
         create: {
           email: decoded.email,
+          name: decoded.name,
           ip,
           ipHash,
           userAgent,
@@ -496,6 +514,7 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
           consentVersion: NEWSLETTER_CONSENT_VERSION,
         },
         update: {
+          name: decoded.name,
           unsubscribedAt: null,
           confirmedAt: new Date(),
           ip,
@@ -512,7 +531,8 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
         to: process.env.CONTACT_RECEIVER,
         subject: "New confirmed newsletter subscriber",
         text: [
-          `Confirmed subscriber: ${decoded.email}`,
+          `Name: ${decoded.name}`,
+          `Email: ${decoded.email}`,
           `Date: ${new Date().toISOString()}`,
           "",
           "Stored in the subscribers table.",

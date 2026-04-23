@@ -258,6 +258,8 @@ const en = {
     heading: "Stay in the loop",
     subtitle:
       "Occasional notes on what we're building. No spam, unsubscribe any time.",
+    name_label: "Name",
+    name_placeholder: "Your name",
     email_label: "Email",
     email_placeholder: "you@example.com",
     consent_prefix: "I agree to receive the Lunexa newsletter and have read the ",
@@ -268,6 +270,7 @@ const en = {
     sent_title: "Check your inbox",
     sent_body:
       "We sent you a confirmation link. Open it within 15 minutes to complete the subscription.",
+    name_required: "Please enter your name (at least 2 characters).",
     consent_required: "Please accept the newsletter terms to continue.",
     rate_limit: "Too many requests. Please wait a few minutes.",
     network_error: "Could not reach the server. Please try again.",
@@ -555,6 +558,8 @@ const tr: Dictionary = {
     heading: "Gündemi kaçırmayın",
     subtitle:
       "Neler yaptığımıza dair arada gelen notlar. Spam yok, dilediğiniz zaman çıkabilirsiniz.",
+    name_label: "Ad",
+    name_placeholder: "Adınız",
     email_label: "E-posta",
     email_placeholder: "siz@ornek.com",
     consent_prefix: "Lunexa bültenini almayı kabul ediyorum ve ",
@@ -565,6 +570,7 @@ const tr: Dictionary = {
     sent_title: "Gelen kutunuza bakın",
     sent_body:
       "Size bir doğrulama bağlantısı gönderdik. Aboneliği tamamlamak için 15 dakika içinde açın.",
+    name_required: "Lütfen adınızı girin (en az 2 karakter).",
     consent_required: "Devam etmek için bülten şartlarını kabul edin.",
     rate_limit: "Çok fazla istek. Birkaç dakika sonra tekrar deneyin.",
     network_error: "Sunucuya ulaşılamadı. Lütfen tekrar deneyin.",
@@ -852,6 +858,8 @@ const es: Dictionary = {
     heading: "Mantente al día",
     subtitle:
       "Notas ocasionales sobre lo que estamos construyendo. Sin spam, puedes darte de baja cuando quieras.",
+    name_label: "Nombre",
+    name_placeholder: "Tu nombre",
     email_label: "Correo",
     email_placeholder: "tu@ejemplo.com",
     consent_prefix: "Acepto recibir el boletín de Lunexa y he leído la ",
@@ -862,6 +870,7 @@ const es: Dictionary = {
     sent_title: "Revisa tu bandeja",
     sent_body:
       "Te enviamos un enlace de confirmación. Ábrelo en los próximos 15 minutos para completar la suscripción.",
+    name_required: "Por favor introduce tu nombre (al menos 2 caracteres).",
     consent_required: "Acepta los términos del boletín para continuar.",
     rate_limit: "Demasiadas solicitudes. Espera unos minutos.",
     network_error: "No se pudo contactar con el servidor. Inténtalo de nuevo.",

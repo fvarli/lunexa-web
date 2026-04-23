@@ -11,6 +11,7 @@ datasource db {
 model Subscriber {
   id              BigInt    @id @default(autoincrement())
   email           String    @unique @db.Citext
+  name            String?   @db.VarChar(120)
   confirmedAt     DateTime  @default(now()) @map("confirmed_at") @db.Timestamptz(6)
   unsubscribedAt  DateTime? @map("unsubscribed_at") @db.Timestamptz(6)
   locale          String?   @db.VarChar(8)

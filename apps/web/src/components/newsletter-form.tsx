@@ -10,6 +10,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 
 export default function NewsletterForm() {
   const { t, locale } = useT();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
@@ -17,6 +18,13 @@ export default function NewsletterForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    const trimmedName = name.trim();
+    if (trimmedName.length < 2) {
+      setStatus("error");
+      setErrorMessage(t("newsletter.name_required"));
+      return;
+    }
 
     if (!consent) {
       setStatus("error");
@@ -31,7 +39,7 @@ export default function NewsletterForm() {
       const res = await fetch(`${API_BASE}/api/newsletter/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, consent, locale }),
+        body: JSON.stringify({ name: trimmedName, email, consent, locale }),
       });
 
       if (res.status === 429) {
@@ -49,6 +57,7 @@ export default function NewsletterForm() {
       }
 
       setStatus("sent");
+      setName("");
       setEmail("");
       setConsent(false);
       trackEvent("newsletter_subscribe", { locale });
@@ -70,6 +79,22 @@ export default function NewsletterForm() {
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+      <label className="block">
+        <span className="mb-2 block text-sm text-muted">
+          {t("newsletter.name_label")}
+        </span>
+        <input
+          type="text"
+          required
+          minLength={2}
+          maxLength={120}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder={t("newsletter.name_placeholder")}
+          className="w-full rounded-lg border border-border bg-surface-light px-4 py-3 text-foreground placeholder-muted/50 outline-none transition-colors focus:border-accent"
+        />
+      </label>
+
       <label className="block">
         <span className="mb-2 block text-sm text-muted">
           {t("newsletter.email_label")}

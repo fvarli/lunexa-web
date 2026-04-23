@@ -38,7 +38,7 @@ describe("POST /api/newsletter/subscribe", () => {
 
     const res = await request(app)
       .post("/api/newsletter/subscribe")
-      .send({ email: "jane@example.com", consent: true });
+      .send({ name: "Jane Doe", email: "jane@example.com", consent: true });
 
     expect(res.status).toBe(503);
   });
@@ -48,10 +48,37 @@ describe("POST /api/newsletter/subscribe", () => {
 
     const res = await request(app)
       .post("/api/newsletter/subscribe")
-      .send({ email: "jane@example.com" });
+      .send({ name: "Jane Doe", email: "jane@example.com" });
 
     expect(res.status).toBe(400);
     expect(res.body.ok).toBe(false);
+  });
+
+  it("returns 400 when name is missing", async () => {
+    const app = createApp({ transporter: mockTransporter(), db: mockDb() });
+
+    const res = await request(app)
+      .post("/api/newsletter/subscribe")
+      .send({ email: "jane@example.com", consent: true });
+
+    expect(res.status).toBe(400);
+    expect(res.body.ok).toBe(false);
+    expect(
+      (res.body.errors as Array<{ field: string }>).some((e) => e.field === "name"),
+    ).toBe(true);
+  });
+
+  it("returns 400 when name is too short after trimming", async () => {
+    const app = createApp({ transporter: mockTransporter(), db: mockDb() });
+
+    const res = await request(app)
+      .post("/api/newsletter/subscribe")
+      .send({ name: "  a  ", email: "jane@example.com", consent: true });
+
+    expect(res.status).toBe(400);
+    expect(
+      (res.body.errors as Array<{ field: string }>).some((e) => e.field === "name"),
+    ).toBe(true);
   });
 
   it("returns 400 for invalid email", async () => {
@@ -59,7 +86,7 @@ describe("POST /api/newsletter/subscribe", () => {
 
     const res = await request(app)
       .post("/api/newsletter/subscribe")
-      .send({ email: "not-an-email", consent: true });
+      .send({ name: "Jane Doe", email: "not-an-email", consent: true });
 
     expect(res.status).toBe(400);
   });
@@ -71,7 +98,7 @@ describe("POST /api/newsletter/subscribe", () => {
 
     const res = await request(app)
       .post("/api/newsletter/subscribe")
-      .send({ email: "jane@example.com", consent: true });
+      .send({ name: "Jane Doe", email: "jane@example.com", consent: true });
 
     expect(res.status).toBe(200);
     expect(transporter.sendMail).toHaveBeenCalledTimes(1);
@@ -81,6 +108,26 @@ describe("POST /api/newsletter/subscribe", () => {
     expect(call.to).toBe("jane@example.com");
     expect(call.html).toContain("Confirm subscription");
     expect(call.html).toContain("Unsubscribe");
+    expect(call.html).toContain("Hi Jane Doe,");
+  });
+
+  it("escapes HTML in name before it reaches the email body", async () => {
+    const transporter = mockTransporter();
+    const db = mockDb();
+    const app = createApp({ transporter, db });
+
+    const res = await request(app)
+      .post("/api/newsletter/subscribe")
+      .send({
+        name: "<script>evil</script>",
+        email: "jane@example.com",
+        consent: true,
+      });
+
+    expect(res.status).toBe(200);
+    const call = (transporter.sendMail as ReturnType<typeof vi.fn>).mock.calls[0][0];
+    expect(call.html).not.toContain("<script>evil</script>");
+    expect(call.html).toContain("&lt;script&gt;evil&lt;/script&gt;");
   });
 });
 
@@ -111,7 +158,7 @@ describe("GET /api/newsletter/confirm", () => {
     const db = mockDb();
     const app = createApp({ transporter, db });
 
-    const token = signSubscriptionToken("jane@example.com", SECRET);
+    const token = signSubscriptionToken("jane@example.com", "Jane Doe", SECRET);
     const res = await request(app)
       .get(`/api/newsletter/confirm?token=${token}`)
       .set("User-Agent", "Mozilla/5.0 Test")
@@ -125,16 +172,19 @@ describe("GET /api/newsletter/confirm", () => {
       where: { email: string };
       create: {
         email: string;
+        name?: string | null;
         userAgent?: string | null;
         referer?: string | null;
         locale?: string | null;
         consentVersion?: string | null;
         ipHash?: string | null;
       };
-      update: { unsubscribedAt: null; consentVersion?: string | null };
+      update: { unsubscribedAt: null; name?: string | null; consentVersion?: string | null };
     };
     expect(upsertArg.where.email).toBe("jane@example.com");
     expect(upsertArg.create.email).toBe("jane@example.com");
+    expect(upsertArg.create.name).toBe("Jane Doe");
+    expect(upsertArg.update.name).toBe("Jane Doe");
     expect(upsertArg.update.unsubscribedAt).toBeNull();
     expect(upsertArg.create.userAgent).toBe("Mozilla/5.0 Test");
     expect(upsertArg.create.referer).toBe("https://example.com/src");
@@ -145,6 +195,7 @@ describe("GET /api/newsletter/confirm", () => {
     expect(transporter.sendMail).toHaveBeenCalledTimes(1);
     const mailArg = (transporter.sendMail as ReturnType<typeof vi.fn>).mock.calls[0][0];
     expect(mailArg.to).toBe("inbox@test");
+    expect(mailArg.text).toContain("Jane Doe");
   });
 
   it("rejects tokens signed for the unsubscribe purpose", async () => {
@@ -202,7 +253,7 @@ describe("GET /api/newsletter/unsubscribe", () => {
 
   it("rejects tokens signed for the confirm purpose", async () => {
     const app = createApp({ transporter: mockTransporter(), db: mockDb() });
-    const confirmToken = signSubscriptionToken("jane@example.com", SECRET);
+    const confirmToken = signSubscriptionToken("jane@example.com", "Jane Doe", SECRET);
     const res = await request(app).get(`/api/newsletter/unsubscribe?token=${confirmToken}`);
     expect(res.headers.location).toContain("status=expired");
   });

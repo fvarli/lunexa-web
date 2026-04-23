@@ -20,13 +20,14 @@ type NewsletterConfirmStrings = {
   subject: string;
   htmlTitle: string;
   heading: string;
+  htmlGreeting: (safeName: string) => string;
   description: (safeEmail: string) => string;
   confirmButton: string;
   orPasteLabel: string;
   ignore: string;
   unsubscribePrefix: string;
   unsubscribeLink: string;
-  textIntro: string;
+  textIntro: (safeName: string) => string;
   textInstruction: string;
   textIgnore: string;
   textUnsubscribe: string;
@@ -57,6 +58,7 @@ const strings: Record<
       subject: "Confirm your Lunexa newsletter subscription",
       htmlTitle: "Confirm your newsletter subscription",
       heading: "Confirm your subscription",
+      htmlGreeting: (safeName) => `Hi ${safeName},`,
       description: (safeEmail) =>
         `You asked to subscribe to the Lunexa newsletter as <strong style="color:#18181b;">${safeEmail}</strong>. Please confirm within 15 minutes:`,
       confirmButton: "Confirm subscription",
@@ -64,7 +66,7 @@ const strings: Record<
       ignore: "If you didn't request this, you can safely ignore this email.",
       unsubscribePrefix: "Don't want these emails?",
       unsubscribeLink: "Unsubscribe",
-      textIntro: "Hi,",
+      textIntro: (safeName) => `Hi ${safeName},`,
       textInstruction:
         "Please confirm your Lunexa newsletter subscription by opening the link below within 15 minutes:",
       textIgnore: "If you did not request this, you can safely ignore this email.",
@@ -89,6 +91,7 @@ const strings: Record<
       subject: "Lunexa bülten aboneliğinizi onaylayın",
       htmlTitle: "Bülten aboneliğinizi onaylayın",
       heading: "Aboneliğinizi onaylayın",
+      htmlGreeting: (safeName) => `Merhaba ${safeName},`,
       description: (safeEmail) =>
         `Lunexa bültenine <strong style="color:#18181b;">${safeEmail}</strong> adresiyle abone olmak istediniz. 15 dakika içinde onaylayın:`,
       confirmButton: "Aboneliği onayla",
@@ -96,7 +99,7 @@ const strings: Record<
       ignore: "Eğer bu işlemi siz yapmadıysanız bu e-postayı yok sayabilirsiniz.",
       unsubscribePrefix: "Bu e-postaları istemiyor musunuz?",
       unsubscribeLink: "Abonelikten çık",
-      textIntro: "Merhaba,",
+      textIntro: (safeName) => `Merhaba ${safeName},`,
       textInstruction:
         "Lunexa bülten aboneliğinizi aşağıdaki bağlantıyı 15 dakika içinde açarak onaylayın:",
       textIgnore: "Eğer bu işlemi siz yapmadıysanız bu e-postayı yok sayabilirsiniz.",
@@ -121,6 +124,7 @@ const strings: Record<
       subject: "Confirma tu suscripción al boletín de Lunexa",
       htmlTitle: "Confirma tu suscripción al boletín",
       heading: "Confirma tu suscripción",
+      htmlGreeting: (safeName) => `Hola ${safeName},`,
       description: (safeEmail) =>
         `Has solicitado suscribirte al boletín de Lunexa con <strong style="color:#18181b;">${safeEmail}</strong>. Confírmalo en los próximos 15 minutos:`,
       confirmButton: "Confirmar suscripción",
@@ -128,7 +132,7 @@ const strings: Record<
       ignore: "Si no solicitaste esto, puedes ignorar este correo sin problema.",
       unsubscribePrefix: "¿No quieres estos correos?",
       unsubscribeLink: "Darse de baja",
-      textIntro: "Hola,",
+      textIntro: (safeName) => `Hola ${safeName},`,
       textInstruction:
         "Confirma tu suscripción al boletín de Lunexa abriendo el siguiente enlace en los próximos 15 minutos:",
       textIgnore: "Si no solicitaste esto, puedes ignorar este correo sin problema.",
@@ -147,13 +151,18 @@ export function contactAutoReply(
 
 export function newsletterConfirmation(
   locale: EmailLocale,
-  opts: { safeEmail: string; confirmUrl: string; unsubscribeUrl: string }
+  opts: {
+    safeEmail: string;
+    safeName: string;
+    confirmUrl: string;
+    unsubscribeUrl: string;
+  }
 ): { subject: string; text: string; html: string } {
   const tr = strings[locale].newsletter;
-  const { safeEmail, confirmUrl, unsubscribeUrl } = opts;
+  const { safeEmail, safeName, confirmUrl, unsubscribeUrl } = opts;
 
   const text = [
-    tr.textIntro,
+    tr.textIntro(safeName),
     "",
     tr.textInstruction,
     "",
@@ -189,6 +198,9 @@ export function newsletterConfirmation(
             <tr>
               <td style="padding:32px;">
                 <h1 style="margin:0 0 12px 0;font-size:22px;font-weight:600;color:#18181b;letter-spacing:-0.02em;">${tr.heading}</h1>
+                <p style="margin:0 0 16px 0;font-size:14px;line-height:1.65;color:#18181b;">
+                  ${tr.htmlGreeting(safeName)}
+                </p>
                 <p style="margin:0 0 24px 0;font-size:14px;line-height:1.65;color:#52525b;">
                   ${tr.description(safeEmail)}
                 </p>
