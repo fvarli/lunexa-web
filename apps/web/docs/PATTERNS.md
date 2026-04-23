@@ -937,6 +937,39 @@ Point a monitor at `https://uselunexa.com/api/health`. Expected 200 with `{"ok":
 
 ---
 
+## 11. Known gotchas
+
+### Tailwind v4 `@theme inline` — `--color-*` is not a runtime CSS variable
+
+`apps/web/src/app/globals.css` uses:
+
+```css
+@theme inline {
+  --color-background: var(--lunexa-background);
+  --color-foreground: var(--lunexa-foreground);
+  ...
+}
+```
+
+`@theme inline` tells Tailwind to **inline theme-token values into generated utility classes** — so `.bg-background` compiles to `background-color: var(--lunexa-background)`. But it does **not** emit `--color-*` as CSS custom properties at `:root`.
+
+Only `--lunexa-*` are real runtime CSS variables (defined on `:root` and `[data-theme="light"]`).
+
+```tsx
+// ❌ Broken — --color-background is undefined at runtime, element renders transparent
+style={{ backgroundColor: "var(--color-background)" }}
+
+// ✅ Correct — --lunexa-background is the real runtime variable, theme switch works
+style={{ backgroundColor: "var(--lunexa-background)" }}
+
+// ✅ Also correct — Tailwind compiles this to the --lunexa-* var at build time
+className="bg-background"
+```
+
+For `className` either token works (Tailwind translates). For raw inline styles always use the underlying `--lunexa-*` token. Caught this one in production on `mobile-menu.tsx` — the panel had no background because I used `var(--color-background)` in an inline style.
+
+---
+
 ## Cross-references
 
 - [`STACK.md`](./STACK.md) — what's in the stack and why

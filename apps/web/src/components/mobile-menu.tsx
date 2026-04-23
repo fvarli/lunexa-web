@@ -83,7 +83,7 @@ export default function MobileMenu() {
           role="dialog"
           aria-modal="true"
           aria-label={t("nav.main_menu")}
-          style={{ backgroundColor: "var(--color-background)" }}
+          style={{ backgroundColor: "var(--lunexa-background)" }}
           className="fixed inset-0 z-[60] flex flex-col sm:hidden"
         >
           <div className="flex items-center justify-between border-b border-border/50 px-6 py-4">
