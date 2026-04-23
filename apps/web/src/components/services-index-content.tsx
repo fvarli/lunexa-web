@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
 import { SERVICES_INDEX } from "@/seo/content";
+import CtaBlock from "@/components/cta-block";
 
 export default function ServicesIndexContent() {
   const { locale } = useT();
@@ -42,6 +43,10 @@ export default function ServicesIndexContent() {
               </span>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-20">
+          <CtaBlock />
         </div>
       </div>
     </main>

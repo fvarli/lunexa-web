@@ -31,6 +31,7 @@ const en = {
       ", representing exponential scale. We exist to bring calm, focused technology to a noisy world.",
     paragraph_2:
       "Every product we build starts with a single question: does this make life simpler? If it doesn't, we rethink it.",
+    full_story_link: "Read the full story",
   },
   work: {
     eyebrow: "What We Build",
@@ -46,6 +47,7 @@ const en = {
       ai_desc:
         "Smart integrations and automation that reduce complexity and let teams focus on what matters.",
     },
+    all_services_link: "Explore every service in depth",
   },
   principles: {
     eyebrow: "Principles",
@@ -270,6 +272,7 @@ const en = {
     rate_limit: "Too many requests. Please wait a few minutes.",
     network_error: "Could not reach the server. Please try again.",
     generic_error: "Something went wrong. Please try again.",
+    blog_link: "Or read the latest notes on the blog",
   },
   newsletter_confirmed: {
     eyebrow_ok: "Newsletter",
@@ -325,6 +328,7 @@ const tr: Dictionary = {
       " kelimelerinden geliyor. Gürültülü bir dünyaya sakin, odaklı teknoloji getirmek için varız.",
     paragraph_2:
       "Geliştirdiğimiz her ürün tek bir soruyla başlar: bu hayatı daha basit hale getiriyor mu? Eğer getirmiyorsa, yeniden düşünürüz.",
+    full_story_link: "Tüm hikâyeyi oku",
   },
   work: {
     eyebrow: "Neler Yapıyoruz",
@@ -340,6 +344,7 @@ const tr: Dictionary = {
       ai_desc:
         "Karmaşıklığı azaltan ve ekiplerin önemli olana odaklanmasını sağlayan akıllı entegrasyonlar ve otomasyon.",
     },
+    all_services_link: "Her hizmeti detaylıca keşfet",
   },
   principles: {
     eyebrow: "İlkelerimiz",
@@ -564,6 +569,7 @@ const tr: Dictionary = {
     rate_limit: "Çok fazla istek. Birkaç dakika sonra tekrar deneyin.",
     network_error: "Sunucuya ulaşılamadı. Lütfen tekrar deneyin.",
     generic_error: "Bir şeyler ters gitti. Tekrar deneyin.",
+    blog_link: "Ya da blogdaki son notları okuyun",
   },
   newsletter_confirmed: {
     eyebrow_ok: "Bülten",
@@ -619,6 +625,7 @@ const es: Dictionary = {
       ", que representa la escala exponencial. Existimos para aportar tecnología tranquila y enfocada a un mundo ruidoso.",
     paragraph_2:
       "Cada producto que construimos empieza con una pregunta: ¿hace la vida más simple? Si no lo hace, lo replanteamos.",
+    full_story_link: "Lee la historia completa",
   },
   work: {
     eyebrow: "Qué Hacemos",
@@ -634,6 +641,7 @@ const es: Dictionary = {
       ai_desc:
         "Integraciones y automatización inteligentes que reducen la complejidad y permiten a los equipos centrarse en lo importante.",
     },
+    all_services_link: "Explora cada servicio en profundidad",
   },
   principles: {
     eyebrow: "Principios",
@@ -858,6 +866,7 @@ const es: Dictionary = {
     rate_limit: "Demasiadas solicitudes. Espera unos minutos.",
     network_error: "No se pudo contactar con el servidor. Inténtalo de nuevo.",
     generic_error: "Algo salió mal. Inténtalo de nuevo.",
+    blog_link: "O lee las últimas notas en el blog",
   },
   newsletter_confirmed: {
     eyebrow_ok: "Boletín",

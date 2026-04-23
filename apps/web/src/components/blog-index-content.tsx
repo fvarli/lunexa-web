@@ -5,6 +5,7 @@ import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
 import { BLOG_INDEX } from "@/seo/content";
 import type { PostMeta } from "@/blog";
+import CtaBlock from "@/components/cta-block";
 
 function formatDate(iso: string, locale: string): string {
   try {
@@ -69,6 +70,10 @@ export default function BlogIndexContent({ posts }: { posts: PostMeta[] }) {
             ))}
           </ul>
         )}
+
+        <div className="mt-20">
+          <CtaBlock />
+        </div>
       </div>
     </main>
   );

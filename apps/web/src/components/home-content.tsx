@@ -1,12 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import ContactForm from "@/components/contact-form";
 import NewsletterForm from "@/components/newsletter-form";
 import HomeFaq from "@/components/home-faq";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 
 export default function HomeContent() {
-  const { t } = useT();
+  const { t, locale } = useT();
 
   return (
     <main className="flex-1">
@@ -58,6 +60,14 @@ export default function HomeContent() {
           <p className="mt-4 text-lg leading-relaxed text-muted">
             {t("about.paragraph_2")}
           </p>
+          <div className="mt-8">
+            <Link
+              href={localeHref(locale, "/about")}
+              className="text-sm font-medium text-accent transition-opacity hover:opacity-80"
+            >
+              {t("about.full_story_link")} →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -76,33 +86,50 @@ export default function HomeContent() {
             </h2>
           </div>
           <div className="mt-16 grid gap-8 sm:grid-cols-3">
-            <div className="rounded-2xl border border-border bg-surface-light p-8">
+            <Link
+              href={localeHref(locale, "/services/mobile")}
+              className="group rounded-2xl border border-border bg-surface-light p-8 transition-colors hover:border-accent/40"
+            >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
               </div>
-              <h3 className="text-lg font-semibold">{t("work.items.mobile_title")}</h3>
+              <h3 className="text-lg font-semibold transition-colors group-hover:text-accent">{t("work.items.mobile_title")}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 {t("work.items.mobile_desc")}
               </p>
-            </div>
-            <div className="rounded-2xl border border-border bg-surface-light p-8">
+            </Link>
+            <Link
+              href={localeHref(locale, "/services/web")}
+              className="group rounded-2xl border border-border bg-surface-light p-8 transition-colors hover:border-accent/40"
+            >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               </div>
-              <h3 className="text-lg font-semibold">{t("work.items.web_title")}</h3>
+              <h3 className="text-lg font-semibold transition-colors group-hover:text-accent">{t("work.items.web_title")}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 {t("work.items.web_desc")}
               </p>
-            </div>
-            <div className="rounded-2xl border border-border bg-surface-light p-8">
+            </Link>
+            <Link
+              href={localeHref(locale, "/services/intelligent")}
+              className="group rounded-2xl border border-border bg-surface-light p-8 transition-colors hover:border-accent/40"
+            >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
               </div>
-              <h3 className="text-lg font-semibold">{t("work.items.ai_title")}</h3>
+              <h3 className="text-lg font-semibold transition-colors group-hover:text-accent">{t("work.items.ai_title")}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 {t("work.items.ai_desc")}
               </p>
-            </div>
+            </Link>
+          </div>
+          <div className="mt-12 text-center">
+            <Link
+              href={localeHref(locale, "/services")}
+              className="text-sm font-medium text-accent transition-opacity hover:opacity-80"
+            >
+              {t("work.all_services_link")} →
+            </Link>
           </div>
         </div>
       </section>
@@ -189,6 +216,14 @@ export default function HomeContent() {
           <div className="mt-10">
             <NewsletterForm />
           </div>
+          <p className="mt-8 text-center text-sm text-muted">
+            <Link
+              href={localeHref(locale, "/blog")}
+              className="text-accent transition-opacity hover:opacity-80"
+            >
+              {t("newsletter.blog_link")} →
+            </Link>
+          </p>
         </div>
       </section>
 

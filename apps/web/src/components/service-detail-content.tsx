@@ -8,7 +8,9 @@ import {
   SERVICE_MOBILE,
   SERVICE_WEB,
   SERVICE_INTELLIGENT,
+  RELATED_SERVICES,
 } from "@/seo/content";
+import RelatedServices from "@/components/related-services";
 
 type Slug = "mobile" | "web" | "intelligent";
 
@@ -21,10 +23,19 @@ const CONTENT = {
 export default function ServiceDetailContent({ slug }: { slug: Slug }) {
   const { locale } = useT();
   const c = CONTENT[slug][locale as Locale];
+  const rel = RELATED_SERVICES[locale];
 
   return (
     <main className="flex-1 pt-24 pb-16 sm:pt-32 sm:pb-24">
       <article className="mx-auto max-w-3xl px-6">
+        <nav className="mb-8 text-sm text-muted">
+          <Link
+            href={localeHref(locale, "/services")}
+            className="transition-colors hover:text-foreground"
+          >
+            {rel.back_label}
+          </Link>
+        </nav>
         <header className="mb-16 text-center">
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent">
             {c.eyebrow}
@@ -83,6 +94,8 @@ export default function ServiceDetailContent({ slug }: { slug: Slug }) {
             {c.cta_button}
           </Link>
         </section>
+
+        <RelatedServices current={slug} />
       </article>
     </main>
   );

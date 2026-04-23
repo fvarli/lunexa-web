@@ -1,6 +1,7 @@
 "use client";
 
 import { useT } from "@/i18n/provider";
+import CtaBlock from "@/components/cta-block";
 
 export default function PrivacyPageContent() {
   const { t } = useT();
@@ -99,6 +100,10 @@ export default function PrivacyPageContent() {
               {t("privacy_page.contact_body_suffix")}
             </p>
           </section>
+        </div>
+
+        <div className="mt-16">
+          <CtaBlock variant="compact" />
         </div>
       </article>
     </main>

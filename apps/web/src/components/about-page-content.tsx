@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
 import { ABOUT } from "@/seo/content";
+import RelatedServices from "@/components/related-services";
 
 export default function AboutPageContent() {
   const { locale } = useT();
@@ -49,7 +50,9 @@ export default function AboutPageContent() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-border bg-surface-light p-8 text-center">
+        <RelatedServices />
+
+        <section className="mt-16 rounded-2xl border border-border bg-surface-light p-8 text-center">
           <p className="text-lg font-medium">{c.cta_lead}</p>
           <Link
             href={localeHref(locale, "/contact")}
