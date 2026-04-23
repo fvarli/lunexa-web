@@ -55,6 +55,17 @@ type BlogIndexContent = {
   empty: string;
 };
 
+type CtaBlockContent = {
+  heading: string;
+  body: string;
+  button: string;
+};
+
+type RelatedServicesContent = {
+  heading: string;
+  back_label: string;
+};
+
 // ── About ──
 
 export const ABOUT: Record<Locale, AboutContent> = {
@@ -524,5 +535,42 @@ export const BLOG_INDEX: Record<Locale, BlogIndexContent> = {
       "Escritos ocasionales sobre cómo construir productos digitales en Lunexa — artesanía, herramientas y lecciones.",
     empty:
       "Los posts llegan pronto. Suscríbete al boletín para recibirlos cuando se publiquen.",
+  },
+};
+
+// ── Reusable CTA block ──
+
+export const CTA_BLOCK: Record<Locale, CtaBlockContent> = {
+  en: {
+    heading: "Have a project in mind?",
+    body: "Tell us what you're building. We reply within two business days with a plan and a shortlist of next steps.",
+    button: "Start a conversation",
+  },
+  tr: {
+    heading: "Aklında bir proje mi var?",
+    body: "Ne inşa ettiğini anlat. İki iş günü içinde bir planla ve sıradaki somut adımlarla dönüş yaparız.",
+    button: "Konuşmaya başla",
+  },
+  es: {
+    heading: "¿Tienes un proyecto en mente?",
+    body: "Cuéntanos qué estás construyendo. Respondemos en dos días hábiles con un plan y los siguientes pasos concretos.",
+    button: "Iniciar una conversación",
+  },
+};
+
+// ── Related services section ──
+
+export const RELATED_SERVICES: Record<Locale, RelatedServicesContent> = {
+  en: {
+    heading: "More of what we build",
+    back_label: "← All services",
+  },
+  tr: {
+    heading: "Neler daha yapıyoruz",
+    back_label: "← Tüm hizmetler",
+  },
+  es: {
+    heading: "Más de lo que construimos",
+    back_label: "← Todos los servicios",
   },
 };
