@@ -10,6 +10,9 @@ const en = {
     services: "Services",
     blog: "Blog",
     contact: "Contact",
+    menu_open: "Open menu",
+    menu_close: "Close menu",
+    main_menu: "Main menu",
   },
   hero: {
     eyebrow: "Digital craftsmanship",
@@ -309,6 +312,9 @@ const tr: Dictionary = {
     services: "Hizmetler",
     blog: "Blog",
     contact: "İletişim",
+    menu_open: "Menüyü aç",
+    menu_close: "Menüyü kapat",
+    main_menu: "Ana menü",
   },
   hero: {
     eyebrow: "Dijital zanaat",
@@ -609,6 +615,9 @@ const es: Dictionary = {
     services: "Servicios",
     blog: "Blog",
     contact: "Contacto",
+    menu_open: "Abrir menú",
+    menu_close: "Cerrar menú",
+    main_menu: "Menú principal",
   },
   hero: {
     eyebrow: "Artesanía digital",

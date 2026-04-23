@@ -5,6 +5,7 @@ import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
 import LanguageSwitcher from "./language-switcher";
 import ThemeToggle from "./theme-toggle";
+import MobileMenu from "./mobile-menu";
 
 export default function SiteHeader() {
   const { t, locale } = useT();
@@ -46,6 +47,7 @@ export default function SiteHeader() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <LanguageSwitcher />
+            <MobileMenu />
           </div>
         </div>
       </div>
