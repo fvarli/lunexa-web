@@ -11,24 +11,6 @@ function isLocale(value: string): value is Locale {
  */
 const PREFIXED_LOCALES = LOCALES.filter((l) => l !== DEFAULT_LOCALE);
 
-function detectLocaleFromAcceptLanguage(header: string | null): Locale | null {
-  if (!header) return null;
-  const entries = header
-    .split(",")
-    .map((part) => {
-      const [tag, ...params] = part.trim().split(";");
-      const q = params.map((p) => p.trim()).find((p) => p.startsWith("q="));
-      const quality = q ? parseFloat(q.slice(2)) : 1;
-      return { tag: tag.toLowerCase(), quality: isNaN(quality) ? 1 : quality };
-    })
-    .sort((a, b) => b.quality - a.quality);
-  for (const { tag } of entries) {
-    const primary = tag.split("-")[0];
-    if (isLocale(primary)) return primary;
-  }
-  return null;
-}
-
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const segments = pathname.split("/");
@@ -50,14 +32,15 @@ export function proxy(request: NextRequest) {
     return NextResponse.next({ request: { headers } });
   }
 
-  // 3. No locale prefix. Decide which locale this request should be served as.
+  // 3. No locale prefix. Serve English by default; only the switcher cookie
+  //    deviates from that. Accept-Language is intentionally not consulted so
+  //    every first visit lands on English regardless of browser locale.
   const cookieLocale = request.cookies.get(STORAGE_KEY)?.value;
   const preferred =
     (cookieLocale && isLocale(cookieLocale) ? cookieLocale : null) ??
-    detectLocaleFromAcceptLanguage(request.headers.get("accept-language")) ??
     DEFAULT_LOCALE;
 
-  // 3a. If user prefers a non-default locale, redirect to /<locale>/... so the URL
+  // 3a. Cookie says non-English → redirect to /<locale>/... so the URL
   //     reflects the chosen language.
   if (preferred !== DEFAULT_LOCALE) {
     const url = request.nextUrl.clone();
