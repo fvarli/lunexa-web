@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useT } from "@/i18n/provider";
@@ -10,8 +11,14 @@ export default function MobileMenu() {
   const { t, locale } = useT();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
+
+  // Portal target is only available after mount (SSR has no document).
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close whenever the route changes.
   useEffect(() => {
@@ -77,7 +84,7 @@ export default function MobileMenu() {
         </svg>
       </button>
 
-      {open && (
+      {mounted && open && createPortal(
         <div
           id="mobile-nav-panel"
           role="dialog"
@@ -125,7 +132,8 @@ export default function MobileMenu() {
               </Link>
             ))}
           </nav>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
