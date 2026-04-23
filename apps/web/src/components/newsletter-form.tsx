@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
+import { trackEvent } from "@/components/analytics";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 
@@ -50,6 +51,7 @@ export default function NewsletterForm() {
       setStatus("sent");
       setEmail("");
       setConsent(false);
+      trackEvent("newsletter_subscribe", { locale });
     } catch {
       setStatus("error");
       setErrorMessage(t("newsletter.network_error"));

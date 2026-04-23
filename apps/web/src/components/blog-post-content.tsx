@@ -6,6 +6,7 @@ import { localeHref } from "@/i18n/href";
 import type { Post } from "@/blog";
 import CtaBlock from "@/components/cta-block";
 import RelatedServices from "@/components/related-services";
+import { trackEvent } from "@/components/analytics";
 
 function formatDate(iso: string, locale: string): string {
   try {
@@ -66,7 +67,15 @@ export default function BlogPostContent({ post }: { post: Post }) {
         />
 
         <div className="mt-20">
-          <CtaBlock variant="compact" />
+          <CtaBlock
+            variant="compact"
+            onClick={() =>
+              trackEvent("blog_cta_click", {
+                slug: post.slug,
+                destination: "contact",
+              })
+            }
+          />
         </div>
 
         <RelatedServices />

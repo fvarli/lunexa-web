@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { useT } from "@/i18n/provider";
+import { trackEvent } from "@/components/analytics";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
@@ -119,6 +120,7 @@ export default function ContactForm({ idPrefix = "" }: { idPrefix?: string }) {
       setFields({ name: "", email: "", message: "" });
       turnstileRef.current?.reset();
       setTurnstileToken("");
+      trackEvent("contact_form_submit", { locale });
     } catch {
       setErrorMessage(t("form.errors.unexpected"));
       setStatus("error");
