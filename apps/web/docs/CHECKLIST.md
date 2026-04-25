@@ -42,7 +42,7 @@ Before starting day 1, confirm you have:
 ### Name availability
 
 - [ ] Domain available (if new domain) — check at least `.com` + `.co` + `.app`
-- [ ] GitHub repo name available: `lunexa-<product>`
+- [ ] GitHub repo name available: `<product>` (no `lunexa-` prefix — repos use the product name directly)
 - [ ] Twitter/X handle available — `@<product>` or `@<product>_app`
 - [ ] LinkedIn company page slug available (if you'll run a separate page)
 - [ ] npm package name free (only if you'll publish anything, even a CLI)
@@ -52,8 +52,8 @@ Before starting day 1, confirm you have:
 ## 2. Repo bootstrap (15 min)
 
 ```bash
-mkdir -p ~/Desktop/WebProjects/lunexa-<product>
-cd ~/Desktop/WebProjects/lunexa-<product>
+mkdir -p ~/Desktop/WebProjects/<product>
+cd ~/Desktop/WebProjects/<product>
 git init
 ```
 
@@ -120,7 +120,7 @@ git commit -m "chore: bootstrap — Next 16 + Tailwind 4 + Lunexa SEO baseline"
 ### GitHub
 
 ```bash
-gh repo create fvarli/lunexa-<product> --private --source=. --push
+gh repo create fvarli/<product> --private --source=. --push
 ```
 
 ---
@@ -218,7 +218,7 @@ NEXT_PUBLIC_GSC_VERIFICATION=
 ### Production env on VPS
 
 - [ ] SSH to VPS
-- [ ] Create `~/apps/lunexa-<product>/apps/api/.env` with real values
+- [ ] Create `~/apps/<product>/apps/api/.env` with real values
 - [ ] `chmod 600` the file
 - [ ] Never commit it
 
@@ -295,8 +295,8 @@ sudo apt install -y nginx certbot python3-certbot-nginx
 
 ```bash
 cd ~/apps
-git clone git@github.com:fvarli/lunexa-<product>.git
-cd lunexa-<product>
+git clone git@github.com:fvarli/<product>.git
+cd <product>
 
 # API
 cd apps/api
@@ -313,7 +313,8 @@ npm run build
 ### pm2 processes
 
 ```bash
-# from ~/apps/lunexa-<product>
+# from ~/apps/<product>
+# pm2 process names keep the lunexa- prefix on purpose (per STACK.md §14) — easier to spot on a shared server
 pm2 start apps/api/dist/server.js --name lunexa-<product>-api
 pm2 start npm --name lunexa-<product>-web -- --prefix apps/web start
 pm2 save
@@ -322,10 +323,10 @@ pm2 startup systemd  # one-time, follow the printed instruction
 
 ### Nginx vhost
 
-Create `/etc/nginx/sites-available/lunexa-<product>.conf` using the template in [`PATTERNS.md §9`](./PATTERNS.md#9-deploy-and-ops). Adjust ports if multiple products share the VPS (Product A: web 3000 + api 4000, Product B: web 3001 + api 4001, etc.).
+Create `/etc/nginx/sites-available/<product>.conf` using the template in [`PATTERNS.md §9`](./PATTERNS.md#9-deploy-and-ops). Adjust ports if multiple products share the VPS (Product A: web 3000 + api 4000, Product B: web 3001 + api 4001, etc.).
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/lunexa-<product>.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/<product>.conf /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```

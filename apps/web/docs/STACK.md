@@ -210,10 +210,6 @@ Aggregate DMARC reports land at `abonelikler@ferzendervarli.com` daily; all pass
 - **Always ship both HTML and text** — text is the spam-filter-friendly fallback.
 - HTML bodies **must** call `escapeHtml()` on every user-supplied string before interpolation (see `apps/api/src/app.ts:303-305` for the contact-form call sites).
 
-### DigitalOcean note
-
-Port 25/465/587 are blocked by default on new droplets. Open a DO support ticket with subject "SMTP port unblock for legitimate outbound mail" and include your domain + SPF/DKIM/DMARC setup. Turnaround: 1-3 business days.
-
 ---
 
 ## 6. Analytics & Consent
@@ -378,8 +374,7 @@ Every entry below is a battle we've decided not to pick today. Revisit when the 
 ## 14. Naming conventions
 
 - **Domains**: `uselunexa.com` for the studio. Product domains: pick fresh names; sub-branding (`app.uselunexa.com`) is OK for tools that are clearly extensions of the studio.
-- **Repo names**: `lunexa-<product-name>`. Hyphen-case. No "Lunexa-" capitalization.
-- **VPS pm2 process names**: `lunexa-<app>` (e.g. `lunexa-web`, `lunexa-api`).
+- **VPS pm2 process names**: `lunexa-<app>` (e.g. `lunexa-web`, `lunexa-api`). Keeping the `lunexa-` prefix here makes shared-server processes easy to spot at a glance.
 - **Env vars**: SCREAMING_SNAKE_CASE. `NEXT_PUBLIC_` prefix only when the value **must** ship to the browser.
 - **DB tables**: snake_case, plural (`subscribers`, not `subscriber`).
 - **Files**: kebab-case TypeScript files (`cta-block.tsx`), PascalCase React components inside.
