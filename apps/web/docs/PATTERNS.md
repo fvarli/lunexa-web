@@ -1,6 +1,6 @@
 # Lunexa — Engineering Patterns
 
-> **Status:** canonical as of 2026-04-23. Every pattern below is extracted from `lunexa-web` live code, with file:line references so a fresh session can open the source in one click.
+> **Status:** canonical as of 2026-04-25. Every pattern below is extracted from `lunexa-web` live code, with file:line references so a fresh session can open the source in one click.
 >
 > **Companion docs:** [`STACK.md`](./STACK.md) for the tech stack + why, [`CHECKLIST.md`](./CHECKLIST.md) for day-1 bootstrap.
 
@@ -18,6 +18,11 @@ Use this doc as a recipe book. Each section answers "how do we do X in a Lunexa 
 6. [Newsletter double-opt-in](#6-newsletter-double-opt-in)
 7. [Contact form pattern](#7-contact-form-pattern)
 8. [Testing](#8-testing)
+9. [Deploy and Ops](#9-deploy-and-ops)
+10. [House rules](#10-house-rules)
+11. [Observability and correlation](#11-observability-and-correlation)
+12. [Storage namespace lock](#12-storage-namespace-lock)
+13. [Known gotchas](#13-known-gotchas)
 9. [Deploy and Ops](#9-deploy-and-ops)
 10. [House rules](#10-house-rules)
 
@@ -906,6 +911,14 @@ Point a monitor at `https://uselunexa.com/api/health`. Expected 200 with `{"ok":
 - Secrets rotate when leaked. Generate with `openssl rand -hex 32` or equivalent.
 - Never interpolate secrets into log lines.
 
+### Logging hygiene
+
+- **Never** log emails, IPs of users you know, raw request bodies, Authorization headers, Cookies, JWTs, passwords, or tokens.
+- **Always** use `logger.{info,warn,error}` (not `console.log`) — production needs structured JSON.
+- **Always** use `reqMeta(req)` for request context. Never spread `req.headers` or `req.body` into a log record.
+- **Always** thread `requestId` through error paths so the trace ties back to the user's report.
+- **Audit event names** follow `<feature>.<action>` snake_case (see [`§11`](#11-observability-and-correlation)).
+
 ### Code style
 
 - No comments explaining what the code does — identifiers and tests should do that.
@@ -937,7 +950,181 @@ Point a monitor at `https://uselunexa.com/api/health`. Expected 200 with `{"ok":
 
 ---
 
-## 11. Known gotchas
+## 11. Observability and correlation
+
+Added 2026-04-25 (geri-port from techchefdelights). Observability has three coupled pieces: a **request id** that threads end-to-end, a **structured logger** with sanitized metadata, and **Sentry** as the env-gated error sink.
+
+### Request ID middleware
+
+`apps/api/src/lib/request-id.ts`:
+
+- `requestIdMiddleware` runs first in the Express middleware chain. It either trusts an upstream `x-request-id` header (Cloudflare, load balancer) — if it matches `^[a-zA-Z0-9_-]{8,128}$` — or mints a new `crypto.randomUUID()`.
+- Sets `req.requestId` (typed via `declare module "express-serve-static-core"`).
+- Echoes the id back via `x-request-id` response header.
+
+Wired in `apps/api/src/app.ts:174` immediately after `helmet()`.
+
+### `reqMeta(req)` — sanitized request metadata
+
+`apps/api/src/lib/request-id.ts:38`:
+
+```ts
+export function reqMeta(req: Request) {
+  return {
+    route: req.originalUrl?.split("?")[0] ?? req.path ?? "",
+    method: req.method,
+    ip: req.ip ?? null,
+    userAgent: req.get("user-agent") ?? null,
+  };
+}
+```
+
+**Always** use this when adding request context to a log line. Never log Authorization, Cookie, body, or anything user-typed. The shape is intentionally narrow to make it forget-proof.
+
+### Structured logger
+
+`apps/api/src/lib/logger.ts`:
+
+- Dev: human-readable lines (`[INFO] newsletter.signup req=abc12345 route=/api/newsletter/subscribe`)
+- Prod: one JSON record per line (greppable, ships to any log aggregator)
+- API: `logger.info(message, ctx)`, `logger.warn(...)`, `logger.error(...)`
+- `ctx` shape: `{ requestId?, route?, method?, ip?, userAgent?, context? }`. Use `reqMeta(req)` to fill the request bits.
+
+Replaces all `console.log("[contact]", ...)` style calls.
+
+### Audit event naming convention
+
+Every log line uses `<feature>.<action>` snake_case as the message:
+
+| Event | Where | Note |
+|-------|-------|------|
+| `cors.allowed` | CORS allow check | dev signal only |
+| `cors.blocked` | CORS reject | warn |
+| `contact.sent` | contact form 200 | info |
+| `contact.failed` | contact form 5xx | error |
+| `newsletter.confirmation_requested` | subscribe 200 | info |
+| `newsletter.confirmed` | confirm 200 | info |
+| `newsletter.unsubscribed` | unsubscribe 200 | info |
+| `newsletter.subscribe_failed` / `confirm_failed` / `unsubscribe_failed` | corresponding 5xx | error |
+| `newsletter.misconfigured` | NEWSLETTER_SECRET missing | error |
+| `health.db_check_failed` | DB ping fail | error |
+| `rateLimit.fallback_memory_store` | prod boot with no Redis | warn (one-shot) |
+
+When adding a new endpoint, pick names in this style. Don't invent free-form messages.
+
+### Sentry — env-gated, server + client + global-error
+
+Three files, all no-op when DSN unset:
+
+- `apps/web/src/instrumentation.ts` — Next.js server hook, gated on `SENTRY_DSN`. Initializes for both `nodejs` and `edge` runtimes. Exports `onRequestError` for Next.js's request error capture.
+- `apps/web/src/instrumentation-client.ts` — runs in browser, gated on `NEXT_PUBLIC_SENTRY_DSN`.
+- `apps/web/src/app/global-error.tsx` — root React error boundary; calls `Sentry.captureException` if DSN set, then renders recovery UI (Try again / Home).
+- `apps/web/next.config.ts` — wraps with `withSentryConfig` only when `SENTRY_AUTH_TOKEN + SENTRY_ORG + SENTRY_PROJECT` are all set at build time. Source maps upload then delete from public bundle.
+
+Release id resolution: `apps/web/src/lib/release.ts` → `NEXT_PUBLIC_APP_VERSION` → `VERCEL_GIT_COMMIT_SHA` → `APP_COMMIT_SHA` → undefined.
+
+**Recipe — wire Sentry on a new product:**
+1. Create Sentry project (Next.js platform), copy DSN.
+2. Set `SENTRY_DSN` (server) + `NEXT_PUBLIC_SENTRY_DSN` (client) in env.
+3. Optional: set `SENTRY_AUTH_TOKEN` + `SENTRY_ORG` + `SENTRY_PROJECT` in CI env for source-map upload (NEVER in committed `.env`).
+4. Set `NEXT_PUBLIC_APP_VERSION` to a SHA / tag for release tagging. Auto-detected from `VERCEL_GIT_COMMIT_SHA` if running on Vercel.
+5. Trigger a test error; in Sentry, the event should land within 30s with `requestId` tag/extra populated (assuming client/server share the same request id).
+
+### Health endpoint
+
+`apps/api/src/app.ts` `GET /api/health`:
+
+```jsonc
+{
+  "ok": true,
+  "status": "ok" | "degraded",
+  "db": "ok" | "error",
+  "rateLimitStore": "memory" | "redis" | "upstash",
+  "timestamp": "ISO-8601",
+  "uptimeSeconds": 1234,
+  "memory": { "rssMb": 0, "heapUsedMb": 0, "heapTotalMb": 0 },
+  "environment": "production" | ...,
+  "commit": null | "<sha>",
+  "version": null | "<release-id>",
+  "requestId": "<uuid>"
+}
+```
+
+200 when status=`ok`. In production, 503 when `status=degraded` (DB ping failed). Configure BetterStack or your hosting platform's healthcheck to hit this every 30-180s.
+
+### Unified API error envelope
+
+`apps/api/src/lib/errors.ts` exports `apiError(res, status, code, message, details?, requestId?)` and a set of named helpers:
+
+- `ApiErrors.invalidInput(res, issues, requestId)` → 400 `INVALID_INPUT`
+- `ApiErrors.unauthorized(res, requestId)` → 401 `UNAUTHORIZED`
+- `ApiErrors.forbidden(res, requestId)` → 403 `FORBIDDEN`
+- `ApiErrors.notFound(res, what, requestId)` → 404 `NOT_FOUND`
+- `ApiErrors.bodyTooLarge(res, requestId)` → 413 `PAYLOAD_TOO_LARGE`
+- `ApiErrors.rateLimited(res, retryAfterSec, requestId)` → 429 `RATE_LIMITED` + `Retry-After` header
+- `ApiErrors.serviceUnavailable(res, message, requestId)` → 503 `SERVICE_UNAVAILABLE`
+- `ApiErrors.internal(res, requestId)` → 500 `INTERNAL_ERROR`
+
+Response shape:
+```json
+{ "error": { "code": "INVALID_INPUT", "message": "...", "details": {}, "requestId": "..." } }
+```
+
+**Existing legacy endpoints** (newsletter / contact) still return `{ ok: false, errors: [...] }` for frontend compatibility. **New endpoints adopt the unified envelope from day one.** Migrate legacy endpoints when they get touched next, not as a separate refactor.
+
+### Rate-limit store — swappable interface
+
+`apps/api/src/lib/rate-limit-store.ts` exports `getRateLimitStore()` (returns `undefined` for memory default today) + `rateLimitStoreKind()` (returns `'memory' | 'redis' | 'upstash'`).
+
+Today's behavior: memory default, single-instance pm2 production fine. In production with no Redis configured, a one-shot `rateLimit.fallback_memory_store` warn log fires.
+
+**Upgrade recipe** when you need multi-instance or shared quota:
+1. `npm install rate-limit-redis ioredis`
+2. Replace the `getRateLimitStore()` body to return a `RedisStore` backed by `new IORedis(process.env.REDIS_URL)`.
+3. Update `rateLimitStoreKind()` to return `'redis'` when active.
+4. Set `REDIS_URL` in production env. The next deploy uses Redis; `/api/health.rateLimitStore` reports `'redis'`.
+5. The existing `rateLimit({ store, ... })` call sites in `apps/api/src/app.ts` already accept the swap — no per-endpoint change needed.
+
+For a full three-tier reference (REDIS_URL → Upstash → memory) copy `src/lib/rate-limit.ts` from techchefdelights.
+
+---
+
+## 12. Storage namespace lock
+
+Added 2026-04-25 (geri-port from techchefdelights). Single source of truth for every cookie / localStorage / sessionStorage key the app reads or writes.
+
+**File:** `apps/web/src/lib/storage-keys.ts`
+
+```ts
+export const SK = {
+  locale: "lunexa-locale",          // cookie: language switcher
+  theme: "lunexa-theme",            // cookie: dark/light
+  cookieConsent: "lunexa-cookie-consent",  // localStorage: GDPR/KVKK consent payload
+} as const;
+
+export type StorageKey = (typeof SK)[keyof typeof SK];
+```
+
+### Rules
+
+- **Never hardcode** a `lunexa-*` key string anywhere else. If you find one, move it to `SK.*` and import.
+- **Naming convention:** `lunexa-<purpose>` (kebab-case, lowercase). Existing production users have these exact cookies/entries — don't rename without a migration.
+- **Audit:** a single `grep -rn "SK\." apps/web/src/` shows every read/write site for any key. Useful when investigating "where does the locale get set?".
+
+### Recipe — add a new key
+
+1. Add to `SK` in `apps/web/src/lib/storage-keys.ts`.
+2. Import from there: `import { SK } from "@/lib/storage-keys"`.
+3. Use `localStorage.getItem(SK.<purpose>)` / `document.cookie = \`${SK.<purpose>}=...\``.
+4. Document the shape of the stored value in the JSDoc above the key.
+
+### Migration legacy code
+
+Existing `STORAGE_KEY` and `THEME_STORAGE_KEY` exports in `i18n/config.ts` and `theme/config.ts` are kept for backwards compatibility but route through `SK.*` internally. New code should import directly from `@/lib/storage-keys`; old imports stay valid until naturally touched.
+
+---
+
+## 13. Known gotchas
 
 ### Tailwind v4 `@theme inline` — `--color-*` is not a runtime CSS variable
 

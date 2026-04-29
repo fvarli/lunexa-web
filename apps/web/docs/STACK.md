@@ -1,6 +1,6 @@
 # Lunexa — Technology Stack
 
-> **Status:** canonical as of 2026-04-23. Derived from the live `lunexa-web` codebase. New Lunexa products default to this stack. Deviate only with a written reason.
+> **Status:** canonical as of 2026-04-25. Derived from the live `lunexa-web` codebase. New Lunexa products default to this stack. Deviate only with a written reason.
 >
 > **Companion docs:** [`PATTERNS.md`](./PATTERNS.md) for code-level recipes, [`CHECKLIST.md`](./CHECKLIST.md) for day-1 bootstrap.
 
@@ -239,12 +239,13 @@ Each layer catches different threats; remove none.
 2. **Nginx** — reverse proxy for `/api` (not in repo — config held on VPS); terminates Let's Encrypt origin cert.
 3. **Application**:
    - `helmet()` — sensible headers (X-Frame-Options, X-Content-Type-Options, HSTS)
-   - `Content-Security-Policy-Report-Only` (in `apps/web/next.config.ts:24`) — will flip to enforced after observation
-   - `express-rate-limit` 3-tier
+   - `Content-Security-Policy` enforced (in `apps/web/next.config.ts`). Was Report-Only through 2026-04-25; flipped after a 2-week clean-observation window.
+   - `express-rate-limit` 3-tier with **swappable store** (memory default, Redis swap is a single-file change — see `apps/api/src/lib/rate-limit-store.ts`)
    - `express.json({ limit: "10kb" })` body cap
    - `escapeHtml()` for HTML email bodies
    - CORS allow-list (`CORS_ORIGIN` env)
    - `trust proxy = 1` so rate-limit sees real client IP
+   - **Request ID correlation** — every API request gets a UUID via `requestIdMiddleware`; threaded through response header, structured log lines, and (when enabled) Sentry events. See [`PATTERNS.md §11`](./PATTERNS.md#11-observability-and-correlation).
 4. **Transport**: TLS 1.2+ end-to-end (Cloudflare → Nginx → App).
 
 ### Headers shipped
@@ -312,10 +313,14 @@ Future: a single `scripts/deploy.sh` in each repo.
 
 | Concern | Tool | Action on alert |
 |---------|------|-----------------|
-| Uptime | BetterStack | SMS → check `pm2 status`, `pm2 logs` |
+| Uptime | BetterStack | SMS → check `pm2 status`, `pm2 logs`, `/api/health` |
+| Backend errors | **Sentry** (env-gated; no-op when DSN unset) | Look up by `requestId` tag |
+| Browser errors | **Sentry client + `app/global-error.tsx`** | Same — req id ties it to backend log |
+| Audit / structured logs | `logger.{info,warn,error}` → JSON in prod, human in dev | Search `requestId=<uuid>` in log viewer |
+| Request correlation | `x-request-id` header on every `/api/*` response | Thread end-to-end (CDN → app → log → Sentry) |
+| Health probe | `/api/health` (DB ping + memory + uptime + commit + version + rate-limit store) | 503 = DB down |
 | SMTP delivery | Zoho dashboard + DMARC reports | Investigate any DMARC `fail` in aggregate reports |
-| Browser errors | None yet | **Add Sentry when product launches and has >100 MAU** |
-| CSP violations | CSP Report-Only (console only) | Observe, then flip to enforced |
+| CSP violations | Browser console (CSP enforced as of 2026-04-25) | Allow-list new third-party source then re-deploy |
 | Traffic | Cloudflare + GA4 | Weekly Monday check per SEO_PLAYBOOK.md §9 |
 
 ---
@@ -349,13 +354,15 @@ Every entry below is a battle we've decided not to pick today. Revisit when the 
 |----------|--------|------------------------|
 | CMS (Contentful, Sanity, Notion) | Blog is markdown in repo — fine | >10 non-technical editors |
 | External auth (Clerk, Auth0, next-auth) | Contact + newsletter don't need accounts | First product with user login |
-| Redis | Rate-limit is in-memory on single instance | Multi-instance pm2 or multiple servers |
-| Sentry / error monitoring | No traffic to debug yet | >100 DAU or a paying customer |
+| Redis backend (active) | Rate-limit interface is in place; memory store fine for single-instance pm2. Swap is a single-file change in `lib/rate-limit-store.ts` | Multi-instance pm2 or multi-server deploy |
 | Stripe / Paddle | No product to monetize yet | First paying product |
 | GitHub Actions CI | Tests run locally; manual deploy is fine solo | Second committer or a release that must be gated |
 | Storybook | Component library is small and used in one place | Second product reusing components AND >20 components |
 | Feature flags (LaunchDarkly, etc.) | No feature-gated traffic split yet | Multiple concurrent experiments |
 | `@lunexa/*` npm package | Premature abstraction | 2+ products sharing identical components |
+
+**Recently graduated** from this list (added):
+- **Sentry env-gated** (2026-04-25) — `@sentry/nextjs` installed; init is no-op when DSN unset, so behavior unchanged until you set `SENTRY_DSN` + `NEXT_PUBLIC_SENTRY_DSN` in prod. See [`PATTERNS.md §11`](./PATTERNS.md#11-observability-and-correlation).
 
 ---
 
