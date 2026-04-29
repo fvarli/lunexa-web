@@ -80,4 +80,25 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+/**
+ * Sentry source map upload — only wraps the config when the build env has
+ * SENTRY_AUTH_TOKEN + SENTRY_ORG + SENTRY_PROJECT. Otherwise the export
+ * is the plain Next config (local dev never breaks; staging without
+ * Sentry creds builds clean).
+ */
+import { withSentryConfig } from "@sentry/nextjs";
+
+const hasSentry =
+  process.env.SENTRY_AUTH_TOKEN &&
+  process.env.SENTRY_ORG &&
+  process.env.SENTRY_PROJECT;
+
+export default hasSentry
+  ? withSentryConfig(nextConfig, {
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      silent: true,
+      sourcemaps: { deleteSourcemapsAfterUpload: true },
+    })
+  : nextConfig;
