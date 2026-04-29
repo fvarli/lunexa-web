@@ -574,3 +574,98 @@ export const RELATED_SERVICES: Record<Locale, RelatedServicesContent> = {
     back_label: "← Todos los servicios",
   },
 };
+
+// ── Work / showcase ──
+
+type WorkItem = {
+  /** Lowercase slug, used in DOM ids and the public page anchor */
+  slug: string;
+  /** Product name as it appears in the headline */
+  name: string;
+  /** Tagline shown under the product name */
+  tagline: string;
+  /** Short body — 2-3 sentences max */
+  body: string;
+  /** Live URL — opens external */
+  url: string;
+  /** Stack chips shown under the body */
+  stack: string[];
+  /** Status badge: "Live", "In development", "Coming soon" */
+  status: "live" | "development" | "coming_soon";
+  /** Per-locale label for the status (renders as a chip) */
+  statusLabel: string;
+  /** Per-locale label for the live link */
+  visitLabel: string;
+};
+
+type WorkContent = {
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  items: WorkItem[];
+  comingSoonHeading: string;
+  comingSoonBody: string;
+};
+
+export const WORK: Record<Locale, WorkContent> = {
+  en: {
+    eyebrow: "Our Work",
+    heading: "Products shipped from the Lunexa studio",
+    lead: "Every product below is real software, in production, used by real people. The studio's standards — multi-locale, accessible, observable, secure — show up in each one. New products land here as they ship.",
+    items: [
+      {
+        slug: "techchefdelights",
+        name: "TechChefDelights",
+        tagline: "A 3-language tested-recipe site with full Cook Mode",
+        body: "EN/TR/ES recipe site with Cook Mode timers, per-locale full-text search, image manifest validation, and a JSON API ready for a future Flutter app. Built on the Lunexa stack with intentional divergence (next-intl, CSS Modules, systemd) where the product needed it.",
+        url: "https://techchefdelights.com",
+        stack: ["Next.js 16", "PostgreSQL + Prisma", "next-intl", "Cloudinary", "systemd"],
+        status: "development",
+        statusLabel: "Pre-launch — staging-ready",
+        visitLabel: "Visit techchefdelights.com →",
+      },
+    ],
+    comingSoonHeading: "What's next",
+    comingSoonBody: "More products are in development. The next one will land here when its public surface is ready. Want to follow along? Subscribe to the newsletter on the home page.",
+  },
+  tr: {
+    eyebrow: "İşlerimiz",
+    heading: "Lunexa stüdyosundan çıkmış ürünler",
+    lead: "Aşağıdaki her ürün gerçek yazılım, üretimde, gerçek kullanıcılarla. Stüdyonun standartları — çok dilli, erişilebilir, izlenebilir, güvenli — her birinde görünüyor. Yeni ürünler yayına çıktıkça buraya iniyor.",
+    items: [
+      {
+        slug: "techchefdelights",
+        name: "TechChefDelights",
+        tagline: "Tam Pişirme Modu olan 3 dilli, test edilmiş tarif sitesi",
+        body: "EN/TR/ES tarif sitesi: Pişirme Modu zamanlayıcıları, locale başına full-text arama, görsel manifest doğrulaması ve gelecek Flutter uygulamasına hazır JSON API. Lunexa stack'i üzerine; ürünün gerektirdiği yerlerde bilinçli sapmalar (next-intl, CSS Modules, systemd) ile.",
+        url: "https://techchefdelights.com",
+        stack: ["Next.js 16", "PostgreSQL + Prisma", "next-intl", "Cloudinary", "systemd"],
+        status: "development",
+        statusLabel: "Lansman öncesi — staging hazır",
+        visitLabel: "techchefdelights.com'u ziyaret et →",
+      },
+    ],
+    comingSoonHeading: "Sırada ne var",
+    comingSoonBody: "Geliştirme aşamasında daha fazla ürün var. Bir sonraki, halka açık yüzü hazır olunca buraya inecek. Takip etmek istersen ana sayfadaki bültene abone ol.",
+  },
+  es: {
+    eyebrow: "Nuestro Trabajo",
+    heading: "Productos enviados desde el estudio Lunexa",
+    lead: "Cada producto a continuación es software real, en producción, usado por personas reales. Los estándares del estudio — multi-idioma, accesibles, observables, seguros — aparecen en cada uno. Los nuevos productos llegan aquí cuando se publican.",
+    items: [
+      {
+        slug: "techchefdelights",
+        name: "TechChefDelights",
+        tagline: "Sitio de recetas probadas en 3 idiomas con Modo Cocina completo",
+        body: "Sitio de recetas EN/TR/ES con temporizadores de Modo Cocina, búsqueda full-text por idioma, validación de manifiesto de imágenes y una API JSON lista para una futura app Flutter. Construido sobre el stack Lunexa con divergencias intencionales (next-intl, CSS Modules, systemd) donde el producto las requería.",
+        url: "https://techchefdelights.com",
+        stack: ["Next.js 16", "PostgreSQL + Prisma", "next-intl", "Cloudinary", "systemd"],
+        status: "development",
+        statusLabel: "Pre-lanzamiento — listo para staging",
+        visitLabel: "Visitar techchefdelights.com →",
+      },
+    ],
+    comingSoonHeading: "Qué sigue",
+    comingSoonBody: "Más productos están en desarrollo. El siguiente aterrizará aquí cuando su superficie pública esté lista. ¿Quieres seguir el avance? Suscríbete al boletín en la página principal.",
+  },
+};

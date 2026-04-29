@@ -6,6 +6,7 @@ const en = {
   nav: {
     about: "About",
     work: "What We Build",
+    work_page: "Work",
     principles: "Principles",
     services: "Services",
     blog: "Blog",
@@ -308,6 +309,7 @@ const tr: Dictionary = {
   nav: {
     about: "Hakkımızda",
     work: "Neler Yapıyoruz",
+    work_page: "İşlerimiz",
     principles: "İlkelerimiz",
     services: "Hizmetler",
     blog: "Blog",
@@ -611,6 +613,7 @@ const es: Dictionary = {
   nav: {
     about: "Nosotros",
     work: "Qué Hacemos",
+    work_page: "Trabajo",
     principles: "Principios",
     services: "Servicios",
     blog: "Blog",

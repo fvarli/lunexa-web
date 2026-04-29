@@ -32,6 +32,12 @@ export default function SiteHeader() {
               {t("nav.services")}
             </Link>
             <Link
+              href={href("/work")}
+              className="transition-colors hover:text-foreground"
+            >
+              {t("nav.work_page")}
+            </Link>
+            <Link
               href={href("/blog")}
               className="transition-colors hover:text-foreground"
             >

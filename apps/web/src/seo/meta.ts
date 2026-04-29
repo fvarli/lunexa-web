@@ -133,6 +133,24 @@ export const ABOUT_META: PageCopy = {
   },
 };
 
+export const WORK_META: PageCopy = {
+  en: {
+    title: "Our Work — Lunexa Products",
+    description:
+      "Products built by Lunexa. Real software shipped to real users — TechChefDelights and what comes next. Every project demonstrates the studio's stack and standards in production.",
+  },
+  tr: {
+    title: "İşlerimiz — Lunexa Ürünleri",
+    description:
+      "Lunexa tarafından üretilen ürünler. Gerçek kullanıcılara gönderilmiş gerçek yazılımlar — TechChefDelights ve devamı. Her proje stüdyonun stack'ini ve standartlarını üretimde gösteriyor.",
+  },
+  es: {
+    title: "Nuestro Trabajo — Productos Lunexa",
+    description:
+      "Productos creados por Lunexa. Software real enviado a usuarios reales — TechChefDelights y lo que viene. Cada proyecto demuestra el stack y los estándares del estudio en producción.",
+  },
+};
+
 export const SERVICES_META: PageCopy = {
   en: {
     title: "Custom Software Development Services",

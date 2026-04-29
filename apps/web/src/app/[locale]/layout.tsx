@@ -62,10 +62,11 @@ function buildJsonLd(locale: Locale) {
       {
         "@type": "SiteNavigationElement",
         "@id": `${base}/#sitenav-${locale}`,
-        name: ["About", "Services", "Blog", "Contact"],
+        name: ["About", "Services", "Work", "Blog", "Contact"],
         url: [
           urlFor(locale, "/about"),
           urlFor(locale, "/services"),
+          urlFor(locale, "/work"),
           urlFor(locale, "/blog"),
           urlFor(locale, "/contact"),
         ],

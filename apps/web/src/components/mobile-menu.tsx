@@ -51,6 +51,7 @@ export default function MobileMenu() {
   const links: { href: string; label: string }[] = [
     { href: href("/about"), label: t("nav.about") },
     { href: href("/services"), label: t("nav.services") },
+    { href: href("/work"), label: t("nav.work_page") },
     { href: href("/blog"), label: t("nav.blog") },
     { href: href("/contact"), label: t("nav.contact") },
   ];

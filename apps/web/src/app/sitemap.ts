@@ -17,6 +17,7 @@ const STATIC_ROUTES: Route[] = [
   { path: "/services/web", priority: 0.7, changeFrequency: "monthly" },
   { path: "/services/intelligent", priority: 0.7, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/work", priority: 0.8, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
