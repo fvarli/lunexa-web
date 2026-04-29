@@ -15,6 +15,7 @@ import {
 } from "./emails";
 import { requestIdMiddleware, reqMeta } from "./lib/request-id";
 import { logger } from "./lib/logger";
+import { getRateLimitStore, rateLimitStoreKind } from "./lib/rate-limit-store";
 
 type NewsletterDb = {
   subscriber: {
@@ -251,17 +252,21 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
     });
   }
 
-  // Rate limits
+  // Rate limits — store is swappable (see lib/rate-limit-store.ts);
+  // memory default works for single-instance pm2.
   const windowMs = rateLimits?.windowMs ?? 15 * 60 * 1000;
+  const sharedStore = getRateLimitStore();
   const globalLimiter = rateLimit({
     windowMs,
     max: rateLimits?.globalMax ?? 100,
+    store: sharedStore,
   });
   app.use(globalLimiter);
 
   const contactLimiter = rateLimit({
     windowMs,
     max: rateLimits?.contactMax ?? 5,
+    store: sharedStore,
     message: {
       ok: false,
       message: "Too many requests. Please try again in a few minutes.",
@@ -271,6 +276,7 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
   const newsletterLimiter = rateLimit({
     windowMs,
     max: rateLimits?.newsletterMax ?? 3,
+    store: sharedStore,
     message: {
       ok: false,
       message: "Too many requests. Please try again in a few minutes.",
@@ -322,6 +328,7 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
       ok: status === "ok",
       status,
       db: dbStatus,
+      rateLimitStore: rateLimitStoreKind(),
       timestamp: new Date().toISOString(),
       uptimeSeconds: Math.round(process.uptime()),
       memory: {
