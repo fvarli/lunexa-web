@@ -4,8 +4,9 @@ import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
+import { SK } from "@/lib/storage-keys";
 
-const STORAGE_KEY = "lunexa-cookie-consent";
+const STORAGE_KEY = SK.cookieConsent;
 
 type StoredConsent = {
   necessary: true;
