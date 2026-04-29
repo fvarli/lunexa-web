@@ -13,6 +13,7 @@ import {
   newsletterConfirmation,
   resolveEmailLocale,
 } from "./emails";
+import { requestIdMiddleware } from "./lib/request-id";
 
 type NewsletterDb = {
   subscriber: {
@@ -188,6 +189,9 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
   const prisma = db ?? (defaultPrisma as unknown as NewsletterDb);
   const app = express();
   app.set("trust proxy", 1);
+
+  // Request correlation — must run before any handler that wants req.requestId
+  app.use(requestIdMiddleware);
 
   // CORS
   const rawCorsOrigins = process.env.CORS_ORIGIN || "";
