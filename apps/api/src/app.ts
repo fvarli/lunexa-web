@@ -291,8 +291,49 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
     });
 
   // Routes
-  app.get("/api/health", (_req, res) => {
-    res.json({ ok: true });
+  // Liveness + readiness probe. Public, no auth, no rate limit.
+  // Returns 503 in production when DB ping fails.
+  const healthDb = db ?? defaultPrisma;
+  app.get("/api/health", async (req, res) => {
+    let dbStatus: "ok" | "error" = "error";
+    try {
+      // Lightweight DB round-trip — touches PG via Prisma adapter
+      const client = healthDb as { $queryRaw?: (q: TemplateStringsArray) => Promise<unknown> };
+      if (client.$queryRaw) {
+        await client.$queryRaw`SELECT 1`;
+      }
+      dbStatus = "ok";
+    } catch (err) {
+      logger.error("health.db_check_failed", {
+        requestId: req.requestId,
+        ...reqMeta(req),
+        context: { error: err instanceof Error ? err.message : "unknown" },
+      });
+    }
+
+    const isProdEnv = process.env.NODE_ENV === "production";
+    const status: "ok" | "degraded" =
+      dbStatus === "ok" ? "ok" : "degraded";
+
+    const mem = process.memoryUsage();
+    const toMb = (b: number) => Math.round((b / (1024 * 1024)) * 10) / 10;
+
+    res.status(status === "ok" ? 200 : isProdEnv ? 503 : 200).json({
+      ok: status === "ok",
+      status,
+      db: dbStatus,
+      timestamp: new Date().toISOString(),
+      uptimeSeconds: Math.round(process.uptime()),
+      memory: {
+        rssMb: toMb(mem.rss),
+        heapUsedMb: toMb(mem.heapUsed),
+        heapTotalMb: toMb(mem.heapTotal),
+      },
+      environment: process.env.NODE_ENV ?? "unknown",
+      commit: process.env.APP_COMMIT_SHA ?? null,
+      version: process.env.APP_VERSION ?? null,
+      requestId: req.requestId,
+    });
   });
 
   app.post("/api/contact", jsonBody, contactLimiter, async (req, res) => {

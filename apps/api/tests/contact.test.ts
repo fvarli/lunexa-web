@@ -150,10 +150,46 @@ describe("Contact rate limit", () => {
 });
 
 describe("GET /api/health", () => {
-  it("returns ok:true", async () => {
-    const app = createApp({ transporter: mockTransporter() });
+  it("returns ok:true with status/db/uptime/memory/version metadata", async () => {
+    const mockedDb = {
+      $queryRaw: vi.fn().mockResolvedValue([{ "?column?": 1 }]),
+      subscriber: {
+        upsert: vi.fn().mockResolvedValue({ id: 1n }),
+        update: vi.fn().mockResolvedValue({ id: 1n }),
+        findUnique: vi.fn().mockResolvedValue(null),
+      },
+    };
+    const app = createApp({
+      transporter: mockTransporter(),
+      db: mockedDb as unknown as Parameters<typeof createApp>[0]["db"],
+    });
     const res = await request(app).get("/api/health");
     expect(res.status).toBe(200);
-    expect(res.body).toEqual({ ok: true });
+    expect(res.body.ok).toBe(true);
+    expect(res.body.status).toBe("ok");
+    expect(res.body.db).toBe("ok");
+    expect(typeof res.body.uptimeSeconds).toBe("number");
+    expect(typeof res.body.memory.rssMb).toBe("number");
+    expect(typeof res.body.requestId).toBe("string");
+    expect(res.body.requestId).toMatch(/^[0-9a-f-]{36}$/i);
+    expect(mockedDb.$queryRaw).toHaveBeenCalled();
+  });
+
+  it("returns status=degraded when DB ping fails", async () => {
+    const mockedDb = {
+      $queryRaw: vi.fn().mockRejectedValue(new Error("ECONNREFUSED")),
+      subscriber: {
+        upsert: vi.fn(),
+        update: vi.fn(),
+        findUnique: vi.fn(),
+      },
+    };
+    const app = createApp({
+      transporter: mockTransporter(),
+      db: mockedDb as unknown as Parameters<typeof createApp>[0]["db"],
+    });
+    const res = await request(app).get("/api/health");
+    expect(res.body.status).toBe("degraded");
+    expect(res.body.db).toBe("error");
   });
 });
