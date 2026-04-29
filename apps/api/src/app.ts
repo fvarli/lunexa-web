@@ -13,7 +13,8 @@ import {
   newsletterConfirmation,
   resolveEmailLocale,
 } from "./emails";
-import { requestIdMiddleware } from "./lib/request-id";
+import { requestIdMiddleware, reqMeta } from "./lib/request-id";
+import { logger } from "./lib/logger";
 
 type NewsletterDb = {
   subscriber: {
@@ -213,10 +214,10 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
     cors({
       origin(origin, callback) {
         if (isAllowedOrigin(origin)) {
-          if (origin) console.log(`[cors] allowed origin: ${origin}`);
+          if (origin) logger.info("cors.allowed", { context: { origin } });
           return callback(null, true);
         }
-        console.warn(`[cors] blocked origin: ${origin}`);
+        logger.warn("cors.blocked", { context: { origin } });
         return callback(null, false);
       },
       methods: ["GET", "POST", "OPTIONS"],
@@ -404,10 +405,18 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
         });
       }
 
-      console.log("[contact] sent", { timestamp });
+      logger.info("contact.sent", {
+        requestId: req.requestId,
+        ...reqMeta(req),
+        context: { timestamp },
+      });
       res.json({ ok: true, message: "Message received successfully." });
     } catch (err) {
-      console.error("[contact] error:", err);
+      logger.error("contact.failed", {
+        requestId: req.requestId,
+        ...reqMeta(req),
+        context: { error: err instanceof Error ? err.message : "unknown" },
+      });
       res.status(500).json({ ok: false, message: "Something went wrong. Please try again later." });
     }
   });
@@ -435,7 +444,11 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
         const { email, name } = result.data;
         const secret = process.env.NEWSLETTER_SECRET;
         if (!secret) {
-          console.error("[newsletter] NEWSLETTER_SECRET is not configured");
+          logger.error("newsletter.misconfigured", {
+            requestId: req.requestId,
+            ...reqMeta(req),
+            context: { reason: "NEWSLETTER_SECRET unset" },
+          });
           res.status(503).json({
             ok: false,
             message: "Newsletter is temporarily unavailable.",
@@ -466,15 +479,21 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
           html: mail.html,
         });
 
-        console.log("[newsletter] confirmation requested", {
-          timestamp: new Date().toISOString(),
+        logger.info("newsletter.confirmation_requested", {
+          requestId: req.requestId,
+          ...reqMeta(req),
+          context: { timestamp: new Date().toISOString() },
         });
         res.json({
           ok: true,
           message: "Check your inbox to confirm your subscription.",
         });
       } catch (err) {
-        console.error("[newsletter] subscribe error:", err);
+        logger.error("newsletter.subscribe_failed", {
+          requestId: req.requestId,
+          ...reqMeta(req),
+          context: { error: err instanceof Error ? err.message : "unknown" },
+        });
         res.status(500).json({
           ok: false,
           message: "Something went wrong. Please try again later.",
@@ -543,12 +562,18 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
         ].join("\n"),
       });
 
-      console.log("[newsletter] confirmed", {
-        timestamp: new Date().toISOString(),
+      logger.info("newsletter.confirmed", {
+        requestId: req.requestId,
+        ...reqMeta(req),
+        context: { timestamp: new Date().toISOString() },
       });
       res.redirect(`${siteBaseUrl}/newsletter/confirmed?status=ok`);
     } catch (err) {
-      console.error("[newsletter] confirm error:", err);
+      logger.error("newsletter.confirm_failed", {
+        requestId: req.requestId,
+        ...reqMeta(req),
+        context: { error: err instanceof Error ? err.message : "unknown" },
+      });
       res.redirect(`${siteBaseUrl}/newsletter/confirmed?status=error`);
     }
   });
@@ -578,12 +603,18 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
         if (code !== "P2025") throw err;
       });
 
-      console.log("[newsletter] unsubscribed", {
-        timestamp: new Date().toISOString(),
+      logger.info("newsletter.unsubscribed", {
+        requestId: req.requestId,
+        ...reqMeta(req),
+        context: { timestamp: new Date().toISOString() },
       });
       res.redirect(`${siteBaseUrl}/newsletter/unsubscribed?status=ok`);
     } catch (err) {
-      console.error("[newsletter] unsubscribe error:", err);
+      logger.error("newsletter.unsubscribe_failed", {
+        requestId: req.requestId,
+        ...reqMeta(req),
+        context: { error: err instanceof Error ? err.message : "unknown" },
+      });
       res.redirect(`${siteBaseUrl}/newsletter/unsubscribed?status=error`);
     }
   });
