@@ -14,14 +14,13 @@ const securityHeaders = [
   },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   // ── CSP ──
-  // Currently shipping Report-Only. To enforce:
-  //   1. Watch browser Console for a few days and confirm no legit script/style
-  //      is being reported as a violation.
-  //   2. Change the header key below from "Content-Security-Policy-Report-Only"
-  //      to "Content-Security-Policy". Keep the same value.
-  //   3. Deploy, re-check Console + Lighthouse. Revert if anything breaks.
+  // Enforced as of 2026-04-25. Observed Report-Only for ~2 weeks across all
+  // production traffic; no legitimate script/style violations. If anything
+  // ever breaks (e.g. adding a new third-party script source), flip back to
+  // "Content-Security-Policy-Report-Only" temporarily, observe, allow-list,
+  // then re-enforce.
   {
-    key: "Content-Security-Policy-Report-Only",
+    key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com",
