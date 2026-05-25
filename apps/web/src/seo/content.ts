@@ -741,7 +741,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
   en: {
     eyebrow: "RPS Duel · Privacy",
     heading: "RPS Duel — Privacy Policy",
-    lastUpdated: "Last updated: 2026-04-30",
+    lastUpdated: "Last updated: 2026-05-25",
     intro:
       "RPS Duel is a single-player Rock Paper Scissors game made by Lunexa Studio (package id: com.lunexa.games.rpsduel). This policy describes what the app does — and, more importantly, what it does not do — with your information.",
     sections: [
@@ -754,7 +754,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
       {
         title: "What we do not collect",
         paragraphs: [
-          "RPS Duel does not collect, transmit, or share any personal information. Specifically, the app does not collect:",
+          "As of the effective date of this policy, RPS Duel does not collect, transmit, or share any personal information. Specifically, the app does not collect:",
         ],
         bullets: [
           "Name, email address, phone number, or any account identifier",
@@ -803,7 +803,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
   tr: {
     eyebrow: "RPS Duel · Gizlilik",
     heading: "RPS Duel — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 30.04.2026",
+    lastUpdated: "Son güncelleme: 25.05.2026",
     intro:
       "RPS Duel, Lunexa Studio tarafından geliştirilmiş tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, uygulamanın bilgilerinle ne yaptığını ve — daha önemlisi — ne yapmadığını açıklar.",
     sections: [
@@ -816,7 +816,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
       {
         title: "Toplamadığımız veriler",
         paragraphs: [
-          "RPS Duel hiçbir kişisel bilgiyi toplamaz, iletmez veya paylaşmaz. Açıkça belirtmek gerekirse, uygulama şunları toplamaz:",
+          "Bu politikanın yürürlük tarihi itibarıyla RPS Duel hiçbir kişisel bilgiyi toplamaz, iletmez veya paylaşmaz. Açıkça belirtmek gerekirse, uygulama şunları toplamaz:",
         ],
         bullets: [
           "Ad, e-posta, telefon numarası veya herhangi bir hesap kimliği",
@@ -865,7 +865,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
   es: {
     eyebrow: "RPS Duel · Privacidad",
     heading: "RPS Duel — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-04-30",
+    lastUpdated: "Última actualización: 2026-05-25",
     intro:
       "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador creado por Lunexa Studio (id de paquete: com.lunexa.games.rpsduel). Esta política describe qué hace la aplicación con tu información y — más importante — qué no hace.",
     sections: [
@@ -878,7 +878,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
       {
         title: "Lo que no recopilamos",
         paragraphs: [
-          "RPS Duel no recopila, transmite ni comparte ningún dato personal. En concreto, la aplicación no recopila:",
+          "En la fecha de entrada en vigor de esta política, RPS Duel no recopila, transmite ni comparte ningún dato personal. En concreto, la aplicación no recopila:",
         ],
         bullets: [
           "Nombre, correo electrónico, teléfono o ningún identificador de cuenta",
