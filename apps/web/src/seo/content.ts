@@ -66,6 +66,23 @@ type RelatedServicesContent = {
   back_label: string;
 };
 
+type AppPrivacySection = {
+  title: string;
+  paragraphs?: string[];
+  bullets?: string[];
+};
+
+type AppPrivacyContent = {
+  eyebrow: string;
+  heading: string;
+  lastUpdated: string;
+  intro: string;
+  sections: AppPrivacySection[];
+  contactTitle: string;
+  contactBodyPrefix: string;
+  contactBodySuffix: string;
+};
+
 // ── About ──
 
 export const ABOUT: Record<Locale, AboutContent> = {
@@ -586,7 +603,7 @@ type WorkItem = {
   tagline: string;
   /** Short body — 2-3 sentences max */
   body: string;
-  /** Live URL — opens external */
+  /** Live URL — opens external. Empty string when the product hasn't shipped to a public URL yet. */
   url: string;
   /** Stack chips shown under the body */
   stack: string[];
@@ -594,8 +611,10 @@ type WorkItem = {
   status: "live" | "development" | "coming_soon";
   /** Per-locale label for the status (renders as a chip) */
   statusLabel: string;
-  /** Per-locale label for the live link */
+  /** Per-locale label for the live / visit / coming-soon line */
   visitLabel: string;
+  /** Optional internal path to the product's privacy policy (e.g. `/privacy/rps-duel`). When set, renders an extra link on the card. */
+  privacyPath?: string;
 };
 
 type WorkContent = {
@@ -603,6 +622,8 @@ type WorkContent = {
   heading: string;
   lead: string;
   items: WorkItem[];
+  /** Per-locale label for the "Privacy policy" link inside a work card */
+  privacyLabel: string;
   comingSoonHeading: string;
   comingSoonBody: string;
 };
@@ -624,7 +645,20 @@ export const WORK: Record<Locale, WorkContent> = {
         statusLabel: "Pre-launch — staging-ready",
         visitLabel: "Visit techchefdelights.com →",
       },
+      {
+        slug: "rps-duel",
+        name: "RPS Duel",
+        tagline: "A tactile rock-paper-scissors duel for iOS and Android",
+        body: "Single-player Rock Paper Scissors against an adaptive CPU, with a daily challenge, four achievements, three difficulty levels, and full English / Turkish / Spanish support. The app runs entirely on your device — no account, no backend, no ads, no analytics.",
+        url: "",
+        stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
+        status: "development",
+        statusLabel: "Pre-launch — store submission ready",
+        visitLabel: "Coming to App Store and Google Play soon",
+        privacyPath: "/privacy/rps-duel",
+      },
     ],
+    privacyLabel: "Privacy policy",
     comingSoonHeading: "What's next",
     comingSoonBody: "More products are in development. The next one will land here when its public surface is ready. Want to follow along? Subscribe to the newsletter on the home page.",
   },
@@ -644,7 +678,20 @@ export const WORK: Record<Locale, WorkContent> = {
         statusLabel: "Lansman öncesi — staging hazır",
         visitLabel: "techchefdelights.com'u ziyaret et →",
       },
+      {
+        slug: "rps-duel",
+        name: "RPS Duel",
+        tagline: "iOS ve Android için dokunaklı bir taş kâğıt makas düellosu",
+        body: "Uyarlanabilir CPU'ya karşı tek oyunculu Taş Kâğıt Makas; günlük meydan okuma, dört başarım, üç zorluk seviyesi ve tam İngilizce / Türkçe / İspanyolca destekle. Uygulama tamamen cihazında çalışır — hesap yok, sunucu yok, reklam yok, analitik yok.",
+        url: "",
+        stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
+        status: "development",
+        statusLabel: "Lansman öncesi — mağaza başvurusuna hazır",
+        visitLabel: "Yakında App Store ve Google Play'de",
+        privacyPath: "/privacy/rps-duel",
+      },
     ],
+    privacyLabel: "Gizlilik politikası",
     comingSoonHeading: "Sırada ne var",
     comingSoonBody: "Geliştirme aşamasında daha fazla ürün var. Bir sonraki, halka açık yüzü hazır olunca buraya inecek. Takip etmek istersen ana sayfadaki bültene abone ol.",
   },
@@ -664,8 +711,217 @@ export const WORK: Record<Locale, WorkContent> = {
         statusLabel: "Pre-lanzamiento — listo para staging",
         visitLabel: "Visitar techchefdelights.com →",
       },
+      {
+        slug: "rps-duel",
+        name: "RPS Duel",
+        tagline: "Un duelo táctil de piedra papel tijera para iOS y Android",
+        body: "Piedra Papel Tijera para un solo jugador contra una CPU adaptativa, con desafío diario, cuatro logros, tres niveles de dificultad y soporte completo en inglés / turco / español. La aplicación funciona enteramente en tu dispositivo — sin cuenta, sin backend, sin anuncios, sin analítica.",
+        url: "",
+        stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
+        status: "development",
+        statusLabel: "Pre-lanzamiento — listo para envío a tiendas",
+        visitLabel: "Próximamente en App Store y Google Play",
+        privacyPath: "/privacy/rps-duel",
+      },
     ],
+    privacyLabel: "Política de privacidad",
     comingSoonHeading: "Qué sigue",
     comingSoonBody: "Más productos están en desarrollo. El siguiente aterrizará aquí cuando su superficie pública esté lista. ¿Quieres seguir el avance? Suscríbete al boletín en la página principal.",
+  },
+};
+
+// ── RPS Duel privacy policy ──
+// App-specific privacy policy. Single source of truth for the policy that
+// the Play Store / App Store listings link to. Honesty constraint: every
+// negative claim ("no account", "no analytics", etc.) is verified against
+// the current rps_duel Flutter codebase before authoring. Update this and
+// bump `lastUpdated` whenever the app's data behaviour changes.
+
+export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
+  en: {
+    eyebrow: "RPS Duel · Privacy",
+    heading: "RPS Duel — Privacy Policy",
+    lastUpdated: "Last updated: 2026-04-30",
+    intro:
+      "RPS Duel is a single-player Rock Paper Scissors game made by Lunexa Studio (package id: com.lunexa.games.rpsduel). This policy describes what the app does — and, more importantly, what it does not do — with your information.",
+    sections: [
+      {
+        title: "Summary",
+        paragraphs: [
+          "The app runs entirely on your device. It does not create accounts, does not contact a server, does not show ads, and does not include analytics or crash reporting. It plays a quick game of Rock Paper Scissors against a built-in opponent and remembers your progress locally.",
+        ],
+      },
+      {
+        title: "What we do not collect",
+        paragraphs: [
+          "RPS Duel does not collect, transmit, or share any personal information. Specifically, the app does not collect:",
+        ],
+        bullets: [
+          "Name, email address, phone number, or any account identifier",
+          "Advertising identifiers (IDFA, AAID) or other device identifiers",
+          "Location, contacts, microphone, camera, or sensor data",
+          "Analytics events, usage telemetry, or crash reports",
+          "Any data linked to your identity",
+        ],
+      },
+      {
+        title: "Data stored locally on your device",
+        paragraphs: [
+          "To remember your progress and preferences between sessions, the app saves a small amount of gameplay data on your device only. This data never leaves your device.",
+        ],
+        bullets: [
+          "Game scores and your last few round results",
+          "Selected interface language (English, Turkish, or Spanish)",
+          "Selected CPU difficulty (Easy, Normal, or Hard)",
+          "Daily challenge progress for the current day (resets automatically at local midnight)",
+          "Achievement flags (First Win, Streak 3, Scissors Specialist, 10 Rounds)",
+        ],
+      },
+      {
+        title: "How to clear your data",
+        paragraphs: [
+          "You can clear all locally stored gameplay data from inside the app via Settings → Reset data. You can also remove this data with your operating system's normal app controls: clear app data (Android) or uninstall the app (iOS / Android).",
+        ],
+      },
+      {
+        title: "Children",
+        paragraphs: [
+          "RPS Duel does not target children specifically and does not knowingly collect any personal information from children under 13. Because the app collects no personal information at all, no age-based data handling is required.",
+        ],
+      },
+      {
+        title: "Changes to this policy",
+        paragraphs: [
+          "If a future version of RPS Duel changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes.",
+        ],
+      },
+    ],
+    contactTitle: "Contact",
+    contactBodyPrefix: "Questions about this policy can be sent to ",
+    contactBodySuffix: ".",
+  },
+  tr: {
+    eyebrow: "RPS Duel · Gizlilik",
+    heading: "RPS Duel — Gizlilik Politikası",
+    lastUpdated: "Son güncelleme: 30.04.2026",
+    intro:
+      "RPS Duel, Lunexa Studio tarafından geliştirilmiş tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, uygulamanın bilgilerinle ne yaptığını ve — daha önemlisi — ne yapmadığını açıklar.",
+    sections: [
+      {
+        title: "Özet",
+        paragraphs: [
+          "Uygulama tamamen cihazında çalışır. Hesap oluşturmaz, herhangi bir sunucuyla iletişim kurmaz, reklam göstermez ve analitik veya çökme raporlama içermez. Yerleşik bir rakibe karşı kısa bir Taş Kâğıt Makas oyunu oynar ve ilerlemeni yalnızca cihazında hatırlar.",
+        ],
+      },
+      {
+        title: "Toplamadığımız veriler",
+        paragraphs: [
+          "RPS Duel hiçbir kişisel bilgiyi toplamaz, iletmez veya paylaşmaz. Açıkça belirtmek gerekirse, uygulama şunları toplamaz:",
+        ],
+        bullets: [
+          "Ad, e-posta, telefon numarası veya herhangi bir hesap kimliği",
+          "Reklam kimlikleri (IDFA, AAID) veya diğer cihaz kimlikleri",
+          "Konum, kişiler, mikrofon, kamera veya sensör verileri",
+          "Analitik olaylar, kullanım telemetrisi veya çökme raporları",
+          "Kimliğinle ilişkilendirilmiş herhangi bir veri",
+        ],
+      },
+      {
+        title: "Cihazında yerel olarak saklanan veriler",
+        paragraphs: [
+          "Oturumlar arasında ilerlemeni ve tercihlerini hatırlamak için uygulama, yalnızca cihazına küçük miktarda oyun verisi kaydeder. Bu veriler cihazından asla çıkmaz.",
+        ],
+        bullets: [
+          "Oyun skorları ve son birkaç el sonucu",
+          "Seçili arayüz dili (İngilizce, Türkçe veya İspanyolca)",
+          "Seçili CPU zorluğu (Kolay, Normal veya Zor)",
+          "Bugünkü günlük meydan okuma ilerlemen (yerel gece yarısında otomatik sıfırlanır)",
+          "Başarım bayrakları (İlk Galibiyet, 3'lü Seri, Makas Uzmanı, 10 El)",
+        ],
+      },
+      {
+        title: "Verilerini nasıl silersin",
+        paragraphs: [
+          "Yerel olarak saklanan tüm oyun verilerini uygulama içinden Ayarlar → Verileri sıfırla ile silebilirsin. Aynı verileri işletim sisteminin normal uygulama kontrolleriyle de temizleyebilirsin: uygulama verilerini temizle (Android) veya uygulamayı kaldır (iOS / Android).",
+        ],
+      },
+      {
+        title: "Çocuklar",
+        paragraphs: [
+          "RPS Duel özellikle çocuklara yönelik değildir ve 13 yaşın altındaki çocuklardan bilerek herhangi bir kişisel bilgi toplamaz. Uygulama zaten hiç kişisel bilgi toplamadığı için yaşa bağlı bir veri işleme gerekmez.",
+        ],
+      },
+      {
+        title: "Bu politikadaki değişiklikler",
+        paragraphs: [
+          "RPS Duel'in ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir.",
+        ],
+      },
+    ],
+    contactTitle: "İletişim",
+    contactBodyPrefix: "Bu politikayla ilgili soruları şu adrese yazabilirsin: ",
+    contactBodySuffix: ".",
+  },
+  es: {
+    eyebrow: "RPS Duel · Privacidad",
+    heading: "RPS Duel — Política de Privacidad",
+    lastUpdated: "Última actualización: 2026-04-30",
+    intro:
+      "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador creado por Lunexa Studio (id de paquete: com.lunexa.games.rpsduel). Esta política describe qué hace la aplicación con tu información y — más importante — qué no hace.",
+    sections: [
+      {
+        title: "Resumen",
+        paragraphs: [
+          "La aplicación se ejecuta completamente en tu dispositivo. No crea cuentas, no se comunica con ningún servidor, no muestra anuncios y no incluye analítica ni informes de errores. Juega una partida rápida de Piedra Papel Tijera contra un oponente integrado y recuerda tu progreso únicamente en tu dispositivo.",
+        ],
+      },
+      {
+        title: "Lo que no recopilamos",
+        paragraphs: [
+          "RPS Duel no recopila, transmite ni comparte ningún dato personal. En concreto, la aplicación no recopila:",
+        ],
+        bullets: [
+          "Nombre, correo electrónico, teléfono o ningún identificador de cuenta",
+          "Identificadores publicitarios (IDFA, AAID) ni otros identificadores de dispositivo",
+          "Ubicación, contactos, micrófono, cámara ni datos de sensores",
+          "Eventos analíticos, telemetría de uso ni informes de errores",
+          "Ningún dato vinculado a tu identidad",
+        ],
+      },
+      {
+        title: "Datos almacenados localmente en tu dispositivo",
+        paragraphs: [
+          "Para recordar tu progreso y preferencias entre sesiones, la aplicación guarda una pequeña cantidad de datos de juego únicamente en tu dispositivo. Estos datos nunca salen de tu dispositivo.",
+        ],
+        bullets: [
+          "Puntuaciones y los resultados de las últimas rondas",
+          "Idioma de interfaz seleccionado (inglés, turco o español)",
+          "Dificultad de CPU seleccionada (Fácil, Normal o Difícil)",
+          "Progreso del desafío diario actual (se reinicia automáticamente a medianoche local)",
+          "Indicadores de logros (Primera Victoria, Racha de 3, Especialista en Tijera, 10 Rondas)",
+        ],
+      },
+      {
+        title: "Cómo borrar tus datos",
+        paragraphs: [
+          "Puedes borrar todos los datos de juego almacenados localmente desde la aplicación en Ajustes → Restablecer datos. También puedes eliminar estos datos con los controles habituales del sistema operativo: borrar datos de la aplicación (Android) o desinstalarla (iOS / Android).",
+        ],
+      },
+      {
+        title: "Niños",
+        paragraphs: [
+          "RPS Duel no está dirigida específicamente a niños y no recopila intencionalmente datos personales de menores de 13 años. Como la aplicación no recopila ningún dato personal, no se requiere tratamiento de datos por edad.",
+        ],
+      },
+      {
+        title: "Cambios en esta política",
+        paragraphs: [
+          "Si una versión futura de RPS Duel cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación.",
+        ],
+      },
+    ],
+    contactTitle: "Contacto",
+    contactBodyPrefix: "Las preguntas sobre esta política pueden enviarse a ",
+    contactBodySuffix: ".",
   },
 };

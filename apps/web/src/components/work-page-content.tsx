@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 import { WORK } from "@/seo/content";
 import CtaBlock from "@/components/cta-block";
 
@@ -62,14 +64,30 @@ export default function WorkPageContent() {
                 ))}
               </ul>
 
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-80"
-              >
-                {item.visitLabel}
-              </a>
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+                {item.url ? (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium text-accent transition-opacity hover:opacity-80"
+                  >
+                    {item.visitLabel}
+                  </a>
+                ) : (
+                  <span className="text-sm font-medium text-muted">
+                    {item.visitLabel}
+                  </span>
+                )}
+                {item.privacyPath && (
+                  <Link
+                    href={localeHref(locale, item.privacyPath)}
+                    className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+                  >
+                    {c.privacyLabel} →
+                  </Link>
+                )}
+              </div>
             </article>
           ))}
 

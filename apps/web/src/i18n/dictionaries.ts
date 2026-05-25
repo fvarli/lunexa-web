@@ -187,6 +187,10 @@ const en = {
     eyebrow: "Legal",
     heading: "Privacy Policy",
     last_updated: "Last updated: April 2026",
+    product_policies_title: "Product-specific privacy policies",
+    product_policies_intro:
+      "Each Lunexa product that handles user data has its own privacy policy. The page below covers the uselunexa.com marketing site only. For an app or service, follow the matching link:",
+    product_policies_rps_duel: "RPS Duel \u2014 mobile game (iOS / Android)",
     overview_title: "Overview",
     overview_body:
       "Lunexa (\u201cwe\u201d, \u201cus\u201d) operates the website uselunexa.com. This policy explains what information we collect when you visit our site or use our contact form, and how we handle it.",
@@ -491,6 +495,10 @@ const tr: Dictionary = {
     eyebrow: "Yasal",
     heading: "Gizlilik Politikası",
     last_updated: "Son güncelleme: Nisan 2026",
+    product_policies_title: "Ürüne özel gizlilik politikaları",
+    product_policies_intro:
+      "Kullanıcı verisi işleyen her Lunexa ürününün kendi gizlilik politikası vardır. Aşağıdaki sayfa yalnızca uselunexa.com pazarlama sitesini kapsar. Bir uygulama veya servis için ilgili bağlantıyı izle:",
+    product_policies_rps_duel: "RPS Duel — mobil oyun (iOS / Android)",
     overview_title: "Genel Bakış",
     overview_body:
       "Lunexa (\u201cbiz\u201d) uselunexa.com web sitesini işletir. Bu politika, sitemizi ziyaret ettiğinizde veya iletişim formumuzu kullandığınızda hangi bilgileri topladığımızı ve bunları nasıl işlediğimizi açıklar.",
@@ -795,6 +803,10 @@ const es: Dictionary = {
     eyebrow: "Legal",
     heading: "Política de Privacidad",
     last_updated: "Última actualización: Abril 2026",
+    product_policies_title: "Políticas de privacidad por producto",
+    product_policies_intro:
+      "Cada producto de Lunexa que trate datos del usuario tiene su propia política de privacidad. La página siguiente cubre únicamente el sitio de marketing uselunexa.com. Para una aplicación o servicio, sigue el enlace correspondiente:",
+    product_policies_rps_duel: "RPS Duel — juego móvil (iOS / Android)",
     overview_title: "Resumen",
     overview_body:
       "Lunexa (\u201cnosotros\u201d) opera el sitio web uselunexa.com. Esta política explica qué información recopilamos cuando visitas nuestro sitio o usas nuestro formulario de contacto, y cómo la tratamos.",

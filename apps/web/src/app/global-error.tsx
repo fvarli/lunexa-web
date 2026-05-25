@@ -51,6 +51,8 @@ export default function GlobalError({
         >
           Try again
         </button>
+        {/* Plain anchor on purpose: this is the root error boundary; Next router runtime is not guaranteed to be available here. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a
           href="/"
           style={{

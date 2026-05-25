@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 import CtaBlock from "@/components/cta-block";
 
 export default function PrivacyPageContent() {
-  const { t } = useT();
+  const { t, locale } = useT();
 
   return (
     <main className="flex-1 pt-24 pb-16 sm:pt-32 sm:pb-24">
@@ -20,6 +22,23 @@ export default function PrivacyPageContent() {
         </header>
 
         <div className="space-y-10 leading-relaxed text-muted">
+          <section className="rounded-2xl border border-border bg-surface-light p-6 sm:p-8">
+            <h2 className="mb-3 text-lg font-semibold text-foreground">
+              {t("privacy_page.product_policies_title")}
+            </h2>
+            <p>{t("privacy_page.product_policies_intro")}</p>
+            <ul className="ml-6 mt-3 list-disc space-y-2">
+              <li>
+                <Link
+                  href={localeHref(locale, "/privacy/rps-duel")}
+                  className="text-accent hover:underline"
+                >
+                  {t("privacy_page.product_policies_rps_duel")}
+                </Link>
+              </li>
+            </ul>
+          </section>
+
           <section>
             <h2 className="mb-3 text-lg font-semibold text-foreground">
               {t("privacy_page.overview_title")}
