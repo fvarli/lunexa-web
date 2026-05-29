@@ -116,6 +116,24 @@ export const RPS_DUEL_PRIVACY_META: PageCopy = {
   },
 };
 
+export const CHESS_RESCUE_PRIVACY_META: PageCopy = {
+  en: {
+    title: "Chess Rescue — Privacy Policy",
+    description:
+      "Privacy policy for Chess Rescue (com.lunexa.games.chessrescue), a single-player offline puzzle game by Lunexa Games. No account, no backend, no ads, no analytics, no personal data collected.",
+  },
+  tr: {
+    title: "Chess Rescue — Gizlilik Politikası",
+    description:
+      "Chess Rescue için gizlilik politikası (com.lunexa.games.chessrescue) — Lunexa Games tarafından geliştirilen tek oyunculu, çevrimdışı bulmaca oyunu. Hesap yok, sunucu yok, reklam yok, analitik yok, kişisel veri toplanmaz.",
+  },
+  es: {
+    title: "Chess Rescue — Política de Privacidad",
+    description:
+      "Política de privacidad de Chess Rescue (com.lunexa.games.chessrescue), un juego de rompecabezas para un solo jugador y sin conexión de Lunexa Games. Sin cuenta, sin backend, sin anuncios, sin analítica, sin datos personales.",
+  },
+};
+
 export const TERMS_META: PageCopy = {
   en: {
     title: "Terms of Use",

@@ -36,6 +36,14 @@ export default function PrivacyPageContent() {
                   {t("privacy_page.product_policies_rps_duel")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={localeHref(locale, "/privacy/chess-rescue")}
+                  className="text-accent hover:underline"
+                >
+                  {t("privacy_page.product_policies_chess_rescue")}
+                </Link>
+              </li>
             </ul>
           </section>
 

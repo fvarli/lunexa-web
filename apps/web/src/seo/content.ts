@@ -925,3 +925,207 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
     contactBodySuffix: ".",
   },
 };
+
+export const CHESS_RESCUE_PRIVACY: Record<Locale, AppPrivacyContent> = {
+  en: {
+    eyebrow: "Chess Rescue · Privacy",
+    heading: "Chess Rescue — Privacy Policy",
+    lastUpdated: "Last updated: 2026-05-29",
+    intro:
+      "Chess Rescue is a single-player, offline puzzle game made by Lunexa Games (package id: com.lunexa.games.chessrescue). This policy describes what the app does — and, more importantly, what it does not do — with your information.",
+    sections: [
+      {
+        title: "Summary",
+        paragraphs: [
+          "The app runs entirely on your device. It does not create accounts, does not contact a server, does not show ads, and does not include analytics or crash reporting. It presents short chess-rescue puzzles offline and remembers your progress locally.",
+        ],
+      },
+      {
+        title: "What we do not collect",
+        paragraphs: [
+          "As of the effective date of this policy, Chess Rescue does not collect, transmit, or share any personal information. Specifically, the app does not collect:",
+        ],
+        bullets: [
+          "Name, email address, phone number, or any account identifier",
+          "Advertising identifiers (IDFA, AAID) or other device identifiers",
+          "Location, contacts, microphone, camera, or sensor data",
+          "Analytics events, usage telemetry, or crash reports",
+          "Any data linked to your identity",
+        ],
+      },
+      {
+        title: "Data stored locally on your device",
+        paragraphs: [
+          "To remember your progress between sessions, the app saves a small amount of gameplay data on your device only. This data never leaves your device.",
+        ],
+        bullets: [
+          "Your current puzzle (how far you have progressed through the set)",
+          "Which rescues you have already completed",
+          "Whether you have seen the introduction",
+          "A random seed used to lay out the puzzles",
+        ],
+      },
+      {
+        title: "How to clear your data",
+        paragraphs: [
+          "Chess Rescue does not include an in-app reset control. You can remove all locally stored progress using your operating system's normal app controls: clear the app's storage (on Android, Settings → Apps → Chess Rescue → Storage) or uninstall the app.",
+        ],
+      },
+      {
+        title: "Internet access",
+        paragraphs: [
+          "Chess Rescue does not request the internet permission and makes no network connections. The game is fully playable offline.",
+        ],
+      },
+      {
+        title: "Children",
+        paragraphs: [
+          "Chess Rescue does not target children specifically and does not knowingly collect any personal information from children under 13. Because the app collects no personal information at all, no age-based data handling is required.",
+        ],
+      },
+      {
+        title: "Changes to this policy",
+        paragraphs: [
+          "If a future version of Chess Rescue changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes.",
+        ],
+      },
+    ],
+    contactTitle: "Contact",
+    contactBodyPrefix: "Questions about this policy can be sent to ",
+    contactBodySuffix: ".",
+  },
+  tr: {
+    eyebrow: "Chess Rescue · Gizlilik",
+    heading: "Chess Rescue — Gizlilik Politikası",
+    lastUpdated: "Son güncelleme: 29.05.2026",
+    intro:
+      "Chess Rescue, Lunexa Games tarafından geliştirilmiş tek oyunculu, çevrimdışı bir bulmaca oyunudur (paket kimliği: com.lunexa.games.chessrescue). Bu politika, uygulamanın bilgilerinle ne yaptığını ve — daha önemlisi — ne yapmadığını açıklar.",
+    sections: [
+      {
+        title: "Özet",
+        paragraphs: [
+          "Uygulama tamamen cihazında çalışır. Hesap oluşturmaz, herhangi bir sunucuyla iletişim kurmaz, reklam göstermez ve analitik veya çökme raporlama içermez. Kısa satranç kurtarış bulmacalarını çevrimdışı sunar ve ilerlemeni yalnızca cihazında hatırlar.",
+        ],
+      },
+      {
+        title: "Toplamadığımız veriler",
+        paragraphs: [
+          "Bu politikanın yürürlük tarihi itibarıyla Chess Rescue hiçbir kişisel bilgiyi toplamaz, iletmez veya paylaşmaz. Açıkça belirtmek gerekirse, uygulama şunları toplamaz:",
+        ],
+        bullets: [
+          "Ad, e-posta, telefon numarası veya herhangi bir hesap kimliği",
+          "Reklam kimlikleri (IDFA, AAID) veya diğer cihaz kimlikleri",
+          "Konum, kişiler, mikrofon, kamera veya sensör verileri",
+          "Analitik olaylar, kullanım telemetrisi veya çökme raporları",
+          "Kimliğinle ilişkilendirilmiş herhangi bir veri",
+        ],
+      },
+      {
+        title: "Cihazında yerel olarak saklanan veriler",
+        paragraphs: [
+          "Oturumlar arasında ilerlemeni hatırlamak için uygulama, yalnızca cihazına küçük miktarda oyun verisi kaydeder. Bu veriler cihazından asla çıkmaz.",
+        ],
+        bullets: [
+          "Mevcut bulmacan (set içinde ne kadar ilerlediğin)",
+          "Tamamladığın kurtarışlar",
+          "Tanıtımı görüp görmediğin",
+          "Bulmacaları dizmek için kullanılan rastgele bir tohum (seed)",
+        ],
+      },
+      {
+        title: "Verilerini nasıl silersin",
+        paragraphs: [
+          "Chess Rescue, uygulama içinde bir sıfırlama denetimi içermez. Yerel olarak saklanan tüm ilerlemeyi işletim sisteminin normal uygulama kontrolleriyle kaldırabilirsin: uygulamanın verilerini temizle (Android'de Ayarlar → Uygulamalar → Chess Rescue → Depolama) veya uygulamayı kaldır.",
+        ],
+      },
+      {
+        title: "İnternet erişimi",
+        paragraphs: [
+          "Chess Rescue internet izni istemez ve hiçbir ağ bağlantısı kurmaz. Oyun tamamen çevrimdışı oynanabilir.",
+        ],
+      },
+      {
+        title: "Çocuklar",
+        paragraphs: [
+          "Chess Rescue özellikle çocuklara yönelik değildir ve 13 yaşın altındaki çocuklardan bilerek herhangi bir kişisel bilgi toplamaz. Uygulama zaten hiç kişisel bilgi toplamadığı için yaşa bağlı bir veri işleme gerekmez.",
+        ],
+      },
+      {
+        title: "Bu politikadaki değişiklikler",
+        paragraphs: [
+          "Chess Rescue'nun ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir.",
+        ],
+      },
+    ],
+    contactTitle: "İletişim",
+    contactBodyPrefix: "Bu politikayla ilgili soruları şu adrese yazabilirsin: ",
+    contactBodySuffix: ".",
+  },
+  es: {
+    eyebrow: "Chess Rescue · Privacidad",
+    heading: "Chess Rescue — Política de Privacidad",
+    lastUpdated: "Última actualización: 2026-05-29",
+    intro:
+      "Chess Rescue es un juego de rompecabezas para un solo jugador y sin conexión creado por Lunexa Games (id de paquete: com.lunexa.games.chessrescue). Esta política describe qué hace la aplicación con tu información y — más importante — qué no hace.",
+    sections: [
+      {
+        title: "Resumen",
+        paragraphs: [
+          "La aplicación se ejecuta completamente en tu dispositivo. No crea cuentas, no se comunica con ningún servidor, no muestra anuncios y no incluye analítica ni informes de errores. Presenta breves rompecabezas de rescate de ajedrez sin conexión y recuerda tu progreso únicamente en tu dispositivo.",
+        ],
+      },
+      {
+        title: "Lo que no recopilamos",
+        paragraphs: [
+          "En la fecha de entrada en vigor de esta política, Chess Rescue no recopila, transmite ni comparte ningún dato personal. En concreto, la aplicación no recopila:",
+        ],
+        bullets: [
+          "Nombre, correo electrónico, teléfono o ningún identificador de cuenta",
+          "Identificadores publicitarios (IDFA, AAID) ni otros identificadores de dispositivo",
+          "Ubicación, contactos, micrófono, cámara ni datos de sensores",
+          "Eventos analíticos, telemetría de uso ni informes de errores",
+          "Ningún dato vinculado a tu identidad",
+        ],
+      },
+      {
+        title: "Datos almacenados localmente en tu dispositivo",
+        paragraphs: [
+          "Para recordar tu progreso entre sesiones, la aplicación guarda una pequeña cantidad de datos de juego únicamente en tu dispositivo. Estos datos nunca salen de tu dispositivo.",
+        ],
+        bullets: [
+          "Tu rompecabezas actual (cuánto has avanzado en el conjunto)",
+          "Qué rescates has completado",
+          "Si has visto la introducción",
+          "Una semilla aleatoria usada para disponer los rompecabezas",
+        ],
+      },
+      {
+        title: "Cómo borrar tus datos",
+        paragraphs: [
+          "Chess Rescue no incluye un control de restablecimiento dentro de la aplicación. Puedes eliminar todo el progreso almacenado localmente con los controles habituales del sistema operativo: borra los datos de la aplicación (en Android, Ajustes → Aplicaciones → Chess Rescue → Almacenamiento) o desinstálala.",
+        ],
+      },
+      {
+        title: "Acceso a internet",
+        paragraphs: [
+          "Chess Rescue no solicita el permiso de internet y no realiza conexiones de red. El juego es totalmente jugable sin conexión.",
+        ],
+      },
+      {
+        title: "Niños",
+        paragraphs: [
+          "Chess Rescue no está dirigida específicamente a niños y no recopila intencionalmente datos personales de menores de 13 años. Como la aplicación no recopila ningún dato personal, no se requiere tratamiento de datos por edad.",
+        ],
+      },
+      {
+        title: "Cambios en esta política",
+        paragraphs: [
+          "Si una versión futura de Chess Rescue cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación.",
+        ],
+      },
+    ],
+    contactTitle: "Contacto",
+    contactBodyPrefix: "Las preguntas sobre esta política pueden enviarse a ",
+    contactBodySuffix: ".",
+  },
+};
