@@ -22,6 +22,7 @@ const STATIC_ROUTES: Route[] = [
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/privacy/rps-duel", priority: 0.4, changeFrequency: "yearly" },
   { path: "/privacy/chess-rescue", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/privacy/quietly", priority: 0.4, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ];
 

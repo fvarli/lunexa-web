@@ -44,6 +44,14 @@ export default function PrivacyPageContent() {
                   {t("privacy_page.product_policies_chess_rescue")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={localeHref(locale, "/privacy/quietly")}
+                  className="text-accent hover:underline"
+                >
+                  {t("privacy_page.product_policies_quietly")}
+                </Link>
+              </li>
             </ul>
           </section>
 

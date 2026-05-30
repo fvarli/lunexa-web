@@ -1129,3 +1129,281 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, AppPrivacyContent> = {
     contactBodySuffix: ".",
   },
 };
+
+// ── Quietly privacy policy ──
+// App-specific privacy policy for Quietly (media-saver Flutter app).
+// Honesty constraint: every claim — including the two network endpoints,
+// clipboard read, gallery write, and the exact stored items — is verified
+// against the quietly_media_saver Flutter code before authoring. Update
+// this block and bump `lastUpdated` whenever the app's data behaviour changes.
+//
+// Internal TODO (NOT for public body): the studio has no registered legal
+// entity yet, so this policy intentionally omits a data-controller block
+// and a standalone GDPR/KVKK rights-procedure section, matching the
+// canonical RPS Duel / Chess Rescue pattern. Revisit if and when a
+// registered controller name + address becomes required. Default posture
+// remains: contact via hello@uselunexa.com.
+
+export const QUIETLY_PRIVACY: Record<Locale, AppPrivacyContent> = {
+  en: {
+    eyebrow: "Quietly · Privacy",
+    heading: "Quietly — Privacy Policy",
+    lastUpdated: "Last updated: 2026-05-29",
+    intro:
+      "Quietly is a media saver made by Lunexa. The app saves direct public media from URLs you paste into your device gallery. It uses the internet to fetch the media you ask for and to check whether you have a connection — and nothing else. Quietly does not create accounts, does not show ads, and does not include analytics or crash reporting.",
+    sections: [
+      {
+        title: "What we do not collect",
+        paragraphs: [
+          "As of the effective date of this policy, Quietly does not collect, transmit, or share any personal information. Specifically, the app does not collect:",
+        ],
+        bullets: [
+          "Name, email address, phone number, or any account identifier",
+          "Advertising identifiers (IDFA, AAID) or other device identifiers",
+          "Location, contacts, microphone, camera, or sensor data",
+          "Analytics events, usage telemetry, or crash reports",
+          "Any data linked to your identity",
+        ],
+      },
+      {
+        title: "Network access",
+        paragraphs: [
+          "Quietly uses the internet for two purposes only, both initiated by you:",
+        ],
+        bullets: [
+          "The URL you paste — fetched directly from its source so the media file can be downloaded",
+          "https://www.gstatic.com/generate_204 — a small Google endpoint contacted only to detect whether your device currently has internet. No data is sent to it.",
+        ],
+      },
+      {
+        title: "Permissions and what we use them for",
+        paragraphs: [
+          "Quietly requests only the permissions it needs to do its job:",
+        ],
+        bullets: [
+          "Internet — to download the media at the URL you paste",
+          "Photos / media library (read and add) — to save downloaded files into your gallery and, when needed, to confirm the file landed there",
+          "Clipboard read — to detect a URL when you paste; only the detected URL is stored in your history, never the rest of your clipboard",
+        ],
+      },
+      {
+        title: "Data stored locally on your device",
+        paragraphs: [
+          "To remember your settings and saved media between sessions, the app stores a small amount of data on your device only. This data never leaves your device.",
+        ],
+        bullets: [
+          "Your selected video quality",
+          "Your toggles: ask for quality each time, save on Wi-Fi only, notification preference, and a first-run acknowledgment flag",
+          "Your history of saved items — each entry holds an identifier, the media kind, a title, descriptive metadata, the time saved, the source URL identifier, and the file path on your device",
+        ],
+      },
+      {
+        title: "How to clear your data",
+        paragraphs: [
+          "Open Settings → Clear history to remove your saved history from inside the app. To remove the locally stored preferences as well, clear the app's storage from your operating system (Android: Settings → Apps → Quietly → Storage) or uninstall the app. Downloaded files remain in your gallery unless you delete them manually.",
+        ],
+      },
+      {
+        title: "What we do not do",
+        paragraphs: [
+          "Quietly does not perform page scraping or parse social-platform feeds. It does not access logged-in or DRM-protected content. It does not run background work to find or download media on your behalf. It only fetches what you paste, when you ask.",
+        ],
+      },
+      {
+        title: "Copyright and third-party content",
+        paragraphs: [
+          "Quietly does not authenticate or validate the copyright status of URLs you provide. You are solely responsible for ensuring you have the right to save the content you save. Some content may be subject to copyright, DRM, or the source platform's Terms of Service.",
+        ],
+      },
+      {
+        title: "Children",
+        paragraphs: [
+          "Quietly is not directed at children and does not knowingly collect any personal information from anyone under 13. Because the app collects no personal information at all, no age-based data handling is required.",
+        ],
+      },
+      {
+        title: "Changes to this policy",
+        paragraphs: [
+          "If a future version of Quietly changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes.",
+        ],
+      },
+    ],
+    contactTitle: "Contact",
+    contactBodyPrefix: "Questions about this policy can be sent to ",
+    contactBodySuffix: ".",
+  },
+  tr: {
+    eyebrow: "Quietly · Gizlilik",
+    heading: "Quietly — Gizlilik Politikası",
+    lastUpdated: "Son güncelleme: 29.05.2026",
+    intro:
+      "Quietly, Lunexa tarafından geliştirilmiş bir medya kaydedicidir. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. İnterneti yalnızca senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır — başka hiçbir şey için değil. Quietly hesap oluşturmaz, reklam göstermez ve analitik veya çökme raporlama içermez.",
+    sections: [
+      {
+        title: "Toplamadığımız veriler",
+        paragraphs: [
+          "Bu politikanın yürürlük tarihi itibarıyla Quietly hiçbir kişisel bilgiyi toplamaz, iletmez veya paylaşmaz. Açıkça belirtmek gerekirse, uygulama şunları toplamaz:",
+        ],
+        bullets: [
+          "Ad, e-posta, telefon numarası veya herhangi bir hesap kimliği",
+          "Reklam kimlikleri (IDFA, AAID) veya diğer cihaz kimlikleri",
+          "Konum, kişiler, mikrofon, kamera veya sensör verileri",
+          "Analitik olaylar, kullanım telemetrisi veya çökme raporları",
+          "Kimliğinle ilişkilendirilmiş herhangi bir veri",
+        ],
+      },
+      {
+        title: "Ağ erişimi",
+        paragraphs: [
+          "Quietly interneti yalnızca iki amaç için kullanır ve ikisini de sen başlatırsın:",
+        ],
+        bullets: [
+          "Yapıştırdığın URL — medya dosyasını indirebilmek için doğrudan kaynağından çekilir",
+          "https://www.gstatic.com/generate_204 — yalnızca cihazının şu an internete bağlı olup olmadığını tespit etmek için kullanılan küçük bir Google uç noktası. Bu adrese veri gönderilmez.",
+        ],
+      },
+      {
+        title: "İzinler ve ne için kullandığımız",
+        paragraphs: [
+          "Quietly yalnızca işini yapmak için gereken izinleri ister:",
+        ],
+        bullets: [
+          "İnternet — yapıştırdığın URL'deki medyayı indirmek için",
+          "Fotoğraflar / medya kitaplığı (okuma ve ekleme) — indirilen dosyaları galerine kaydetmek ve gerektiğinde dosyanın oraya ulaştığını doğrulamak için",
+          "Pano okuma — yapıştırma sırasında URL'yi algılamak için; yalnızca algılanan URL geçmişine kaydedilir, panonun geri kalanı asla kaydedilmez",
+        ],
+      },
+      {
+        title: "Cihazında yerel olarak saklanan veriler",
+        paragraphs: [
+          "Oturumlar arasında ayarlarını ve kaydettiğin medyayı hatırlamak için uygulama, yalnızca cihazına küçük miktarda veri kaydeder. Bu veriler cihazından asla çıkmaz.",
+        ],
+        bullets: [
+          "Seçtiğin video kalitesi",
+          "Tercihlerin: her seferinde kalite sor, yalnızca Wi-Fi'de kaydet, bildirim tercihi ve ilk açılış onay bayrağı",
+          "Kayıt geçmişin — her girdi şunları içerir: kimlik, medya türü, başlık, açıklayıcı metaveri, kayıt zamanı, kaynak URL kimliği ve cihazındaki dosya yolu",
+        ],
+      },
+      {
+        title: "Verilerini nasıl silersin",
+        paragraphs: [
+          "Uygulama içinden geçmişini silmek için Settings → Clear history bölümünü aç. Yerel olarak saklanan tercihleri de kaldırmak için işletim sisteminin uygulama depolama kontrolünü kullan (Android: Ayarlar → Uygulamalar → Quietly → Depolama) veya uygulamayı kaldır. İndirilen dosyalar, sen elle silmediğin sürece galerinde kalır.",
+        ],
+      },
+      {
+        title: "Yapmadığımız şeyler",
+        paragraphs: [
+          "Quietly sayfa kazıma yapmaz ve sosyal platform akışlarını ayrıştırmaz. Oturum açılmış veya DRM korumalı içeriklere erişmez. Senin adına medya bulmak veya indirmek için arka planda iş yürütmez. Yalnızca sen istediğinde, yapıştırdığını getirir.",
+        ],
+      },
+      {
+        title: "Telif hakkı ve üçüncü taraf içeriği",
+        paragraphs: [
+          "Quietly, sağladığın URL'lerin telif hakkı durumunu doğrulamaz veya kontrol etmez. Kaydettiğin içeriği kaydetme hakkına sahip olduğundan emin olmak yalnızca senin sorumluluğundadır. Bazı içerikler telif hakkına, DRM'e veya kaynak platformun Kullanım Şartlarına tabi olabilir.",
+        ],
+      },
+      {
+        title: "Çocuklar",
+        paragraphs: [
+          "Quietly özellikle çocuklara yönelik değildir ve 13 yaşın altındaki kimseden bilerek herhangi bir kişisel bilgi toplamaz. Uygulama zaten hiç kişisel bilgi toplamadığı için yaşa bağlı bir veri işleme gerekmez.",
+        ],
+      },
+      {
+        title: "Bu politikadaki değişiklikler",
+        paragraphs: [
+          "Quietly'nin ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir.",
+        ],
+      },
+    ],
+    contactTitle: "İletişim",
+    contactBodyPrefix: "Bu politikayla ilgili soruları şu adrese yazabilirsin: ",
+    contactBodySuffix: ".",
+  },
+  es: {
+    eyebrow: "Quietly · Privacidad",
+    heading: "Quietly — Política de Privacidad",
+    lastUpdated: "Última actualización: 2026-05-29",
+    intro:
+      "Quietly es un guardador de medios creado por Lunexa. La aplicación guarda medios públicos directos desde URLs que pegas en la galería de tu dispositivo. Usa internet únicamente para descargar los medios que pides y para comprobar si tienes conexión — nada más. Quietly no crea cuentas, no muestra anuncios y no incluye analítica ni informes de errores.",
+    sections: [
+      {
+        title: "Lo que no recopilamos",
+        paragraphs: [
+          "En la fecha de entrada en vigor de esta política, Quietly no recopila, transmite ni comparte ningún dato personal. En concreto, la aplicación no recopila:",
+        ],
+        bullets: [
+          "Nombre, correo electrónico, teléfono ni ningún identificador de cuenta",
+          "Identificadores publicitarios (IDFA, AAID) ni otros identificadores de dispositivo",
+          "Ubicación, contactos, micrófono, cámara ni datos de sensores",
+          "Eventos analíticos, telemetría de uso ni informes de errores",
+          "Ningún dato vinculado a tu identidad",
+        ],
+      },
+      {
+        title: "Acceso a la red",
+        paragraphs: [
+          "Quietly usa internet únicamente con dos fines, ambos iniciados por ti:",
+        ],
+        bullets: [
+          "La URL que pegas — se descarga directamente desde su origen para obtener el archivo de medios",
+          "https://www.gstatic.com/generate_204 — un pequeño endpoint de Google contactado solo para detectar si tu dispositivo tiene conexión a internet. No se envía ningún dato a él.",
+        ],
+      },
+      {
+        title: "Permisos y para qué los usamos",
+        paragraphs: [
+          "Quietly solicita únicamente los permisos que necesita para funcionar:",
+        ],
+        bullets: [
+          "Internet — para descargar el contenido en la URL que pegas",
+          "Fotos / biblioteca de medios (leer y añadir) — para guardar los archivos descargados en tu galería y, cuando sea necesario, confirmar que el archivo llegó allí",
+          "Lectura del portapapeles — para detectar una URL cuando pegas; solo la URL detectada se guarda en tu historial, nunca el resto del portapapeles",
+        ],
+      },
+      {
+        title: "Datos almacenados localmente en tu dispositivo",
+        paragraphs: [
+          "Para recordar tus ajustes y los medios guardados entre sesiones, la aplicación guarda una pequeña cantidad de datos únicamente en tu dispositivo. Estos datos nunca salen de tu dispositivo.",
+        ],
+        bullets: [
+          "Tu calidad de vídeo seleccionada",
+          "Tus interruptores: preguntar la calidad cada vez, guardar solo con Wi-Fi, preferencia de notificaciones y un indicador de primera ejecución",
+          "Tu historial de elementos guardados — cada entrada incluye un identificador, el tipo de medio, un título, metadatos descriptivos, la hora en que se guardó, el identificador de URL de origen y la ruta del archivo en tu dispositivo",
+        ],
+      },
+      {
+        title: "Cómo borrar tus datos",
+        paragraphs: [
+          "Abre Settings → Clear history para borrar tu historial guardado desde dentro de la aplicación. Para eliminar también las preferencias almacenadas localmente, borra el almacenamiento de la aplicación desde tu sistema operativo (Android: Ajustes → Aplicaciones → Quietly → Almacenamiento) o desinstálala. Los archivos descargados permanecen en tu galería a menos que los borres manualmente.",
+        ],
+      },
+      {
+        title: "Lo que no hacemos",
+        paragraphs: [
+          "Quietly no realiza scraping de páginas ni parsea fuentes de plataformas sociales. No accede a contenido protegido por inicio de sesión o DRM. No ejecuta trabajo en segundo plano para encontrar o descargar medios en tu nombre. Solo descarga lo que tú pegas, cuando tú lo pides.",
+        ],
+      },
+      {
+        title: "Derechos de autor y contenido de terceros",
+        paragraphs: [
+          "Quietly no autentica ni valida el estado de derechos de autor de las URLs que proporcionas. Eres el único responsable de asegurarte de que tienes derecho a guardar el contenido que guardas. Algunos contenidos pueden estar sujetos a derechos de autor, DRM o a los Términos de Servicio de la plataforma de origen.",
+        ],
+      },
+      {
+        title: "Niños",
+        paragraphs: [
+          "Quietly no está dirigida específicamente a niños y no recopila intencionalmente datos personales de menores de 13 años. Como la aplicación no recopila ningún dato personal, no se requiere tratamiento de datos por edad.",
+        ],
+      },
+      {
+        title: "Cambios en esta política",
+        paragraphs: [
+          "Si una versión futura de Quietly cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación.",
+        ],
+      },
+    ],
+    contactTitle: "Contacto",
+    contactBodyPrefix: "Las preguntas sobre esta política pueden enviarse a ",
+    contactBodySuffix: ".",
+  },
+};

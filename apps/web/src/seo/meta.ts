@@ -116,6 +116,24 @@ export const RPS_DUEL_PRIVACY_META: PageCopy = {
   },
 };
 
+export const QUIETLY_PRIVACY_META: PageCopy = {
+  en: {
+    title: "Quietly — Privacy Policy",
+    description:
+      "Privacy policy for Quietly, a media-saver Android app by Lunexa. Saves direct public media from URLs you paste. No account, no ads, no analytics, no scraping. Network access limited to the URL you paste plus a Google connectivity probe.",
+  },
+  tr: {
+    title: "Quietly — Gizlilik Politikası",
+    description:
+      "Quietly için gizlilik politikası — Lunexa tarafından geliştirilen Android medya kaydedici uygulaması. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı kaydeder. Hesap yok, reklam yok, analitik yok, kazıma yok. Ağ erişimi yalnızca yapıştırdığın URL ve bir Google bağlantı kontrolüyle sınırlıdır.",
+  },
+  es: {
+    title: "Quietly — Política de Privacidad",
+    description:
+      "Política de privacidad de Quietly, una app Android de guardado de medios por Lunexa. Guarda medios públicos directos desde las URLs que pegas. Sin cuenta, sin anuncios, sin analítica, sin scraping. Acceso a la red limitado a la URL que pegas y una sonda de conectividad de Google.",
+  },
+};
+
 export const CHESS_RESCUE_PRIVACY_META: PageCopy = {
   en: {
     title: "Chess Rescue — Privacy Policy",
