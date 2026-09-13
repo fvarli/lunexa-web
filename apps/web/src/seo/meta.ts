@@ -190,6 +190,24 @@ export const RPS_DUEL_PRODUCT_META: PageCopy = {
   },
 };
 
+export const RPS_DUEL_SUPPORT_META: PageCopy = {
+  en: {
+    title: "RPS Duel — Support & FAQ",
+    description:
+      "Help for RPS Duel by Lunexa Games: accounts, offline play, languages, difficulty levels, the Daily Challenge, achievements, and how to reset the scoreboard without losing your records.",
+  },
+  tr: {
+    title: "RPS Duel — Destek ve SSS",
+    description:
+      "Lunexa Games'ten RPS Duel için yardım: hesaplar, çevrimdışı oynanış, diller, zorluk seviyeleri, Günlük Görev, başarımlar ve kayıtlarınızı kaybetmeden skor tablosunu sıfırlama.",
+  },
+  es: {
+    title: "RPS Duel — Soporte y preguntas frecuentes",
+    description:
+      "Ayuda para RPS Duel de Lunexa Games: cuentas, juego sin conexión, idiomas, niveles de dificultad, el Reto Diario, logros y cómo reiniciar el marcador sin perder tus récords.",
+  },
+};
+
 export const RPS_DUEL_TERMS_META: PageCopy = {
   en: {
     title: "RPS Duel — Terms of Service",

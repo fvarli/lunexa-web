@@ -871,7 +871,7 @@ export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
     legalHeading: "Legal and support",
     privacyLabel: "Privacy policy",
     termsLabel: "Terms of service",
-    supportLabel: "Contact support",
+    supportLabel: "Support & FAQ",
     backLabel: "All work",
   },
   tr: {
@@ -897,7 +897,7 @@ export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
     legalHeading: "Yasal ve destek",
     privacyLabel: "Gizlilik politikası",
     termsLabel: "Kullanım şartları",
-    supportLabel: "Destek ile iletişim",
+    supportLabel: "Destek ve SSS",
     backLabel: "Tüm işler",
   },
   es: {
@@ -923,8 +923,259 @@ export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
     legalHeading: "Legal y soporte",
     privacyLabel: "Política de privacidad",
     termsLabel: "Términos de servicio",
-    supportLabel: "Contactar con soporte",
+    supportLabel: "Soporte y preguntas frecuentes",
     backLabel: "Todo el trabajo",
+  },
+};
+
+// ── RPS Duel support ──
+// Copy for /support/rps-duel. Every answer is verified against the shipped
+// rps_duel Flutter app — its release manifest, engine, storage layer and ARB
+// strings — rather than against general Android knowledge. In-app labels are
+// quoted per locale exactly as the app renders them, so a reader can follow an
+// answer without switching the app's language.
+//
+// Two topics are deliberately absent. Uninstall and backup behaviour: the app
+// declares no backup rules, so the outcome is platform-determined and cannot be
+// stated from the source — the terms already carry the careful wording. Ads and
+// analytics: neither ships today, and the privacy policy is the source of truth
+// if that changes.
+
+/** One disclosure row. Shared by the FAQ and the troubleshooting list, which render through the same component. */
+type SupportTopic = { q: string; a: string };
+
+type SupportContent = {
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  /** Short factual chips under the heading — no claims that need a source */
+  facts: string[];
+  linksHeading: string;
+  playLabel: string;
+  productLabel: string;
+  privacyLabel: string;
+  termsLabel: string;
+  faqHeading: string;
+  faq: SupportTopic[];
+  troubleshootingHeading: string;
+  /** `q` is the symptom, `a` is the fix */
+  troubleshooting: SupportTopic[];
+  contactHeading: string;
+  contactBody: string;
+  contactLabel: string;
+  backLabel: string;
+};
+
+export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
+  en: {
+    eyebrow: "Lunexa Games",
+    heading: "RPS Duel Support",
+    lead: "Answers to the questions we hear most about RPS Duel, and how to reach us when something isn't working.",
+    facts: [
+      "Android",
+      "No account needed",
+      "Plays offline",
+      "English · Türkçe · Español",
+    ],
+    linksHeading: "Links",
+    playLabel: "Get it on Google Play",
+    productLabel: "About RPS Duel",
+    privacyLabel: "Privacy policy",
+    termsLabel: "Terms of service",
+    faqHeading: "Frequently asked questions",
+    faq: [
+      {
+        q: "Do I need an account to play?",
+        a: "No. RPS Duel has no sign-in, no profile and no online play. Your scores, achievements and settings live on your device.",
+      },
+      {
+        q: "Does the game need an internet connection?",
+        a: "No. The released app requests no network permission at all, so rounds, the Daily Challenge, achievements and records all work fully offline.",
+      },
+      {
+        q: "Which languages does the app support?",
+        a: "English, Turkish and Spanish. RPS Duel follows your device language the first time you open it, and you can change it at any point under Settings → Language.",
+      },
+      {
+        q: "How do the difficulty levels work?",
+        a: "Easy favours you, Normal picks its move at random, and Hard favours the opponent. Difficulty does not learn from your previous rounds or adapt to your history — every round is decided on its own. You can change it under Settings → Difficulty.",
+      },
+      {
+        q: "How does the Daily Challenge work?",
+        a: "There is one challenge for each local calendar day, with a target to reach — winning a number of rounds, winning with a particular move, tying a number of rounds, or reaching a winning streak. It changes at local midnight, and progress from the previous day's challenge does not carry over.",
+      },
+      {
+        q: "What achievements are there?",
+        a: "Four: First Win, Streak 3, Challenge Met — awarded for completing any Daily Challenge, whichever one the day brings — and 10 Rounds. Achievements are stored separately from the scoreboard, so resetting the game does not take them away.",
+      },
+      {
+        q: "Where is my progress stored?",
+        a: "On your device, and only there. RPS Duel has no cloud save, no sync between devices and no export, so progress cannot be moved from one device to another.",
+      },
+      {
+        q: "Is RPS Duel available for iPhone?",
+        a: "Not at the moment. RPS Duel is published for Android on Google Play.",
+      },
+    ],
+    troubleshootingHeading: "Troubleshooting",
+    troubleshooting: [
+      {
+        q: "The app is in the wrong language",
+        a: "Open Settings → Language and choose English, Türkçe or Español. Until you pick one, the app follows your device language.",
+      },
+      {
+        q: "I can't hear any sound",
+        a: "Sound is on by default. Check that Settings → Sound is switched on, then check your device's own volume and its silent or vibrate switch.",
+      },
+      {
+        q: "I want to start the scoreboard over",
+        a: "Settings → Reset data clears your scores and round history, and the app asks you to confirm before it does. Your achievements, lifetime records and settings are kept. Please don't use Android's own storage-clearing option for this: that removes everything RPS Duel has saved — achievements and records included — not just the scoreboard.",
+      },
+    ],
+    contactHeading: "Still need help?",
+    contactBody: "If your question isn't answered here, or the app isn't behaving the way this page describes, send us a message. Telling us your device model, your Android version and what you were doing at the time helps us reproduce the problem.",
+    contactLabel: "Contact us",
+    backLabel: "Back to RPS Duel",
+  },
+  tr: {
+    eyebrow: "Lunexa Games",
+    heading: "RPS Duel Destek",
+    lead: "RPS Duel hakkında en sık aldığımız soruların yanıtları ve bir şey çalışmadığında bize nasıl ulaşacağınız.",
+    facts: [
+      "Android",
+      "Hesap gerekmez",
+      "Çevrimdışı oynanır",
+      "English · Türkçe · Español",
+    ],
+    linksHeading: "Bağlantılar",
+    playLabel: "Google Play'den edinin",
+    productLabel: "RPS Duel hakkında",
+    privacyLabel: "Gizlilik politikası",
+    termsLabel: "Kullanım şartları",
+    faqHeading: "Sık sorulan sorular",
+    faq: [
+      {
+        q: "Oynamak için hesap gerekir mi?",
+        a: "Hayır. RPS Duel'de giriş, profil ve çevrimiçi oyun yoktur. Skorlarınız, başarımlarınız ve ayarlarınız cihazınızda kalır.",
+      },
+      {
+        q: "Oyun için internet bağlantısı gerekir mi?",
+        a: "Hayır. Yayınlanan uygulama hiçbir ağ izni istemez; eller, Günlük Görev, başarımlar ve kayıtlar tamamen çevrimdışı çalışır.",
+      },
+      {
+        q: "Uygulama hangi dilleri destekler?",
+        a: "İngilizce, Türkçe ve İspanyolca. RPS Duel ilk açılışta cihazınızın dilini kullanır; dilediğiniz zaman Ayarlar → Dil bölümünden değiştirebilirsiniz.",
+      },
+      {
+        q: "Zorluk seviyeleri nasıl çalışır?",
+        a: "Kolay sizin lehinize, Normal hamlesini rastgele seçer, Zor ise rakibin lehinedir. Zorluk önceki ellerinizden öğrenmez ve geçmişinize göre uyum sağlamaz — her el kendi başına belirlenir. Ayarlar → Zorluk bölümünden değiştirebilirsiniz.",
+      },
+      {
+        q: "Günlük Görev nasıl çalışır?",
+        a: "Her yerel takvim günü için ulaşılacak bir hedefi olan tek bir görev vardır: belirli sayıda el kazanmak, belirli bir hamleyle kazanmak, belirli sayıda berabere kalmak ya da bir galibiyet serisine ulaşmak. Görev yerel gece yarısında değişir ve bir önceki günün ilerlemesi devretmez.",
+      },
+      {
+        q: "Hangi başarımlar var?",
+        a: "Dört tane: İlk Galibiyet, 3'lü Seri, Tamamlanan Görev — o günün getirdiği Günlük Görev hangisiyse onu tamamladığınızda verilir — ve 10 El. Başarımlar skor tablosundan ayrı saklanır; bu yüzden oyunu sıfırlamak onları silmez.",
+      },
+      {
+        q: "İlerlemem nerede saklanıyor?",
+        a: "Yalnızca cihazınızda. RPS Duel'de bulut kaydı, cihazlar arası eşitleme veya dışa aktarma yoktur; ilerleme bir cihazdan diğerine taşınamaz.",
+      },
+      {
+        q: "RPS Duel iPhone'da var mı?",
+        a: "Şu an için yok. RPS Duel, Google Play'de Android için yayınlanıyor.",
+      },
+    ],
+    troubleshootingHeading: "Sorun giderme",
+    troubleshooting: [
+      {
+        q: "Uygulama yanlış dilde",
+        a: "Ayarlar → Dil bölümünü açıp English, Türkçe veya Español seçin. Siz bir dil seçene kadar uygulama cihazınızın dilini kullanır.",
+      },
+      {
+        q: "Hiç ses duyamıyorum",
+        a: "Ses varsayılan olarak açıktır. Önce Ayarlar → Ses seçeneğinin açık olduğunu, ardından cihazınızın ses düzeyini ve sessiz/titreşim düğmesini kontrol edin.",
+      },
+      {
+        q: "Skor tablosuna sıfırdan başlamak istiyorum",
+        a: "Ayarlar → Verileri sıfırla, skorlarınızı ve el geçmişinizi siler; uygulama bunu yapmadan önce onay ister. Başarımlarınız, genel kayıtlarınız ve ayarlarınız korunur. Bunun için Android'in kendi depolamayı temizleme seçeneğini kullanmayın: o seçenek yalnızca skor tablosunu değil, RPS Duel'in kaydettiği her şeyi — başarımlar ve kayıtlar dahil — siler.",
+      },
+    ],
+    contactHeading: "Hâlâ yardım mı gerekiyor?",
+    contactBody: "Sorunuzun yanıtı burada yoksa ya da uygulama bu sayfada anlatıldığı gibi davranmıyorsa bize yazın. Cihaz modelinizi, Android sürümünüzü ve o sırada ne yaptığınızı belirtmeniz sorunu yeniden oluşturmamıza yardımcı olur.",
+    contactLabel: "Bize ulaşın",
+    backLabel: "RPS Duel'e dön",
+  },
+  es: {
+    eyebrow: "Lunexa Games",
+    heading: "Soporte de RPS Duel",
+    lead: "Respuestas a las preguntas que más recibimos sobre RPS Duel, y cómo contactarnos cuando algo no funciona.",
+    facts: [
+      "Android",
+      "Sin cuenta",
+      "Funciona sin conexión",
+      "English · Türkçe · Español",
+    ],
+    linksHeading: "Enlaces",
+    playLabel: "Disponible en Google Play",
+    productLabel: "Acerca de RPS Duel",
+    privacyLabel: "Política de privacidad",
+    termsLabel: "Términos de servicio",
+    faqHeading: "Preguntas frecuentes",
+    faq: [
+      {
+        q: "¿Necesito una cuenta para jugar?",
+        a: "No. RPS Duel no tiene inicio de sesión, ni perfil, ni juego en línea. Tus puntuaciones, logros y ajustes se quedan en tu dispositivo.",
+      },
+      {
+        q: "¿El juego necesita conexión a internet?",
+        a: "No. La aplicación publicada no solicita ningún permiso de red, así que las rondas, el Reto Diario, los logros y los récords funcionan totalmente sin conexión.",
+      },
+      {
+        q: "¿Qué idiomas admite la aplicación?",
+        a: "Inglés, turco y español. RPS Duel usa el idioma de tu dispositivo la primera vez que la abres, y puedes cambiarlo cuando quieras en Ajustes → Idioma.",
+      },
+      {
+        q: "¿Cómo funcionan los niveles de dificultad?",
+        a: "Fácil te favorece, Normal elige su jugada al azar y Difícil favorece al oponente. La dificultad no aprende de tus rondas anteriores ni se adapta a tu historial: cada ronda se decide por sí sola. Puedes cambiarla en Ajustes → Dificultad.",
+      },
+      {
+        q: "¿Cómo funciona el Reto Diario?",
+        a: "Hay un reto para cada día natural local, con un objetivo que alcanzar: ganar cierto número de rondas, ganar con una jugada concreta, empatar cierto número de rondas o alcanzar una racha de victorias. Cambia a medianoche local, y el progreso del reto del día anterior no se acumula.",
+      },
+      {
+        q: "¿Qué logros hay?",
+        a: "Cuatro: Primera victoria, Racha de 3, Reto superado — que se concede al completar cualquier Reto Diario, sea el que sea ese día — y 10 rondas. Los logros se guardan aparte del marcador, así que reiniciar el juego no los borra.",
+      },
+      {
+        q: "¿Dónde se guarda mi progreso?",
+        a: "Solo en tu dispositivo. RPS Duel no tiene guardado en la nube, ni sincronización entre dispositivos, ni exportación, por lo que el progreso no se puede trasladar de un dispositivo a otro.",
+      },
+      {
+        q: "¿RPS Duel está disponible para iPhone?",
+        a: "De momento no. RPS Duel se publica para Android en Google Play.",
+      },
+    ],
+    troubleshootingHeading: "Resolución de problemas",
+    troubleshooting: [
+      {
+        q: "La aplicación está en el idioma equivocado",
+        a: "Abre Ajustes → Idioma y elige English, Türkçe o Español. Hasta que elijas uno, la aplicación sigue el idioma de tu dispositivo.",
+      },
+      {
+        q: "No oigo ningún sonido",
+        a: "El sonido está activado por defecto. Comprueba que Ajustes → Sonido esté activado y luego revisa el volumen de tu dispositivo y su interruptor de silencio o vibración.",
+      },
+      {
+        q: "Quiero empezar el marcador de cero",
+        a: "Ajustes → Restablecer datos borra tus puntuaciones y el historial de rondas, y la aplicación te pide confirmación antes de hacerlo. Tus logros, récords generales y ajustes se conservan. Para esto no uses la opción de borrar almacenamiento de Android: esa elimina todo lo que RPS Duel ha guardado —logros y récords incluidos—, no solo el marcador.",
+      },
+    ],
+    contactHeading: "¿Sigues necesitando ayuda?",
+    contactBody: "Si tu pregunta no está respondida aquí, o la aplicación no se comporta como describe esta página, escríbenos. Indicarnos el modelo de tu dispositivo, tu versión de Android y qué estabas haciendo en ese momento nos ayuda a reproducir el problema.",
+    contactLabel: "Contáctanos",
+    backLabel: "Volver a RPS Duel",
   },
 };
 

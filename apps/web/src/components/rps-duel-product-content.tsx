@@ -121,7 +121,7 @@ export default function RpsDuelProductContent() {
               {c.termsLabel} →
             </Link>
             <Link
-              href={localeHref(locale, "/contact")}
+              href={localeHref(locale, "/support/rps-duel")}
               className="text-sm font-medium text-muted transition-colors hover:text-foreground"
             >
               {c.supportLabel} →
