@@ -1223,13 +1223,13 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "Selected interface language (English, Turkish, or Spanish)",
           "Selected CPU difficulty (Easy, Normal, or Hard)",
           "Daily challenge progress for the current day (resets automatically at local midnight)",
-          "Achievement flags (First Win, Streak 3, Scissors Specialist, 10 Rounds)",
+          "Achievement flags (First Win, Streak 3, Challenge Met, 10 Rounds)",
         ],
       },
       {
         title: "How to clear your data",
         paragraphs: [
-          "You can clear all locally stored gameplay data from inside the app via Settings → Reset data. You can also remove this data with your operating system's normal app controls: clear app data or uninstall the app (Android).",
+          "Inside the app, Settings → Reset data clears your game scores and round history. The other items listed above — your language and difficulty preferences, daily challenge progress, and achievement flags — are kept. To remove all of the data listed above, use your operating system's normal app controls instead: clear the app's storage or uninstall the app (Android). That is a broader action than Reset data.",
         ],
       },
       {
@@ -1285,13 +1285,13 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "Seçili arayüz dili (İngilizce, Türkçe veya İspanyolca)",
           "Seçili CPU zorluğu (Kolay, Normal veya Zor)",
           "Bugünkü günlük meydan okuma ilerlemen (yerel gece yarısında otomatik sıfırlanır)",
-          "Başarım bayrakları (İlk Galibiyet, 3'lü Seri, Makas Uzmanı, 10 El)",
+          "Başarım bayrakları (İlk Galibiyet, 3'lü Seri, Tamamlanan Görev, 10 El)",
         ],
       },
       {
         title: "Verilerini nasıl silersin",
         paragraphs: [
-          "Yerel olarak saklanan tüm oyun verilerini uygulama içinden Ayarlar → Verileri sıfırla ile silebilirsin. Aynı verileri işletim sisteminin normal uygulama kontrolleriyle de temizleyebilirsin: uygulama verilerini temizle veya uygulamayı kaldır (Android).",
+          "Uygulama içinde Ayarlar → Verileri sıfırla, oyun skorlarını ve el geçmişini siler. Yukarıda listelenen diğer veriler — dil ve zorluk tercihlerin, günlük meydan okuma ilerlemen ve başarım bayrakların — korunur. Yukarıda listelenen verilerin tamamını kaldırmak için bunun yerine işletim sisteminin normal uygulama kontrollerini kullan: uygulamanın depolamasını temizle veya uygulamayı kaldır (Android). Bu, Verileri sıfırla işleminden daha kapsamlı bir işlemdir.",
         ],
       },
       {
@@ -1347,13 +1347,13 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "Idioma de interfaz seleccionado (inglés, turco o español)",
           "Dificultad de CPU seleccionada (Fácil, Normal o Difícil)",
           "Progreso del desafío diario actual (se reinicia automáticamente a medianoche local)",
-          "Indicadores de logros (Primera Victoria, Racha de 3, Especialista en Tijera, 10 Rondas)",
+          "Indicadores de logros (Primera Victoria, Racha de 3, Reto superado, 10 Rondas)",
         ],
       },
       {
         title: "Cómo borrar tus datos",
         paragraphs: [
-          "Puedes borrar todos los datos de juego almacenados localmente desde la aplicación en Ajustes → Restablecer datos. También puedes eliminar estos datos con los controles habituales del sistema operativo: borrar datos de la aplicación o desinstalarla (Android).",
+          "Dentro de la aplicación, Ajustes → Restablecer datos borra tus puntuaciones y el historial de rondas. Los demás elementos de la lista anterior —tus preferencias de idioma y dificultad, el progreso del desafío diario y los indicadores de logros— se conservan. Para eliminar todos los datos de la lista anterior, usa en su lugar los controles habituales del sistema operativo: borra el almacenamiento de la aplicación o desinstálala (Android). Esa es una acción más amplia que Restablecer datos.",
         ],
       },
       {
