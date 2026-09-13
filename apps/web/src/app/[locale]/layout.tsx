@@ -8,6 +8,7 @@ import { LOCALES, type Locale } from "@/i18n/config";
 import { ThemeProvider } from "@/theme/provider";
 import { DEFAULT_THEME, THEMES, THEME_STORAGE_KEY, type Theme } from "@/theme/config";
 import { urlFor } from "@/seo/meta";
+import { HAS_PUBLISHED_UPDATES } from "@/seo/updates";
 
 function buildJsonLd(locale: Locale) {
   const base = "https://uselunexa.com";
@@ -106,7 +107,7 @@ export default async function LocaleLayout({
         <SiteHeader />
         {children}
         <CookieConsent />
-        <SiteFooter />
+        <SiteFooter showUpdates={HAS_PUBLISHED_UPDATES} />
       </LanguageProvider>
     </ThemeProvider>
   );

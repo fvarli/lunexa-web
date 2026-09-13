@@ -3,9 +3,13 @@
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
-import { HAS_PUBLISHED_UPDATES } from "@/seo/updates";
 
-export default function SiteFooter() {
+/**
+ * `showUpdates` is passed in rather than read here: the flag lives in the
+ * server-side updates module alongside the release entries, which this client
+ * component must not pull into the browser bundle.
+ */
+export default function SiteFooter({ showUpdates }: { showUpdates: boolean }) {
   const { t, locale } = useT();
   const href = (path: string) => localeHref(locale, path);
 
@@ -16,7 +20,7 @@ export default function SiteFooter() {
           &copy; {new Date().getFullYear()} Lunexa. {t("footer.copyright")}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted">
-          {HAS_PUBLISHED_UPDATES && (
+          {showUpdates && (
             <Link
               href={href("/updates")}
               className="transition-colors hover:text-foreground"
