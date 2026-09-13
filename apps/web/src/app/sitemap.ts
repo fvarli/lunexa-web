@@ -18,6 +18,7 @@ const STATIC_ROUTES: Route[] = [
   { path: "/services/intelligent", priority: 0.7, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/work", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/work/rps-duel", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/privacy/rps-duel", priority: 0.4, changeFrequency: "yearly" },

@@ -94,6 +94,14 @@ export default function WorkPageContent() {
                     {item.visitLabel}
                   </span>
                 )}
+                {item.detailPath && (
+                  <Link
+                    href={localeHref(locale, item.detailPath)}
+                    className="text-sm font-medium text-accent transition-opacity hover:opacity-80"
+                  >
+                    {c.detailsLabel} →
+                  </Link>
+                )}
                 {item.privacyPath && (
                   <Link
                     href={localeHref(locale, item.privacyPath)}

@@ -628,6 +628,8 @@ type WorkItem = {
   visitLabel: string;
   /** Optional internal path to the product's privacy policy (e.g. `/privacy/rps-duel`). When set, renders an extra link on the card. */
   privacyPath?: string;
+  /** Optional internal path to the product's detail page (e.g. `/work/rps-duel`). Only products that have one. */
+  detailPath?: string;
 };
 
 type WorkContent = {
@@ -637,6 +639,8 @@ type WorkContent = {
   items: WorkItem[];
   /** Per-locale label for the "Privacy policy" link inside a work card */
   privacyLabel: string;
+  /** Per-locale label for the product-detail link inside a work card */
+  detailsLabel: string;
   comingSoonHeading: string;
   comingSoonBody: string;
 };
@@ -669,6 +673,7 @@ export const WORK: Record<Locale, WorkContent> = {
         statusLabel: "Live on Google Play",
         visitLabel: "Get it on Google Play →",
         privacyPath: "/privacy/rps-duel",
+        detailPath: "/work/rps-duel",
       },
       {
         slug: "chess-rescue",
@@ -696,6 +701,7 @@ export const WORK: Record<Locale, WorkContent> = {
       },
     ],
     privacyLabel: "Privacy policy",
+    detailsLabel: "View details",
     comingSoonHeading: "What's next",
     comingSoonBody: "More products are in development. The next one will land here when its public surface is ready. Want to follow along? Subscribe to the newsletter on the home page.",
   },
@@ -726,6 +732,7 @@ export const WORK: Record<Locale, WorkContent> = {
         statusLabel: "Google Play'de yayında",
         visitLabel: "Google Play'den indir →",
         privacyPath: "/privacy/rps-duel",
+        detailPath: "/work/rps-duel",
       },
       {
         slug: "chess-rescue",
@@ -753,6 +760,7 @@ export const WORK: Record<Locale, WorkContent> = {
       },
     ],
     privacyLabel: "Gizlilik politikası",
+    detailsLabel: "Detayları gör",
     comingSoonHeading: "Sırada ne var",
     comingSoonBody: "Geliştirme aşamasında daha fazla ürün var. Bir sonraki, halka açık yüzü hazır olunca buraya inecek. Takip etmek istersen ana sayfadaki bültene abone ol.",
   },
@@ -783,6 +791,7 @@ export const WORK: Record<Locale, WorkContent> = {
         statusLabel: "Disponible en Google Play",
         visitLabel: "Consíguelo en Google Play →",
         privacyPath: "/privacy/rps-duel",
+        detailPath: "/work/rps-duel",
       },
       {
         slug: "chess-rescue",
@@ -810,8 +819,112 @@ export const WORK: Record<Locale, WorkContent> = {
       },
     ],
     privacyLabel: "Política de privacidad",
+    detailsLabel: "Ver detalles",
     comingSoonHeading: "Qué sigue",
     comingSoonBody: "Más productos están en desarrollo. El siguiente aterrizará aquí cuando su superficie pública esté lista. ¿Quieres seguir el avance? Suscríbete al boletín en la página principal.",
+  },
+};
+
+// ── RPS Duel product detail ──
+// Copy for /work/rps-duel. Stack chips and the status label are NOT repeated
+// here — the page reads them from the WORK item above so the card and the
+// detail page cannot disagree. Every claim below is verified against the
+// existing work copy, the privacy policy, and the shipped screenshots.
+
+type ProductDetailContent = {
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  galleryHeading: string;
+  galleryAlt: { main: string; roundResult: string; difficulty: string };
+  highlightsHeading: string;
+  highlights: string[];
+  builtWithHeading: string;
+  legalHeading: string;
+  privacyLabel: string;
+  termsLabel: string;
+  supportLabel: string;
+  backLabel: string;
+};
+
+export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
+  en: {
+    eyebrow: "Lunexa Games",
+    heading: "RPS Duel",
+    lead: "A single-player Rock Paper Scissors duel for Android. Play a quick round against a built-in opponent, chase the daily challenge, and unlock achievements — no account, and your progress stays on the device.",
+    galleryHeading: "A look at the game",
+    galleryAlt: {
+      main: "RPS Duel's main screen, showing the running score, a completed daily challenge, three of four achievements unlocked, and the rock, paper and scissors buttons.",
+      roundResult: "A finished round: the player's scissors beat the opponent's paper, with the result added to the score above.",
+      difficulty: "The difficulty picker, offering Easy, Normal and Hard.",
+    },
+    highlightsHeading: "What's in it",
+    highlights: [
+      "Single-player against a built-in opponent",
+      "Three difficulty levels — Easy, Normal, Hard",
+      "A daily challenge that resets at local midnight",
+      "Four achievements to unlock",
+      "English, Turkish and Spanish throughout",
+      "No account — progress is stored on your device",
+    ],
+    builtWithHeading: "Built with",
+    legalHeading: "Legal and support",
+    privacyLabel: "Privacy policy",
+    termsLabel: "Terms of service",
+    supportLabel: "Contact support",
+    backLabel: "All work",
+  },
+  tr: {
+    eyebrow: "Lunexa Games",
+    heading: "RPS Duel",
+    lead: "Android için tek oyunculu bir Taş Kâğıt Makas düellosu. Yerleşik bir rakibe karşı kısa bir el oyna, günlük görevin peşinden git ve başarımların kilidini aç — hesap yok, ilerlemen cihazında kalır.",
+    galleryHeading: "Oyundan görüntüler",
+    galleryAlt: {
+      main: "RPS Duel'in ana ekranı: güncel skor, tamamlanmış günlük görev, dört başarımdan üçünün kilidi açık ve taş, kâğıt, makas düğmeleri.",
+      roundResult: "Biten bir el: oyuncunun makası rakibin kâğıdını yener ve sonuç yukarıdaki skora eklenir.",
+      difficulty: "Kolay, Normal ve Zor seçeneklerini sunan zorluk seçici.",
+    },
+    highlightsHeading: "Neler var",
+    highlights: [
+      "Yerleşik bir rakibe karşı tek oyunculu",
+      "Üç zorluk seviyesi — Kolay, Normal, Zor",
+      "Yerel gece yarısında sıfırlanan günlük görev",
+      "Kilidi açılacak dört başarım",
+      "Baştan sona İngilizce, Türkçe ve İspanyolca",
+      "Hesap yok — ilerleme cihazında saklanır",
+    ],
+    builtWithHeading: "Nelerle yapıldı",
+    legalHeading: "Yasal ve destek",
+    privacyLabel: "Gizlilik politikası",
+    termsLabel: "Kullanım şartları",
+    supportLabel: "Destek ile iletişim",
+    backLabel: "Tüm işler",
+  },
+  es: {
+    eyebrow: "Lunexa Games",
+    heading: "RPS Duel",
+    lead: "Un duelo de Piedra Papel Tijera para un solo jugador en Android. Juega una ronda rápida contra un oponente integrado, persigue el reto diario y desbloquea logros: sin cuenta, y tu progreso se queda en el dispositivo.",
+    galleryHeading: "Un vistazo al juego",
+    galleryAlt: {
+      main: "La pantalla principal de RPS Duel: el marcador actual, un reto diario completado, tres de cuatro logros desbloqueados y los botones de piedra, papel y tijera.",
+      roundResult: "Una ronda terminada: la tijera del jugador gana al papel del oponente y el resultado se suma al marcador de arriba.",
+      difficulty: "El selector de dificultad, con Fácil, Normal y Difícil.",
+    },
+    highlightsHeading: "Qué incluye",
+    highlights: [
+      "Un solo jugador contra un oponente integrado",
+      "Tres niveles de dificultad: Fácil, Normal, Difícil",
+      "Un reto diario que se reinicia a medianoche local",
+      "Cuatro logros por desbloquear",
+      "Inglés, turco y español en toda la aplicación",
+      "Sin cuenta: el progreso se guarda en tu dispositivo",
+    ],
+    builtWithHeading: "Hecho con",
+    legalHeading: "Legal y soporte",
+    privacyLabel: "Política de privacidad",
+    termsLabel: "Términos de servicio",
+    supportLabel: "Contactar con soporte",
+    backLabel: "Todo el trabajo",
   },
 };
 

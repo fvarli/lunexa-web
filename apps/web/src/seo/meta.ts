@@ -172,6 +172,24 @@ export const TERMS_META: PageCopy = {
   },
 };
 
+export const RPS_DUEL_PRODUCT_META: PageCopy = {
+  en: {
+    title: "RPS Duel — Android Game by Lunexa Games",
+    description:
+      "RPS Duel is a single-player Rock Paper Scissors game for Android by Lunexa Games. Daily challenge, four achievements, three difficulty levels, and English / Turkish / Spanish support. No account needed.",
+  },
+  tr: {
+    title: "RPS Duel — Lunexa Games'ten Android Oyunu",
+    description:
+      "RPS Duel, Lunexa Games tarafından geliştirilen Android için tek oyunculu bir Taş Kâğıt Makas oyunu. Günlük görev, dört başarım, üç zorluk seviyesi ve İngilizce / Türkçe / İspanyolca desteği. Hesap gerekmez.",
+  },
+  es: {
+    title: "RPS Duel — Juego de Android de Lunexa Games",
+    description:
+      "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador en Android, de Lunexa Games. Reto diario, cuatro logros, tres niveles de dificultad y soporte en inglés / turco / español. No requiere cuenta.",
+  },
+};
+
 export const RPS_DUEL_TERMS_META: PageCopy = {
   en: {
     title: "RPS Duel — Terms of Service",
