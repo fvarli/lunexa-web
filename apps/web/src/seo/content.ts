@@ -600,6 +600,13 @@ export const RELATED_SERVICES: Record<Locale, RelatedServicesContent> = {
 
 // ── Work / showcase ──
 
+/**
+ * Canonical Play Store listing for RPS Duel. Defined once so the work card and
+ * the home page cannot drift apart.
+ */
+export const RPS_DUEL_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.lunexa.games.rpsduel";
+
 type WorkItem = {
   /** Lowercase slug, used in DOM ids and the public page anchor */
   slug: string;
@@ -656,7 +663,7 @@ export const WORK: Record<Locale, WorkContent> = {
         name: "RPS Duel",
         tagline: "A tactile rock-paper-scissors duel for Android",
         body: "Single-player Rock Paper Scissors against an adaptive CPU, with a daily challenge, four achievements, three difficulty levels, and full English / Turkish / Spanish support. No account needed — your progress is saved on the device.",
-        url: "https://play.google.com/store/apps/details?id=com.lunexa.games.rpsduel",
+        url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
         statusLabel: "Live on Google Play",
@@ -713,7 +720,7 @@ export const WORK: Record<Locale, WorkContent> = {
         name: "RPS Duel",
         tagline: "Android için dokunaklı bir taş kâğıt makas düellosu",
         body: "Uyarlanabilir CPU'ya karşı tek oyunculu Taş Kâğıt Makas; günlük meydan okuma, dört başarım, üç zorluk seviyesi ve tam İngilizce / Türkçe / İspanyolca destek. Hesap gerekmez — ilerlemen cihazında saklanır.",
-        url: "https://play.google.com/store/apps/details?id=com.lunexa.games.rpsduel",
+        url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
         statusLabel: "Google Play'de yayında",
@@ -770,7 +777,7 @@ export const WORK: Record<Locale, WorkContent> = {
         name: "RPS Duel",
         tagline: "Un duelo táctil de piedra papel tijera para Android",
         body: "Piedra Papel Tijera para un solo jugador contra una CPU adaptativa, con desafío diario, cuatro logros, tres niveles de dificultad y soporte completo en inglés / turco / español. No requiere cuenta — tu progreso se guarda en el dispositivo.",
-        url: "https://play.google.com/store/apps/details?id=com.lunexa.games.rpsduel",
+        url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
         statusLabel: "Disponible en Google Play",

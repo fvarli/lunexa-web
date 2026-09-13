@@ -78,6 +78,12 @@ const en = {
       "The first Lunexa products are out in the world, and the next wave is in the works. Stay close.",
     badge: "In development",
   },
+  games_cta: {
+    eyebrow: "Lunexa Games",
+    heading: "Games, made with the same care",
+    body: "RPS Duel is available now on Android — a single-player Rock Paper Scissors game.",
+    badge_label: "Get it on Google Play",
+  },
   faq: {
     eyebrow: "FAQ",
     heading: "Common questions",
@@ -394,6 +400,12 @@ const tr: Dictionary = {
       "İlk Lunexa ürünleri yayında, sıradaki dalga ise geliştiriliyor. Yakın durun.",
     badge: "Geliştirme aşamasında",
   },
+  games_cta: {
+    eyebrow: "Lunexa Games",
+    heading: "Aynı özenle yapılmış oyunlar",
+    body: "RPS Duel şimdi Android'de — tek oyunculu bir Taş Kâğıt Makas oyunu.",
+    badge_label: "Google Play'den indirin",
+  },
   faq: {
     eyebrow: "SSS",
     heading: "Sık sorulan sorular",
@@ -709,6 +721,12 @@ const es: Dictionary = {
     subtitle:
       "Los primeros productos de Lunexa ya están fuera, y la siguiente ola está en marcha. Mantente cerca.",
     badge: "En desarrollo",
+  },
+  games_cta: {
+    eyebrow: "Lunexa Games",
+    heading: "Juegos, hechos con el mismo cuidado",
+    body: "RPS Duel ya está disponible en Android: un juego de Piedra Papel Tijera para un solo jugador.",
+    badge_label: "Consíguelo en Google Play",
   },
   faq: {
     eyebrow: "FAQ",

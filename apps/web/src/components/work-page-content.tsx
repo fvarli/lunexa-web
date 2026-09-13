@@ -5,9 +5,19 @@ import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
 import { WORK } from "@/seo/content";
 import CtaBlock from "@/components/cta-block";
+import GooglePlayBadge from "@/components/google-play-badge";
+
+/**
+ * Only a Play listing earns the store badge. `url` is a generic field — it
+ * holds a marketing site for TechChefDelights and is empty for products that
+ * have not shipped — so presence alone is not enough.
+ */
+function isGooglePlayUrl(url: string): boolean {
+  return url.startsWith("https://play.google.com/");
+}
 
 export default function WorkPageContent() {
-  const { locale } = useT();
+  const { t, locale } = useT();
   const c = WORK[locale];
 
   return (
@@ -65,7 +75,12 @@ export default function WorkPageContent() {
               </ul>
 
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-                {item.url ? (
+                {isGooglePlayUrl(item.url) ? (
+                  <GooglePlayBadge
+                    href={item.url}
+                    label={t("games_cta.badge_label")}
+                  />
+                ) : item.url ? (
                   <a
                     href={item.url}
                     target="_blank"
