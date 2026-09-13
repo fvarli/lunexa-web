@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { DEFAULT_LOCALE, LOCALES } from "@/i18n/config";
 import { urlFor } from "@/seo/meta";
+import { HAS_PUBLISHED_UPDATES } from "@/seo/updates";
 import { listPosts } from "@/blog";
 
 type Route = {
@@ -17,6 +18,11 @@ const STATIC_ROUTES: Route[] = [
   { path: "/services/web", priority: 0.7, changeFrequency: "monthly" },
   { path: "/services/intelligent", priority: 0.7, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
+  // Absent until a release is verified, so the sitemap never advertises the
+  // 404 that /updates serves while the changelog is empty.
+  ...(HAS_PUBLISHED_UPDATES
+    ? ([{ path: "/updates", priority: 0.6, changeFrequency: "monthly" }] as Route[])
+    : []),
   { path: "/work", priority: 0.8, changeFrequency: "monthly" },
   { path: "/work/rps-duel", priority: 0.7, changeFrequency: "monthly" },
   { path: "/support/rps-duel", priority: 0.5, changeFrequency: "monthly" },

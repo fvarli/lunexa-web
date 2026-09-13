@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
+import { HAS_PUBLISHED_UPDATES } from "@/seo/updates";
 
 export default function SiteFooter() {
   const { t, locale } = useT();
@@ -14,7 +15,15 @@ export default function SiteFooter() {
         <p className="text-sm text-muted">
           &copy; {new Date().getFullYear()} Lunexa. {t("footer.copyright")}
         </p>
-        <div className="flex items-center gap-6 text-sm text-muted">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted">
+          {HAS_PUBLISHED_UPDATES && (
+            <Link
+              href={href("/updates")}
+              className="transition-colors hover:text-foreground"
+            >
+              {t("footer.updates")}
+            </Link>
+          )}
           <Link
             href={href("/privacy")}
             className="transition-colors hover:text-foreground"

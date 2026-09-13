@@ -44,6 +44,27 @@ test.describe("Navigation & routing", () => {
     await expect(page.getByRole("link", { name: /go home/i })).toBeVisible();
   });
 
+  // The changelog has no verified entries yet, so /updates must not be a public
+  // surface at all. Flip these to positive assertions in the same commit that
+  // adds the first entry to UPDATES.
+  test("/updates 404s in every locale while the changelog is empty", async ({ request }) => {
+    for (const path of ["/updates", "/tr/updates", "/es/updates"]) {
+      expect((await request.get(path)).status(), path).toBe(404);
+    }
+  });
+
+  test("empty changelog is absent from the sitemap", async ({ request }) => {
+    const body = await (await request.get("/sitemap.xml")).text();
+    expect(body).not.toContain("/updates");
+  });
+
+  test("empty changelog is absent from the footer", async ({ page }) => {
+    await page.goto("/");
+    await expect(
+      page.getByRole("contentinfo").getByRole("link", { name: /updates/i })
+    ).toHaveCount(0);
+  });
+
   test("robots.txt is served", async ({ request }) => {
     const res = await request.get("/robots.txt");
     expect(res.status()).toBe(200);

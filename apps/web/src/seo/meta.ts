@@ -370,6 +370,24 @@ export const SERVICES_INTELLIGENT_META: PageCopy = {
   },
 };
 
+export const UPDATES_META: PageCopy = {
+  en: {
+    title: "Product Updates — Lunexa Games Release Notes",
+    description:
+      "Release notes for the apps Lunexa publishes on Google Play, including RPS Duel. What's new, what improved, and what was fixed in each version.",
+  },
+  tr: {
+    title: "Ürün Güncellemeleri — Lunexa Games Sürüm Notları",
+    description:
+      "Lunexa'nın Google Play'de yayınladığı uygulamaların sürüm notları — RPS Duel dahil. Her sürümde neler yeni, neler iyileştirildi ve neler düzeltildi.",
+  },
+  es: {
+    title: "Actualizaciones de Producto — Notas de Versión de Lunexa Games",
+    description:
+      "Notas de versión de las aplicaciones que Lunexa publica en Google Play, incluida RPS Duel. Qué es nuevo, qué mejoró y qué se corrigió en cada versión.",
+  },
+};
+
 export const BLOG_INDEX_META: PageCopy = {
   en: {
     title: "Blog",

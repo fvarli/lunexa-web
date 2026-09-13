@@ -153,6 +153,7 @@ const en = {
   },
   footer: {
     copyright: "All rights reserved.",
+    updates: "Updates",
     privacy: "Privacy",
     terms: "Terms",
   },
@@ -475,6 +476,7 @@ const tr: Dictionary = {
   },
   footer: {
     copyright: "Tüm hakları saklıdır.",
+    updates: "Güncellemeler",
     privacy: "Gizlilik",
     terms: "Şartlar",
   },
@@ -797,6 +799,7 @@ const es: Dictionary = {
   },
   footer: {
     copyright: "Todos los derechos reservados.",
+    updates: "Actualizaciones",
     privacy: "Privacidad",
     terms: "Términos",
   },
