@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+#
+# Install the Lunexa local dev servers as systemd USER services.
+#
+#   bin/install-service              install, enable, and start both
+#   bin/install-service --uninstall  stop, disable, and remove both
+#
+# User services, not system services: they run as you, need no root, and stop
+# when your session ends. Nginx is untouched — it is a system service and none
+# of this script's business, as are the certificates and /etc/hosts entries that
+# docs/LOCAL_DEVELOPMENT.md covers separately.
+#
+# Both apps live in this one repository, so one script installs both units.
+
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+WEB_DIR="$REPO_ROOT/apps/web"
+API_DIR="$REPO_ROOT/apps/api"
+UNIT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
+NODE_MAJOR_MIN=22
+
+FRONTEND_UNIT="lunexa-frontend.service"
+API_UNIT="lunexa-api.service"
+
+die() { printf '\n  ERROR: %s\n\n' "$1" >&2; exit 1; }
+info() { printf '  %s\n' "$1"; }
+
+# Express a path under $HOME using systemd's %h specifier, so the installed unit
+# does not hardcode a home directory either. Paths outside $HOME are left as-is.
+homify() {
+    case "$1" in
+        "$HOME"/*) printf '%%h/%s' "${1#"$HOME"/}" ;;
+        *)         printf '%s' "$1" ;;
+    esac
+}
+
+if [[ "${1:-}" == "--uninstall" ]]; then
+    for unit in "$FRONTEND_UNIT" "$API_UNIT"; do
+        systemctl --user disable --now "$unit" 2>/dev/null || true
+        rm -f "$UNIT_DIR/$unit"
+    done
+    systemctl --user daemon-reload
+    info "removed $FRONTEND_UNIT and $API_UNIT"
+    info "https://lunexa.test and https://api.lunexa.test now answer 502."
+    exit 0
+fi
+
+[[ $# -eq 0 ]] || die "unknown argument: $1"
+
+# ---------------------------------------------------------------------------
+# Validate before writing anything. A unit that installs cleanly and then fails
+# on every start is worse than a refusal.
+# ---------------------------------------------------------------------------
+for t in "$REPO_ROOT/deploy/systemd/$FRONTEND_UNIT" "$REPO_ROOT/deploy/systemd/$API_UNIT"; do
+    [[ -f "$t" ]] || die "missing unit template: $t"
+done
+[[ -d "$WEB_DIR/node_modules" ]] || die "apps/web dependencies are not installed. Run: cd apps/web && npm ci"
+[[ -d "$API_DIR/node_modules" ]] || die "apps/api dependencies are not installed. Run: cd apps/api && npm ci"
+[[ -f "$WEB_DIR/node_modules/next/dist/bin/next" ]] || die "next CLI not found under apps/web/node_modules"
+[[ -f "$API_DIR/node_modules/tsx/dist/cli.mjs" ]] || die "tsx not found under apps/api/node_modules"
+command -v systemctl >/dev/null || die "systemctl not found; this machine does not use systemd."
+systemctl --user show-environment >/dev/null 2>&1 || die \
+"No systemd user manager is running for this session."
+
+# ---------------------------------------------------------------------------
+# Resolve Node now, at install time, and write the absolute path into the units.
+#
+# systemd starts these with no shell and no nvm, so a bare `node` would not
+# resolve. Whatever node is on PATH here is what the units will use, as long as
+# it is new enough for this project — CI pins Node 22 and so does the Dockerfile.
+# Nothing global is changed; if you later switch node, re-run this script.
+# ---------------------------------------------------------------------------
+command -v node >/dev/null || die "node not found on PATH."
+NODE_BIN_DIR="$(dirname "$(command -v node)")"
+NODE_VERSION="$(node --version)"
+NODE_MAJOR="${NODE_VERSION#v}"; NODE_MAJOR="${NODE_MAJOR%%.*}"
+(( NODE_MAJOR >= NODE_MAJOR_MIN )) || die \
+"Node ${NODE_MAJOR_MIN}+ is required; found ${NODE_VERSION} at ${NODE_BIN_DIR}."
+
+mkdir -p "$UNIT_DIR"
+
+sed \
+    -e "s#@WORKING_DIRECTORY@#$(homify "$WEB_DIR")#g" \
+    -e "s#@NODE_BIN_DIR@#$(homify "$NODE_BIN_DIR")#g" \
+    "$REPO_ROOT/deploy/systemd/$FRONTEND_UNIT" > "$UNIT_DIR/$FRONTEND_UNIT"
+
+sed \
+    -e "s#@WORKING_DIRECTORY@#$(homify "$API_DIR")#g" \
+    -e "s#@WEB_DIRECTORY@#$(homify "$WEB_DIR")#g" \
+    -e "s#@NODE_BIN_DIR@#$(homify "$NODE_BIN_DIR")#g" \
+    "$REPO_ROOT/deploy/systemd/$API_UNIT" > "$UNIT_DIR/$API_UNIT"
+
+systemctl --user daemon-reload
+systemctl --user enable --now "$FRONTEND_UNIT" "$API_UNIT"
+
+info "installed $UNIT_DIR/$FRONTEND_UNIT"
+info "installed $UNIT_DIR/$API_UNIT"
+info "using node $NODE_VERSION from $NODE_BIN_DIR"
+info ""
+info "  status : systemctl --user status $FRONTEND_UNIT $API_UNIT"
+info "  logs   : journalctl --user -u lunexa-frontend -f"
+info "  remove : bin/install-service --uninstall"
+info ""
+info "https://lunexa.test      -> 127.0.0.1:4320"
+info "https://api.lunexa.test  -> 127.0.0.1:8420"

@@ -1,0 +1,59 @@
+# Lunexa frontend — local development server as a systemd USER service.
+#
+# A user unit, never a system unit: it runs as the developer, needs no root, and
+# lives and dies with the desktop session. Nothing here requires sudo.
+#
+# This file is a TEMPLATE. The @PLACEHOLDERS@ carry no machine-specific paths,
+# so it stays portable for any developer. `bin/install-service` substitutes them
+# and writes the result to ~/.config/systemd/user/ — where paths under $HOME are
+# expressed with systemd's %h specifier rather than a literal home directory.
+#
+# This runs the DEV SERVER, not a production build: Fast Refresh, instant
+# reloads, no build step. `next start` would defeat the point of a local stack.
+#
+# Nginx and PostgreSQL are NOT managed here. They are persistent system services
+# that this unit has no business starting, stopping, or depending on.
+
+[Unit]
+Description=Lunexa frontend (Next.js dev server, 127.0.0.1:4320)
+Documentation=file://@WORKING_DIRECTORY@/docs/LOCAL_DEVELOPMENT.md
+
+[Service]
+Type=simple
+WorkingDirectory=@WORKING_DIRECTORY@
+
+Environment=PATH=@NODE_BIN_DIR@:/usr/local/bin:/usr/bin:/bin
+
+# The Next CLI is invoked through an absolute node rather than `npm run dev`:
+# one less process in the tree, no dependency on npm resolving a shell, and the
+# host/port stay visible in `systemctl status` instead of hiding in a script.
+#
+# -H is passed explicitly because `next dev` defaults to 0.0.0.0. Nginx is the
+# only intended way in, so the dev server has no business answering on the LAN.
+# The port is stated here rather than left to PORT in .env.local: that file is
+# git-ignored and drifts, and a silent fallback to 3000 would collide with
+# whatever else is using it.
+#
+# `localhost`, NOT the literal 127.0.0.1 — they are not interchangeable here.
+# Both bind the same loopback socket, but passing the IP makes Next canonicalize
+# its own origin and serialize proxy.ts's locale rewrite as an absolute URL
+# (x-middleware-rewrite: http://localhost:4320/en/work). Next then treats that
+# as an external rewrite and answers 307 to the path it started from, so every
+# unprefixed English URL becomes a redirect loop while /tr and /es — which pass
+# through without a rewrite — keep working. With `localhost` the rewrite stays
+# relative (/en/work) and the site behaves as it does in production.
+ExecStart=@NODE_BIN_DIR@/node node_modules/next/dist/bin/next dev -H localhost -p 4320
+
+# Restart when it crashes; do not fight a deliberate `systemctl --user stop`.
+Restart=on-failure
+RestartSec=5
+
+# Logs go to the journal: journalctl --user -u lunexa-frontend
+SyslogIdentifier=lunexa-frontend
+
+# systemd kills the whole control group, so the node → next tree dies with the
+# unit and no orphan is left holding port 4320.
+TimeoutStopSec=20
+
+[Install]
+WantedBy=default.target

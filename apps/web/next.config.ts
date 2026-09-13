@@ -42,6 +42,13 @@ const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false,
   compress: true,
+  // Local development is served as https://lunexa.test through the system nginx,
+  // which proxies to the dev server on 127.0.0.1. The dev server is initialized
+  // on localhost, so Next treats requests arriving with that Host as
+  // cross-origin and blocks its dev-only endpoints. Naming the host explicitly
+  // is what keeps that check on — a wildcard would switch it off. Development
+  // only; it has no effect on `next build` or `next start`.
+  allowedDevOrigins: ["lunexa.test"],
   async headers() {
     return [
       {

@@ -1,0 +1,54 @@
+# Lunexa API — local development server as a systemd USER service.
+#
+# A user unit, never a system unit: it runs as the developer, needs no root, and
+# lives and dies with the desktop session. Nothing here requires sudo.
+#
+# This file is a TEMPLATE. The @PLACEHOLDERS@ carry no machine-specific paths,
+# so it stays portable for any developer. `bin/install-service` substitutes them
+# and writes the result to ~/.config/systemd/user/ — where paths under $HOME are
+# expressed with systemd's %h specifier rather than a literal home directory.
+#
+# No secrets live in this file. The server calls `dotenv/config` on boot and
+# reads apps/api/.env itself, which keeps SMTP credentials in exactly one
+# git-ignored place instead of copying them into a unit under ~/.config.
+#
+# Nginx and PostgreSQL are NOT managed here. They are persistent system services
+# that this unit has no business starting, stopping, or depending on.
+
+[Unit]
+Description=Lunexa API (Express dev server, 127.0.0.1:8420)
+Documentation=file://@WEB_DIRECTORY@/docs/LOCAL_DEVELOPMENT.md
+
+[Service]
+Type=simple
+WorkingDirectory=@WORKING_DIRECTORY@
+
+Environment=PATH=@NODE_BIN_DIR@:/usr/local/bin:/usr/bin:/bin
+
+# Host and port are set here as well as in .env. dotenv does not overwrite a
+# variable the environment already defines, so these win — deliberately. .env is
+# git-ignored and drifts; if either value went missing the server would fall
+# back to 0.0.0.0:4000, an interface this setup does not intend to expose and a
+# port nginx is not pointed at. One line of duplication is a fair price for a
+# service that cannot land somewhere unintended.
+Environment=HOST=127.0.0.1
+Environment=PORT=8420
+
+# tsx is invoked through an absolute node rather than `npm run dev`: one less
+# process in the tree, and the watcher stays a direct child so systemd's cgroup
+# kill reaches it.
+ExecStart=@NODE_BIN_DIR@/node node_modules/tsx/dist/cli.mjs watch src/server.ts
+
+# Restart when it crashes; do not fight a deliberate `systemctl --user stop`.
+Restart=on-failure
+RestartSec=5
+
+# Logs go to the journal: journalctl --user -u lunexa-api
+SyslogIdentifier=lunexa-api
+
+# systemd kills the whole control group, so no child outlives the unit and no
+# orphan is left holding port 8420.
+TimeoutStopSec=20
+
+[Install]
+WantedBy=default.target
