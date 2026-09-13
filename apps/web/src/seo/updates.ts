@@ -73,7 +73,106 @@ export type UpdateEntry = {
  * every one of those surfaces reads `HAS_PUBLISHED_UPDATES`, so adding the first
  * entry here switches the whole surface on with no other edit.
  */
-export const UPDATES: UpdateEntry[] = [];
+export const UPDATES: UpdateEntry[] = [
+  {
+    /*
+     * Verified against the live Google Play listing, not the mobile repository.
+     *
+     * The listing exposes a single timestamp and no version field, so the id is
+     * keyed on the date. Its release note opens "Initial public release of RPS
+     * Duel." — deliberately not repeated here as a historical claim: internal
+     * build numbering had already reached 1.0.3, and the listing cannot say
+     * whether any earlier build was ever public. What *is* verified is that this
+     * is the release the public can install.
+     *
+     * The bullets describe the build that is on the store, which is behind the
+     * tip of the mobile repository. Everything merged after this date is
+     * excluded — including a later rename of one achievement, which is why no
+     * achievement is named here.
+     */
+    id: "rps-duel-2026-07-07",
+    productId: "rps-duel",
+    /** Google Play, "Updated on": Jul 7, 2026. */
+    date: "2026-07-07",
+    // No `version`: the listing shows none, and the store is the only source.
+    title: {
+      en: "RPS Duel is live on Google Play",
+      tr: "RPS Duel Google Play'de yayında",
+      es: "RPS Duel ya está disponible en Google Play",
+    },
+    summary: {
+      en: "The public Google Play release: single-player rounds against a built-in opponent, with everything kept on the device.",
+      tr: "Google Play'deki genel sürüm: dahili bir rakibe karşı tek kişilik turlar; her şey cihazda saklanır.",
+      es: "La versión pública en Google Play: rondas para un jugador contra un oponente integrado, con todo guardado en el dispositivo.",
+    },
+    changes: [
+      {
+        category: "new",
+        text: {
+          en: "Single-player Rock Paper Scissors against a built-in opponent.",
+          tr: "Dahili bir rakibe karşı tek kişilik Taş Kâğıt Makas.",
+          es: "Piedra, papel o tijera para un jugador contra un oponente integrado.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "Three difficulty levels: Easy, Normal and Hard.",
+          tr: "Üç zorluk seviyesi: Kolay, Normal ve Zor.",
+          es: "Tres niveles de dificultad: Fácil, Normal y Difícil.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "A daily challenge with a new objective each local day.",
+          tr: "Her yerel günde yeni bir hedef sunan Günlük Görev.",
+          es: "Un reto diario con un nuevo objetivo cada día local.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "Four achievements, a records screen and memorable match moments.",
+          tr: "Dört başarım, bir kayıtlar ekranı ve unutulmaz maç anları.",
+          es: "Cuatro logros, una pantalla de registros y momentos memorables de partida.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "Plays offline. No account, and progress stays on the device.",
+          tr: "Çevrimdışı oynanır. Hesap gerekmez; ilerleme cihazda kalır.",
+          es: "Funciona sin conexión. Sin cuenta, y el progreso permanece en el dispositivo.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "Available in English, Turkish and Spanish.",
+          tr: "İngilizce, Türkçe ve İspanyolca dillerinde kullanılabilir.",
+          es: "Disponible en inglés, turco y español.",
+        },
+      },
+      {
+        category: "improved",
+        text: {
+          en: "Sound, animation and accessibility polish throughout.",
+          tr: "Ses, animasyon ve erişilebilirlik iyileştirmeleri.",
+          es: "Mejoras de sonido, animación y accesibilidad.",
+        },
+      },
+      {
+        category: "improved",
+        text: {
+          en: "Stability and performance improvements.",
+          tr: "Kararlılık ve performans iyileştirmeleri.",
+          es: "Mejoras de estabilidad y rendimiento.",
+        },
+      },
+    ],
+  },
+];
 
 export const HAS_PUBLISHED_UPDATES = UPDATES.length > 0;
 

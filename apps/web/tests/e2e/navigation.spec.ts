@@ -44,25 +44,29 @@ test.describe("Navigation & routing", () => {
     await expect(page.getByRole("link", { name: /go home/i })).toBeVisible();
   });
 
-  // The changelog has no verified entries yet, so /updates must not be a public
-  // surface at all. Flip these to positive assertions in the same commit that
-  // adds the first entry to UPDATES.
-  test("/updates 404s in every locale while the changelog is empty", async ({ request }) => {
+  // The changelog now carries a verified release, so /updates is a public
+  // surface in every locale. These were negative assertions while UPDATES was
+  // empty; one entry switches the route, the sitemap and the footer on together,
+  // which is exactly what the three below check.
+  test("/updates is served in every locale", async ({ request }) => {
     for (const path of ["/updates", "/tr/updates", "/es/updates"]) {
-      expect((await request.get(path)).status(), path).toBe(404);
+      expect((await request.get(path)).status(), path).toBe(200);
     }
   });
 
-  test("empty changelog is absent from the sitemap", async ({ request }) => {
+  test("the changelog is listed in the sitemap", async ({ request }) => {
     const body = await (await request.get("/sitemap.xml")).text();
-    expect(body).not.toContain("/updates");
+    // The absolute URL, not a bare "/updates" substring: the loose form is
+    // satisfied by any incidental match and would keep passing if the entry were
+    // dropped from the sitemap but survived elsewhere in the document.
+    expect(body).toMatch(/<loc>https?:\/\/[^<]*\/updates<\/loc>/);
   });
 
-  test("empty changelog is absent from the footer", async ({ page }) => {
+  test("the footer links to the changelog", async ({ page }) => {
     await page.goto("/");
     await expect(
       page.getByRole("contentinfo").getByRole("link", { name: /updates/i })
-    ).toHaveCount(0);
+    ).toHaveCount(1);
   });
 
   test("robots.txt is served", async ({ request }) => {
