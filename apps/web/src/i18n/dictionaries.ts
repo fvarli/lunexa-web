@@ -231,6 +231,12 @@ const en = {
     eyebrow: "Legal",
     heading: "Terms of Use",
     last_updated: "Last updated: April 2026",
+    product_terms_title: "Product-specific terms",
+    product_terms_intro:
+      "Each Lunexa app has its own terms of service. The page below covers the uselunexa.com website only. For an app, follow the matching link:",
+    product_terms_rps_duel: "RPS Duel — mobile game (Android)",
+    product_terms_chess_rescue: "Chess Rescue — mobile puzzle game (Android)",
+    product_terms_quietly: "Quietly — media saver (Android)",
     agreement_title: "Agreement",
     agreement_body:
       "By accessing and using uselunexa.com, you agree to these terms. If you do not agree, please do not use this website.",
@@ -541,6 +547,12 @@ const tr: Dictionary = {
     eyebrow: "Yasal",
     heading: "Kullanım Şartları",
     last_updated: "Son güncelleme: Nisan 2026",
+    product_terms_title: "Ürüne özel şartlar",
+    product_terms_intro:
+      "Her Lunexa uygulamasının kendi kullanım şartları vardır. Aşağıdaki sayfa yalnızca uselunexa.com web sitesini kapsar. Bir uygulama için ilgili bağlantıyı izleyin:",
+    product_terms_rps_duel: "RPS Duel — mobil oyun (Android)",
+    product_terms_chess_rescue: "Chess Rescue — mobil bulmaca oyunu (Android)",
+    product_terms_quietly: "Quietly — medya kaydedici (Android)",
     agreement_title: "Anlaşma",
     agreement_body:
       "uselunexa.com'a erişerek ve kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız, lütfen bu web sitesini kullanmayın.",
@@ -851,6 +863,12 @@ const es: Dictionary = {
     eyebrow: "Legal",
     heading: "Términos de Uso",
     last_updated: "Última actualización: Abril 2026",
+    product_terms_title: "Términos por producto",
+    product_terms_intro:
+      "Cada app de Lunexa tiene sus propios términos de servicio. La página siguiente cubre únicamente el sitio web uselunexa.com. Para una aplicación, sigue el enlace correspondiente:",
+    product_terms_rps_duel: "RPS Duel — juego móvil (Android)",
+    product_terms_chess_rescue: "Chess Rescue — juego de rompecabezas móvil (Android)",
+    product_terms_quietly: "Quietly — guardador de medios (Android)",
     agreement_title: "Acuerdo",
     agreement_body:
       "Al acceder y utilizar uselunexa.com, aceptas estos términos. Si no estás de acuerdo, por favor no uses este sitio web.",

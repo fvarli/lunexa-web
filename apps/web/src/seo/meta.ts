@@ -152,20 +152,77 @@ export const CHESS_RESCUE_PRIVACY_META: PageCopy = {
   },
 };
 
+// Scoped to the website, matching what the page body actually says. Each app
+// carries its own terms at /terms/<product>.
 export const TERMS_META: PageCopy = {
   en: {
     title: "Terms of Use",
     description:
-      "Terms and conditions for using the Lunexa website and services.",
+      "Terms and conditions for using the uselunexa.com website. Lunexa apps have their own product-specific terms.",
   },
   tr: {
     title: "Kullanım Şartları",
-    description: "Lunexa web sitesini ve hizmetlerini kullanma koşulları.",
+    description:
+      "uselunexa.com web sitesini kullanma koşulları. Lunexa uygulamalarının kendi ürüne özel şartları vardır.",
   },
   es: {
     title: "Términos de Uso",
     description:
-      "Términos y condiciones para usar el sitio web y los servicios de Lunexa.",
+      "Términos y condiciones para usar el sitio web uselunexa.com. Las apps de Lunexa tienen sus propios términos por producto.",
+  },
+};
+
+export const RPS_DUEL_TERMS_META: PageCopy = {
+  en: {
+    title: "RPS Duel — Terms of Service",
+    description:
+      "Terms of service for RPS Duel (com.lunexa.games.rpsduel), a single-player Rock Paper Scissors game by Lunexa Games. Entertainment only — no gambling, no wagering, no prizes.",
+  },
+  tr: {
+    title: "RPS Duel — Kullanım Şartları",
+    description:
+      "RPS Duel için kullanım şartları (com.lunexa.games.rpsduel) — Lunexa Games tarafından geliştirilen tek oyunculu Taş Kâğıt Makas oyunu. Yalnızca eğlence amaçlı — kumar yok, bahis yok, ödül yok.",
+  },
+  es: {
+    title: "RPS Duel — Términos de Servicio",
+    description:
+      "Términos de servicio de RPS Duel (com.lunexa.games.rpsduel), un juego de Piedra Papel Tijera para un solo jugador de Lunexa Games. Solo entretenimiento: sin juegos de azar, sin apuestas, sin premios.",
+  },
+};
+
+export const CHESS_RESCUE_TERMS_META: PageCopy = {
+  en: {
+    title: "Chess Rescue — Terms of Service",
+    description:
+      "Terms of service for Chess Rescue (com.lunexa.games.chessrescue), a single-player offline puzzle game by Lunexa Games. Entertainment only — not a chess training or certification product.",
+  },
+  tr: {
+    title: "Chess Rescue — Kullanım Şartları",
+    description:
+      "Chess Rescue için kullanım şartları (com.lunexa.games.chessrescue) — Lunexa Games tarafından geliştirilen tek oyunculu, çevrimdışı bulmaca oyunu. Yalnızca eğlence amaçlı — satranç eğitimi veya sertifikasyon ürünü değildir.",
+  },
+  es: {
+    title: "Chess Rescue — Términos de Servicio",
+    description:
+      "Términos de servicio de Chess Rescue (com.lunexa.games.chessrescue), un juego de rompecabezas para un solo jugador y sin conexión de Lunexa Games. Solo entretenimiento: no es un producto de entrenamiento ni certificación de ajedrez.",
+  },
+};
+
+export const QUIETLY_TERMS_META: PageCopy = {
+  en: {
+    title: "Quietly — Terms of Service",
+    description:
+      "Terms of service for Quietly, a media-saver Android app by Lunexa. Authorised use only — save only media you own or have permission to save. No rights granted to third-party media.",
+  },
+  tr: {
+    title: "Quietly — Kullanım Şartları",
+    description:
+      "Quietly için kullanım şartları — Lunexa tarafından geliştirilen Android medya kaydedici uygulaması. Yalnızca yetkili kullanım — yalnızca sahibi olduğunuz veya kaydetme izniniz olan medyayı kaydedin. Üçüncü taraf medya üzerinde hak verilmez.",
+  },
+  es: {
+    title: "Quietly — Términos de Servicio",
+    description:
+      "Términos de servicio de Quietly, una app Android de guardado de medios por Lunexa. Solo uso autorizado: guarda únicamente medios que te pertenezcan o tengas permiso para guardar. No se conceden derechos sobre medios de terceros.",
   },
 };
 

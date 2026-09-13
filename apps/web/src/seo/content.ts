@@ -66,22 +66,28 @@ type RelatedServicesContent = {
   back_label: string;
 };
 
-type AppPrivacySection = {
+// Shape shared by every per-product legal document — privacy policies and terms
+// alike. Named for the shape rather than for privacy because the terms blocks
+// below reuse it; both render through the same section-mapping component.
+type LegalSection = {
   title: string;
   paragraphs?: string[];
   bullets?: string[];
 };
 
-type AppPrivacyContent = {
+type LegalDocument = {
   eyebrow: string;
   heading: string;
   lastUpdated: string;
   intro: string;
-  sections: AppPrivacySection[];
+  sections: LegalSection[];
   contactTitle: string;
   contactBodyPrefix: string;
   contactBodySuffix: string;
 };
+
+/** One legal document in every locale — the shape `LegalDocumentContent` renders. */
+export type LegalDocumentCopy = Record<Locale, LegalDocument>;
 
 // ── About ──
 
@@ -809,7 +815,7 @@ export const WORK: Record<Locale, WorkContent> = {
 // the current rps_duel Flutter codebase before authoring. Update this and
 // bump `lastUpdated` whenever the app's data behaviour changes.
 
-export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
+export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "RPS Duel · Privacy",
     heading: "RPS Duel — Privacy Policy",
@@ -998,7 +1004,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
   },
 };
 
-export const CHESS_RESCUE_PRIVACY: Record<Locale, AppPrivacyContent> = {
+export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "Chess Rescue · Privacy",
     heading: "Chess Rescue — Privacy Policy",
@@ -1216,7 +1222,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, AppPrivacyContent> = {
 // registered controller name + address becomes required. Default posture
 // remains: contact via hello@uselunexa.com.
 
-export const QUIETLY_PRIVACY: Record<Locale, AppPrivacyContent> = {
+export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "Quietly · Privacy",
     heading: "Quietly — Privacy Policy",
@@ -1476,6 +1482,830 @@ export const QUIETLY_PRIVACY: Record<Locale, AppPrivacyContent> = {
     ],
     contactTitle: "Contacto",
     contactBodyPrefix: "Las preguntas sobre esta política pueden enviarse a ",
+    contactBodySuffix: ".",
+  },
+};
+
+// ── RPS Duel terms of service ──
+// App-specific terms. Standalone: the generic /terms document is scoped to the
+// uselunexa.com website and grants no app licence, so it is deliberately not
+// incorporated by reference here. Scope constraint: these terms describe the
+// agreement only. Data behaviour belongs in the privacy policy above — do not
+// restate "no ads"/"no analytics" here, or this block goes stale the moment the
+// app's SDK set changes.
+
+export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
+  en: {
+    eyebrow: "RPS Duel · Terms",
+    heading: "RPS Duel — Terms of Service",
+    lastUpdated: "Last updated: 2026-09-13",
+    intro:
+      "These terms apply to the RPS Duel mobile app made by Lunexa Games (package id: com.lunexa.games.rpsduel). The terms for the uselunexa.com website are separate and are published at uselunexa.com/terms.",
+    sections: [
+      {
+        title: "Overview",
+        paragraphs: [
+          "By installing or using RPS Duel, you agree to these terms. If you do not agree, please do not use the app.",
+          "What the app does with information is described separately in the RPS Duel Privacy Policy.",
+        ],
+      },
+      {
+        title: "Entertainment only",
+        paragraphs: [
+          "RPS Duel is a game played for entertainment against a built-in opponent. It is not a gambling product. There is no real-money wagering, no betting, no prizes, and no cash-equivalent rewards. Scores, streaks and achievements exist only inside the game, have no monetary value, and cannot be exchanged for anything.",
+        ],
+      },
+      {
+        title: "No account",
+        paragraphs: [
+          "RPS Duel does not require an account. Your progress and preferences are kept on your device, and we keep no copy of them — so we cannot restore them for you. Clearing the app's data or uninstalling the app removes them from the device; whether a copy survives in your operating system's own backup is outside our control.",
+        ],
+      },
+      {
+        title: "Your licence to use the app",
+        paragraphs: [
+          "Lunexa Games grants you a personal, non-exclusive, non-transferable licence to install and use RPS Duel on devices you own or control, for your own non-commercial use. You may not sell, rent, sublicense, or redistribute the app.",
+        ],
+      },
+      {
+        title: "Acceptable use",
+        paragraphs: ["You agree not to:"],
+        bullets: [
+          "Modify, reverse-engineer, or decompile the app, except where that restriction is prohibited by law",
+          "Circumvent or interfere with how the app is intended to work",
+          "Redistribute the app or present it as your own",
+          "Use the app in any way that breaks applicable law",
+        ],
+      },
+      {
+        title: "Intellectual property",
+        paragraphs: [
+          "The app — including its code, design, artwork, text, and sound — belongs to Lunexa Games unless stated otherwise. These terms do not transfer any ownership to you.",
+        ],
+      },
+      {
+        title: "Availability and updates",
+        paragraphs: [
+          "We may change, update, or discontinue RPS Duel or any of its features at any time. We are not obliged to release updates or to keep any particular feature available.",
+        ],
+      },
+      {
+        title: "Distribution through app stores",
+        paragraphs: [
+          "RPS Duel is distributed through Google Play. Your use of that store is governed by Google's own terms, which are separate from these.",
+        ],
+      },
+      {
+        title: "Disclaimer",
+        paragraphs: [
+          "The app is provided “as is” without warranties of any kind, express or implied. Lunexa Games does not guarantee that the app will be available at all times or free from errors.",
+        ],
+      },
+      {
+        title: "Limitation of liability",
+        paragraphs: [
+          "To the fullest extent permitted by law, Lunexa Games shall not be liable for any indirect, incidental, or consequential damages arising from your use of the app.",
+        ],
+      },
+      {
+        title: "Changes to these terms",
+        paragraphs: [
+          "We may revise these terms at any time. The date at the top of this page will reflect the change, and continued use of the app after revised terms are posted constitutes acceptance of them.",
+        ],
+      },
+    ],
+    contactTitle: "Contact",
+    contactBodyPrefix: "Questions about these terms can be sent to ",
+    contactBodySuffix: ".",
+  },
+  tr: {
+    eyebrow: "RPS Duel · Şartlar",
+    heading: "RPS Duel — Kullanım Şartları",
+    lastUpdated: "Son güncelleme: 13.09.2026",
+    intro:
+      "Bu şartlar, Lunexa Games tarafından geliştirilen RPS Duel mobil uygulaması için geçerlidir (paket kimliği: com.lunexa.games.rpsduel). uselunexa.com web sitesinin şartları ayrıdır ve uselunexa.com/terms adresinde yayımlanır.",
+    sections: [
+      {
+        title: "Genel bakış",
+        paragraphs: [
+          "RPS Duel'i yükleyerek veya kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.",
+          "Uygulamanın bilgilerle ne yaptığı ayrıca RPS Duel Gizlilik Politikası'nda açıklanmıştır.",
+        ],
+      },
+      {
+        title: "Yalnızca eğlence amaçlı",
+        paragraphs: [
+          "RPS Duel, yerleşik bir rakibe karşı eğlence amacıyla oynanan bir oyundur. Bir kumar ürünü değildir. Gerçek parayla bahis, bahis oynama, ödül veya nakit karşılığı ödül yoktur. Skorlar, seriler ve başarımlar yalnızca oyunun içinde vardır, parasal bir değer taşımaz ve hiçbir şeyle takas edilemez.",
+        ],
+      },
+      {
+        title: "Hesap yok",
+        paragraphs: [
+          "RPS Duel hesap gerektirmez. İlerlemeniz ve tercihleriniz cihazınızda saklanır ve bizde hiçbir kopyası bulunmaz — bu nedenle bunları sizin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunları cihazdan siler; işletim sisteminizin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
+        ],
+      },
+      {
+        title: "Uygulamayı kullanma lisansınız",
+        paragraphs: [
+          "Lunexa Games, RPS Duel'i sahip olduğunuz veya kontrol ettiğiniz cihazlara kurmanız ve kendi ticari olmayan kullanımınız için kullanmanız amacıyla size kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsınız.",
+        ],
+      },
+      {
+        title: "Kabul edilebilir kullanım",
+        paragraphs: ["Şunları yapmamayı kabul edersiniz:"],
+        bullets: [
+          "Yasaların bu kısıtlamayı yasakladığı durumlar dışında uygulamayı değiştirmek, tersine mühendislik uygulamak veya derlemesini çözmek",
+          "Uygulamanın amaçlanan çalışma biçimini atlatmak veya buna müdahale etmek",
+          "Uygulamayı yeniden dağıtmak veya kendinize aitmiş gibi sunmak",
+          "Uygulamayı geçerli yasaları ihlal edecek şekilde kullanmak",
+        ],
+      },
+      {
+        title: "Fikri mülkiyet",
+        paragraphs: [
+          "Uygulama — kodu, tasarımı, görselleri, metni ve sesi dahil — aksi belirtilmedikçe Lunexa Games'e aittir. Bu şartlar size herhangi bir mülkiyet devretmez.",
+        ],
+      },
+      {
+        title: "Erişilebilirlik ve güncellemeler",
+        paragraphs: [
+          "RPS Duel'i veya herhangi bir özelliğini istediğimiz zaman değiştirebilir, güncelleyebilir veya sonlandırabiliriz. Güncelleme yayımlamak veya belirli bir özelliği sunmaya devam etmek zorunda değiliz.",
+        ],
+      },
+      {
+        title: "Uygulama mağazaları üzerinden dağıtım",
+        paragraphs: [
+          "RPS Duel, Google Play üzerinden dağıtılmaktadır. Bu mağazayı kullanmanız, bu şartlardan ayrı olan Google'ın kendi koşullarına tabidir.",
+        ],
+      },
+      {
+        title: "Sorumluluk reddi",
+        paragraphs: [
+          "Uygulama, açık veya zımni hiçbir garanti verilmeksizin “olduğu gibi” sunulur. Lunexa Games, uygulamanın her zaman erişilebilir veya hatasız olacağını garanti etmez.",
+        ],
+      },
+      {
+        title: "Sorumluluğun sınırlandırılması",
+        paragraphs: [
+          "Yasaların izin verdiği en geniş ölçüde, Lunexa Games uygulamayı kullanmanızdan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
+        ],
+      },
+      {
+        title: "Bu şartlardaki değişiklikler",
+        paragraphs: [
+          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmeniz bunları kabul ettiğiniz anlamına gelir.",
+        ],
+      },
+    ],
+    contactTitle: "İletişim",
+    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsiniz: ",
+    contactBodySuffix: ".",
+  },
+  es: {
+    eyebrow: "RPS Duel · Términos",
+    heading: "RPS Duel — Términos de Servicio",
+    lastUpdated: "Última actualización: 2026-09-13",
+    intro:
+      "Estos términos se aplican a la aplicación móvil RPS Duel creada por Lunexa Games (id de paquete: com.lunexa.games.rpsduel). Los términos del sitio web uselunexa.com son independientes y se publican en uselunexa.com/terms.",
+    sections: [
+      {
+        title: "Resumen",
+        paragraphs: [
+          "Al instalar o usar RPS Duel, aceptas estos términos. Si no estás de acuerdo, por favor no uses la aplicación.",
+          "Lo que la aplicación hace con la información se describe por separado en la Política de Privacidad de RPS Duel.",
+        ],
+      },
+      {
+        title: "Solo entretenimiento",
+        paragraphs: [
+          "RPS Duel es un juego de entretenimiento que se juega contra un oponente integrado. No es un producto de juegos de azar. No hay apuestas con dinero real, ni apuestas de ningún tipo, ni premios, ni recompensas equivalentes a dinero. Las puntuaciones, rachas y logros existen únicamente dentro del juego, no tienen valor monetario y no pueden canjearse por nada.",
+        ],
+      },
+      {
+        title: "Sin cuenta",
+        paragraphs: [
+          "RPS Duel no requiere una cuenta. Tu progreso y tus preferencias se guardan en tu dispositivo y no conservamos ninguna copia, por lo que no podemos restaurarlos por ti. Borrar los datos de la aplicación o desinstalarla los elimina del dispositivo; que quede una copia en la copia de seguridad de tu propio sistema operativo está fuera de nuestro control.",
+        ],
+      },
+      {
+        title: "Tu licencia para usar la aplicación",
+        paragraphs: [
+          "Lunexa Games te concede una licencia personal, no exclusiva e intransferible para instalar y usar RPS Duel en dispositivos que poseas o controles, para tu propio uso no comercial. No puedes vender, alquilar, sublicenciar ni redistribuir la aplicación.",
+        ],
+      },
+      {
+        title: "Uso aceptable",
+        paragraphs: ["Aceptas no:"],
+        bullets: [
+          "Modificar, aplicar ingeniería inversa o descompilar la aplicación, salvo cuando la ley prohíba esa restricción",
+          "Eludir o interferir con el funcionamiento previsto de la aplicación",
+          "Redistribuir la aplicación o presentarla como propia",
+          "Usar la aplicación de cualquier forma que infrinja la ley aplicable",
+        ],
+      },
+      {
+        title: "Propiedad intelectual",
+        paragraphs: [
+          "La aplicación — incluidos su código, diseño, ilustraciones, texto y sonido — pertenece a Lunexa Games salvo que se indique lo contrario. Estos términos no te transfieren ninguna titularidad.",
+        ],
+      },
+      {
+        title: "Disponibilidad y actualizaciones",
+        paragraphs: [
+          "Podemos cambiar, actualizar o descontinuar RPS Duel o cualquiera de sus funciones en cualquier momento. No estamos obligados a publicar actualizaciones ni a mantener disponible ninguna función concreta.",
+        ],
+      },
+      {
+        title: "Distribución a través de tiendas de aplicaciones",
+        paragraphs: [
+          "RPS Duel se distribuye a través de Google Play. Tu uso de esa tienda se rige por los términos propios de Google, que son independientes de estos.",
+        ],
+      },
+      {
+        title: "Descargo de responsabilidad",
+        paragraphs: [
+          "La aplicación se ofrece “tal cual”, sin garantías de ningún tipo, expresas o implícitas. Lunexa Games no garantiza que la aplicación esté disponible en todo momento ni libre de errores.",
+        ],
+      },
+      {
+        title: "Limitación de responsabilidad",
+        paragraphs: [
+          "En la máxima medida permitida por la ley, Lunexa Games no será responsable de daños indirectos, incidentales o consecuentes derivados de tu uso de la aplicación.",
+        ],
+      },
+      {
+        title: "Cambios en estos términos",
+        paragraphs: [
+          "Podemos revisar estos términos en cualquier momento. La fecha en la parte superior de esta página reflejará el cambio, y seguir usando la aplicación después de que se publiquen los términos revisados constituye su aceptación.",
+        ],
+      },
+    ],
+    contactTitle: "Contacto",
+    contactBodyPrefix: "Las preguntas sobre estos términos pueden enviarse a ",
+    contactBodySuffix: ".",
+  },
+};
+
+// ── Chess Rescue terms of service ──
+// Standalone, same rationale as RPS Duel above. Two product constraints: the
+// app is not yet released, so nothing here may assert store availability; and
+// it is a puzzle game, not a trainer — no wording may imply coaching,
+// certification, rating gain, or chess improvement.
+
+export const CHESS_RESCUE_TERMS: Record<Locale, LegalDocument> = {
+  en: {
+    eyebrow: "Chess Rescue · Terms",
+    heading: "Chess Rescue — Terms of Service",
+    lastUpdated: "Last updated: 2026-09-13",
+    intro:
+      "These terms apply to the Chess Rescue mobile app made by Lunexa Games (package id: com.lunexa.games.chessrescue). The terms for the uselunexa.com website are separate and are published at uselunexa.com/terms.",
+    sections: [
+      {
+        title: "Overview",
+        paragraphs: [
+          "By installing or using Chess Rescue, you agree to these terms. If you do not agree, please do not use the app.",
+          "What the app does with information is described separately in the Chess Rescue Privacy Policy.",
+        ],
+      },
+      {
+        title: "Entertainment only",
+        paragraphs: [
+          "Chess Rescue is a puzzle game played for entertainment. Its puzzles use the movement rules of chess, but the app is not a training, coaching, or certification product. It does not promise any improvement in your chess ability or rating, and it should not be relied on for that purpose.",
+        ],
+      },
+      {
+        title: "Offline play and no account",
+        paragraphs: [
+          "Chess Rescue does not require an account and does not need a network connection to play. Your progress is kept on your device, and we keep no copy of it — so we cannot restore it for you. Clearing the app's data or uninstalling the app removes it from the device; whether a copy survives in your operating system's own backup is outside our control.",
+        ],
+      },
+      {
+        title: "Your licence to use the app",
+        paragraphs: [
+          "Lunexa Games grants you a personal, non-exclusive, non-transferable licence to install and use Chess Rescue on devices you own or control, for your own non-commercial use. You may not sell, rent, sublicense, or redistribute the app.",
+        ],
+      },
+      {
+        title: "Acceptable use",
+        paragraphs: ["You agree not to:"],
+        bullets: [
+          "Modify, reverse-engineer, or decompile the app, except where that restriction is prohibited by law",
+          "Circumvent or interfere with how the app is intended to work",
+          "Redistribute the app or present it as your own",
+          "Use the app in any way that breaks applicable law",
+        ],
+      },
+      {
+        title: "Intellectual property",
+        paragraphs: [
+          "The app — including its code, design, artwork, text, and puzzle set — belongs to Lunexa Games unless stated otherwise. These terms do not transfer any ownership to you.",
+        ],
+      },
+      {
+        title: "Availability and updates",
+        paragraphs: [
+          "We may change, update, or discontinue Chess Rescue or any of its features at any time. We are not obliged to release updates or to keep any particular feature available.",
+        ],
+      },
+      {
+        title: "Distribution through app stores",
+        paragraphs: [
+          "Where you obtain Chess Rescue through an app store, that store's own terms also apply to your download and are separate from these terms.",
+        ],
+      },
+      {
+        title: "Disclaimer",
+        paragraphs: [
+          "The app is provided “as is” without warranties of any kind, express or implied. Lunexa Games does not guarantee that the app will be available at all times or free from errors.",
+        ],
+      },
+      {
+        title: "Limitation of liability",
+        paragraphs: [
+          "To the fullest extent permitted by law, Lunexa Games shall not be liable for any indirect, incidental, or consequential damages arising from your use of the app.",
+        ],
+      },
+      {
+        title: "Changes to these terms",
+        paragraphs: [
+          "We may revise these terms at any time. The date at the top of this page will reflect the change, and continued use of the app after revised terms are posted constitutes acceptance of them.",
+        ],
+      },
+    ],
+    contactTitle: "Contact",
+    contactBodyPrefix: "Questions about these terms can be sent to ",
+    contactBodySuffix: ".",
+  },
+  tr: {
+    eyebrow: "Chess Rescue · Şartlar",
+    heading: "Chess Rescue — Kullanım Şartları",
+    lastUpdated: "Son güncelleme: 13.09.2026",
+    intro:
+      "Bu şartlar, Lunexa Games tarafından geliştirilen Chess Rescue mobil uygulaması için geçerlidir (paket kimliği: com.lunexa.games.chessrescue). uselunexa.com web sitesinin şartları ayrıdır ve uselunexa.com/terms adresinde yayımlanır.",
+    sections: [
+      {
+        title: "Genel bakış",
+        paragraphs: [
+          "Chess Rescue'yu yükleyerek veya kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.",
+          "Uygulamanın bilgilerle ne yaptığı ayrıca Chess Rescue Gizlilik Politikası'nda açıklanmıştır.",
+        ],
+      },
+      {
+        title: "Yalnızca eğlence amaçlı",
+        paragraphs: [
+          "Chess Rescue, eğlence amacıyla oynanan bir bulmaca oyunudur. Bulmacaları satrancın taş hareket kurallarını kullanır, ancak uygulama bir eğitim, koçluk veya sertifikasyon ürünü değildir. Satranç yeteneğinizde veya puanınızda herhangi bir gelişme vaat etmez ve bu amaçla kullanılmamalıdır.",
+        ],
+      },
+      {
+        title: "Çevrimdışı oynanış ve hesap yok",
+        paragraphs: [
+          "Chess Rescue hesap gerektirmez ve oynamak için ağ bağlantısına ihtiyaç duymaz. İlerlemeniz cihazınızda saklanır ve bizde hiçbir kopyası bulunmaz — bu nedenle bunu sizin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunu cihazdan siler; işletim sisteminizin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
+        ],
+      },
+      {
+        title: "Uygulamayı kullanma lisansınız",
+        paragraphs: [
+          "Lunexa Games, Chess Rescue'yu sahip olduğunuz veya kontrol ettiğiniz cihazlara kurmanız ve kendi ticari olmayan kullanımınız için kullanmanız amacıyla size kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsınız.",
+        ],
+      },
+      {
+        title: "Kabul edilebilir kullanım",
+        paragraphs: ["Şunları yapmamayı kabul edersiniz:"],
+        bullets: [
+          "Yasaların bu kısıtlamayı yasakladığı durumlar dışında uygulamayı değiştirmek, tersine mühendislik uygulamak veya derlemesini çözmek",
+          "Uygulamanın amaçlanan çalışma biçimini atlatmak veya buna müdahale etmek",
+          "Uygulamayı yeniden dağıtmak veya kendinize aitmiş gibi sunmak",
+          "Uygulamayı geçerli yasaları ihlal edecek şekilde kullanmak",
+        ],
+      },
+      {
+        title: "Fikri mülkiyet",
+        paragraphs: [
+          "Uygulama — kodu, tasarımı, görselleri, metni ve bulmaca seti dahil — aksi belirtilmedikçe Lunexa Games'e aittir. Bu şartlar size herhangi bir mülkiyet devretmez.",
+        ],
+      },
+      {
+        title: "Erişilebilirlik ve güncellemeler",
+        paragraphs: [
+          "Chess Rescue'yu veya herhangi bir özelliğini istediğimiz zaman değiştirebilir, güncelleyebilir veya sonlandırabiliriz. Güncelleme yayımlamak veya belirli bir özelliği sunmaya devam etmek zorunda değiliz.",
+        ],
+      },
+      {
+        title: "Uygulama mağazaları üzerinden dağıtım",
+        paragraphs: [
+          "Chess Rescue'yu bir uygulama mağazası üzerinden edindiğinizde, o mağazanın kendi koşulları da indirmeniz için geçerlidir ve bu şartlardan ayrıdır.",
+        ],
+      },
+      {
+        title: "Sorumluluk reddi",
+        paragraphs: [
+          "Uygulama, açık veya zımni hiçbir garanti verilmeksizin “olduğu gibi” sunulur. Lunexa Games, uygulamanın her zaman erişilebilir veya hatasız olacağını garanti etmez.",
+        ],
+      },
+      {
+        title: "Sorumluluğun sınırlandırılması",
+        paragraphs: [
+          "Yasaların izin verdiği en geniş ölçüde, Lunexa Games uygulamayı kullanmanızdan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
+        ],
+      },
+      {
+        title: "Bu şartlardaki değişiklikler",
+        paragraphs: [
+          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmeniz bunları kabul ettiğiniz anlamına gelir.",
+        ],
+      },
+    ],
+    contactTitle: "İletişim",
+    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsiniz: ",
+    contactBodySuffix: ".",
+  },
+  es: {
+    eyebrow: "Chess Rescue · Términos",
+    heading: "Chess Rescue — Términos de Servicio",
+    lastUpdated: "Última actualización: 2026-09-13",
+    intro:
+      "Estos términos se aplican a la aplicación móvil Chess Rescue creada por Lunexa Games (id de paquete: com.lunexa.games.chessrescue). Los términos del sitio web uselunexa.com son independientes y se publican en uselunexa.com/terms.",
+    sections: [
+      {
+        title: "Resumen",
+        paragraphs: [
+          "Al instalar o usar Chess Rescue, aceptas estos términos. Si no estás de acuerdo, por favor no uses la aplicación.",
+          "Lo que la aplicación hace con la información se describe por separado en la Política de Privacidad de Chess Rescue.",
+        ],
+      },
+      {
+        title: "Solo entretenimiento",
+        paragraphs: [
+          "Chess Rescue es un juego de rompecabezas de entretenimiento. Sus rompecabezas usan las reglas de movimiento del ajedrez, pero la aplicación no es un producto de entrenamiento, tutoría ni certificación. No promete ninguna mejora en tu habilidad ajedrecística ni en tu puntuación, y no debe usarse con ese fin.",
+        ],
+      },
+      {
+        title: "Juego sin conexión y sin cuenta",
+        paragraphs: [
+          "Chess Rescue no requiere una cuenta ni necesita conexión de red para jugar. Tu progreso se guarda en tu dispositivo y no conservamos ninguna copia, por lo que no podemos restaurarlo por ti. Borrar los datos de la aplicación o desinstalarla lo elimina del dispositivo; que quede una copia en la copia de seguridad de tu propio sistema operativo está fuera de nuestro control.",
+        ],
+      },
+      {
+        title: "Tu licencia para usar la aplicación",
+        paragraphs: [
+          "Lunexa Games te concede una licencia personal, no exclusiva e intransferible para instalar y usar Chess Rescue en dispositivos que poseas o controles, para tu propio uso no comercial. No puedes vender, alquilar, sublicenciar ni redistribuir la aplicación.",
+        ],
+      },
+      {
+        title: "Uso aceptable",
+        paragraphs: ["Aceptas no:"],
+        bullets: [
+          "Modificar, aplicar ingeniería inversa o descompilar la aplicación, salvo cuando la ley prohíba esa restricción",
+          "Eludir o interferir con el funcionamiento previsto de la aplicación",
+          "Redistribuir la aplicación o presentarla como propia",
+          "Usar la aplicación de cualquier forma que infrinja la ley aplicable",
+        ],
+      },
+      {
+        title: "Propiedad intelectual",
+        paragraphs: [
+          "La aplicación — incluidos su código, diseño, ilustraciones, texto y conjunto de rompecabezas — pertenece a Lunexa Games salvo que se indique lo contrario. Estos términos no te transfieren ninguna titularidad.",
+        ],
+      },
+      {
+        title: "Disponibilidad y actualizaciones",
+        paragraphs: [
+          "Podemos cambiar, actualizar o descontinuar Chess Rescue o cualquiera de sus funciones en cualquier momento. No estamos obligados a publicar actualizaciones ni a mantener disponible ninguna función concreta.",
+        ],
+      },
+      {
+        title: "Distribución a través de tiendas de aplicaciones",
+        paragraphs: [
+          "Cuando obtienes Chess Rescue a través de una tienda de aplicaciones, los términos propios de esa tienda también se aplican a tu descarga y son independientes de estos términos.",
+        ],
+      },
+      {
+        title: "Descargo de responsabilidad",
+        paragraphs: [
+          "La aplicación se ofrece “tal cual”, sin garantías de ningún tipo, expresas o implícitas. Lunexa Games no garantiza que la aplicación esté disponible en todo momento ni libre de errores.",
+        ],
+      },
+      {
+        title: "Limitación de responsabilidad",
+        paragraphs: [
+          "En la máxima medida permitida por la ley, Lunexa Games no será responsable de daños indirectos, incidentales o consecuentes derivados de tu uso de la aplicación.",
+        ],
+      },
+      {
+        title: "Cambios en estos términos",
+        paragraphs: [
+          "Podemos revisar estos términos en cualquier momento. La fecha en la parte superior de esta página reflejará el cambio, y seguir usando la aplicación después de que se publiquen los términos revisados constituye su aceptación.",
+        ],
+      },
+    ],
+    contactTitle: "Contacto",
+    contactBodyPrefix: "Las preguntas sobre estos términos pueden enviarse a ",
+    contactBodySuffix: ".",
+  },
+};
+
+// ── Quietly terms of service ──
+// Standalone, same rationale as the two games. Three product constraints:
+// attribution is "Lunexa", not "Lunexa Games" — Quietly is not a game; no
+// package id exists anywhere in the repo, so none is claimed here; and the app
+// is not yet released, so nothing asserts store availability. The
+// authorised-use wording mirrors the shipped privacy policy: Quietly does not
+// bypass access controls and does not verify rights. Neither half may be
+// overstated into an enforcement promise.
+
+export const QUIETLY_TERMS: Record<Locale, LegalDocument> = {
+  en: {
+    eyebrow: "Quietly · Terms",
+    heading: "Quietly — Terms of Service",
+    lastUpdated: "Last updated: 2026-09-13",
+    intro:
+      "These terms apply to the Quietly mobile app made by Lunexa. The terms for the uselunexa.com website are separate and are published at uselunexa.com/terms.",
+    sections: [
+      {
+        title: "Overview",
+        paragraphs: [
+          "By installing or using Quietly, you agree to these terms. If you do not agree, please do not use the app.",
+          "Quietly is a utility that saves direct public media from URLs you paste into your device's gallery. What the app does with information is described separately in the Quietly Privacy Policy.",
+        ],
+      },
+      {
+        title: "Authorised use only",
+        paragraphs: [
+          "You may use Quietly only to save media you are entitled to save. That means media you own, media you created, media you have the rights holder's permission to save, or media you are otherwise legally entitled to save.",
+          "You are solely responsible for what you choose to save, and for complying with copyright law, the terms of the platform the media came from, and any other applicable law.",
+        ],
+      },
+      {
+        title: "What Quietly does not do",
+        paragraphs: [
+          "Quietly does not scrape pages or parse social-platform feeds. It does not access logged-in or DRM-protected content, and it does not circumvent access controls or protection measures. It does not impersonate any platform, and it does not operate a server-side download service on your behalf. It fetches what you paste, when you ask.",
+          "Quietly does not check whether you hold the rights to the media at a URL you provide. The absence of that check is not permission, and it does not make an unauthorised save acceptable.",
+        ],
+      },
+      {
+        title: "No rights are granted to third-party media",
+        paragraphs: [
+          "Quietly gives you no rights in any media you save. Rights in that media stay with whoever holds them. Saving a file through Quietly does not make it yours to republish, share, or use commercially.",
+        ],
+      },
+      {
+        title: "No account",
+        paragraphs: [
+          "Quietly does not require an account. Your settings and your history of saved items are kept on your device, and we keep no copy of them — so we cannot restore them for you. Clearing the app's data or uninstalling the app removes them from the device; whether a copy survives in your operating system's own backup is outside our control.",
+        ],
+      },
+      {
+        title: "Your licence to use the app",
+        paragraphs: [
+          "Lunexa grants you a personal, non-exclusive, non-transferable licence to install and use Quietly on devices you own or control, for your own non-commercial use. You may not sell, rent, sublicense, or redistribute the app.",
+        ],
+      },
+      {
+        title: "Acceptable use",
+        paragraphs: ["You agree not to:"],
+        bullets: [
+          "Use Quietly to save media you are not entitled to save",
+          "Use Quietly to circumvent any access control, paywall, or protection measure",
+          "Modify, reverse-engineer, or decompile the app, except where that restriction is prohibited by law",
+          "Redistribute the app or present it as your own",
+          "Use the app in any way that breaks applicable law",
+        ],
+      },
+      {
+        title: "Intellectual property",
+        paragraphs: [
+          "The app — including its code, design, and text — belongs to Lunexa unless stated otherwise. These terms do not transfer any ownership to you, and they give you no rights in media obtained through the app.",
+        ],
+      },
+      {
+        title: "Availability and updates",
+        paragraphs: [
+          "We may change, update, or discontinue Quietly or any of its features at any time. Because the app depends on sources we do not control, a URL that works today may stop working at any point. We are not obliged to release updates or to keep any particular feature available.",
+        ],
+      },
+      {
+        title: "Distribution through app stores",
+        paragraphs: [
+          "Where you obtain Quietly through an app store, that store's own terms also apply to your download and are separate from these terms.",
+        ],
+      },
+      {
+        title: "Disclaimer",
+        paragraphs: [
+          "The app is provided “as is” without warranties of any kind, express or implied. Lunexa does not guarantee that the app will be available at all times, free from errors, or able to retrieve any particular URL.",
+        ],
+      },
+      {
+        title: "Limitation of liability",
+        paragraphs: [
+          "To the fullest extent permitted by law, Lunexa shall not be liable for any indirect, incidental, or consequential damages arising from your use of the app, including any claim arising from media you chose to save.",
+        ],
+      },
+      {
+        title: "Changes to these terms",
+        paragraphs: [
+          "We may revise these terms at any time. The date at the top of this page will reflect the change, and continued use of the app after revised terms are posted constitutes acceptance of them.",
+        ],
+      },
+    ],
+    contactTitle: "Contact",
+    contactBodyPrefix: "Questions about these terms can be sent to ",
+    contactBodySuffix: ".",
+  },
+  tr: {
+    eyebrow: "Quietly · Şartlar",
+    heading: "Quietly — Kullanım Şartları",
+    lastUpdated: "Son güncelleme: 13.09.2026",
+    intro:
+      "Bu şartlar, Lunexa tarafından geliştirilen Quietly mobil uygulaması için geçerlidir. uselunexa.com web sitesinin şartları ayrıdır ve uselunexa.com/terms adresinde yayımlanır.",
+    sections: [
+      {
+        title: "Genel bakış",
+        paragraphs: [
+          "Quietly'yi yükleyerek veya kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.",
+          "Quietly, yapıştırdığınız URL'lerdeki doğrudan halka açık medyayı cihazınızın galerisine kaydeden bir araçtır. Uygulamanın bilgilerle ne yaptığı ayrıca Quietly Gizlilik Politikası'nda açıklanmıştır.",
+        ],
+      },
+      {
+        title: "Yalnızca yetkili kullanım",
+        paragraphs: [
+          "Quietly'yi yalnızca kaydetmeye hakkınız olan medyayı kaydetmek için kullanabilirsiniz. Bu; sahibi olduğunuz, kendi oluşturduğunuz, hak sahibinden kaydetme izni aldığınız veya başka bir şekilde yasal olarak kaydetmeye yetkili olduğunuz medya anlamına gelir.",
+          "Neyi kaydetmeyi seçtiğinizden ve telif hakkı yasasına, medyanın geldiği platformun koşullarına ve geçerli diğer tüm yasalara uymaktan yalnızca siz sorumlusunuz.",
+        ],
+      },
+      {
+        title: "Quietly'nin yapmadıkları",
+        paragraphs: [
+          "Quietly sayfa kazıma yapmaz ve sosyal platform akışlarını ayrıştırmaz. Oturum açılmış veya DRM korumalı içeriğe erişmez, erişim kontrollerini veya koruma önlemlerini atlatmaz. Hiçbir platformu taklit etmez ve sizin adınıza sunucu tarafında bir indirme hizmeti çalıştırmaz. Yalnızca siz istediğinizde, yapıştırdığınızı getirir.",
+          "Quietly, sağladığınız bir URL'deki medyanın haklarına sahip olup olmadığınızı denetlemez. Bu denetimin yokluğu bir izin değildir ve yetkisiz bir kaydı kabul edilebilir hale getirmez.",
+        ],
+      },
+      {
+        title: "Üçüncü taraf medya üzerinde hak verilmez",
+        paragraphs: [
+          "Quietly, kaydettiğiniz hiçbir medya üzerinde size hak vermez. O medyanın hakları, hak sahibi kimse onda kalır. Bir dosyayı Quietly ile kaydetmeniz, onu yeniden yayımlama, paylaşma veya ticari olarak kullanma hakkı vermez.",
+        ],
+      },
+      {
+        title: "Hesap yok",
+        paragraphs: [
+          "Quietly hesap gerektirmez. Ayarlarınız ve kaydettiğiniz öğelerin geçmişi cihazınızda saklanır ve bizde hiçbir kopyası bulunmaz — bu nedenle bunları sizin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunları cihazdan siler; işletim sisteminizin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
+        ],
+      },
+      {
+        title: "Uygulamayı kullanma lisansınız",
+        paragraphs: [
+          "Lunexa, Quietly'yi sahip olduğunuz veya kontrol ettiğiniz cihazlara kurmanız ve kendi ticari olmayan kullanımınız için kullanmanız amacıyla size kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsınız.",
+        ],
+      },
+      {
+        title: "Kabul edilebilir kullanım",
+        paragraphs: ["Şunları yapmamayı kabul edersiniz:"],
+        bullets: [
+          "Quietly'yi kaydetmeye hakkınız olmayan medyayı kaydetmek için kullanmak",
+          "Quietly'yi herhangi bir erişim kontrolünü, ödeme duvarını veya koruma önlemini atlatmak için kullanmak",
+          "Yasaların bu kısıtlamayı yasakladığı durumlar dışında uygulamayı değiştirmek, tersine mühendislik uygulamak veya derlemesini çözmek",
+          "Uygulamayı yeniden dağıtmak veya kendinize aitmiş gibi sunmak",
+          "Uygulamayı geçerli yasaları ihlal edecek şekilde kullanmak",
+        ],
+      },
+      {
+        title: "Fikri mülkiyet",
+        paragraphs: [
+          "Uygulama — kodu, tasarımı ve metni dahil — aksi belirtilmedikçe Lunexa'ya aittir. Bu şartlar size herhangi bir mülkiyet devretmez ve uygulama aracılığıyla elde edilen medya üzerinde size hiçbir hak vermez.",
+        ],
+      },
+      {
+        title: "Erişilebilirlik ve güncellemeler",
+        paragraphs: [
+          "Quietly'yi veya herhangi bir özelliğini istediğimiz zaman değiştirebilir, güncelleyebilir veya sonlandırabiliriz. Uygulama, kontrol etmediğimiz kaynaklara bağlı olduğundan bugün çalışan bir URL her an çalışmayı bırakabilir. Güncelleme yayımlamak veya belirli bir özelliği sunmaya devam etmek zorunda değiliz.",
+        ],
+      },
+      {
+        title: "Uygulama mağazaları üzerinden dağıtım",
+        paragraphs: [
+          "Quietly'yi bir uygulama mağazası üzerinden edindiğinizde, o mağazanın kendi koşulları da indirmeniz için geçerlidir ve bu şartlardan ayrıdır.",
+        ],
+      },
+      {
+        title: "Sorumluluk reddi",
+        paragraphs: [
+          "Uygulama, açık veya zımni hiçbir garanti verilmeksizin “olduğu gibi” sunulur. Lunexa, uygulamanın her zaman erişilebilir, hatasız veya belirli bir URL'yi getirebilir olacağını garanti etmez.",
+        ],
+      },
+      {
+        title: "Sorumluluğun sınırlandırılması",
+        paragraphs: [
+          "Yasaların izin verdiği en geniş ölçüde, Lunexa uygulamayı kullanmanızdan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan — kaydetmeyi seçtiğiniz medyadan doğan talepler dahil — sorumlu tutulamaz.",
+        ],
+      },
+      {
+        title: "Bu şartlardaki değişiklikler",
+        paragraphs: [
+          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmeniz bunları kabul ettiğiniz anlamına gelir.",
+        ],
+      },
+    ],
+    contactTitle: "İletişim",
+    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsiniz: ",
+    contactBodySuffix: ".",
+  },
+  es: {
+    eyebrow: "Quietly · Términos",
+    heading: "Quietly — Términos de Servicio",
+    lastUpdated: "Última actualización: 2026-09-13",
+    intro:
+      "Estos términos se aplican a la aplicación móvil Quietly creada por Lunexa. Los términos del sitio web uselunexa.com son independientes y se publican en uselunexa.com/terms.",
+    sections: [
+      {
+        title: "Resumen",
+        paragraphs: [
+          "Al instalar o usar Quietly, aceptas estos términos. Si no estás de acuerdo, por favor no uses la aplicación.",
+          "Quietly es una utilidad que guarda medios públicos directos desde las URLs que pegas en la galería de tu dispositivo. Lo que la aplicación hace con la información se describe por separado en la Política de Privacidad de Quietly.",
+        ],
+      },
+      {
+        title: "Solo uso autorizado",
+        paragraphs: [
+          "Solo puedes usar Quietly para guardar medios que tengas derecho a guardar. Es decir, medios que te pertenezcan, que hayas creado, para los que tengas permiso del titular de los derechos, o que estés legalmente autorizado a guardar de otro modo.",
+          "Eres el único responsable de lo que elijas guardar y de cumplir con la ley de derechos de autor, los términos de la plataforma de la que procede el medio y cualquier otra ley aplicable.",
+        ],
+      },
+      {
+        title: "Lo que Quietly no hace",
+        paragraphs: [
+          "Quietly no hace scraping de páginas ni analiza feeds de plataformas sociales. No accede a contenido protegido por inicio de sesión o DRM, y no elude controles de acceso ni medidas de protección. No suplanta a ninguna plataforma y no opera un servicio de descarga del lado del servidor en tu nombre. Obtiene lo que pegas, cuando tú lo pides.",
+          "Quietly no comprueba si posees los derechos sobre el medio de una URL que proporcionas. La ausencia de esa comprobación no es un permiso ni hace aceptable un guardado no autorizado.",
+        ],
+      },
+      {
+        title: "No se conceden derechos sobre medios de terceros",
+        paragraphs: [
+          "Quietly no te concede ningún derecho sobre los medios que guardes. Los derechos sobre ese contenido siguen siendo de quien los ostente. Guardar un archivo con Quietly no te da derecho a republicarlo, compartirlo ni usarlo comercialmente.",
+        ],
+      },
+      {
+        title: "Sin cuenta",
+        paragraphs: [
+          "Quietly no requiere una cuenta. Tus ajustes y tu historial de elementos guardados se conservan en tu dispositivo y no conservamos ninguna copia, por lo que no podemos restaurarlos por ti. Borrar los datos de la aplicación o desinstalarla los elimina del dispositivo; que quede una copia en la copia de seguridad de tu propio sistema operativo está fuera de nuestro control.",
+        ],
+      },
+      {
+        title: "Tu licencia para usar la aplicación",
+        paragraphs: [
+          "Lunexa te concede una licencia personal, no exclusiva e intransferible para instalar y usar Quietly en dispositivos que poseas o controles, para tu propio uso no comercial. No puedes vender, alquilar, sublicenciar ni redistribuir la aplicación.",
+        ],
+      },
+      {
+        title: "Uso aceptable",
+        paragraphs: ["Aceptas no:"],
+        bullets: [
+          "Usar Quietly para guardar medios que no tengas derecho a guardar",
+          "Usar Quietly para eludir cualquier control de acceso, muro de pago o medida de protección",
+          "Modificar, aplicar ingeniería inversa o descompilar la aplicación, salvo cuando la ley prohíba esa restricción",
+          "Redistribuir la aplicación o presentarla como propia",
+          "Usar la aplicación de cualquier forma que infrinja la ley aplicable",
+        ],
+      },
+      {
+        title: "Propiedad intelectual",
+        paragraphs: [
+          "La aplicación — incluidos su código, diseño y texto — pertenece a Lunexa salvo que se indique lo contrario. Estos términos no te transfieren ninguna titularidad ni te otorgan derechos sobre los medios obtenidos con la aplicación.",
+        ],
+      },
+      {
+        title: "Disponibilidad y actualizaciones",
+        paragraphs: [
+          "Podemos cambiar, actualizar o descontinuar Quietly o cualquiera de sus funciones en cualquier momento. Como la aplicación depende de fuentes que no controlamos, una URL que funciona hoy puede dejar de funcionar en cualquier momento. No estamos obligados a publicar actualizaciones ni a mantener disponible ninguna función concreta.",
+        ],
+      },
+      {
+        title: "Distribución a través de tiendas de aplicaciones",
+        paragraphs: [
+          "Cuando obtienes Quietly a través de una tienda de aplicaciones, los términos propios de esa tienda también se aplican a tu descarga y son independientes de estos términos.",
+        ],
+      },
+      {
+        title: "Descargo de responsabilidad",
+        paragraphs: [
+          "La aplicación se ofrece “tal cual”, sin garantías de ningún tipo, expresas o implícitas. Lunexa no garantiza que la aplicación esté disponible en todo momento, libre de errores, ni que pueda recuperar una URL concreta.",
+        ],
+      },
+      {
+        title: "Limitación de responsabilidad",
+        paragraphs: [
+          "En la máxima medida permitida por la ley, Lunexa no será responsable de daños indirectos, incidentales o consecuentes derivados de tu uso de la aplicación, incluida cualquier reclamación derivada de los medios que hayas elegido guardar.",
+        ],
+      },
+      {
+        title: "Cambios en estos términos",
+        paragraphs: [
+          "Podemos revisar estos términos en cualquier momento. La fecha en la parte superior de esta página reflejará el cambio, y seguir usando la aplicación después de que se publiquen los términos revisados constituye su aceptación.",
+        ],
+      },
+    ],
+    contactTitle: "Contacto",
+    contactBodyPrefix: "Las preguntas sobre estos términos pueden enviarse a ",
     contactBodySuffix: ".",
   },
 };

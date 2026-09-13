@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useT } from "@/i18n/provider";
+import { localeHref } from "@/i18n/href";
 import CtaBlock from "@/components/cta-block";
 
 export default function TermsPageContent() {
-  const { t } = useT();
+  const { t, locale } = useT();
 
   return (
     <main className="flex-1 pt-24 pb-16 sm:pt-32 sm:pb-24">
@@ -20,6 +22,39 @@ export default function TermsPageContent() {
         </header>
 
         <div className="space-y-10 leading-relaxed text-muted">
+          <section className="rounded-2xl border border-border bg-surface-light p-6 sm:p-8">
+            <h2 className="mb-3 text-lg font-semibold text-foreground">
+              {t("terms_page.product_terms_title")}
+            </h2>
+            <p>{t("terms_page.product_terms_intro")}</p>
+            <ul className="ml-6 mt-3 list-disc space-y-2">
+              <li>
+                <Link
+                  href={localeHref(locale, "/terms/rps-duel")}
+                  className="text-accent hover:underline"
+                >
+                  {t("terms_page.product_terms_rps_duel")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localeHref(locale, "/terms/chess-rescue")}
+                  className="text-accent hover:underline"
+                >
+                  {t("terms_page.product_terms_chess_rescue")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localeHref(locale, "/terms/quietly")}
+                  className="text-accent hover:underline"
+                >
+                  {t("terms_page.product_terms_quietly")}
+                </Link>
+              </li>
+            </ul>
+          </section>
+
           <section>
             <h2 className="mb-3 text-lg font-semibold text-foreground">
               {t("terms_page.agreement_title")}

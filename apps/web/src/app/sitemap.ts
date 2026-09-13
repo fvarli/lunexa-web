@@ -24,6 +24,9 @@ const STATIC_ROUTES: Route[] = [
   { path: "/privacy/chess-rescue", priority: 0.4, changeFrequency: "yearly" },
   { path: "/privacy/quietly", priority: 0.4, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/terms/rps-duel", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/terms/chess-rescue", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/terms/quietly", priority: 0.4, changeFrequency: "yearly" },
 ];
 
 function languagesMap(path: string): Record<string, string> {
