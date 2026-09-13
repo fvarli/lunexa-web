@@ -4,6 +4,8 @@ import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
 import { buildPageMetadata, RPS_DUEL_PRIVACY_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
+export const revalidate = 86400;
+
 export async function generateMetadata({
   params,
 }: {

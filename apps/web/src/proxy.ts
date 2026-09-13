@@ -57,8 +57,14 @@ export function proxy(request: NextRequest) {
   return NextResponse.rewrite(url, { request: { headers } });
 }
 
+/**
+ * Root-level files that must never be locale-prefixed. Without an exclusion
+ * here the rewrite in step 3b turns `/app-ads.txt` into `/en/app-ads.txt`,
+ * which matches no route and returns the 404 page as text/html — AdMob's
+ * crawler requires text/plain at the apex, so verification would fail.
+ */
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|icon\\.svg|apple-icon\\.svg|opengraph-image|manifest\\.webmanifest|robots\\.txt|sitemap\\.xml|favicon\\.ico).*)",
+    "/((?!api|_next/static|_next/image|icon\\.svg|apple-icon\\.svg|opengraph-image|manifest\\.webmanifest|robots\\.txt|sitemap\\.xml|app\\-ads\\.txt|favicon\\.ico).*)",
   ],
 };

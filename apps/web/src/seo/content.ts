@@ -648,13 +648,13 @@ export const WORK: Record<Locale, WorkContent> = {
       {
         slug: "rps-duel",
         name: "RPS Duel",
-        tagline: "A tactile rock-paper-scissors duel for iOS and Android",
-        body: "Single-player Rock Paper Scissors against an adaptive CPU, with a daily challenge, four achievements, three difficulty levels, and full English / Turkish / Spanish support. The app runs entirely on your device — no account, no backend, no ads, no analytics.",
-        url: "",
+        tagline: "A tactile rock-paper-scissors duel for Android",
+        body: "Single-player Rock Paper Scissors against an adaptive CPU, with a daily challenge, four achievements, three difficulty levels, and full English / Turkish / Spanish support. No account needed — your progress is saved on the device.",
+        url: "https://play.google.com/store/apps/details?id=com.lunexa.games.rpsduel",
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
-        status: "development",
-        statusLabel: "Pre-launch — store submission ready",
-        visitLabel: "Coming to App Store and Google Play soon",
+        status: "live",
+        statusLabel: "Live on Google Play",
+        visitLabel: "Get it on Google Play →",
         privacyPath: "/privacy/rps-duel",
       },
       {
@@ -705,13 +705,13 @@ export const WORK: Record<Locale, WorkContent> = {
       {
         slug: "rps-duel",
         name: "RPS Duel",
-        tagline: "iOS ve Android için dokunaklı bir taş kâğıt makas düellosu",
-        body: "Uyarlanabilir CPU'ya karşı tek oyunculu Taş Kâğıt Makas; günlük meydan okuma, dört başarım, üç zorluk seviyesi ve tam İngilizce / Türkçe / İspanyolca destekle. Uygulama tamamen cihazında çalışır — hesap yok, sunucu yok, reklam yok, analitik yok.",
-        url: "",
+        tagline: "Android için dokunaklı bir taş kâğıt makas düellosu",
+        body: "Uyarlanabilir CPU'ya karşı tek oyunculu Taş Kâğıt Makas; günlük meydan okuma, dört başarım, üç zorluk seviyesi ve tam İngilizce / Türkçe / İspanyolca destek. Hesap gerekmez — ilerlemen cihazında saklanır.",
+        url: "https://play.google.com/store/apps/details?id=com.lunexa.games.rpsduel",
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
-        status: "development",
-        statusLabel: "Lansman öncesi — mağaza başvurusuna hazır",
-        visitLabel: "Yakında App Store ve Google Play'de",
+        status: "live",
+        statusLabel: "Google Play'de yayında",
+        visitLabel: "Google Play'den indir →",
         privacyPath: "/privacy/rps-duel",
       },
       {
@@ -762,13 +762,13 @@ export const WORK: Record<Locale, WorkContent> = {
       {
         slug: "rps-duel",
         name: "RPS Duel",
-        tagline: "Un duelo táctil de piedra papel tijera para iOS y Android",
-        body: "Piedra Papel Tijera para un solo jugador contra una CPU adaptativa, con desafío diario, cuatro logros, tres niveles de dificultad y soporte completo en inglés / turco / español. La aplicación funciona enteramente en tu dispositivo — sin cuenta, sin backend, sin anuncios, sin analítica.",
-        url: "",
+        tagline: "Un duelo táctil de piedra papel tijera para Android",
+        body: "Piedra Papel Tijera para un solo jugador contra una CPU adaptativa, con desafío diario, cuatro logros, tres niveles de dificultad y soporte completo en inglés / turco / español. No requiere cuenta — tu progreso se guarda en el dispositivo.",
+        url: "https://play.google.com/store/apps/details?id=com.lunexa.games.rpsduel",
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
-        status: "development",
-        statusLabel: "Pre-lanzamiento — listo para envío a tiendas",
-        visitLabel: "Próximamente en App Store y Google Play",
+        status: "live",
+        statusLabel: "Disponible en Google Play",
+        visitLabel: "Consíguelo en Google Play →",
         privacyPath: "/privacy/rps-duel",
       },
       {
@@ -804,7 +804,7 @@ export const WORK: Record<Locale, WorkContent> = {
 
 // ── RPS Duel privacy policy ──
 // App-specific privacy policy. Single source of truth for the policy that
-// the Play Store / App Store listings link to. Honesty constraint: every
+// the Play Store listing links to. Honesty constraint: every
 // negative claim ("no account", "no analytics", etc.) is verified against
 // the current rps_duel Flutter codebase before authoring. Update this and
 // bump `lastUpdated` whenever the app's data behaviour changes.
@@ -813,9 +813,9 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
   en: {
     eyebrow: "RPS Duel · Privacy",
     heading: "RPS Duel — Privacy Policy",
-    lastUpdated: "Last updated: 2026-05-25",
+    lastUpdated: "Last updated: 2026-09-13",
     intro:
-      "RPS Duel is a single-player Rock Paper Scissors game made by Lunexa Studio (package id: com.lunexa.games.rpsduel). This policy describes what the app does — and, more importantly, what it does not do — with your information.",
+      "RPS Duel is a single-player Rock Paper Scissors game made by Lunexa Games (package id: com.lunexa.games.rpsduel). This policy describes what the app does — and, more importantly, what it does not do — with your information.",
     sections: [
       {
         title: "Summary",
@@ -852,7 +852,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
       {
         title: "How to clear your data",
         paragraphs: [
-          "You can clear all locally stored gameplay data from inside the app via Settings → Reset data. You can also remove this data with your operating system's normal app controls: clear app data (Android) or uninstall the app (iOS / Android).",
+          "You can clear all locally stored gameplay data from inside the app via Settings → Reset data. You can also remove this data with your operating system's normal app controls: clear app data or uninstall the app (Android).",
         ],
       },
       {
@@ -875,9 +875,9 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
   tr: {
     eyebrow: "RPS Duel · Gizlilik",
     heading: "RPS Duel — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 25.05.2026",
+    lastUpdated: "Son güncelleme: 13.09.2026",
     intro:
-      "RPS Duel, Lunexa Studio tarafından geliştirilmiş tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, uygulamanın bilgilerinle ne yaptığını ve — daha önemlisi — ne yapmadığını açıklar.",
+      "RPS Duel, Lunexa Games tarafından geliştirilmiş tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, uygulamanın bilgilerinle ne yaptığını ve — daha önemlisi — ne yapmadığını açıklar.",
     sections: [
       {
         title: "Özet",
@@ -914,7 +914,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
       {
         title: "Verilerini nasıl silersin",
         paragraphs: [
-          "Yerel olarak saklanan tüm oyun verilerini uygulama içinden Ayarlar → Verileri sıfırla ile silebilirsin. Aynı verileri işletim sisteminin normal uygulama kontrolleriyle de temizleyebilirsin: uygulama verilerini temizle (Android) veya uygulamayı kaldır (iOS / Android).",
+          "Yerel olarak saklanan tüm oyun verilerini uygulama içinden Ayarlar → Verileri sıfırla ile silebilirsin. Aynı verileri işletim sisteminin normal uygulama kontrolleriyle de temizleyebilirsin: uygulama verilerini temizle veya uygulamayı kaldır (Android).",
         ],
       },
       {
@@ -937,9 +937,9 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
   es: {
     eyebrow: "RPS Duel · Privacidad",
     heading: "RPS Duel — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-05-25",
+    lastUpdated: "Última actualización: 2026-09-13",
     intro:
-      "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador creado por Lunexa Studio (id de paquete: com.lunexa.games.rpsduel). Esta política describe qué hace la aplicación con tu información y — más importante — qué no hace.",
+      "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador creado por Lunexa Games (id de paquete: com.lunexa.games.rpsduel). Esta política describe qué hace la aplicación con tu información y — más importante — qué no hace.",
     sections: [
       {
         title: "Resumen",
@@ -976,7 +976,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, AppPrivacyContent> = {
       {
         title: "Cómo borrar tus datos",
         paragraphs: [
-          "Puedes borrar todos los datos de juego almacenados localmente desde la aplicación en Ajustes → Restablecer datos. También puedes eliminar estos datos con los controles habituales del sistema operativo: borrar datos de la aplicación (Android) o desinstalarla (iOS / Android).",
+          "Puedes borrar todos los datos de juego almacenados localmente desde la aplicación en Ajustes → Restablecer datos. También puedes eliminar estos datos con los controles habituales del sistema operativo: borrar datos de la aplicación o desinstalarla (Android).",
         ],
       },
       {

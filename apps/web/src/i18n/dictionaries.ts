@@ -72,10 +72,10 @@ const en = {
     },
   },
   coming_soon: {
-    eyebrow: "Coming Soon",
+    eyebrow: "What's Next",
     heading: "Something new is on the horizon",
     subtitle:
-      "We are preparing our first wave of products. Stay close — the launch is near.",
+      "The first Lunexa products are out in the world, and the next wave is in the works. Stay close.",
     badge: "In development",
   },
   faq: {
@@ -190,7 +190,7 @@ const en = {
     product_policies_title: "Product-specific privacy policies",
     product_policies_intro:
       "Each Lunexa product that handles user data has its own privacy policy. The page below covers the uselunexa.com marketing site only. For an app or service, follow the matching link:",
-    product_policies_rps_duel: "RPS Duel \u2014 mobile game (iOS / Android)",
+    product_policies_rps_duel: "RPS Duel \u2014 mobile game (Android)",
     product_policies_chess_rescue: "Chess Rescue \u2014 mobile puzzle game (Android)",
     product_policies_quietly: "Quietly \u2014 media saver (Android)",
     overview_title: "Overview",
@@ -382,10 +382,10 @@ const tr: Dictionary = {
     },
   },
   coming_soon: {
-    eyebrow: "Çok Yakında",
+    eyebrow: "Sırada Ne Var",
     heading: "Ufukta yeni bir şey var",
     subtitle:
-      "İlk ürün dalgamızı hazırlıyoruz. Yakın durun — lansman yaklaştı.",
+      "İlk Lunexa ürünleri yayında, sıradaki dalga ise geliştiriliyor. Yakın durun.",
     badge: "Geliştirme aşamasında",
   },
   faq: {
@@ -500,7 +500,7 @@ const tr: Dictionary = {
     product_policies_title: "Ürüne özel gizlilik politikaları",
     product_policies_intro:
       "Kullanıcı verisi işleyen her Lunexa ürününün kendi gizlilik politikası vardır. Aşağıdaki sayfa yalnızca uselunexa.com pazarlama sitesini kapsar. Bir uygulama veya servis için ilgili bağlantıyı izle:",
-    product_policies_rps_duel: "RPS Duel — mobil oyun (iOS / Android)",
+    product_policies_rps_duel: "RPS Duel — mobil oyun (Android)",
     product_policies_chess_rescue: "Chess Rescue — mobil bulmaca oyunu (Android)",
     product_policies_quietly: "Quietly — medya kaydedici (Android)",
     overview_title: "Genel Bakış",
@@ -692,10 +692,10 @@ const es: Dictionary = {
     },
   },
   coming_soon: {
-    eyebrow: "Próximamente",
+    eyebrow: "Qué Sigue",
     heading: "Algo nuevo en el horizonte",
     subtitle:
-      "Estamos preparando nuestra primera ola de productos. Mantente cerca — el lanzamiento está próximo.",
+      "Los primeros productos de Lunexa ya están fuera, y la siguiente ola está en marcha. Mantente cerca.",
     badge: "En desarrollo",
   },
   faq: {
@@ -810,7 +810,7 @@ const es: Dictionary = {
     product_policies_title: "Políticas de privacidad por producto",
     product_policies_intro:
       "Cada producto de Lunexa que trate datos del usuario tiene su propia política de privacidad. La página siguiente cubre únicamente el sitio de marketing uselunexa.com. Para una aplicación o servicio, sigue el enlace correspondiente:",
-    product_policies_rps_duel: "RPS Duel — juego móvil (iOS / Android)",
+    product_policies_rps_duel: "RPS Duel — juego móvil (Android)",
     product_policies_chess_rescue: "Chess Rescue — juego de rompecabezas móvil (Android)",
     product_policies_quietly: "Quietly — guardador de medios (Android)",
     overview_title: "Resumen",
