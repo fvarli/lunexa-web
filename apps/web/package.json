@@ -11,23 +11,23 @@
     "test:e2e:install": "playwright install --with-deps chromium"
   },
   "dependencies": {
-    "@marsidev/react-turnstile": "^1.6.0",
-    "@sentry/nextjs": "^10.70.0",
+    "@marsidev/react-turnstile": "^1.6.1",
+    "@sentry/nextjs": "^10.74.0",
     "gray-matter": "^4.0.3",
-    "marked": "^18.0.10",
-    "next": "^16.3.1",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "marked": "^18.0.12",
+    "next": "^16.3.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.62.1",
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/marked": "^6.0.0",
     "@types/node": "^25",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.1",
+    "eslint-config-next": "16.3.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
