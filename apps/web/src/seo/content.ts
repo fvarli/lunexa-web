@@ -666,7 +666,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "rps-duel",
         name: "RPS Duel",
         tagline: "A tactile rock-paper-scissors duel for Android",
-        body: "Single-player Rock Paper Scissors against an adaptive CPU, with a daily challenge, four achievements, three difficulty levels, and full English / Turkish / Spanish support. No account needed — your progress is saved on the device.",
+        body: "Single-player Rock Paper Scissors against a built-in CPU opponent, with a daily challenge, four achievements, three difficulty levels, and full English / Turkish / Spanish support. No account needed — your progress is saved on the device.",
         url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
@@ -725,7 +725,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "rps-duel",
         name: "RPS Duel",
         tagline: "Android için dokunaklı bir taş kâğıt makas düellosu",
-        body: "Uyarlanabilir CPU'ya karşı tek oyunculu Taş Kâğıt Makas; günlük meydan okuma, dört başarım, üç zorluk seviyesi ve tam İngilizce / Türkçe / İspanyolca destek. Hesap gerekmez — ilerlemen cihazında saklanır.",
+        body: "Yerleşik CPU rakibe karşı tek oyunculu Taş Kâğıt Makas; günlük meydan okuma, dört başarım, üç zorluk seviyesi ve tam İngilizce / Türkçe / İspanyolca destek. Hesap gerekmez — ilerlemen cihazında saklanır.",
         url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
@@ -784,7 +784,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "rps-duel",
         name: "RPS Duel",
         tagline: "Un duelo táctil de piedra papel tijera para Android",
-        body: "Piedra Papel Tijera para un solo jugador contra una CPU adaptativa, con desafío diario, cuatro logros, tres niveles de dificultad y soporte completo en inglés / turco / español. No requiere cuenta — tu progreso se guarda en el dispositivo.",
+        body: "Piedra Papel Tijera para un solo jugador contra una CPU integrada, con desafío diario, cuatro logros, tres niveles de dificultad y soporte completo en inglés / turco / español. No requiere cuenta — tu progreso se guarda en el dispositivo.",
         url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
@@ -990,7 +990,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "Does the game need an internet connection?",
-        a: "No. The released app requests no network permission at all, so rounds, the Daily Challenge, achievements and records all work fully offline.",
+        a: "No. RPS Duel runs entirely on your device: rounds, the Daily Challenge, achievements and records all work with no connection.",
       },
       {
         q: "Which languages does the app support?",
@@ -1006,7 +1006,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "What achievements are there?",
-        a: "Four: First Win, Streak 3, Challenge Met — awarded for completing any Daily Challenge, whichever one the day brings — and 10 Rounds. Achievements are stored separately from the scoreboard, so resetting the game does not take them away.",
+        a: "Four: First Win, Streak 3, one for completing the day's Daily Challenge — whichever one the day brings — and 10 Rounds. Achievements are stored separately from the scoreboard, so resetting the game does not take them away.",
       },
       {
         q: "Where is my progress stored?",
@@ -1060,7 +1060,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "Oyun için internet bağlantısı gerekir mi?",
-        a: "Hayır. Yayınlanan uygulama hiçbir ağ izni istemez; eller, Günlük Görev, başarımlar ve kayıtlar tamamen çevrimdışı çalışır.",
+        a: "Hayır. RPS Duel tamamen cihazınızda çalışır: eller, Günlük Görev, başarımlar ve kayıtlar bağlantı olmadan çalışır.",
       },
       {
         q: "Uygulama hangi dilleri destekler?",
@@ -1076,7 +1076,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "Hangi başarımlar var?",
-        a: "Dört tane: İlk Galibiyet, 3'lü Seri, Tamamlanan Görev — o günün getirdiği Günlük Görev hangisiyse onu tamamladığınızda verilir — ve 10 El. Başarımlar skor tablosundan ayrı saklanır; bu yüzden oyunu sıfırlamak onları silmez.",
+        a: "Dört tane: İlk Galibiyet, 3'lü Seri, günün Günlük Görev'ini tamamlamaya verilen bir başarım — o gün hangisi gelirse — ve 10 El. Başarımlar skor tablosundan ayrı saklanır; bu yüzden oyunu sıfırlamak onları silmez.",
       },
       {
         q: "İlerlemem nerede saklanıyor?",
@@ -1130,7 +1130,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "¿El juego necesita conexión a internet?",
-        a: "No. La aplicación publicada no solicita ningún permiso de red, así que las rondas, el Reto Diario, los logros y los récords funcionan totalmente sin conexión.",
+        a: "No. RPS Duel funciona enteramente en tu dispositivo: las rondas, el Reto Diario, los logros y los récords funcionan sin conexión.",
       },
       {
         q: "¿Qué idiomas admite la aplicación?",
@@ -1146,7 +1146,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "¿Qué logros hay?",
-        a: "Cuatro: Primera victoria, Racha de 3, Reto superado — que se concede al completar cualquier Reto Diario, sea el que sea ese día — y 10 rondas. Los logros se guardan aparte del marcador, así que reiniciar el juego no los borra.",
+        a: "Cuatro: Primera victoria, Racha de 3, uno por completar el Reto Diario del día —sea el que sea— y 10 rondas. Los logros se guardan aparte del marcador, así que reiniciar el juego no los borra.",
       },
       {
         q: "¿Dónde se guarda mi progreso?",
@@ -1223,7 +1223,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "Selected interface language (English, Turkish, or Spanish)",
           "Selected CPU difficulty (Easy, Normal, or Hard)",
           "Daily challenge progress for the current day (resets automatically at local midnight)",
-          "Achievement flags (First Win, Streak 3, Challenge Met, 10 Rounds)",
+          "Achievement flags (four in total)",
         ],
       },
       {
@@ -1285,7 +1285,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "Seçili arayüz dili (İngilizce, Türkçe veya İspanyolca)",
           "Seçili CPU zorluğu (Kolay, Normal veya Zor)",
           "Bugünkü günlük meydan okuma ilerlemen (yerel gece yarısında otomatik sıfırlanır)",
-          "Başarım bayrakları (İlk Galibiyet, 3'lü Seri, Tamamlanan Görev, 10 El)",
+          "Başarım bayrakları (toplam dört adet)",
         ],
       },
       {
@@ -1347,7 +1347,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "Idioma de interfaz seleccionado (inglés, turco o español)",
           "Dificultad de CPU seleccionada (Fácil, Normal o Difícil)",
           "Progreso del desafío diario actual (se reinicia automáticamente a medianoche local)",
-          "Indicadores de logros (Primera Victoria, Racha de 3, Reto superado, 10 Rondas)",
+          "Indicadores de logros (cuatro en total)",
         ],
       },
       {
