@@ -6,22 +6,71 @@ on:
     types:
       - completed
   workflow_dispatch:
+    inputs:
+      ci_run_id:
+        description: "CI run ID whose release artifact should be deployed"
+        required: true
 
 concurrency:
   group: lunexa-prod-deploy
-  cancel-in-progress: true
+  # Deliberately not cancel-in-progress. Cancelling only stops the GitHub job —
+  # anything already running on the production box keeps going unsupervised,
+  # which is how nine overlapping runs on 2026-09-15 left builds competing for
+  # memory. Queue instead, so releases activate one at a time.
+  cancel-in-progress: false
 
 jobs:
   deploy:
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     runs-on: ubuntu-latest
     environment: production
+    permissions:
+      # Needed to read the artifact from the CI run that triggered this one.
+      actions: read
+      contents: read
 
     steps:
-      - name: Deploy over SSH
+      # The artifact comes from the specific CI run that triggered this deploy,
+      # not from "whatever main is now" — that race is what let CI validate one
+      # commit while the server built another. download-artifact verifies the
+      # digest by default, so the bytes are the ones CI produced.
+      - name: Download web release artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: web-standalone
+          path: artifact
+          run-id: ${{ github.event.workflow_run.id || inputs.ci_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Resolve release SHA
+        id: rel
+        run: |
+          set -euo pipefail
+          sha="$(tr -d '[:space:]' < artifact/RELEASE_SHA)"
+          if ! printf '%s' "$sha" | grep -Eq '^[0-9a-f]{40}$'; then
+            echo "RELEASE_SHA is not a commit sha" >&2
+            exit 1
+          fi
+          test -s artifact/web-standalone.tar.gz
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "Deploying $sha"
+
+      - name: Copy release to server
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+          port: ${{ secrets.PROD_SSH_PORT }}
+          source: artifact/web-standalone.tar.gz
+          target: ${{ vars.DEPLOY_PATH }}/incoming
+          strip_components: 1
+
+      - name: Activate release over SSH
         uses: appleboy/ssh-action@v1.2.5
         env:
           DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+          DEPLOY_SHA: ${{ steps.rel.outputs.sha }}
           CORS_ORIGIN: ${{ vars.CORS_ORIGIN }}
           CONTACT_RECEIVER: ${{ vars.CONTACT_RECEIVER }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
@@ -31,9 +80,6 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           ENABLE_AUTOREPLY: ${{ vars.ENABLE_AUTOREPLY }}
           TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
-          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
-          NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
-          NEXT_PUBLIC_GSC_VERIFICATION: ${{ vars.NEXT_PUBLIC_GSC_VERIFICATION }}
           NEWSLETTER_SECRET: ${{ secrets.NEWSLETTER_SECRET }}
           SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -42,8 +88,11 @@ jobs:
           username: ${{ secrets.PROD_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
           port: ${{ secrets.PROD_SSH_PORT }}
-          script_stop: true
-          envs: DEPLOY_PATH,CORS_ORIGIN,CONTACT_RECEIVER,SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,ENABLE_AUTOREPLY,TURNSTILE_SECRET_KEY,NEXT_PUBLIC_TURNSTILE_SITE_KEY,NEXT_PUBLIC_GA_ID,NEXT_PUBLIC_GSC_VERIFICATION,NEWSLETTER_SECRET,SITE_BASE_URL,DATABASE_URL
+          # No script_stop: it is not an input of this action (the action logs
+          # "Unexpected input(s) 'script_stop'" and ignores it). `set -euo
+          # pipefail` below provides the abort-on-error behaviour it was meant
+          # to give.
+          envs: DEPLOY_PATH,DEPLOY_SHA,CORS_ORIGIN,CONTACT_RECEIVER,SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,ENABLE_AUTOREPLY,TURNSTILE_SECRET_KEY,NEWSLETTER_SECRET,SITE_BASE_URL,DATABASE_URL
           script: |
             set -euo pipefail
 
@@ -52,9 +101,10 @@ jobs:
 
             cd ${DEPLOY_PATH}
 
-            echo "==> Pulling latest code"
-            git fetch --all
-            git reset --hard origin/main
+            echo "==> Checking out the exact commit CI validated: ${DEPLOY_SHA}"
+            git fetch --all --prune
+            git fetch origin "${DEPLOY_SHA}"
+            git reset --hard "${DEPLOY_SHA}"
 
             echo "==> Writing apps/api/.env"
             echo "NODE_ENV=production" > apps/api/.env
@@ -73,12 +123,9 @@ jobs:
             echo "DATABASE_URL=${DATABASE_URL}" >> apps/api/.env
             chmod 600 apps/api/.env
 
-            echo "==> Writing apps/web/.env.production"
-            echo "NEXT_PUBLIC_API_BASE_URL=" > apps/web/.env.production
-            echo "NEXT_PUBLIC_TURNSTILE_SITE_KEY=${NEXT_PUBLIC_TURNSTILE_SITE_KEY}" >> apps/web/.env.production
-            echo "NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID}" >> apps/web/.env.production
-            echo "NEXT_PUBLIC_GSC_VERIFICATION=${NEXT_PUBLIC_GSC_VERIFICATION}" >> apps/web/.env.production
-            chmod 600 apps/web/.env.production
+            # No apps/web/.env.production is written any more: every value the
+            # web build needs is NEXT_PUBLIC_* and is baked in by CI. Nothing in
+            # the web runtime reads a secret.
 
             echo "==> Building API"
             cd apps/api
@@ -88,19 +135,63 @@ jobs:
             npm run build
             cd ../..
 
-            echo "==> Building Web"
-            cd apps/web
-            npm ci
-            npm run build
-            cd ../..
+            echo "==> Unpacking web release ${DEPLOY_SHA}"
+            RELEASES="${DEPLOY_PATH}/web-releases"
+            NEW="${RELEASES}/${DEPLOY_SHA}"
+            mkdir -p "${NEW}"
+            rm -rf "${NEW:?}/"* "${NEW:?}/".next 2>/dev/null || true
+            tar -xzf "${DEPLOY_PATH}/incoming/web-standalone.tar.gz" -C "${NEW}"
+            test -f "${NEW}/server.js"
+            test -d "${NEW}/.next/static"
+            test -d "${NEW}/node_modules/next"
+            rm -f "${DEPLOY_PATH}/incoming/web-standalone.tar.gz"
 
-            echo "==> Reloading pm2 processes"
-            pm2 reload ecosystem.config.js --update-env || pm2 start ecosystem.config.js
+            PREV=""
+            if [ -L "${DEPLOY_PATH}/web-current" ]; then
+              PREV="$(readlink -f "${DEPLOY_PATH}/web-current")"
+            fi
+
+            echo "==> Activating ${NEW}"
+            ln -sfn "${NEW}" "${DEPLOY_PATH}/web-current"
+
+            echo "==> Reloading pm2"
+            # web-current is a stable path, so the script only changes on the
+            # first artifact deploy — pm2 cannot swap a script path on reload.
+            if pm2 jlist 2>/dev/null | grep -q "web-current/server.js"; then
+              pm2 reload ecosystem.config.js --update-env
+            else
+              pm2 delete lunexa-web >/dev/null 2>&1 || true
+              pm2 startOrReload ecosystem.config.js --update-env
+            fi
             pm2 save
 
             echo "==> Smoke check (internal, bypasses Cloudflare)"
             sleep 3
-            curl -fsS http://127.0.0.1:4000/api/health | grep -q '"ok":true'
-            curl -fsSI http://127.0.0.1:3001/ | head -1 | grep -q '200'
+            ok=1
+            curl -fsS http://127.0.0.1:4000/api/health | grep -q '"ok":true' || ok=0
+            curl -fsSI http://127.0.0.1:3001/ | head -1 | grep -q '200' || ok=0
 
-            echo "==> Deploy complete"
+            if [ "${ok}" -ne 1 ]; then
+              echo "==> Smoke check FAILED"
+              if [ -n "${PREV}" ] && [ -d "${PREV}" ] && [ "${PREV}" != "${NEW}" ]; then
+                echo "==> Rolling back to ${PREV}"
+                ln -sfn "${PREV}" "${DEPLOY_PATH}/web-current"
+                pm2 reload ecosystem.config.js --update-env || true
+              fi
+              exit 1
+            fi
+
+            echo "==> Pruning old releases (keeping the newest 3)"
+            ACTIVE="$(basename "$(readlink -f "${DEPLOY_PATH}/web-current")")"
+            cd "${RELEASES}"
+            # `|| true` matters: with pipefail set, an empty listing would
+            # otherwise fail the run after the release is already live.
+            OLD="$(ls -1dt */ 2>/dev/null | tail -n +4 || true)"
+            for d in ${OLD}; do
+              name="$(basename "${d}")"
+              if [ "${name}" != "${ACTIVE}" ]; then
+                rm -rf -- "${name}"
+              fi
+            done
+
+            echo "==> Deploy complete: ${DEPLOY_SHA}"

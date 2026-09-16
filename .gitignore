@@ -13,6 +13,11 @@ pnpm-debug.log*
 .idea
 .claude/
 apps/web/.env.production
+# Production release layout written by the deploy workflow on the VPS
+web-releases/
+web-current
+incoming/
+apps/web/release/
 apps/api/.env.production
 apps/web/test-results/
 apps/web/playwright-report/

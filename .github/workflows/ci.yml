@@ -82,3 +82,44 @@ jobs:
           name: playwright-report
           path: apps/web/playwright-report
           retention-days: 7
+
+      # Production runs what is built here, never a build on the VPS. A cold
+      # Turbopack build peaks near 2.5 GB; the production box cannot afford one
+      # and was OOM-killed (exit 137) attempting it on 2026-09-15.
+      #
+      # Only the three NEXT_PUBLIC_* values are needed, and all three are
+      # repository variables rather than secrets — they are inlined into the
+      # client bundle, so they are public by definition. No secret reaches the
+      # artifact.
+      #
+      # This runs after the e2e suite so it cannot disturb the tested tree, and
+      # only on main, so pull-request CI is unaffected.
+      - name: Build release artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          NEXT_PUBLIC_API_BASE_URL: ""
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+          NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
+          NEXT_PUBLIC_GSC_VERIFICATION: ${{ vars.NEXT_PUBLIC_GSC_VERIFICATION }}
+        run: |
+          set -euo pipefail
+          rm -rf .next
+          npm run build
+          # `output: "standalone"` omits both of these, and the runtime needs
+          # them beside server.js.
+          cp -r .next/static .next/standalone/.next/static
+          cp -r public .next/standalone/public
+          test -f .next/standalone/server.js
+          mkdir -p release
+          tar -czf release/web-standalone.tar.gz -C .next/standalone .
+          # The SHA travels inside the artifact, so the deploy can never
+          # activate a release under a commit other than the one CI validated.
+          echo "${GITHUB_SHA}" > release/RELEASE_SHA
+
+      - name: Upload release artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v7
+        with:
+          name: web-standalone
+          path: apps/web/release
+          retention-days: 7
