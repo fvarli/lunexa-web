@@ -1597,7 +1597,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "Quietly · Privacy",
     heading: "Quietly — Privacy Policy",
-    lastUpdated: "Last updated: 2026-05-29",
+    lastUpdated: "Last updated: 2026-09-19",
     intro:
       "Quietly is a media saver made by Lunexa. The app saves direct public media from URLs you paste into your device gallery. It uses the internet to fetch the media you ask for and to check whether you have a connection — and nothing else. Quietly does not create accounts, does not show ads, and does not include analytics or crash reporting.",
     sections: [
@@ -1641,8 +1641,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
           "To remember your settings and saved media between sessions, the app stores a small amount of data on your device only. This data never leaves your device.",
         ],
         bullets: [
-          "Your selected video quality",
-          "Your toggles: ask for quality each time, save on Wi-Fi only, notification preference, and a first-run acknowledgment flag",
+          "Your preferences: save on Wi-Fi only, the save notice, the in-app language, the theme, and a first-run acknowledgment flag",
           "Your history of saved items — each entry holds an identifier, the media kind, a title, descriptive metadata, the time saved, the source URL identifier, and the file path on your device",
         ],
       },
@@ -1684,7 +1683,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "Quietly · Gizlilik",
     heading: "Quietly — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 29.05.2026",
+    lastUpdated: "Son güncelleme: 19.09.2026",
     intro:
       "Quietly, Lunexa tarafından geliştirilmiş bir medya kaydedicidir. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. İnterneti yalnızca senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır — başka hiçbir şey için değil. Quietly hesap oluşturmaz, reklam göstermez ve analitik veya çökme raporlama içermez.",
     sections: [
@@ -1728,8 +1727,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
           "Oturumlar arasında ayarlarını ve kaydettiğin medyayı hatırlamak için uygulama, yalnızca cihazına küçük miktarda veri kaydeder. Bu veriler cihazından asla çıkmaz.",
         ],
         bullets: [
-          "Seçtiğin video kalitesi",
-          "Tercihlerin: her seferinde kalite sor, yalnızca Wi-Fi'de kaydet, bildirim tercihi ve ilk açılış onay bayrağı",
+          "Tercihlerin: yalnızca Wi-Fi'de kaydet, kayıt bildirimi, uygulama dili, tema ve ilk açılış onay bayrağı",
           "Kayıt geçmişin — her girdi şunları içerir: kimlik, medya türü, başlık, açıklayıcı metaveri, kayıt zamanı, kaynak URL kimliği ve cihazındaki dosya yolu",
         ],
       },
@@ -1771,7 +1769,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "Quietly · Privacidad",
     heading: "Quietly — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-05-29",
+    lastUpdated: "Última actualización: 2026-09-19",
     intro:
       "Quietly es un guardador de medios creado por Lunexa. La aplicación guarda medios públicos directos desde URLs que pegas en la galería de tu dispositivo. Usa internet únicamente para descargar los medios que pides y para comprobar si tienes conexión — nada más. Quietly no crea cuentas, no muestra anuncios y no incluye analítica ni informes de errores.",
     sections: [
@@ -1815,8 +1813,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
           "Para recordar tus ajustes y los medios guardados entre sesiones, la aplicación guarda una pequeña cantidad de datos únicamente en tu dispositivo. Estos datos nunca salen de tu dispositivo.",
         ],
         bullets: [
-          "Tu calidad de vídeo seleccionada",
-          "Tus interruptores: preguntar la calidad cada vez, guardar solo con Wi-Fi, preferencia de notificaciones y un indicador de primera ejecución",
+          "Tus preferencias: guardar solo con Wi-Fi, el aviso de guardado, el idioma de la aplicación, el tema y un indicador de primera ejecución",
           "Tu historial de elementos guardados — cada entrada incluye un identificador, el tipo de medio, un título, metadatos descriptivos, la hora en que se guardó, el identificador de URL de origen y la ruta del archivo en tu dispositivo",
         ],
       },
