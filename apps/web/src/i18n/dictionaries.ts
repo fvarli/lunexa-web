@@ -118,7 +118,6 @@ const en = {
     subtitle:
       "Whether you have a project in mind, a question about our work, or just want to say hello — we'd love to hear from you.",
     email_heading: "Email",
-    support_heading: "For support",
     response_heading: "Response time",
     response_time: "We typically respond within one business day.",
     agreement_prefix: "By contacting us you agree to our ",
@@ -441,7 +440,6 @@ const tr: Dictionary = {
     subtitle:
       "İster aklınızda bir proje olsun, ister çalışmalarımız hakkında bir sorunuz olsun, ister sadece merhaba demek isteyin — sizi duymayı çok isteriz.",
     email_heading: "E-posta",
-    support_heading: "Destek için",
     response_heading: "Yanıt süresi",
     response_time: "Genellikle bir iş günü içinde yanıtlıyoruz.",
     agreement_prefix: "Bize ulaşarak ",
@@ -764,7 +762,6 @@ const es: Dictionary = {
     subtitle:
       "Ya sea que tengas un proyecto en mente, una pregunta sobre nuestro trabajo o solo quieras saludar — nos encantaría saber de ti.",
     email_heading: "Correo",
-    support_heading: "Para soporte",
     response_heading: "Tiempo de respuesta",
     response_time: "Normalmente respondemos en un día laborable.",
     agreement_prefix: "Al contactarnos aceptas nuestra ",

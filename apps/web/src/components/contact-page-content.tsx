@@ -38,17 +38,6 @@ export default function ContactPageContent() {
             </div>
             <div>
               <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-accent">
-                {t("contact_page.support_heading")}
-              </h2>
-              <a
-                href="mailto:support@uselunexa.com"
-                className="text-lg text-foreground transition-colors hover:text-accent"
-              >
-                support@uselunexa.com
-              </a>
-            </div>
-            <div>
-              <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-accent">
                 {t("contact_page.response_heading")}
               </h2>
               <p className="text-muted">{t("contact_page.response_time")}</p>
