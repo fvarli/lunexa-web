@@ -86,9 +86,16 @@ cp    ../lunexa-web/apps/web/src/app/apple-icon.svg ./src/app/
 # Conventions
 cp    ../lunexa-web/.gitignore ./
 cp    ../lunexa-web/apps/web/.env.example ./
-cp    ../lunexa-web/apps/web/AGENTS.md ./
-cp    ../lunexa-web/apps/web/CLAUDE.md ./
 ```
+
+Do not copy `AGENTS.md` or `CLAUDE.md` from here. Those files are a new repo's
+entrypoint to the ecosystem standards, and their form is defined once, in
+[`../../../docs/README.md`](../../../docs/README.md) — *Adoption*. Write the new
+repo's `AGENTS.md` from that contract instead of inheriting this one's.
+
+The Next.js version-warning block in `apps/web/AGENTS.md` is web-specific and
+worth carrying into a new Next.js repo's `AGENTS.md` as content — but it is a
+section of that file, not the whole of it.
 
 ### Scaffold Next.js 16
 
@@ -451,32 +458,36 @@ This creates a two-way link graph between the studio and its products — both b
 
 ---
 
-## 15. Template CLAUDE.md for the new repo
+## 15. Agent entrypoint for the new repo
 
-Paste this into the new repo's `CLAUDE.md` to orient fresh Claude sessions:
+> **Superseded, 2026-09-21.** This section previously carried a full template
+> `CLAUDE.md` that predated [`docs/`](../../../docs/README.md) and named no
+> document in it. The **form** of a repository's entrypoint is now defined once,
+> ecosystem-wide, in [`docs/README.md`](../../../docs/README.md) — *Adoption*.
+> What remains here is the **web-specific content** a new Next.js product adds
+> to it. Do not maintain a second entrypoint definition in this file.
+
+Follow *Adoption* for the shape: an `AGENTS.md` carrying the content, and a
+one-line `CLAUDE.md` containing `@AGENTS.md`. Then add the web-specific block
+below to that `AGENTS.md`.
+
+Ecosystem-wide rules — commit hygiene and authorship, deviation records, public
+claims, the reporting contract — are not restated in a product repo. They are
+referenced from [`docs/`](../../../docs/README.md) and read there.
 
 ```md
-# <Product Name>
+## Web engineering authorities
 
-Standalone Lunexa product. Stack, patterns, and conventions follow the Lunexa ecosystem defaults.
-
-## Canonical references
-
-Before changing anything architectural, read:
+This is a Next.js product. Before changing anything architectural, read:
 
 - [Lunexa STACK.md](https://github.com/fvarli/lunexa-web/blob/main/apps/web/docs/STACK.md) — tech stack + why
 - [Lunexa PATTERNS.md](https://github.com/fvarli/lunexa-web/blob/main/apps/web/docs/PATTERNS.md) — code-level recipes
-- [Lunexa CHECKLIST.md](https://github.com/fvarli/lunexa-web/blob/main/apps/web/docs/CHECKLIST.md) — product bootstrap (what this repo follows)
+- [Lunexa CHECKLIST.md](https://github.com/fvarli/lunexa-web/blob/main/apps/web/docs/CHECKLIST.md) — product bootstrap (what this repo followed)
 - [Lunexa SEO_PLAYBOOK.md](https://github.com/fvarli/lunexa-web/blob/main/SEO_PLAYBOOK.md) — SEO ops
 
-This repo diverges from those docs only where marked in a `DIVERGENCES.md` file at the root.
-
-## House rules
-
-- Commits: conventional style, no Co-Authored-By trailers.
-- English-first user-facing copy.
-- `.env.example` committed; real values on VPS only.
-- No planning `.md` files unless explicitly asked.
+These are the web-surface authorities. They are not superseded by the
+ecosystem standards in `docs/`, which state the surface-independent form of a
+rule and link here for the web recipe.
 
 ## Stack (quick reference)
 
@@ -486,6 +497,12 @@ This repo diverges from those docs only where marked in a `DIVERGENCES.md` file 
 - Anti-spam: Cloudflare Turnstile
 - Deploy: VPS (pm2 + nginx) behind Cloudflare
 - Monitoring: BetterStack
+
+## Local copy conventions
+
+- `.env.example` committed; real values on the VPS only.
+- English-first user-facing copy.
+- No planning `.md` files unless explicitly asked.
 ```
 
 ---

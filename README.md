@@ -4,6 +4,17 @@
 
 Official web presence for Lunexa — the marketing site and its contact-form API. Lunexa builds simple, fast, and intelligent digital products. The name comes from *Luna* (moon — clarity in darkness) and *exa* (exponential scale).
 
+## Engineering standards
+
+This repository also hosts the canonical, cross-product engineering standards for the Lunexa ecosystem, in [`docs/`](./docs/README.md). They are surface-independent and apply to the mobile products as well, which live in their own repositories and reference these documents rather than copying them.
+
+- [`docs/README.md`](./docs/README.md) — the evidence model, governance, and how other repositories adopt and report against these standards
+- [`docs/working-agreements.md`](./docs/working-agreements.md) — how work is committed, in any repository
+- [`docs/release-truth-and-cross-surface.md`](./docs/release-truth-and-cross-surface.md) — what may be claimed publicly, and when
+- [`docs/mobile/`](./docs/mobile/README.md) — Flutter/Android standards
+
+Standards for **this** application stay in [`apps/web/docs/`](./apps/web/docs/) — `STACK.md`, `PATTERNS.md`, `CHECKLIST.md`, `LOCAL_DEVELOPMENT.md` — and are not duplicated in `docs/`.
+
 ## Stack
 
 | Layer | Tech |

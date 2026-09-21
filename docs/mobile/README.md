@@ -40,9 +40,15 @@ accident:
 3. **Record deliberate departures.** Document them locally and link back to
    the canonical standard. A documented divergence is a decision; an
    undocumented one is a defect. No specific filename is required — a root
-   `DIVERGENCES.md` is one **PROPOSED** mechanism, named in the new-repo
-   template at `apps/web/docs/CHECKLIST.md:472` but not yet created by any
-   repository.
+   `DIVERGENCES.md` is one **PROPOSED** mechanism, and no repository has
+   created one.
+4. **Carry an entrypoint.** A product repository holds an `AGENTS.md` naming
+   these documents by URL, plus a one-line `CLAUDE.md` bridging to it. That
+   pair is what makes the standards discoverable to a session that has never
+   been told they exist — without vendoring them. See
+   [`../README.md`](../README.md), *Adoption*, for what the entrypoint may and
+   may not restate. **Evidence: PROPOSED** — no mobile repository carries one
+   yet.
 
 ### What stays in the product repository, always
 
