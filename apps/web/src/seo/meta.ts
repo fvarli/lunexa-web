@@ -120,17 +120,17 @@ export const QUIETLY_PRIVACY_META: PageCopy = {
   en: {
     title: "Quietly — Privacy Policy",
     description:
-      "Privacy policy for Quietly, a media-saver Android app by Lunexa. Saves direct public media from URLs you paste. No account, no ads, no analytics, no scraping. Network access limited to the URL you paste plus a Google connectivity probe.",
+      "Privacy policy for Quietly, a media-saver Android app by Lunexa. Saves direct public media from URLs you paste. No account, no ads, no analytics, no scraping. Network use includes the server of the URL you paste, any servers it redirects to, and a Google connectivity check.",
   },
   tr: {
     title: "Quietly — Gizlilik Politikası",
     description:
-      "Quietly için gizlilik politikası — Lunexa tarafından geliştirilen Android medya kaydedici uygulaması. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı kaydeder. Hesap yok, reklam yok, analitik yok, kazıma yok. Ağ erişimi yalnızca yapıştırdığın URL ve bir Google bağlantı kontrolüyle sınırlıdır.",
+      "Quietly için gizlilik politikası — Lunexa tarafından geliştirilen Android medya kaydedici uygulaması. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı kaydeder. Hesap yok, reklam yok, analitik yok, kazıma yok. Ağ kullanımı; yapıştırdığın URL'nin sunucusunu, yönlendirdiği sunucuları ve bir Google bağlantı kontrolünü içerir.",
   },
   es: {
     title: "Quietly — Política de Privacidad",
     description:
-      "Política de privacidad de Quietly, una app Android de guardado de medios por Lunexa. Guarda medios públicos directos desde las URLs que pegas. Sin cuenta, sin anuncios, sin analítica, sin scraping. Acceso a la red limitado a la URL que pegas y una sonda de conectividad de Google.",
+      "Política de privacidad de Quietly, una app Android de guardado de medios por Lunexa. Guarda medios públicos directos desde las URLs que pegas. Sin cuenta, sin anuncios, sin analítica, sin scraping. El uso de red incluye el servidor de la URL que pegas, los servidores a los que redirige y una comprobación de conectividad de Google.",
   },
 };
 

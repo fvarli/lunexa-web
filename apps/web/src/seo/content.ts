@@ -1597,7 +1597,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "Quietly · Privacy",
     heading: "Quietly — Privacy Policy",
-    lastUpdated: "Last updated: 2026-09-19",
+    lastUpdated: "Last updated: 2026-09-29",
     intro:
       "Quietly is a media saver made by Lunexa. The app saves direct public media from URLs you paste into your device gallery. It uses the internet to fetch the media you ask for and to check whether you have a connection — and nothing else. Quietly does not create accounts, does not show ads, and does not include analytics or crash reporting.",
     sections: [
@@ -1617,11 +1617,11 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Network access",
         paragraphs: [
-          "Quietly uses the internet for two purposes only, both initiated by you:",
+          "Quietly uses the internet for two purposes only:",
         ],
         bullets: [
-          "The URL you paste — fetched directly from its source so the media file can be downloaded",
-          "https://www.gstatic.com/generate_204 — a small Google endpoint contacted only to detect whether your device currently has internet. No data is sent to it.",
+          "The URL you paste — Quietly contacts the server at that URL to check and download the media file. If that server redirects the request, Quietly also contacts the server it redirects to (at most five redirects, and never from a secure https link to an insecure http one). Those servers may receive standard technical information, such as your IP address and request headers, and are governed by their own privacy policies.",
+          "https://www.gstatic.com/generate_204 — a small Google endpoint the app contacts automatically, only to check whether your device currently has internet. Quietly does not include the URL you paste, any information about downloaded media, or the media you save in this check.",
         ],
       },
       {
@@ -1631,7 +1631,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         ],
         bullets: [
           "Internet — to download the media at the URL you paste",
-          "Photos / media library (read and add) — to save downloaded files into your gallery and, when needed, to confirm the file landed there",
+          "Save to your photos / gallery — to add the files you choose to save to your device gallery. Quietly only adds files; it does not read or browse your existing photos and videos.",
           "Clipboard read — to detect a URL when you paste; only the detected URL is stored in your history, never the rest of your clipboard",
         ],
       },
@@ -1683,7 +1683,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "Quietly · Gizlilik",
     heading: "Quietly — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 19.09.2026",
+    lastUpdated: "Son güncelleme: 29.09.2026",
     intro:
       "Quietly, Lunexa tarafından geliştirilmiş bir medya kaydedicidir. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. İnterneti yalnızca senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır — başka hiçbir şey için değil. Quietly hesap oluşturmaz, reklam göstermez ve analitik veya çökme raporlama içermez.",
     sections: [
@@ -1703,11 +1703,11 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Ağ erişimi",
         paragraphs: [
-          "Quietly interneti yalnızca iki amaç için kullanır ve ikisini de sen başlatırsın:",
+          "Quietly interneti yalnızca iki amaç için kullanır:",
         ],
         bullets: [
-          "Yapıştırdığın URL — medya dosyasını indirebilmek için doğrudan kaynağından çekilir",
-          "https://www.gstatic.com/generate_204 — yalnızca cihazının şu an internete bağlı olup olmadığını tespit etmek için kullanılan küçük bir Google uç noktası. Bu adrese veri gönderilmez.",
+          "Yapıştırdığın URL — Quietly, medya dosyasını kontrol edip indirmek için o URL'deki sunucuya bağlanır. Sunucu isteği yönlendirirse Quietly yönlendirilen sunucuya da bağlanır (en fazla beş yönlendirme; güvenli bir https bağlantısından güvensiz bir http bağlantısına asla geçilmez). Bu sunucular IP adresin ve istek başlıkları gibi standart teknik bilgileri alabilir ve kendi gizlilik politikalarına tabidir.",
+          "https://www.gstatic.com/generate_204 — uygulamanın, yalnızca cihazının şu an internete bağlı olup olmadığını anlamak için otomatik olarak bağlandığı küçük bir Google uç noktası. Quietly bu kontrole yapıştırdığın URL'yi, indirilen medyaya dair herhangi bir bilgiyi veya kaydettiğin medyayı eklemez.",
         ],
       },
       {
@@ -1717,7 +1717,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         ],
         bullets: [
           "İnternet — yapıştırdığın URL'deki medyayı indirmek için",
-          "Fotoğraflar / medya kitaplığı (okuma ve ekleme) — indirilen dosyaları galerine kaydetmek ve gerektiğinde dosyanın oraya ulaştığını doğrulamak için",
+          "Fotoğraflarına / galerine kaydetme — kaydetmeyi seçtiğin dosyaları cihazının galerisine eklemek için. Quietly yalnızca dosya ekler; mevcut fotoğraflarını ve videolarını okumaz veya taramaz.",
           "Pano okuma — yapıştırma sırasında URL'yi algılamak için; yalnızca algılanan URL geçmişine kaydedilir, panonun geri kalanı asla kaydedilmez",
         ],
       },
@@ -1769,7 +1769,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "Quietly · Privacidad",
     heading: "Quietly — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-09-19",
+    lastUpdated: "Última actualización: 2026-09-29",
     intro:
       "Quietly es un guardador de medios creado por Lunexa. La aplicación guarda medios públicos directos desde URLs que pegas en la galería de tu dispositivo. Usa internet únicamente para descargar los medios que pides y para comprobar si tienes conexión — nada más. Quietly no crea cuentas, no muestra anuncios y no incluye analítica ni informes de errores.",
     sections: [
@@ -1789,11 +1789,11 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Acceso a la red",
         paragraphs: [
-          "Quietly usa internet únicamente con dos fines, ambos iniciados por ti:",
+          "Quietly usa internet únicamente con dos fines:",
         ],
         bullets: [
-          "La URL que pegas — se descarga directamente desde su origen para obtener el archivo de medios",
-          "https://www.gstatic.com/generate_204 — un pequeño endpoint de Google contactado solo para detectar si tu dispositivo tiene conexión a internet. No se envía ningún dato a él.",
+          "La URL que pegas — Quietly contacta con el servidor de esa URL para comprobar y descargar el archivo de medios. Si ese servidor redirige la solicitud, Quietly también contacta con el servidor al que redirige (como máximo cinco redirecciones, y nunca de un enlace https seguro a uno http inseguro). Esos servidores pueden recibir información técnica estándar, como tu dirección IP y las cabeceras de la solicitud, y se rigen por sus propias políticas de privacidad.",
+          "https://www.gstatic.com/generate_204 — un pequeño endpoint de Google que la aplicación contacta automáticamente, solo para comprobar si tu dispositivo tiene conexión a internet. Quietly no incluye en esta comprobación la URL que pegas, ninguna información sobre los medios descargados ni los medios que guardas.",
         ],
       },
       {
@@ -1803,7 +1803,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         ],
         bullets: [
           "Internet — para descargar el contenido en la URL que pegas",
-          "Fotos / biblioteca de medios (leer y añadir) — para guardar los archivos descargados en tu galería y, cuando sea necesario, confirmar que el archivo llegó allí",
+          "Guardar en tus fotos / galería — para añadir a la galería de tu dispositivo los archivos que decides guardar. Quietly solo añade archivos; no lee ni explora tus fotos y vídeos existentes.",
           "Lectura del portapapeles — para detectar una URL cuando pegas; solo la URL detectada se guarda en tu historial, nunca el resto del portapapeles",
         ],
       },
