@@ -1597,7 +1597,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "Quietly · Privacy",
     heading: "Quietly — Privacy Policy",
-    lastUpdated: "Last updated: 2026-09-29",
+    lastUpdated: "Last updated: 2026-10-04",
     intro:
       "Quietly is a media saver made by Lunexa. The app saves direct public media from URLs you paste into your device gallery. It uses the internet to fetch the media you ask for and to check whether you have a connection — and nothing else. Quietly does not create accounts, does not show ads, and does not include analytics or crash reporting.",
     sections: [
@@ -1632,7 +1632,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         bullets: [
           "Internet — to download the media at the URL you paste",
           "Save to your photos / gallery — to add the files you choose to save to your device gallery. Quietly only adds files; it does not read or browse your existing photos and videos.",
-          "Clipboard read — to detect a URL when you paste; only the detected URL is stored in your history, never the rest of your clipboard",
+          "Clipboard read — when you open Quietly, return to it, or open Home, the app may check the current clipboard for a link so it can suggest it to you. A link detected this way is kept only in the app's memory and is not saved or sent anywhere just because it was detected. A link is stored in your history only as part of an item you choose to save, and the rest of your clipboard is never stored.",
         ],
       },
       {
@@ -1642,7 +1642,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         ],
         bullets: [
           "Your preferences: save on Wi-Fi only, the save notice, the in-app language, the theme, and a first-run acknowledgment flag",
-          "Your history of saved items — each entry holds an identifier, the media kind, a title, descriptive metadata, the time saved, the source URL identifier, and the file path on your device",
+          "Your history of saved items — each entry holds an identifier, the media kind, a title, descriptive metadata, the time saved, the source link (its full URL), and the file path on your device",
         ],
       },
       {
@@ -1683,7 +1683,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "Quietly · Gizlilik",
     heading: "Quietly — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 29.09.2026",
+    lastUpdated: "Son güncelleme: 04.10.2026",
     intro:
       "Quietly, Lunexa tarafından geliştirilmiş bir medya kaydedicidir. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. İnterneti yalnızca senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır — başka hiçbir şey için değil. Quietly hesap oluşturmaz, reklam göstermez ve analitik veya çökme raporlama içermez.",
     sections: [
@@ -1718,7 +1718,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         bullets: [
           "İnternet — yapıştırdığın URL'deki medyayı indirmek için",
           "Fotoğraflarına / galerine kaydetme — kaydetmeyi seçtiğin dosyaları cihazının galerisine eklemek için. Quietly yalnızca dosya ekler; mevcut fotoğraflarını ve videolarını okumaz veya taramaz.",
-          "Pano okuma — yapıştırma sırasında URL'yi algılamak için; yalnızca algılanan URL geçmişine kaydedilir, panonun geri kalanı asla kaydedilmez",
+          "Pano okuma — Quietly'yi açtığında, uygulamaya geri döndüğünde veya Home ekranını açtığında, uygulama sana bir bağlantı önerebilmek için mevcut panoda bağlantı olup olmadığını kontrol edebilir. Bu şekilde algılanan bağlantı yalnızca uygulamanın belleğinde tutulur; yalnızca algılandığı için kaydedilmez veya herhangi bir yere gönderilmez. Bir bağlantı geçmişine yalnızca kaydetmeyi seçtiğin bir öğenin parçası olarak eklenir; panonun geri kalanı asla kaydedilmez.",
         ],
       },
       {
@@ -1728,7 +1728,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         ],
         bullets: [
           "Tercihlerin: yalnızca Wi-Fi'de kaydet, kayıt bildirimi, uygulama dili, tema ve ilk açılış onay bayrağı",
-          "Kayıt geçmişin — her girdi şunları içerir: kimlik, medya türü, başlık, açıklayıcı metaveri, kayıt zamanı, kaynak URL kimliği ve cihazındaki dosya yolu",
+          "Kayıt geçmişin — her girdi şunları içerir: kimlik, medya türü, başlık, açıklayıcı metaveri, kayıt zamanı, kaynak bağlantı (tam URL'si) ve cihazındaki dosya yolu",
         ],
       },
       {
@@ -1769,7 +1769,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "Quietly · Privacidad",
     heading: "Quietly — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-09-29",
+    lastUpdated: "Última actualización: 2026-10-04",
     intro:
       "Quietly es un guardador de medios creado por Lunexa. La aplicación guarda medios públicos directos desde URLs que pegas en la galería de tu dispositivo. Usa internet únicamente para descargar los medios que pides y para comprobar si tienes conexión — nada más. Quietly no crea cuentas, no muestra anuncios y no incluye analítica ni informes de errores.",
     sections: [
@@ -1804,7 +1804,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         bullets: [
           "Internet — para descargar el contenido en la URL que pegas",
           "Guardar en tus fotos / galería — para añadir a la galería de tu dispositivo los archivos que decides guardar. Quietly solo añade archivos; no lee ni explora tus fotos y vídeos existentes.",
-          "Lectura del portapapeles — para detectar una URL cuando pegas; solo la URL detectada se guarda en tu historial, nunca el resto del portapapeles",
+          "Lectura del portapapeles — cuando abres Quietly, vuelves a la aplicación o abres la pantalla Home, la aplicación puede comprobar el portapapeles actual en busca de un enlace para sugerírtelo. Un enlace detectado así solo se mantiene en la memoria de la aplicación y no se guarda ni se envía a ningún sitio por el mero hecho de haberse detectado. Un enlace solo se guarda en tu historial como parte de un elemento que eliges guardar, y el resto del portapapeles nunca se almacena.",
         ],
       },
       {
@@ -1814,7 +1814,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
         ],
         bullets: [
           "Tus preferencias: guardar solo con Wi-Fi, el aviso de guardado, el idioma de la aplicación, el tema y un indicador de primera ejecución",
-          "Tu historial de elementos guardados — cada entrada incluye un identificador, el tipo de medio, un título, metadatos descriptivos, la hora en que se guardó, el identificador de URL de origen y la ruta del archivo en tu dispositivo",
+          "Tu historial de elementos guardados — cada entrada incluye un identificador, el tipo de medio, un título, metadatos descriptivos, la hora en que se guardó, el enlace de origen (su URL completa) y la ruta del archivo en tu dispositivo",
         ],
       },
       {
