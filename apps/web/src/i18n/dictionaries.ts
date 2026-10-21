@@ -81,8 +81,13 @@ const en = {
   games_cta: {
     eyebrow: "Lunexa Games",
     heading: "Games, made with the same care",
-    body: "RPS Duel is available now on Android — a single-player Rock Paper Scissors game.",
+    body: "Two single-player games for Android, both on Google Play.",
     badge_label: "Get it on Google Play",
+    rps_desc: "A Rock Paper Scissors duel against a built-in opponent, with a daily challenge and achievements.",
+    rps_badge_label: "Get RPS Duel on Google Play",
+    chess_desc: "Chess-rules puzzles built around the feel of a comeback.",
+    chess_badge_label: "Get Chess Rescue on Google Play",
+    developer_link: "See all our apps on Google Play",
   },
   faq: {
     eyebrow: "FAQ",
@@ -403,8 +408,13 @@ const tr: Dictionary = {
   games_cta: {
     eyebrow: "Lunexa Games",
     heading: "Aynı özenle yapılmış oyunlar",
-    body: "RPS Duel şimdi Android'de — tek oyunculu bir Taş Kâğıt Makas oyunu.",
+    body: "Android için iki tek oyunculu oyun, ikisi de Google Play'de.",
     badge_label: "Google Play'den indirin",
+    rps_desc: "Yerleşik bir rakibe karşı Taş Kâğıt Makas düellosu; günlük görev ve başarımlarla.",
+    rps_badge_label: "RPS Duel'i Google Play'den indirin",
+    chess_desc: "Geri dönüş hissi etrafında kurulmuş, satranç kurallı bulmacalar.",
+    chess_badge_label: "Chess Rescue'yu Google Play'den indirin",
+    developer_link: "Google Play'deki tüm uygulamalarımızı gör",
   },
   faq: {
     eyebrow: "SSS",
@@ -725,8 +735,13 @@ const es: Dictionary = {
   games_cta: {
     eyebrow: "Lunexa Games",
     heading: "Juegos, hechos con el mismo cuidado",
-    body: "RPS Duel ya está disponible en Android: un juego de Piedra Papel Tijera para un solo jugador.",
+    body: "Dos juegos para un solo jugador en Android, ambos en Google Play.",
     badge_label: "Consíguelo en Google Play",
+    rps_desc: "Un duelo de Piedra Papel Tijera contra un rival integrado, con reto diario y logros.",
+    rps_badge_label: "Consigue RPS Duel en Google Play",
+    chess_desc: "Rompecabezas con reglas de ajedrez, construidos en torno a la sensación de una remontada.",
+    chess_badge_label: "Consigue Chess Rescue en Google Play",
+    developer_link: "Ver todas nuestras aplicaciones en Google Play",
   },
   faq: {
     eyebrow: "FAQ",

@@ -607,6 +607,17 @@ export const RELATED_SERVICES: Record<Locale, RelatedServicesContent> = {
 export const RPS_DUEL_PLAY_URL =
   "https://play.google.com/store/apps/details?id=com.lunexa.games.rpsduel";
 
+/** Canonical Play Store listing for Chess Rescue — same single-definition rule. */
+export const CHESS_RESCUE_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.lunexa.games.chessrescue";
+
+/**
+ * The studio's Google Play developer profile, listing every published app. A
+ * discovery link only — never a stand-in for an individual game's listing.
+ */
+export const LUNEXA_PLAY_DEVELOPER_URL =
+  "https://play.google.com/store/apps/developer?id=Use+Lunexa";
+
 type WorkItem = {
   /** Lowercase slug, used in DOM ids and the public page anchor */
   slug: string;
@@ -678,13 +689,13 @@ export const WORK: Record<Locale, WorkContent> = {
       {
         slug: "chess-rescue",
         name: "Chess Rescue",
-        tagline: "A calm, offline chess-rules puzzle game for Android",
-        body: "Single-player chess-rules puzzles built around the feel of an emotional comeback. The game runs entirely on your device — no account, no backend, no ads, no analytics. Progress is stored locally.",
-        url: "",
+        tagline: "A calm chess-rules puzzle game for Android",
+        body: "Single-player chess-rules puzzles built around the feel of an emotional comeback. No account needed, and your progress is saved on your device.",
+        url: CHESS_RESCUE_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "shared_preferences"],
-        status: "development",
-        statusLabel: "Prototype — active development",
-        visitLabel: "Coming to Google Play soon",
+        status: "live",
+        statusLabel: "Live on Google Play",
+        visitLabel: "Get it on Google Play →",
         privacyPath: "/privacy/chess-rescue",
       },
       {
@@ -695,8 +706,8 @@ export const WORK: Record<Locale, WorkContent> = {
         url: "",
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
         status: "development",
-        statusLabel: "Pre-launch — closed testing",
-        visitLabel: "Coming to Google Play soon",
+        statusLabel: "Production release pending",
+        visitLabel: "Not yet available on Google Play",
         privacyPath: "/privacy/quietly",
       },
     ],
@@ -737,13 +748,13 @@ export const WORK: Record<Locale, WorkContent> = {
       {
         slug: "chess-rescue",
         name: "Chess Rescue",
-        tagline: "Android için sakin, çevrimdışı, satranç kurallı bir bulmaca oyunu",
-        body: "Duygusal bir geri dönüş hissi etrafında kurulmuş, satranç kurallı tek oyunculu bulmacalar. Oyun tamamen cihazında çalışır — hesap yok, sunucu yok, reklam yok, analitik yok. İlerleme cihazına yerel olarak kaydedilir.",
-        url: "",
+        tagline: "Android için sakin, satranç kurallı bir bulmaca oyunu",
+        body: "Duygusal bir geri dönüş hissi etrafında kurulmuş, satranç kurallı tek oyunculu bulmacalar. Hesap gerekmez; ilerlemen cihazına kaydedilir.",
+        url: CHESS_RESCUE_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "shared_preferences"],
-        status: "development",
-        statusLabel: "Prototip — aktif geliştirme",
-        visitLabel: "Yakında Google Play'de",
+        status: "live",
+        statusLabel: "Google Play'de yayında",
+        visitLabel: "Google Play'den indir →",
         privacyPath: "/privacy/chess-rescue",
       },
       {
@@ -754,8 +765,8 @@ export const WORK: Record<Locale, WorkContent> = {
         url: "",
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
         status: "development",
-        statusLabel: "Lansman öncesi — kapalı test",
-        visitLabel: "Yakında Google Play'de",
+        statusLabel: "Production yayını bekleniyor",
+        visitLabel: "Henüz Google Play'de değil",
         privacyPath: "/privacy/quietly",
       },
     ],
@@ -796,13 +807,13 @@ export const WORK: Record<Locale, WorkContent> = {
       {
         slug: "chess-rescue",
         name: "Chess Rescue",
-        tagline: "Un juego de rompecabezas con reglas de ajedrez, tranquilo y sin conexión, para Android",
-        body: "Rompecabezas con reglas de ajedrez para un solo jugador, construidos en torno a la sensación de un retorno emocional. El juego funciona enteramente en tu dispositivo — sin cuenta, sin backend, sin anuncios, sin analítica. El progreso se guarda localmente.",
-        url: "",
+        tagline: "Un juego de rompecabezas con reglas de ajedrez, tranquilo, para Android",
+        body: "Rompecabezas con reglas de ajedrez para un solo jugador, construidos en torno a la sensación de un retorno emocional. No necesitas cuenta y tu progreso se guarda en tu dispositivo.",
+        url: CHESS_RESCUE_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "shared_preferences"],
-        status: "development",
-        statusLabel: "Prototipo — desarrollo activo",
-        visitLabel: "Próximamente en Google Play",
+        status: "live",
+        statusLabel: "Disponible en Google Play",
+        visitLabel: "Consíguelo en Google Play →",
         privacyPath: "/privacy/chess-rescue",
       },
       {
@@ -813,8 +824,8 @@ export const WORK: Record<Locale, WorkContent> = {
         url: "",
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
         status: "development",
-        statusLabel: "Pre-lanzamiento — pruebas cerradas",
-        visitLabel: "Próximamente en Google Play",
+        statusLabel: "Lanzamiento en producción pendiente",
+        visitLabel: "Aún no disponible en Google Play",
         privacyPath: "/privacy/quietly",
       },
     ],

@@ -7,7 +7,17 @@ import HomeFaq from "@/components/home-faq";
 import GooglePlayBadge from "@/components/google-play-badge";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
-import { RPS_DUEL_PLAY_URL } from "@/seo/content";
+import {
+  CHESS_RESCUE_PLAY_URL,
+  LUNEXA_PLAY_DEVELOPER_URL,
+  RPS_DUEL_PLAY_URL,
+} from "@/seo/content";
+
+/** Published games, in the order they shipped. `key` selects the `games_cta.*` copy. */
+const GAMES = [
+  { key: "rps", name: "RPS Duel", url: RPS_DUEL_PLAY_URL },
+  { key: "chess", name: "Chess Rescue", url: CHESS_RESCUE_PLAY_URL },
+] as const;
 
 export default function HomeContent() {
   const { t, locale } = useT();
@@ -255,22 +265,46 @@ export default function HomeContent() {
       {/* ── Lunexa Games ── */}
       <section className="border-t border-border/50 py-24 sm:py-32">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="flex flex-col gap-8 rounded-2xl border border-border bg-surface-light p-8 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:p-10">
-            <div>
-              <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent">
-                {t("games_cta.eyebrow")}
-              </p>
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                {t("games_cta.heading")}
-              </h2>
-              <p className="mt-3 leading-relaxed text-muted">
-                {t("games_cta.body")}
-              </p>
-            </div>
-            <GooglePlayBadge
-              href={RPS_DUEL_PLAY_URL}
-              label={t("games_cta.badge_label")}
-            />
+          <div className="rounded-2xl border border-border bg-surface-light p-8 sm:p-10">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent">
+              {t("games_cta.eyebrow")}
+            </p>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              {t("games_cta.heading")}
+            </h2>
+            <p className="mt-3 leading-relaxed text-muted">
+              {t("games_cta.body")}
+            </p>
+            {/* Each game links to its own listing; the badge label names the
+                game so the two links stay distinguishable to screen readers. */}
+            <ul className="mt-8 grid gap-6 sm:grid-cols-2">
+              {GAMES.map((game) => (
+                <li
+                  key={game.name}
+                  className="flex flex-col gap-6 rounded-xl border border-border p-6"
+                >
+                  <div>
+                    <h3 className="text-lg font-semibold">{game.name}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                      {t(`games_cta.${game.key}_desc`)}
+                    </p>
+                  </div>
+                  <GooglePlayBadge
+                    href={game.url}
+                    label={t(`games_cta.${game.key}_badge_label`)}
+                    className="mt-auto self-start"
+                  />
+                </li>
+              ))}
+            </ul>
+            <a
+              href={LUNEXA_PLAY_DEVELOPER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-80"
+            >
+              {t("games_cta.developer_link")} →
+            </a>
           </div>
         </div>
       </section>
