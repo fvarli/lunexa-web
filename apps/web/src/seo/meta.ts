@@ -181,7 +181,7 @@ export const RPS_DUEL_PRODUCT_META: PageCopy = {
   tr: {
     title: "RPS Duel — Lunexa Games'ten Android Oyunu",
     description:
-      "RPS Duel, Lunexa Games tarafından geliştirilen Android için tek oyunculu bir Taş Kâğıt Makas oyunu. Günlük görev, dört başarım, üç zorluk seviyesi ve İngilizce / Türkçe / İspanyolca desteği. Hesap gerekmez.",
+      "RPS Duel, Lunexa Games tarafından geliştirilen Android için tek oyunculu bir Taş Kâğıt Makas oyunu. Günlük görev, dört başarı, üç zorluk seviyesi ve İngilizce / Türkçe / İspanyolca desteği. Hesap gerekmez.",
   },
   es: {
     title: "RPS Duel — Juego de Android de Lunexa Games",

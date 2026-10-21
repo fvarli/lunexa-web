@@ -410,7 +410,7 @@ const tr: Dictionary = {
     heading: "Aynı özenle yapılmış oyunlar",
     body: "Android için iki tek oyunculu oyun, ikisi de Google Play'de.",
     badge_label: "Google Play'den indirin",
-    rps_desc: "Yerleşik bir rakibe karşı Taş Kâğıt Makas düellosu; günlük görev ve başarımlarla.",
+    rps_desc: "Taş Kâğıt Makas'ta bilgisayara karşı mücadele et, günlük görevleri tamamla ve başarılar kazan.",
     rps_badge_label: "RPS Duel'i Google Play'den indirin",
     chess_desc: "Geri dönüş hissi etrafında kurulmuş, satranç kurallı bulmacalar.",
     chess_badge_label: "Chess Rescue'yu Google Play'den indirin",
