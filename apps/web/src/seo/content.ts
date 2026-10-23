@@ -664,7 +664,7 @@ export const WORK: Record<Locale, WorkContent> = {
   en: {
     eyebrow: "Our Work",
     heading: "Products shipped from the Lunexa studio",
-    lead: "Every product below is real software, in production, used by real people. The studio's standards — multi-locale, accessible, observable, secure — show up in each one. New products land here as they ship.",
+    lead: "These are real products from the studio: some are publicly available, and others are still in development — each card shows its current status. The studio's standards — multi-locale, accessible, observable, secure — show up in each one. New products land here as they ship.",
     items: [
       {
         slug: "techchefdelights",
@@ -723,7 +723,7 @@ export const WORK: Record<Locale, WorkContent> = {
   tr: {
     eyebrow: "İşlerimiz",
     heading: "Lunexa stüdyosundan çıkmış ürünler",
-    lead: "Aşağıdaki her ürün gerçek yazılım, üretimde, gerçek kullanıcılarla. Stüdyonun standartları — çok dilli, erişilebilir, izlenebilir, güvenli — her birinde görünüyor. Yeni ürünler yayına çıktıkça buraya iniyor.",
+    lead: "Bunlar stüdyonun gerçek ürünleri: bazıları herkesin kullanımına açık, bazıları ise hâlâ geliştiriliyor — her kartta güncel durumu yer alıyor. Stüdyonun standartları — çok dilli, erişilebilir, izlenebilir, güvenli — her birinde görünüyor. Yeni ürünler yayına çıktıkça buraya iniyor.",
     items: [
       {
         slug: "techchefdelights",
@@ -782,7 +782,7 @@ export const WORK: Record<Locale, WorkContent> = {
   es: {
     eyebrow: "Nuestro Trabajo",
     heading: "Productos enviados desde el estudio Lunexa",
-    lead: "Cada producto a continuación es software real, en producción, usado por personas reales. Los estándares del estudio — multi-idioma, accesibles, observables, seguros — aparecen en cada uno. Los nuevos productos llegan aquí cuando se publican.",
+    lead: "Estos son productos reales del estudio: algunos ya están disponibles públicamente y otros siguen en desarrollo; cada tarjeta muestra su estado actual. Los estándares del estudio — multi-idioma, accesibles, observables, seguros — aparecen en cada uno. Los nuevos productos llegan aquí cuando se publican.",
     items: [
       {
         slug: "techchefdelights",

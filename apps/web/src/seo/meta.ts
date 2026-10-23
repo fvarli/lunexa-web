@@ -284,17 +284,17 @@ export const WORK_META: PageCopy = {
   en: {
     title: "Our Work — Lunexa Products",
     description:
-      "Products built by Lunexa. Real software shipped to real users — TechChefDelights and what comes next. Every project demonstrates the studio's stack and standards in production.",
+      "Products from the Lunexa studio: RPS Duel, Chess Rescue and Quietly on Google Play, plus TechChefDelights, a multilingual recipe web platform.",
   },
   tr: {
     title: "İşlerimiz — Lunexa Ürünleri",
     description:
-      "Lunexa tarafından üretilen ürünler. Gerçek kullanıcılara gönderilmiş gerçek yazılımlar — TechChefDelights ve devamı. Her proje stüdyonun stack'ini ve standartlarını üretimde gösteriyor.",
+      "Lunexa stüdyosunun ürünleri: Google Play'de yayında olan RPS Duel, Chess Rescue ve Quietly ile çok dilli tarif web platformu TechChefDelights.",
   },
   es: {
     title: "Nuestro Trabajo — Productos Lunexa",
     description:
-      "Productos creados por Lunexa. Software real enviado a usuarios reales — TechChefDelights y lo que viene. Cada proyecto demuestra el stack y los estándares del estudio en producción.",
+      "Productos del estudio Lunexa: RPS Duel, Chess Rescue y Quietly en Google Play, además de TechChefDelights, una plataforma web de recetas multilingüe.",
   },
 };
 
@@ -372,19 +372,19 @@ export const SERVICES_INTELLIGENT_META: PageCopy = {
 
 export const UPDATES_META: PageCopy = {
   en: {
-    title: "Product Updates — Lunexa Games Release Notes",
+    title: "Product Updates — App & Game Release Notes",
     description:
-      "Release notes for the apps Lunexa publishes on Google Play, including RPS Duel. What's new, what improved, and what was fixed in each version.",
+      "Release notes for Lunexa's Android apps and games on Google Play: Quietly, Chess Rescue and RPS Duel. What's new, improved and fixed in each version.",
   },
   tr: {
-    title: "Ürün Güncellemeleri — Lunexa Games Sürüm Notları",
+    title: "Ürün Güncellemeleri — Uygulama ve Oyun Sürüm Notları",
     description:
-      "Lunexa'nın Google Play'de yayınladığı uygulamaların sürüm notları — RPS Duel dahil. Her sürümde neler yeni, neler iyileştirildi ve neler düzeltildi.",
+      "Lunexa'nın Google Play'deki Android uygulama ve oyunlarının sürüm notları: Quietly, Chess Rescue ve RPS Duel. Yenilikler, iyileştirmeler ve düzeltmeler.",
   },
   es: {
-    title: "Actualizaciones de Producto — Notas de Versión de Lunexa Games",
+    title: "Actualizaciones — Notas de Versión de Apps y Juegos",
     description:
-      "Notas de versión de las aplicaciones que Lunexa publica en Google Play, incluida RPS Duel. Qué es nuevo, qué mejoró y qué se corrigió en cada versión.",
+      "Notas de versión de las apps y juegos Android de Lunexa en Google Play: Quietly, Chess Rescue y RPS Duel. Qué hay de nuevo, qué mejoró y qué se corrigió.",
   },
 };
 
