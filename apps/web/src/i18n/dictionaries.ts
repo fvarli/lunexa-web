@@ -89,6 +89,13 @@ const en = {
     chess_badge_label: "Get Chess Rescue on Google Play",
     developer_link: "See all our apps on Google Play",
   },
+  apps_cta: {
+    eyebrow: "Lunexa Apps",
+    heading: "Apps, made with the same care",
+    body: "A simple Android utility, on Google Play.",
+    quietly_desc: "Saves direct public media from links you paste into your device gallery — no account, no ads.",
+    quietly_badge_label: "Get Quietly on Google Play",
+  },
   faq: {
     eyebrow: "FAQ",
     heading: "Common questions",
@@ -416,6 +423,13 @@ const tr: Dictionary = {
     chess_badge_label: "Chess Rescue'yu Google Play'den indirin",
     developer_link: "Google Play'deki tüm uygulamalarımızı gör",
   },
+  apps_cta: {
+    eyebrow: "Lunexa Uygulamaları",
+    heading: "Aynı özenle yapılmış uygulamalar",
+    body: "Android için sade bir yardımcı uygulama, Google Play'de.",
+    quietly_desc: "Yapıştırdığın bağlantılardaki doğrudan halka açık medyayı cihazının galerisine kaydeder — hesap yok, reklam yok.",
+    quietly_badge_label: "Quietly'yi Google Play'den indirin",
+  },
   faq: {
     eyebrow: "SSS",
     heading: "Sık sorulan sorular",
@@ -742,6 +756,13 @@ const es: Dictionary = {
     chess_desc: "Rompecabezas con reglas de ajedrez, construidos en torno a la sensación de una remontada.",
     chess_badge_label: "Consigue Chess Rescue en Google Play",
     developer_link: "Ver todas nuestras aplicaciones en Google Play",
+  },
+  apps_cta: {
+    eyebrow: "Aplicaciones Lunexa",
+    heading: "Aplicaciones, hechas con el mismo cuidado",
+    body: "Una utilidad sencilla para Android, en Google Play.",
+    quietly_desc: "Guarda en la galería de tu dispositivo medios públicos directos de los enlaces que pegas, sin cuenta ni anuncios.",
+    quietly_badge_label: "Consigue Quietly en Google Play",
   },
   faq: {
     eyebrow: "FAQ",

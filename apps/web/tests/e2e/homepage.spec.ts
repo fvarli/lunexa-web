@@ -67,15 +67,82 @@ test.describe("Published games discovery", () => {
     });
   }
 
-  test("work lists Chess Rescue on Google Play and keeps Quietly unreleased", async ({ page }) => {
+  test("work lists Chess Rescue on Google Play", async ({ page }) => {
     await page.goto("/work");
     const chess = page.locator("article").filter({ has: page.getByRole("heading", { name: "Chess Rescue" }) });
     await expect(chess.locator(`a[href="${CHESS_PLAY}"]`)).toHaveCount(1);
     await expect(chess).not.toContainText(/Prototype|Coming to Google Play/);
     await expect(chess).not.toContainText(/offline|no backend|no analytics|entirely on your device/i);
-    const quietly = page.locator("article").filter({ has: page.getByRole("heading", { name: "Quietly" }) });
-    await expect(quietly.locator('a[href^="https://play.google.com/"]')).toHaveCount(0);
-    await expect(quietly).toContainText("Production release pending");
-    await expect(quietly).toContainText("Not yet available on Google Play");
   });
+});
+
+const QUIETLY_PLAY = "https://play.google.com/store/apps/details?id=com.lunexa.quietly";
+
+test.describe("Quietly on Google Play", () => {
+  const locales = [
+    {
+      prefix: "",
+      homeBadge: /Get Quietly on Google Play/,
+      gamesHeading: "Games, made with the same care",
+      workBadge: "Get it on Google Play",
+      live: "Live on Google Play",
+      obsolete: /release pending|not yet available|coming soon|in review|closed testing/i,
+    },
+    {
+      prefix: "/tr",
+      homeBadge: /Quietly'yi Google Play'den indirin/,
+      gamesHeading: "Aynı özenle yapılmış oyunlar",
+      workBadge: "Google Play'den indirin",
+      live: "Google Play'de yayında",
+      obsolete: /bekleniyor|henüz|yakında|incelemede|kapalı test/i,
+    },
+    {
+      prefix: "/es",
+      homeBadge: /Consigue Quietly en Google Play/,
+      gamesHeading: "Juegos, hechos con el mismo cuidado",
+      workBadge: "Consíguelo en Google Play",
+      live: "Disponible en Google Play",
+      obsolete: /pendiente|aún no|próximamente|en revisión|pruebas cerradas/i,
+    },
+  ];
+
+  for (const l of locales) {
+    test(`home ${l.prefix || "/"} links Quietly to its own listing, outside the games list`, async ({ page }) => {
+      await page.goto(l.prefix || "/");
+      await expect(page.getByRole("link", { name: l.homeBadge })).toHaveAttribute("href", QUIETLY_PLAY);
+      await expect(page.locator(`a[href="${QUIETLY_PLAY}"]`)).toHaveCount(1);
+      // Ancestors precede descendants in DOM order, so the last match is the games box itself.
+      const games = page
+        .locator("div")
+        .filter({ has: page.getByRole("heading", { level: 2, name: l.gamesHeading }) })
+        .last();
+      await expect(games.getByRole("heading", { level: 3 })).toHaveText(["RPS Duel", "Chess Rescue"]);
+      await expect(games).not.toContainText("Quietly");
+      await expect(games.locator(`a[href="${RPS_PLAY}"]`)).toHaveCount(1);
+      await expect(games.locator(`a[href="${CHESS_PLAY}"]`)).toHaveCount(1);
+      await expect(games.locator(`a[href="${DEVELOPER_PLAY}"]`)).toHaveCount(1);
+    });
+
+    test(`work ${l.prefix || "/"} shows Quietly live with its listing and privacy policy`, async ({ page }) => {
+      await page.goto(`${l.prefix}/work`);
+      const quietly = page.locator("article").filter({ has: page.getByRole("heading", { name: "Quietly" }) });
+      await expect(quietly).toContainText(l.live);
+      await expect(quietly).not.toContainText(l.obsolete);
+      await expect(quietly.getByRole("link", { name: l.workBadge })).toHaveAttribute("href", QUIETLY_PLAY);
+      await expect(quietly.locator(`a[href="${QUIETLY_PLAY}"]`)).toHaveCount(1);
+      await expect(quietly.locator(`a[href="${DEVELOPER_PLAY}"]`)).toHaveCount(0);
+      await expect(quietly.locator(`a[href="${l.prefix}/privacy/quietly"]`)).toHaveCount(1);
+      await expect(page.locator(`a[href="${RPS_PLAY}"]`)).toHaveCount(1);
+      await expect(page.locator(`a[href="${CHESS_PLAY}"]`)).toHaveCount(1);
+    });
+
+    test(`terms ${l.prefix || "/"} keeps the Quietly terms link`, async ({ page }) => {
+      await page.goto(`${l.prefix}/terms`);
+      await expect(page.locator(`main a[href="${l.prefix}/terms/quietly"]`)).toHaveCount(1);
+      const res = await page.goto(`${l.prefix}/terms/quietly`);
+      expect(res?.status()).toBe(200);
+      const privacy = await page.goto(`${l.prefix}/privacy/quietly`);
+      expect(privacy?.status()).toBe(200);
+    });
+  }
 });

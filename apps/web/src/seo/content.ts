@@ -611,6 +611,10 @@ export const RPS_DUEL_PLAY_URL =
 export const CHESS_RESCUE_PLAY_URL =
   "https://play.google.com/store/apps/details?id=com.lunexa.games.chessrescue";
 
+/** Canonical Play Store listing for Quietly — same single-definition rule. */
+export const QUIETLY_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.lunexa.quietly";
+
 /**
  * The studio's Google Play developer profile, listing every published app. A
  * discovery link only — never a stand-in for an individual game's listing.
@@ -703,11 +707,11 @@ export const WORK: Record<Locale, WorkContent> = {
         name: "Quietly",
         tagline: "An Android media saver for direct public URLs",
         body: "Quietly saves direct public media from URLs you paste into your device gallery. It only fetches what you ask for — no scraping, no logged-in or DRM-protected content. No accounts, no ads, no analytics, no telemetry.",
-        url: "",
+        url: QUIETLY_PLAY_URL,
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
-        status: "development",
-        statusLabel: "Production release pending",
-        visitLabel: "Not yet available on Google Play",
+        status: "live",
+        statusLabel: "Live on Google Play",
+        visitLabel: "Get it on Google Play →",
         privacyPath: "/privacy/quietly",
       },
     ],
@@ -762,11 +766,11 @@ export const WORK: Record<Locale, WorkContent> = {
         name: "Quietly",
         tagline: "Doğrudan halka açık URL'ler için bir Android medya kaydedici",
         body: "Quietly, yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. Yalnızca senin istediğini getirir — kazıma yok, oturum açılmış veya DRM korumalı içerik yok. Hesap yok, reklam yok, analitik yok, telemetri yok.",
-        url: "",
+        url: QUIETLY_PLAY_URL,
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
-        status: "development",
-        statusLabel: "Production yayını bekleniyor",
-        visitLabel: "Henüz Google Play'de değil",
+        status: "live",
+        statusLabel: "Google Play'de yayında",
+        visitLabel: "Google Play'den indir →",
         privacyPath: "/privacy/quietly",
       },
     ],
@@ -821,11 +825,11 @@ export const WORK: Record<Locale, WorkContent> = {
         name: "Quietly",
         tagline: "Un guardador de medios Android para URLs públicas directas",
         body: "Quietly guarda medios públicos directos desde las URLs que pegas en la galería de tu dispositivo. Solo descarga lo que tú pides — sin scraping, sin contenido protegido por inicio de sesión o DRM. Sin cuentas, sin anuncios, sin analítica, sin telemetría.",
-        url: "",
+        url: QUIETLY_PLAY_URL,
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
-        status: "development",
-        statusLabel: "Lanzamiento en producción pendiente",
-        visitLabel: "Aún no disponible en Google Play",
+        status: "live",
+        statusLabel: "Disponible en Google Play",
+        visitLabel: "Consíguelo en Google Play →",
         privacyPath: "/privacy/quietly",
       },
     ],

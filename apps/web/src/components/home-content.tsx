@@ -10,6 +10,7 @@ import { localeHref } from "@/i18n/href";
 import {
   CHESS_RESCUE_PLAY_URL,
   LUNEXA_PLAY_DEVELOPER_URL,
+  QUIETLY_PLAY_URL,
   RPS_DUEL_PLAY_URL,
 } from "@/seo/content";
 
@@ -17,6 +18,11 @@ import {
 const GAMES = [
   { key: "rps", name: "RPS Duel", url: RPS_DUEL_PLAY_URL },
   { key: "chess", name: "Chess Rescue", url: CHESS_RESCUE_PLAY_URL },
+] as const;
+
+/** Published non-game apps, kept apart from GAMES. `key` selects the `apps_cta.*` copy. */
+const APPS = [
+  { key: "quietly", name: "Quietly", url: QUIETLY_PLAY_URL },
 ] as const;
 
 export default function HomeContent() {
@@ -262,9 +268,40 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* ── Lunexa Games ── */}
+      {/* ── Lunexa Apps & Games ── */}
       <section className="border-t border-border/50 py-24 sm:py-32">
         <div className="mx-auto max-w-5xl px-6">
+          <div className="mb-8 rounded-2xl border border-border bg-surface-light p-8 sm:p-10">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent">
+              {t("apps_cta.eyebrow")}
+            </p>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              {t("apps_cta.heading")}
+            </h2>
+            <p className="mt-3 leading-relaxed text-muted">
+              {t("apps_cta.body")}
+            </p>
+            <ul className="mt-8 grid gap-6 sm:grid-cols-2">
+              {APPS.map((app) => (
+                <li
+                  key={app.name}
+                  className="flex flex-col gap-6 rounded-xl border border-border p-6"
+                >
+                  <div>
+                    <h3 className="text-lg font-semibold">{app.name}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                      {t(`apps_cta.${app.key}_desc`)}
+                    </p>
+                  </div>
+                  <GooglePlayBadge
+                    href={app.url}
+                    label={t(`apps_cta.${app.key}_badge_label`)}
+                    className="mt-auto self-start"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="rounded-2xl border border-border bg-surface-light p-8 sm:p-10">
             <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent">
               {t("games_cta.eyebrow")}
