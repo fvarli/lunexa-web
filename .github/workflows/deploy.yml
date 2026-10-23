@@ -5,6 +5,9 @@ on:
     workflows: ["CI"]
     types:
       - completed
+  # Manual redeploy of an earlier CI run. Only runs for commits that include
+  # deploy/smoke-check.sh can pass: older checkouts lack it (and APIs before
+  # 665b9c1 report commit:null), so the check fails and the web is rolled back.
   workflow_dispatch:
     inputs:
       ci_run_id:
@@ -152,6 +155,10 @@ jobs:
             test -f "${NEW}/server.js"
             test -d "${NEW}/.next/static"
             test -d "${NEW}/node_modules/next"
+            # Read before activation, so a release without one aborts while the
+            # previous release is still live. The smoke check uses it to tell
+            # this release apart from any older web process still answering.
+            NEW_BUILD_ID="$(cat "${NEW}/.next/BUILD_ID")"
             rm -f "${DEPLOY_PATH}/incoming/web-standalone.tar.gz"
 
             PREV=""
@@ -174,17 +181,17 @@ jobs:
             pm2 save
 
             echo "==> Smoke check (internal, bypasses Cloudflare)"
-            sleep 3
-            ok=1
-            curl -fsS http://127.0.0.1:4000/api/health | grep -q '"ok":true' || ok=0
-            curl -fsSI http://127.0.0.1:3001/ | head -1 | grep -q '200' || ok=0
-
-            if [ "${ok}" -ne 1 ]; then
+            # Polls for up to 60 s (deploy/smoke-check.sh). The API must report
+            # this exact commit and the web must serve this build's id.
+            if ! bash "${DEPLOY_PATH}/deploy/smoke-check.sh" deploy "${NEW_BUILD_ID}" "${DEPLOY_SHA}"; then
               echo "==> Smoke check FAILED"
               if [ -n "${PREV}" ] && [ -d "${PREV}" ] && [ "${PREV}" != "${NEW}" ]; then
                 echo "==> Rolling back to ${PREV}"
                 ln -sfn "${PREV}" "${DEPLOY_PATH}/web-current"
                 pm2 reload ecosystem.config.js --update-env || true
+                # Web only: the API is not rolled back. Logged, never success.
+                PREV_BUILD_ID="$(cat "${PREV}/.next/BUILD_ID" 2>/dev/null || true)"
+                bash "${DEPLOY_PATH}/deploy/smoke-check.sh" rollback "${PREV_BUILD_ID}" || true
               fi
               exit 1
             fi
