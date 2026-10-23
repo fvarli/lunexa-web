@@ -2133,10 +2133,9 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
 };
 
 // ── Chess Rescue terms of service ──
-// Standalone, same rationale as RPS Duel above. Two product constraints: the
-// app is not yet released, so nothing here may assert store availability; and
-// it is a puzzle game, not a trainer — no wording may imply coaching,
-// certification, rating gain, or chess improvement.
+// Standalone, same rationale as RPS Duel above. Product constraint: it is a
+// puzzle game, not a trainer — no wording may imply coaching, certification,
+// rating gain, or chess improvement.
 
 export const CHESS_RESCUE_TERMS: Record<Locale, LegalDocument> = {
   en: {
@@ -2391,10 +2390,8 @@ export const CHESS_RESCUE_TERMS: Record<Locale, LegalDocument> = {
 };
 
 // ── Quietly terms of service ──
-// Standalone, same rationale as the two games. Three product constraints:
-// attribution is "Lunexa", not "Lunexa Games" — Quietly is not a game; no
-// package id exists anywhere in the repo, so none is claimed here; and the app
-// is not yet released, so nothing asserts store availability. The
+// Standalone, same rationale as the two games. Product constraint:
+// attribution is "Lunexa", not "Lunexa Games" — Quietly is not a game. The
 // authorised-use wording mirrors the shipped privacy policy: Quietly does not
 // bypass access controls and does not verify rights. Neither half may be
 // overstated into an enforcement promise.

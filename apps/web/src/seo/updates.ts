@@ -1,5 +1,9 @@
 import type { Locale } from "@/i18n/config";
-import { RPS_DUEL_PLAY_URL } from "@/seo/content";
+import {
+  CHESS_RESCUE_PLAY_URL,
+  QUIETLY_PLAY_URL,
+  RPS_DUEL_PLAY_URL,
+} from "@/seo/content";
 
 /**
  * Public product changelog.
@@ -39,8 +43,8 @@ export const PRODUCTS: Record<ProductId, Product> = {
     workPath: "/work/rps-duel",
     storeUrl: RPS_DUEL_PLAY_URL,
   },
-  "chess-rescue": { name: "Chess Rescue" },
-  quietly: { name: "Quietly" },
+  "chess-rescue": { name: "Chess Rescue", storeUrl: CHESS_RESCUE_PLAY_URL },
+  quietly: { name: "Quietly", storeUrl: QUIETLY_PLAY_URL },
 };
 
 export type ChangeCategory = "new" | "improved" | "fixed";
@@ -74,6 +78,125 @@ export type UpdateEntry = {
  * entry here switches the whole surface on with no other edit.
  */
 export const UPDATES: UpdateEntry[] = [
+  {
+    /*
+     * Verified against the live Google Play listing. Its release note calls
+     * this "This first production release". The listing shows the version name
+     * only; the build number is not public, so none is claimed.
+     *
+     * The bullets describe the build on the store. Later development — History
+     * media deletion, backup changes — is excluded until it ships.
+     */
+    id: "quietly-1-0-4",
+    productId: "quietly",
+    /** Google Play, "Updated on": Oct 20, 2026. */
+    date: "2026-10-20",
+    version: "1.0.4",
+    title: {
+      en: "Quietly is live on Google Play",
+      tr: "Quietly Google Play'de yayında",
+      es: "Quietly ya está disponible en Google Play",
+    },
+    summary: {
+      en: "The first public release on Google Play: an Android media saver for direct public links.",
+      tr: "Google Play'deki ilk genel sürüm: doğrudan halka açık bağlantılar için bir Android medya kaydedici.",
+      es: "La primera versión pública en Google Play: un guardador de medios para Android para enlaces públicos directos.",
+    },
+    changes: [
+      {
+        category: "new",
+        text: {
+          en: "Save direct public media from a pasted link to the device gallery, with a preview before saving.",
+          tr: "Yapıştırılan bir bağlantıdaki doğrudan halka açık medyayı, kaydetmeden önce önizleyerek cihaz galerisine kaydetme.",
+          es: "Guarda en la galería del dispositivo medios públicos directos de un enlace pegado, con vista previa antes de guardar.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "A history of the items you save.",
+          tr: "Kaydedilen öğelerin geçmişi.",
+          es: "Un historial de los elementos guardados.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "Fetches only the links you paste — no scraping, and no logged-in or DRM-protected content.",
+          tr: "Yalnızca yapıştırılan bağlantıları getirir; kazıma yok, oturum açılmış veya DRM korumalı içerik yok.",
+          es: "Solo descarga los enlaces que se pegan: sin scraping y sin contenido protegido por inicio de sesión o DRM.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "No account and no ads.",
+          tr: "Hesap yok, reklam yok.",
+          es: "Sin cuenta y sin anuncios.",
+        },
+      },
+      {
+        category: "improved",
+        text: {
+          en: "Stability improvements and a clean, easy-to-use interface.",
+          tr: "Kararlılık iyileştirmeleri ve sade, kullanımı kolay bir arayüz.",
+          es: "Mejoras de estabilidad y una interfaz limpia y fácil de usar.",
+        },
+      },
+    ],
+  },
+  {
+    /*
+     * Verified against the live Google Play listing. Its release note calls
+     * this "our first public release". The listing shows the version name
+     * only; the build number is not public, so none is claimed.
+     *
+     * No offline, network or analytics claim is made here while the store
+     * build's network behaviour is still being confirmed, and the later
+     * analytics work is excluded until it ships.
+     */
+    id: "chess-rescue-1-2-0",
+    productId: "chess-rescue",
+    /** Google Play, "Updated on": Oct 14, 2026. */
+    date: "2026-10-14",
+    version: "1.2.0",
+    title: {
+      en: "Chess Rescue is live on Google Play",
+      tr: "Chess Rescue Google Play'de yayında",
+      es: "Chess Rescue ya está disponible en Google Play",
+    },
+    summary: {
+      en: "The first public release on Google Play: calm, single-player puzzles built on chess rules.",
+      tr: "Google Play'deki ilk genel sürüm: satranç kurallarına dayanan sakin, tek kişilik bulmacalar.",
+      es: "La primera versión pública en Google Play: rompecabezas tranquilos para un jugador basados en las reglas del ajedrez.",
+    },
+    changes: [
+      {
+        category: "new",
+        text: {
+          en: "Rescue-style puzzles that start from positions where defeat feels close.",
+          tr: "Yenilginin yakın hissedildiği pozisyonlardan başlayan kurtarma bulmacaları.",
+          es: "Rompecabezas de rescate que parten de posiciones en las que la derrota parece cercana.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "Each puzzle turns on finding the one move that changes everything.",
+          tr: "Her bulmacada amaç, her şeyi değiştiren tek hamleyi bulmak.",
+          es: "En cada rompecabezas, el objetivo es encontrar la jugada que lo cambia todo.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "No account needed, and progress is saved on the device.",
+          tr: "Hesap gerekmez; ilerleme cihazda saklanır.",
+          es: "Sin cuenta, y el progreso se guarda en el dispositivo.",
+        },
+      },
+    ],
+  },
   {
     /*
      * Verified against the live Google Play listing, not the mobile repository.
