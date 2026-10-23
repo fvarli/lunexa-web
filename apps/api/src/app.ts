@@ -6,6 +6,7 @@ import nodemailer from "nodemailer";
 import type { Transporter } from "nodemailer";
 import jwt from "jsonwebtoken";
 import { createHash } from "node:crypto";
+import path from "node:path";
 import { z } from "zod";
 import { prisma as defaultPrisma } from "./db";
 import {
@@ -16,6 +17,7 @@ import {
 import { requestIdMiddleware, reqMeta } from "./lib/request-id";
 import { logger } from "./lib/logger";
 import { getRateLimitStore, rateLimitStoreKind } from "./lib/rate-limit-store";
+import { readReleaseSha } from "./lib/release";
 
 type NewsletterDb = {
   subscriber: {
@@ -185,9 +187,11 @@ export type CreateAppOptions = {
     newsletterMax?: number;
     windowMs?: number;
   };
+  /** Release SHA marker to read (tests). Defaults to `RELEASE_SHA` beside the compiled app, i.e. `dist/RELEASE_SHA`. */
+  releaseShaFile?: string;
 };
 
-export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}) {
+export function createApp({ transporter, db, rateLimits, releaseShaFile }: CreateAppOptions = {}) {
   const prisma = db ?? (defaultPrisma as unknown as NewsletterDb);
   const app = express();
   app.set("trust proxy", 1);
@@ -300,6 +304,7 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
   // Liveness + readiness probe. Public, no auth, no rate limit.
   // Returns 503 in production when DB ping fails.
   const healthDb = db ?? defaultPrisma;
+  const releaseSha = readReleaseSha(releaseShaFile ?? path.join(__dirname, "RELEASE_SHA"));
   app.get("/api/health", async (req, res) => {
     let dbStatus: "ok" | "error" = "error";
     try {
@@ -337,7 +342,7 @@ export function createApp({ transporter, db, rateLimits }: CreateAppOptions = {}
         heapTotalMb: toMb(mem.heapTotal),
       },
       environment: process.env.NODE_ENV ?? "unknown",
-      commit: process.env.APP_COMMIT_SHA ?? null,
+      commit: releaseSha,
       version: process.env.APP_VERSION ?? null,
       requestId: req.requestId,
     });

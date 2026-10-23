@@ -132,7 +132,15 @@ jobs:
             npm ci
             npx prisma generate
             npx prisma migrate deploy
+            # Cleared first so a failed build never leaves the previous
+            # release's SHA beside newly compiled code.
+            rm -f dist/RELEASE_SHA
             npm run build
+            # The SHA the CI artifact carried (validated in "Resolve release
+            # SHA"), written beside the code built from that checkout. The API
+            # reads it once at startup for /api/health.commit.
+            printf '%s\n' "${DEPLOY_SHA}" > dist/RELEASE_SHA.tmp
+            mv dist/RELEASE_SHA.tmp dist/RELEASE_SHA
             cd ../..
 
             echo "==> Unpacking web release ${DEPLOY_SHA}"
