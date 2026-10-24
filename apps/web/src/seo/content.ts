@@ -1612,7 +1612,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "Quietly · Privacy",
     heading: "Quietly — Privacy Policy",
-    lastUpdated: "Last updated: 2026-10-20",
+    lastUpdated: "Last updated: 2026-10-25",
     intro:
       "Quietly is a media saver made by Lunexa. The app saves direct public media from URLs you paste into your device gallery. It uses the internet to fetch the media you ask for and to check whether you have a connection — and nothing else. Quietly does not create accounts, does not show ads, and does not include analytics or crash reporting.",
     sections: [
@@ -1656,21 +1656,22 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
           "To remember your settings and the media you save between sessions, Quietly keeps the data listed below in its own storage on your device. The amount of storage used depends on what you save. This section describes Quietly's own local storage; backups or transfers made by your operating system's own features are outside its scope.",
         ],
         bullets: [
-          "Your preferences: save on Wi-Fi only, the save notice, the in-app language, the theme, and a first-run acknowledgment flag",
+          "The preferences and settings you choose in the app",
           "Your history of saved items — each entry holds an identifier, the media kind, a title, descriptive metadata, the time saved, the source link (its full URL), and the file path on your device",
           "Copies of media you save — Quietly stores a copy of saved media in its app-private storage on your device, separately from any copy successfully added to your gallery",
+          "Your save queue (Quietly 1.1.0 and later) — saves you have started that have not finished yet, kept so you can retry or remove them after the app restarts",
         ],
       },
       {
         title: "How to clear your data",
         paragraphs: [
-          "Open Settings → Clear history to remove your saved history records from inside the app. Clear history currently does not delete the media copies Quietly keeps in its private storage, and it does not delete files saved to your gallery. To remove the locally stored preferences as well, clear the app's storage from your operating system (Android: Settings → Apps → Quietly → Storage) or uninstall the app. Downloaded files remain in your gallery unless you delete them manually.",
+          "You can remove your saved history records from inside the app with its option for clearing history. In Quietly 1.1.0 and later, clearing your history can also delete the media copies Quietly keeps in its private storage, and the app asks you to confirm before it deletes them; in earlier versions, clearing history does not delete those copies. Clearing history does not delete files saved to your gallery. You can also remove an unfinished save from the save queue. To remove the locally stored preferences as well, clear the app's storage from your operating system (Android: Settings → Apps → Quietly → Storage) or uninstall the app. Downloaded files remain in your gallery unless you delete them manually.",
         ],
       },
       {
         title: "What we do not do",
         paragraphs: [
-          "Quietly does not perform page scraping or parse social-platform feeds. It does not access logged-in or DRM-protected content. It does not run background work to find or download media on your behalf. It only fetches what you paste, when you ask.",
+          "Quietly does not perform page scraping or parse social-platform feeds. It does not access logged-in or DRM-protected content. It does not look for media on its own; it only fetches the links you paste or choose to save, at your request.",
         ],
       },
       {
@@ -1699,7 +1700,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "Quietly · Gizlilik",
     heading: "Quietly — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 20.10.2026",
+    lastUpdated: "Son güncelleme: 25.10.2026",
     intro:
       "Quietly, Lunexa tarafından geliştirilmiş bir medya kaydedicidir. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. İnterneti yalnızca senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır — başka hiçbir şey için değil. Quietly hesap oluşturmaz, reklam göstermez ve analitik veya çökme raporlama içermez.",
     sections: [
@@ -1743,21 +1744,22 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
           "Oturumlar arasında ayarlarını ve kaydettiğin medyayı hatırlamak için Quietly, aşağıda listelenen verileri cihazındaki kendi depolama alanında tutar. Kullanılan depolama miktarı kaydettiğin içeriğe bağlıdır. Bu bölüm Quietly'nin kendi yerel depolamasını açıklar; işletim sisteminin kendi özellikleriyle yapılan yedeklemeler veya aktarımlar bu bölümün kapsamı dışındadır.",
         ],
         bullets: [
-          "Tercihlerin: yalnızca Wi-Fi'de kaydet, kayıt bildirimi, uygulama dili, tema ve ilk açılış onay bayrağı",
+          "Uygulamada seçtiğin tercihler ve ayarlar",
           "Kayıt geçmişin — her girdi şunları içerir: kimlik, medya türü, başlık, açıklayıcı metaveri, kayıt zamanı, kaynak bağlantı (tam URL'si) ve cihazındaki dosya yolu",
           "Kaydettiğin medyanın kopyaları — Quietly, kaydedilen medyanın bir kopyasını, galerine başarıyla eklenen kopyalardan ayrı olarak cihazındaki uygulamaya özel depolama alanında saklar",
+          "Kayıt kuyruğun (Quietly 1.1.0 ve sonrası) — başlattığın ama henüz tamamlanmamış kayıtlar; uygulama yeniden başladıktan sonra yeniden deneyebilmen veya kaldırabilmen için saklanır",
         ],
       },
       {
         title: "Verilerini nasıl silersin",
         paragraphs: [
-          "Uygulama içinden kayıt geçmişini silmek için Settings → Clear history bölümünü aç. Clear history şu anda Quietly'nin uygulamaya özel depolama alanında tuttuğu medya kopyalarını silmez ve galerine kaydedilen dosyaları da silmez. Yerel olarak saklanan tercihleri de kaldırmak için işletim sisteminin uygulama depolama kontrolünü kullan (Android: Ayarlar → Uygulamalar → Quietly → Depolama) veya uygulamayı kaldır. İndirilen dosyalar, sen elle silmediğin sürece galerinde kalır.",
+          "Kayıt geçmişini, uygulamadaki geçmişi temizleme seçeneğiyle uygulama içinden silebilirsin. Quietly 1.1.0 ve sonraki sürümlerde geçmişini temizlemek, Quietly'nin uygulamaya özel depolama alanında tuttuğu medya kopyalarını da silebilir; uygulama bunları silmeden önce senden onay ister. Önceki sürümlerde geçmişi temizlemek bu kopyaları silmez. Geçmişi temizlemek, galerine kaydedilen dosyaları silmez. Tamamlanmamış bir kaydı kayıt kuyruğundan da kaldırabilirsin. Yerel olarak saklanan tercihleri de kaldırmak için işletim sisteminin uygulama depolama kontrolünü kullan (Android: Ayarlar → Uygulamalar → Quietly → Depolama) veya uygulamayı kaldır. İndirilen dosyalar, sen elle silmediğin sürece galerinde kalır.",
         ],
       },
       {
         title: "Yapmadığımız şeyler",
         paragraphs: [
-          "Quietly sayfa kazıma yapmaz ve sosyal platform akışlarını ayrıştırmaz. Oturum açılmış veya DRM korumalı içeriklere erişmez. Senin adına medya bulmak veya indirmek için arka planda iş yürütmez. Yalnızca sen istediğinde, yapıştırdığını getirir.",
+          "Quietly sayfa kazıma yapmaz ve sosyal platform akışlarını ayrıştırmaz. Oturum açılmış veya DRM korumalı içeriklere erişmez. Kendi başına medya aramaz; yalnızca senin isteğinle, yapıştırdığın veya kaydetmeyi seçtiğin bağlantıları getirir.",
         ],
       },
       {
@@ -1786,7 +1788,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "Quietly · Privacidad",
     heading: "Quietly — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-10-20",
+    lastUpdated: "Última actualización: 2026-10-25",
     intro:
       "Quietly es un guardador de medios creado por Lunexa. La aplicación guarda medios públicos directos desde URLs que pegas en la galería de tu dispositivo. Usa internet únicamente para descargar los medios que pides y para comprobar si tienes conexión — nada más. Quietly no crea cuentas, no muestra anuncios y no incluye analítica ni informes de errores.",
     sections: [
@@ -1830,21 +1832,22 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
           "Para recordar tus ajustes y los medios que guardas entre sesiones, Quietly conserva los datos que se indican a continuación en su propio almacenamiento en tu dispositivo. El espacio que ocupan depende de lo que guardes. Esta sección describe el almacenamiento local propio de Quietly; las copias de seguridad o transferencias realizadas por funciones propias de tu sistema operativo quedan fuera de su alcance.",
         ],
         bullets: [
-          "Tus preferencias: guardar solo con Wi-Fi, el aviso de guardado, el idioma de la aplicación, el tema y un indicador de primera ejecución",
+          "Las preferencias y ajustes que eliges en la aplicación",
           "Tu historial de elementos guardados — cada entrada incluye un identificador, el tipo de medio, un título, metadatos descriptivos, la hora en que se guardó, el enlace de origen (su URL completa) y la ruta del archivo en tu dispositivo",
           "Copias de los medios que guardas — Quietly almacena una copia de los medios guardados en el almacenamiento privado de la aplicación en tu dispositivo, aparte de cualquier copia que se haya añadido correctamente a tu galería",
+          "Tu cola de guardado (Quietly 1.1.0 y posteriores) — los guardados que has iniciado y aún no han terminado, para que puedas reintentarlos o quitarlos después de reiniciar la aplicación",
         ],
       },
       {
         title: "Cómo borrar tus datos",
         paragraphs: [
-          "Abre Settings → Clear history para borrar los registros de tu historial guardado desde dentro de la aplicación. Actualmente, Clear history no elimina las copias de medios que Quietly conserva en su almacenamiento privado, ni elimina los archivos guardados en tu galería. Para eliminar también las preferencias almacenadas localmente, borra el almacenamiento de la aplicación desde tu sistema operativo (Android: Ajustes → Aplicaciones → Quietly → Almacenamiento) o desinstálala. Los archivos descargados permanecen en tu galería a menos que los borres manualmente.",
+          "Puedes borrar los registros de tu historial guardado desde dentro de la aplicación con su opción para borrar el historial. En Quietly 1.1.0 y posteriores, borrar el historial también puede eliminar las copias de medios que Quietly conserva en su almacenamiento privado, y la aplicación te pide confirmación antes de eliminarlas; en versiones anteriores, borrar el historial no elimina esas copias. Borrar el historial no elimina los archivos guardados en tu galería. También puedes quitar un guardado sin terminar de la cola de guardado. Para eliminar también las preferencias almacenadas localmente, borra el almacenamiento de la aplicación desde tu sistema operativo (Android: Ajustes → Aplicaciones → Quietly → Almacenamiento) o desinstálala. Los archivos descargados permanecen en tu galería a menos que los borres manualmente.",
         ],
       },
       {
         title: "Lo que no hacemos",
         paragraphs: [
-          "Quietly no realiza scraping de páginas ni parsea fuentes de plataformas sociales. No accede a contenido protegido por inicio de sesión o DRM. No ejecuta trabajo en segundo plano para encontrar o descargar medios en tu nombre. Solo descarga lo que tú pegas, cuando tú lo pides.",
+          "Quietly no realiza scraping de páginas ni parsea fuentes de plataformas sociales. No accede a contenido protegido por inicio de sesión o DRM. No busca medios por su cuenta; solo descarga, a petición tuya, los enlaces que pegas o eliges guardar.",
         ],
       },
       {

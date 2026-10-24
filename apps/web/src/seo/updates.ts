@@ -80,6 +80,92 @@ export type UpdateEntry = {
 export const UPDATES: UpdateEntry[] = [
   {
     /*
+     * Verified against the live Google Play listing (version 1.1.0, "Updated
+     * on" Oct 24, 2026). The bullets restate its release note only. Backup and
+     * device-transfer behaviour is excluded until it is verified on devices.
+     */
+    id: "quietly-1-1-0",
+    productId: "quietly",
+    /** Google Play, "Updated on": Oct 24, 2026. */
+    date: "2026-10-24",
+    version: "1.1.0",
+    title: {
+      en: "A save queue and safer history cleanup",
+      tr: "Kayıt kuyruğu ve daha güvenli geçmiş temizliği",
+      es: "Cola de guardado y limpieza del historial más segura",
+    },
+    changes: [
+      {
+        category: "improved",
+        text: {
+          en: "Download management with a sequential save queue.",
+          tr: "Sıralı bir kayıt kuyruğuyla indirme yönetimi.",
+          es: "Gestión de descargas con una cola de guardado secuencial.",
+        },
+      },
+      {
+        category: "new",
+        text: {
+          en: "Unfinished saves can be retried or removed after the app restarts.",
+          tr: "Tamamlanmamış kayıtlar, uygulama yeniden başladıktan sonra yeniden denenebilir veya kaldırılabilir.",
+          es: "Los guardados sin terminar se pueden reintentar o quitar después de reiniciar la aplicación.",
+        },
+      },
+      {
+        category: "improved",
+        text: {
+          en: "Safer history cleanup, with a confirmation before private copies are deleted.",
+          tr: "Özel kopyalar silinmeden önce onay isteyen, daha güvenli geçmiş temizliği.",
+          es: "Limpieza del historial más segura, con una confirmación antes de eliminar las copias privadas.",
+        },
+      },
+    ],
+  },
+  {
+    /*
+     * Verified against the live Google Play listing (version 1.2.1, "Updated
+     * on" Oct 24, 2026). A corrective release: the bullets restate its release
+     * note and claim nothing about network use or analytics.
+     */
+    id: "chess-rescue-1-2-1",
+    productId: "chess-rescue",
+    /** Google Play, "Updated on": Oct 24, 2026. */
+    date: "2026-10-24",
+    version: "1.2.1",
+    title: {
+      en: "Puzzle fixes and clearer opening guidance",
+      tr: "Bulmaca düzeltmeleri ve daha net açılış rehberliği",
+      es: "Correcciones de rompecabezas y una guía inicial más clara",
+    },
+    changes: [
+      {
+        category: "fixed",
+        text: {
+          en: "Incorrect moves and rescue scenarios in several puzzles.",
+          tr: "Birçok bulmacadaki hatalı hamleler ve kurtarma senaryoları.",
+          es: "Movimientos y escenarios de rescate incorrectos en varios rompecabezas.",
+        },
+      },
+      {
+        category: "improved",
+        text: {
+          en: "Clearer guidance in the opening levels.",
+          tr: "Açılış seviyelerinde daha net rehberlik.",
+          es: "Una guía más clara en los primeros niveles.",
+        },
+      },
+      {
+        category: "fixed",
+        text: {
+          en: "Gameplay issues, for a smoother experience.",
+          tr: "Daha akıcı bir deneyim için oynanış sorunları.",
+          es: "Problemas de juego, para una experiencia más fluida.",
+        },
+      },
+    ],
+  },
+  {
+    /*
      * Verified against the live Google Play listing. Its release note calls
      * this "This first production release". The listing shows the version name
      * only; the build number is not public, so none is claimed.
