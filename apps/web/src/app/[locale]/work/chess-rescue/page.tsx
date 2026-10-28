@@ -65,7 +65,7 @@ export default async function ChessRescueProductPage({
       />
       <AppLandingContent
         slug="chess-rescue"
-        copy={CHESS_RESCUE_PRODUCT}
+        copy={CHESS_RESCUE_PRODUCT[safe]}
         playUrl={CHESS_RESCUE_PLAY_URL}
         badgeLabelKey="games_cta.chess_badge_label"
         privacyPath="/privacy/chess-rescue"

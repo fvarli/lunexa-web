@@ -189,17 +189,17 @@ export const CHESS_RESCUE_PRODUCT_META: ProductMeta = {
   en: {
     title: "Chess Rescue — Chess Puzzle Game for Android",
     description:
-      "Chess Rescue is a calm, single-player chess-rules puzzle game for Android by Lunexa Games. Start from positions where defeat feels close and find the one move that changes everything. No account needed.",
+      "A calm, single-player chess-rules puzzle game for Android by Lunexa Games. Start where defeat feels close and find the one move that changes everything.",
   },
   tr: {
     title: "Chess Rescue — Android için Satranç Bulmaca Oyunu",
     description:
-      "Chess Rescue, Lunexa Games'in Android için sakin, tek oyunculu ve satranç kurallı bulmaca oyunu. Yenilginin yakın hissedildiği pozisyonlardan başla ve her şeyi değiştiren tek hamleyi bul. Hesap gerekmez.",
+      "Lunexa Games'ten Android için sakin, tek oyunculu, satranç kurallı bulmaca oyunu. Yenilginin yakın olduğu pozisyonlardan başla, her şeyi değiştiren hamleyi bul.",
   },
   es: {
     title: "Chess Rescue — Rompecabezas de ajedrez para Android",
     description:
-      "Chess Rescue es un juego de rompecabezas tranquilo, para un solo jugador y con reglas de ajedrez, para Android, de Lunexa Games. Parte de posiciones en las que la derrota parece cercana y encuentra la jugada que lo cambia todo. No requiere cuenta.",
+      "Rompecabezas de ajedrez tranquilo para un jugador en Android, de Lunexa Games. Parte de posiciones donde la derrota parece cercana y halla la jugada decisiva.",
   },
 };
 
@@ -207,16 +207,16 @@ export const QUIETLY_PRODUCT_META: ProductMeta = {
   en: {
     title: "Quietly — Media Saver App for Android",
     description:
-      "Quietly is an Android media saver by Lunexa. Paste a direct public link, preview the media and save it to your gallery, with a history and a save queue. No account, no scraping, no logged-in or DRM-protected content.",
+      "Android media saver by Lunexa: paste a direct public link, preview the media and save it to your gallery. No account, no scraping, no logged-in or DRM content.",
   },
   tr: {
     title: "Quietly — Android için Medya Kaydetme Uygulaması",
     description:
-      "Quietly, Lunexa'nın Android medya kaydedicisi. Doğrudan halka açık bir bağlantı yapıştır, medyayı önizle ve galerine kaydet; geçmiş ve kayıt kuyruğu dahil. Hesap yok, kazıma yok, oturum açılmış veya DRM korumalı içerik yok.",
+      "Lunexa'nın Android medya kaydedicisi: doğrudan halka açık bir bağlantı yapıştır, önizle, galerine kaydet. Hesap, kazıma, oturum açılmış veya DRM içerik yok.",
   },
   es: {
     title: "Quietly — App para guardar medios en Android",
     description:
-      "Quietly es un guardador de medios para Android de Lunexa. Pega un enlace público directo, previsualiza el medio y guárdalo en tu galería, con historial y cola de guardado. Sin cuenta, sin scraping y sin contenido protegido por inicio de sesión o DRM.",
+      "Guardador de medios Android de Lunexa: pega un enlace público directo, previsualízalo y guárdalo en la galería. Sin cuenta, scraping, sesión ni DRM.",
   },
 };

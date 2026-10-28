@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
 import { WORK } from "@/seo/content";
-import type { Locale } from "@/i18n/config";
 import type { AppLandingContent as Copy } from "@/seo/products";
 import GooglePlayBadge from "@/components/google-play-badge";
 import ProductPlayCta from "@/components/product-play-cta";
@@ -17,7 +16,7 @@ import CtaBlock from "@/components/cta-block";
  */
 export default function AppLandingContent({
   slug,
-  copy,
+  copy: c,
   playUrl,
   badgeLabelKey,
   privacyPath,
@@ -25,7 +24,8 @@ export default function AppLandingContent({
 }: {
   /** Work-card slug, used to read the status label and stack. */
   slug: string;
-  copy: Record<Locale, Copy>;
+  /** Copy for the current locale only, so other locales stay out of the page payload. */
+  copy: Copy;
   playUrl: string;
   /** Dictionary key of the app-specific badge label. */
   badgeLabelKey: string;
@@ -33,7 +33,6 @@ export default function AppLandingContent({
   termsPath: string;
 }) {
   const { t, locale } = useT();
-  const c = copy[locale];
   const work = WORK[locale].items.find((item) => item.slug === slug);
   const badgeLabel = t(badgeLabelKey);
 

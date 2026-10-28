@@ -65,7 +65,7 @@ export default async function QuietlyProductPage({
       />
       <AppLandingContent
         slug="quietly"
-        copy={QUIETLY_PRODUCT}
+        copy={QUIETLY_PRODUCT[safe]}
         playUrl={QUIETLY_PLAY_URL}
         badgeLabelKey="apps_cta.quietly_badge_label"
         privacyPath="/privacy/quietly"

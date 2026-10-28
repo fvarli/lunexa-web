@@ -24,13 +24,13 @@ const LOCALES = [
     pages: {
       "chess-rescue": {
         title: "Chess Rescue — Chess Puzzle Game for Android | Lunexa",
-        description: "Chess Rescue is a calm, single-player chess-rules puzzle game for Android by Lunexa Games. Start from positions where defeat feels close and find the one move that changes everything. No account needed.",
+        description: "A calm, single-player chess-rules puzzle game for Android by Lunexa Games. Start where defeat feels close and find the one move that changes everything.",
         lead: "Its rescue-style puzzles start from positions where defeat feels close, and each one turns on finding the one move that changes everything",
         cta: "Chess Rescue for Android",
       },
       quietly: {
         title: "Quietly — Media Saver App for Android | Lunexa",
-        description: "Quietly is an Android media saver by Lunexa. Paste a direct public link, preview the media and save it to your gallery, with a history and a save queue. No account, no scraping, no logged-in or DRM-protected content.",
+        description: "Android media saver by Lunexa: paste a direct public link, preview the media and save it to your gallery. No account, no scraping, no logged-in or DRM content.",
         lead: "Quietly only fetches links you paste or choose to save, at your request — no scraping, and no logged-in or DRM-protected content.",
         cta: "Quietly for Android",
       },
@@ -47,13 +47,13 @@ const LOCALES = [
     pages: {
       "chess-rescue": {
         title: "Chess Rescue — Android için Satranç Bulmaca Oyunu | Lunexa",
-        description: "Chess Rescue, Lunexa Games'in Android için sakin, tek oyunculu ve satranç kurallı bulmaca oyunu. Yenilginin yakın hissedildiği pozisyonlardan başla ve her şeyi değiştiren tek hamleyi bul. Hesap gerekmez.",
+        description: "Lunexa Games'ten Android için sakin, tek oyunculu, satranç kurallı bulmaca oyunu. Yenilginin yakın olduğu pozisyonlardan başla, her şeyi değiştiren hamleyi bul.",
         lead: "Kurtarma bulmacaları yenilginin yakın hissedildiği pozisyonlardan başlar ve her bulmacada amaç, her şeyi değiştiren tek hamleyi bulmaktır",
         cta: "Android için Chess Rescue",
       },
       quietly: {
         title: "Quietly — Android için Medya Kaydetme Uygulaması | Lunexa",
-        description: "Quietly, Lunexa'nın Android medya kaydedicisi. Doğrudan halka açık bir bağlantı yapıştır, medyayı önizle ve galerine kaydet; geçmiş ve kayıt kuyruğu dahil. Hesap yok, kazıma yok, oturum açılmış veya DRM korumalı içerik yok.",
+        description: "Lunexa'nın Android medya kaydedicisi: doğrudan halka açık bir bağlantı yapıştır, önizle, galerine kaydet. Hesap, kazıma, oturum açılmış veya DRM içerik yok.",
         lead: "Quietly yalnızca senin isteğinle, yapıştırdığın veya kaydetmeyi seçtiğin bağlantıları getirir — kazıma yok, oturum açılmış veya DRM korumalı içerik yok.",
         cta: "Android için Quietly",
       },
@@ -70,13 +70,13 @@ const LOCALES = [
     pages: {
       "chess-rescue": {
         title: "Chess Rescue — Rompecabezas de ajedrez para Android | Lunexa",
-        description: "Chess Rescue es un juego de rompecabezas tranquilo, para un solo jugador y con reglas de ajedrez, para Android, de Lunexa Games. Parte de posiciones en las que la derrota parece cercana y encuentra la jugada que lo cambia todo. No requiere cuenta.",
+        description: "Rompecabezas de ajedrez tranquilo para un jugador en Android, de Lunexa Games. Parte de posiciones donde la derrota parece cercana y halla la jugada decisiva.",
         lead: "Sus rompecabezas de rescate parten de posiciones en las que la derrota parece cercana, y en cada uno el objetivo es encontrar la jugada que lo cambia todo",
         cta: "Chess Rescue para Android",
       },
       quietly: {
         title: "Quietly — App para guardar medios en Android | Lunexa",
-        description: "Quietly es un guardador de medios para Android de Lunexa. Pega un enlace público directo, previsualiza el medio y guárdalo en tu galería, con historial y cola de guardado. Sin cuenta, sin scraping y sin contenido protegido por inicio de sesión o DRM.",
+        description: "Guardador de medios Android de Lunexa: pega un enlace público directo, previsualízalo y guárdalo en la galería. Sin cuenta, scraping, sesión ni DRM.",
         lead: "Quietly solo descarga, a petición tuya, los enlaces que pegas o eliges guardar: sin scraping y sin contenido protegido por inicio de sesión o DRM.",
         cta: "Quietly para Android",
       },
@@ -211,6 +211,19 @@ test("sitemap lists both new landing pages in every locale with alternates", asy
     expect(xml).toContain(`hreflang="x-default" href="${SITE}/work/${slug}"`);
   }
 });
+
+// Each landing page ships only its own locale's copy: the other locales'
+// leads must not appear anywhere in the HTML, including the RSC payload.
+for (const [path, others] of [
+  ["/work/quietly", ["Quietly yalnızca senin isteğinle", "Quietly solo descarga, a petici"]],
+  ["/tr/work/chess-rescue", ["Its rescue-style puzzles start", "Sus rompecabezas de rescate parten"]],
+  ["/es/work/quietly", ["Quietly only fetches links you paste", "Quietly yalnızca senin isteğinle"]],
+] as const) {
+  test(`${path} does not ship other locales' copy`, async ({ request }) => {
+    const html = await (await request.get(path)).text();
+    for (const text of others) expect(html).not.toContain(text);
+  });
+}
 
 test.describe("app landing pages on a 360px phone", () => {
   test.use({ viewport: { width: 360, height: 780 } });
