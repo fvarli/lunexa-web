@@ -25,6 +25,8 @@ const STATIC_ROUTES: Route[] = [
     : []),
   { path: "/work", priority: 0.8, changeFrequency: "monthly" },
   { path: "/work/rps-duel", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/work/chess-rescue", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/work/quietly", priority: 0.7, changeFrequency: "monthly" },
   { path: "/support/rps-duel", priority: 0.5, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },

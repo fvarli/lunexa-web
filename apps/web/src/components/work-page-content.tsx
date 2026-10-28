@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useT } from "@/i18n/provider";
 import { localeHref } from "@/i18n/href";
 import { WORK } from "@/seo/content";
+import { PRODUCT_BADGE_LABEL_KEYS, PRODUCT_DETAIL_PATHS } from "@/seo/products";
 import CtaBlock from "@/components/cta-block";
 import GooglePlayBadge from "@/components/google-play-badge";
 
@@ -36,7 +37,9 @@ export default function WorkPageContent() {
         </header>
 
         <div className="space-y-12">
-          {c.items.map((item) => (
+          {c.items.map((item) => {
+            const detailPath = item.detailPath ?? PRODUCT_DETAIL_PATHS[item.slug];
+            return (
             <article
               key={item.slug}
               className="rounded-2xl border border-border bg-surface-light p-8 sm:p-10"
@@ -78,7 +81,9 @@ export default function WorkPageContent() {
                 {isGooglePlayUrl(item.url) ? (
                   <GooglePlayBadge
                     href={item.url}
-                    label={t("games_cta.badge_label")}
+                    label={t(
+                      PRODUCT_BADGE_LABEL_KEYS[item.slug] ?? "games_cta.badge_label",
+                    )}
                   />
                 ) : item.url ? (
                   <a
@@ -94,9 +99,10 @@ export default function WorkPageContent() {
                     {item.visitLabel}
                   </span>
                 )}
-                {item.detailPath && (
+                {detailPath && (
                   <Link
-                    href={localeHref(locale, item.detailPath)}
+                    href={localeHref(locale, detailPath)}
+                    aria-label={`${c.detailsLabel}: ${item.name}`}
                     className="text-sm font-medium text-accent transition-opacity hover:opacity-80"
                   >
                     {c.detailsLabel} →
@@ -112,7 +118,8 @@ export default function WorkPageContent() {
                 )}
               </div>
             </article>
-          ))}
+            );
+          })}
 
           <section className="rounded-2xl border border-dashed border-border p-8 text-center sm:p-10">
             <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">

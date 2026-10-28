@@ -84,7 +84,7 @@ test.describe("Quietly on Google Play", () => {
       prefix: "",
       homeBadge: /Get Quietly on Google Play/,
       gamesHeading: "Games, made with the same care",
-      workBadge: "Get it on Google Play",
+      workBadge: "Get Quietly on Google Play",
       live: "Live on Google Play",
       obsolete: /release pending|not yet available|coming soon|in review|closed testing/i,
     },
@@ -92,7 +92,7 @@ test.describe("Quietly on Google Play", () => {
       prefix: "/tr",
       homeBadge: /Quietly'yi Google Play'den indirin/,
       gamesHeading: "Aynı özenle yapılmış oyunlar",
-      workBadge: "Google Play'den indirin",
+      workBadge: "Quietly'yi Google Play'den indirin",
       live: "Google Play'de yayında",
       obsolete: /bekleniyor|henüz|yakında|incelemede|kapalı test/i,
     },
@@ -100,7 +100,7 @@ test.describe("Quietly on Google Play", () => {
       prefix: "/es",
       homeBadge: /Consigue Quietly en Google Play/,
       gamesHeading: "Juegos, hechos con el mismo cuidado",
-      workBadge: "Consíguelo en Google Play",
+      workBadge: "Consigue Quietly en Google Play",
       live: "Disponible en Google Play",
       obsolete: /pendiente|aún no|próximamente|en revisión|pruebas cerradas/i,
     },
@@ -128,7 +128,8 @@ test.describe("Quietly on Google Play", () => {
       const quietly = page.locator("article").filter({ has: page.getByRole("heading", { name: "Quietly" }) });
       await expect(quietly).toContainText(l.live);
       await expect(quietly).not.toContainText(l.obsolete);
-      await expect(quietly.getByRole("link", { name: l.workBadge })).toHaveAttribute("href", QUIETLY_PLAY);
+      // Each store badge on /work names its app, so the three links stay distinguishable.
+      await expect(quietly.getByRole("link", { name: l.workBadge, exact: true })).toHaveAttribute("href", QUIETLY_PLAY);
       await expect(quietly.locator(`a[href="${QUIETLY_PLAY}"]`)).toHaveCount(1);
       await expect(quietly.locator(`a[href="${DEVELOPER_PLAY}"]`)).toHaveCount(0);
       await expect(quietly.locator(`a[href="${l.prefix}/privacy/quietly"]`)).toHaveCount(1);

@@ -12,17 +12,19 @@ import {
   LUNEXA_PLAY_DEVELOPER_URL,
   QUIETLY_PLAY_URL,
   RPS_DUEL_PLAY_URL,
+  WORK,
 } from "@/seo/content";
+import { PRODUCT_DETAIL_PATHS } from "@/seo/products";
 
 /** Published games, in the order they shipped. `key` selects the `games_cta.*` copy. */
 const GAMES = [
-  { key: "rps", name: "RPS Duel", url: RPS_DUEL_PLAY_URL },
-  { key: "chess", name: "Chess Rescue", url: CHESS_RESCUE_PLAY_URL },
+  { key: "rps", slug: "rps-duel", name: "RPS Duel", url: RPS_DUEL_PLAY_URL },
+  { key: "chess", slug: "chess-rescue", name: "Chess Rescue", url: CHESS_RESCUE_PLAY_URL },
 ] as const;
 
 /** Published non-game apps, kept apart from GAMES. `key` selects the `apps_cta.*` copy. */
 const APPS = [
-  { key: "quietly", name: "Quietly", url: QUIETLY_PLAY_URL },
+  { key: "quietly", slug: "quietly", name: "Quietly", url: QUIETLY_PLAY_URL },
 ] as const;
 
 export default function HomeContent() {
@@ -292,6 +294,13 @@ export default function HomeContent() {
                     <p className="mt-2 text-sm leading-relaxed text-muted">
                       {t(`apps_cta.${app.key}_desc`)}
                     </p>
+                    <Link
+                      href={localeHref(locale, PRODUCT_DETAIL_PATHS[app.slug])}
+                      aria-label={`${WORK[locale].detailsLabel}: ${app.name}`}
+                      className="mt-3 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-80"
+                    >
+                      {WORK[locale].detailsLabel} →
+                    </Link>
                   </div>
                   <GooglePlayBadge
                     href={app.url}
@@ -325,6 +334,13 @@ export default function HomeContent() {
                     <p className="mt-2 text-sm leading-relaxed text-muted">
                       {t(`games_cta.${game.key}_desc`)}
                     </p>
+                    <Link
+                      href={localeHref(locale, PRODUCT_DETAIL_PATHS[game.slug])}
+                      aria-label={`${WORK[locale].detailsLabel}: ${game.name}`}
+                      className="mt-3 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-80"
+                    >
+                      {WORK[locale].detailsLabel} →
+                    </Link>
                   </div>
                   <GooglePlayBadge
                     href={game.url}

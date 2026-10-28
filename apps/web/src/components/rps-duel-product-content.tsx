@@ -7,6 +7,7 @@ import { RPS_DUEL_PLAY_URL, RPS_DUEL_PRODUCT, WORK } from "@/seo/content";
 import GooglePlayBadge from "@/components/google-play-badge";
 import ProductGallery from "@/components/product-gallery";
 import CtaBlock from "@/components/cta-block";
+import ProductPlayCta from "@/components/product-play-cta";
 import mainEn from "@/assets/products/rps-duel/main-en.png";
 import mainTr from "@/assets/products/rps-duel/main-tr.png";
 import mainEs from "@/assets/products/rps-duel/main-es.png";
@@ -21,9 +22,12 @@ import difficulty from "@/assets/products/rps-duel/difficulty.png";
 const MAIN_SCREENSHOT = { en: mainEn, tr: mainTr, es: mainEs } as const;
 
 export default function RpsDuelProductContent() {
-  const { locale } = useT();
+  const { t, locale } = useT();
   const c = RPS_DUEL_PRODUCT[locale];
   const work = WORK[locale].items.find((item) => item.slug === "rps-duel");
+  // App-specific accessible name, matching the home page badge. The work
+  // card's visit label ends in "→", which would be read out as an image alt.
+  const badgeLabel = t("games_cta.rps_badge_label");
 
   return (
     <main className="flex-1 pt-24 pb-16 sm:pt-32 sm:pb-24">
@@ -54,7 +58,7 @@ export default function RpsDuelProductContent() {
           </div>
           <GooglePlayBadge
             href={RPS_DUEL_PLAY_URL}
-            label={work?.visitLabel ?? c.heading}
+            label={badgeLabel}
             className="sm:mt-10"
           />
         </header>
@@ -102,6 +106,12 @@ export default function RpsDuelProductContent() {
             </ul>
           </section>
         </div>
+
+        <ProductPlayCta
+          name={c.heading}
+          href={RPS_DUEL_PLAY_URL}
+          badgeLabel={badgeLabel}
+        />
 
         <section className="mt-16 rounded-2xl border border-border bg-surface-light p-8 sm:p-10">
           <h2 className="text-xl font-semibold tracking-tight">
