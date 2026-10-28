@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AboutPageContent from "@/components/about-page-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, ABOUT_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
@@ -29,8 +30,8 @@ export default async function AboutPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "About", url: urlFor(safe, "/about") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].about, url: urlFor(safe, "/about") },
         ]}
       />
       <AboutPageContent />

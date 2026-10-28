@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import BlogIndexContent from "@/components/blog-index-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, BLOG_INDEX_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 import { listPosts } from "@/blog";
@@ -32,8 +33,8 @@ export default async function BlogIndexPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Blog", url: urlFor(safe, "/blog") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].blog, url: urlFor(safe, "/blog") },
         ]}
       />
       <BlogIndexContent posts={posts} />

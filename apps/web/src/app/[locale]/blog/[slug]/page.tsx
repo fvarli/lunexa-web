@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogPostContent from "@/components/blog-post-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { alternatesFor, openGraphLocale, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 import { getPost } from "@/blog";
@@ -90,8 +91,8 @@ export default async function BlogPostPage({
       />
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Blog", url: urlFor(safe, "/blog") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].blog, url: urlFor(safe, "/blog") },
           { name: post.title, url: postUrl },
         ]}
       />

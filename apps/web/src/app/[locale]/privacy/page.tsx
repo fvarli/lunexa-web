@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PrivacyPageContent from "@/components/privacy-page-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, PRIVACY_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
@@ -29,8 +30,8 @@ export default async function PrivacyPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Privacy Policy", url: urlFor(safe, "/privacy") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].privacy, url: urlFor(safe, "/privacy") },
         ]}
       />
       <PrivacyPageContent />

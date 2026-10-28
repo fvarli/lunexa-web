@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContactPageContent from "@/components/contact-page-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, CONTACT_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
@@ -29,8 +30,8 @@ export default async function ContactPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Contact", url: urlFor(safe, "/contact") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].contact, url: urlFor(safe, "/contact") },
         ]}
       />
       <ContactPageContent />

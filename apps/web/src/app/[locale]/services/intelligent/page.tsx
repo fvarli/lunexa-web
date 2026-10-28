@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ServiceDetailContent from "@/components/service-detail-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, SERVICES_INTELLIGENT_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
@@ -29,9 +30,9 @@ export default async function ServiceIntelligentPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Services", url: urlFor(safe, "/services") },
-          { name: "Intelligent Systems", url: urlFor(safe, "/services/intelligent") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].services, url: urlFor(safe, "/services") },
+          { name: BREADCRUMB_LABELS[safe].intelligent, url: urlFor(safe, "/services/intelligent") },
         ]}
       />
       <ServiceDetailContent slug="intelligent" />

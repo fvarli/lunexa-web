@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import RpsDuelProductContent from "@/components/rps-duel-product-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { RPS_DUEL_PLAY_URL } from "@/seo/content";
 import { buildPageMetadata, RPS_DUEL_PRODUCT_META, urlFor } from "@/seo/meta";
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/i18n/config";
@@ -54,8 +55,8 @@ export default async function RpsDuelProductPage({
       />
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Work", url: urlFor(safe, "/work") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].work, url: urlFor(safe, "/work") },
           { name: "RPS Duel", url: pageUrl },
         ]}
       />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ServiceDetailContent from "@/components/service-detail-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, SERVICES_WEB_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
@@ -29,9 +30,9 @@ export default async function ServiceWebPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Services", url: urlFor(safe, "/services") },
-          { name: "Web", url: urlFor(safe, "/services/web") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].services, url: urlFor(safe, "/services") },
+          { name: BREADCRUMB_LABELS[safe].web, url: urlFor(safe, "/services/web") },
         ]}
       />
       <ServiceDetailContent slug="web" />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LegalDocumentContent from "@/components/legal-document-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { RPS_DUEL_TERMS } from "@/seo/content";
 import { buildPageMetadata, RPS_DUEL_TERMS_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
@@ -32,8 +33,8 @@ export default async function RpsDuelTermsPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Terms of Use", url: urlFor(safe, "/terms") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].terms, url: urlFor(safe, "/terms") },
           { name: "RPS Duel", url: urlFor(safe, "/terms/rps-duel") },
         ]}
       />

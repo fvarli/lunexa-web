@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import WorkPageContent from "@/components/work-page-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, WORK_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
@@ -29,8 +30,8 @@ export default async function WorkPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Work", url: urlFor(safe, "/work") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].work, url: urlFor(safe, "/work") },
         ]}
       />
       <WorkPageContent />

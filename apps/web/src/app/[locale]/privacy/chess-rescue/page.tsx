@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ChessRescuePrivacyContent from "@/components/chess-rescue-privacy-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, CHESS_RESCUE_PRIVACY_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
@@ -31,8 +32,8 @@ export default async function ChessRescuePrivacyPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Privacy Policy", url: urlFor(safe, "/privacy") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].privacy, url: urlFor(safe, "/privacy") },
           { name: "Chess Rescue", url: urlFor(safe, "/privacy/chess-rescue") },
         ]}
       />

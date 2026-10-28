@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import CtaBlock from "@/components/cta-block";
 import { localeHref } from "@/i18n/href";
 import { LOCALES, type Locale } from "@/i18n/config";
@@ -152,8 +153,8 @@ export default async function UpdatesPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Updates", url: urlFor(safe, "/updates") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].updates, url: urlFor(safe, "/updates") },
         ]}
       />
 

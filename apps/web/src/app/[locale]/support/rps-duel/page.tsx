@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import FaqList from "@/components/faq-list";
 import GooglePlayBadge from "@/components/google-play-badge";
 import { localeHref } from "@/i18n/href";
@@ -51,9 +52,9 @@ export default async function RpsDuelSupportPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
           { name: "RPS Duel", url: urlFor(safe, "/work/rps-duel") },
-          { name: "Support", url: urlFor(safe, "/support/rps-duel") },
+          { name: BREADCRUMB_LABELS[safe].support, url: urlFor(safe, "/support/rps-duel") },
         ]}
       />
 

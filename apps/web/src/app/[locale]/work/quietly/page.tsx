@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AppLandingContent from "@/components/app-landing-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { QUIETLY_PLAY_URL } from "@/seo/content";
 import { buildPageMetadata, urlFor } from "@/seo/meta";
 import { QUIETLY_PRODUCT, QUIETLY_PRODUCT_META } from "@/seo/products";
@@ -57,8 +58,8 @@ export default async function QuietlyProductPage({
       />
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Work", url: urlFor(safe, "/work") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].work, url: urlFor(safe, "/work") },
           { name: "Quietly", url: pageUrl },
         ]}
       />

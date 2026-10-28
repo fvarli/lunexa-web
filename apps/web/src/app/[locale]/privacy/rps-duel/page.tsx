@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import RpsDuelPrivacyContent from "@/components/rps-duel-privacy-content";
 import BreadcrumbJsonLd from "@/components/breadcrumb-jsonld";
+import { BREADCRUMB_LABELS } from "@/seo/breadcrumbs";
 import { buildPageMetadata, RPS_DUEL_PRIVACY_META, urlFor } from "@/seo/meta";
 import { LOCALES, type Locale } from "@/i18n/config";
 
@@ -31,8 +32,8 @@ export default async function RpsDuelPrivacyPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: urlFor(safe, "/") },
-          { name: "Privacy Policy", url: urlFor(safe, "/privacy") },
+          { name: BREADCRUMB_LABELS[safe].home, url: urlFor(safe, "/") },
+          { name: BREADCRUMB_LABELS[safe].privacy, url: urlFor(safe, "/privacy") },
           { name: "RPS Duel", url: urlFor(safe, "/privacy/rps-duel") },
         ]}
       />
