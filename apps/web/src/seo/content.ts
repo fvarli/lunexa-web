@@ -866,7 +866,7 @@ export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
   en: {
     eyebrow: "Lunexa Games",
     heading: "RPS Duel",
-    lead: "A single-player Rock Paper Scissors duel for Android. Play a quick round against a built-in opponent, chase the daily challenge, and unlock achievements — no account, and your progress stays on the device.",
+    lead: "A single-player Rock Paper Scissors duel for Android. Play a quick round against a built-in opponent, chase the daily challenge, and unlock achievements — no account, and your progress is saved on the device.",
     galleryHeading: "A look at the game",
     galleryAlt: {
       main: "RPS Duel's main screen, showing the running score, a completed daily challenge, three of four achievements unlocked, and the rock, paper and scissors buttons.",
@@ -892,7 +892,7 @@ export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
   tr: {
     eyebrow: "Lunexa Games",
     heading: "RPS Duel",
-    lead: "Android için tek oyunculu bir Taş Kâğıt Makas düellosu. Bilgisayara karşı kısa bir el oyna, günlük görevin peşinden git ve başarılar kazan — hesap yok, ilerlemen cihazında kalır.",
+    lead: "Android için tek oyunculu bir Taş Kâğıt Makas düellosu. Bilgisayara karşı kısa bir el oyna, günlük görevin peşinden git ve başarılar kazan — hesap yok, ilerlemen cihazında saklanır.",
     galleryHeading: "Oyundan görüntüler",
     galleryAlt: {
       main: "RPS Duel'in ana ekranı: güncel skor, tamamlanmış günlük görev, kazanılmış dört başarıdan üçü ve taş, kâğıt, makas düğmeleri.",
@@ -918,7 +918,7 @@ export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
   es: {
     eyebrow: "Lunexa Games",
     heading: "RPS Duel",
-    lead: "Un duelo de Piedra Papel Tijera para un solo jugador en Android. Juega una ronda rápida contra un oponente integrado, persigue el reto diario y desbloquea logros: sin cuenta, y tu progreso se queda en el dispositivo.",
+    lead: "Un duelo de Piedra Papel Tijera para un solo jugador en Android. Juega una ronda rápida contra un oponente integrado, persigue el reto diario y desbloquea logros: sin cuenta, y tu progreso se guarda en el dispositivo.",
     galleryHeading: "Un vistazo al juego",
     galleryAlt: {
       main: "La pantalla principal de RPS Duel: el marcador actual, un reto diario completado, tres de cuatro logros desbloqueados y los botones de piedra, papel y tijera.",
@@ -953,8 +953,8 @@ export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
 // Two topics are deliberately absent. Uninstall and backup behaviour: the app
 // declares no backup rules, so the outcome is platform-determined and cannot be
 // stated from the source — the terms already carry the careful wording. Ads and
-// analytics: neither ships today, and the privacy policy is the source of truth
-// if that changes.
+// data collection: version 1.0.5 shows ads, and the answers only point to the
+// privacy policy, which is the source of truth for the data involved.
 
 /** One disclosure row. Shared by the FAQ and the troubleshooting list, which render through the same component. */
 type SupportTopic = { q: string; a: string };
@@ -1005,7 +1005,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "Does the game need an internet connection?",
-        a: "No. RPS Duel runs entirely on your device: rounds, the Daily Challenge, achievements and records all work with no connection.",
+        a: "No. Rounds, the Daily Challenge, achievements and records all work with no connection. Version 1.0.5 also shows ads; the privacy policy describes the data involved.",
       },
       {
         q: "Which languages does the app support?",
@@ -1025,7 +1025,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "Where is my progress stored?",
-        a: "On your device, and only there. RPS Duel has no cloud save, no sync between devices and no export, so progress cannot be moved from one device to another.",
+        a: "On your device. RPS Duel has no cloud save, no sync between devices and no export, so progress cannot be moved from one device to another.",
       },
       {
         q: "Is RPS Duel available for iPhone?",
@@ -1075,7 +1075,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "Oyun için internet bağlantısı gerekir mi?",
-        a: "Hayır. RPS Duel tamamen cihazınızda çalışır: eller, Günlük Görev, başarımlar ve kayıtlar bağlantı olmadan çalışır.",
+        a: "Hayır. Eller, Günlük Görev, başarımlar ve kayıtlar bağlantı olmadan çalışır. 1.0.5 sürümü ayrıca reklam gösterir; ilgili veriler gizlilik politikasında açıklanır.",
       },
       {
         q: "Uygulama hangi dilleri destekler?",
@@ -1095,7 +1095,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "İlerlemem nerede saklanıyor?",
-        a: "Yalnızca cihazınızda. RPS Duel'de bulut kaydı, cihazlar arası eşitleme veya dışa aktarma yoktur; ilerleme bir cihazdan diğerine taşınamaz.",
+        a: "Cihazınızda. RPS Duel'de bulut kaydı, cihazlar arası eşitleme veya dışa aktarma yoktur; ilerleme bir cihazdan diğerine taşınamaz.",
       },
       {
         q: "RPS Duel iPhone'da var mı?",
@@ -1145,7 +1145,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "¿El juego necesita conexión a internet?",
-        a: "No. RPS Duel funciona enteramente en tu dispositivo: las rondas, el Reto Diario, los logros y los récords funcionan sin conexión.",
+        a: "No. Las rondas, el Reto Diario, los logros y los récords funcionan sin conexión. La versión 1.0.5 también muestra anuncios; la política de privacidad describe los datos implicados.",
       },
       {
         q: "¿Qué idiomas admite la aplicación?",
@@ -1165,7 +1165,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "¿Dónde se guarda mi progreso?",
-        a: "Solo en tu dispositivo. RPS Duel no tiene guardado en la nube, ni sincronización entre dispositivos, ni exportación, por lo que el progreso no se puede trasladar de un dispositivo a otro.",
+        a: "En tu dispositivo. RPS Duel no tiene guardado en la nube, ni sincronización entre dispositivos, ni exportación, por lo que el progreso no se puede trasladar de un dispositivo a otro.",
       },
       {
         q: "¿RPS Duel está disponible para iPhone?",
@@ -1196,42 +1196,53 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
 
 // ── RPS Duel privacy policy ──
 // App-specific privacy policy. Single source of truth for the policy that
-// the Play Store listing links to. Honesty constraint: every
-// negative claim ("no account", "no analytics", etc.) is verified against
-// the current rps_duel Flutter codebase before authoring. Update this and
-// bump `lastUpdated` whenever the app's data behaviour changes.
+// the Play Store listing links to. Version 1.0.5 (Google Play, 2026-10-25)
+// shows ads. The data section restates the Play Console data safety
+// declaration for that release (four types, collected and shared, declared
+// purpose advertising or marketing) and nothing more: which SDKs receive the
+// data, analytics, ad personalisation and consent behaviour are not verified
+// against the released build, so this copy names none of them. Never state
+// retention periods or deletion routes the owner has not confirmed. Update
+// this and bump `lastUpdated` whenever the app's data behaviour changes.
 
 export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "RPS Duel · Privacy",
     heading: "RPS Duel — Privacy Policy",
-    lastUpdated: "Last updated: 2026-09-13",
+    lastUpdated: "Last updated: 2026-10-28",
     intro:
-      "RPS Duel is a single-player Rock Paper Scissors game made by Lunexa Games (package id: com.lunexa.games.rpsduel). This policy describes what the app does — and, more importantly, what it does not do — with your information.",
+      "RPS Duel is a single-player Rock Paper Scissors game for Android made by Lunexa Games (package id: com.lunexa.games.rpsduel). This policy describes the data declared for the current version of the app on Google Play and the information the app stores on your device.",
     sections: [
       {
         title: "Summary",
         paragraphs: [
-          "The app runs entirely on your device. It does not create accounts, does not contact a server, does not show ads, and does not include analytics or crash reporting. It plays a quick game of Rock Paper Scissors against a built-in opponent and remembers your progress locally.",
+          "RPS Duel has no account or sign-in. Version 1.0.5, available on Google Play since October 25, 2026, shows ads. The app also collects some data from your device and shares it with third parties for advertising or marketing purposes, as described below. Versions before 1.0.5 did not show ads and did not collect or share this data.",
         ],
       },
       {
-        title: "What we do not collect",
+        title: "Data collected and shared (version 1.0.5)",
         paragraphs: [
-          "As of the effective date of this policy, RPS Duel does not collect, transmit, or share any personal information. Specifically, the app does not collect:",
+          "The data safety information declared for RPS Duel 1.0.5 on Google Play lists the following data types. Each one is collected and shared with third parties, and the declared purpose of both the collection and the sharing is advertising or marketing:",
         ],
         bullets: [
-          "Name, email address, phone number, or any account identifier",
-          "Advertising identifiers (IDFA, AAID) or other device identifiers",
-          "Location, contacts, microphone, camera, or sensor data",
-          "Analytics events, usage telemetry, or crash reports",
-          "Any data linked to your identity",
+          "Approximate location",
+          "App interactions",
+          "Diagnostics",
+          "Device or other IDs",
+        ],
+      },
+      {
+        title: "How this data is handled (version 1.0.5)",
+        paragraphs: [
+          "According to the same declaration, collecting this data is required rather than optional, and the data is encrypted in transit.",
+          "The third parties that receive this data handle it under their own privacy policies. RPS Duel does not ask for your name, email address or phone number.",
+          "You can reset or delete your device's advertising ID in your Android settings; the available options depend on your Android version.",
         ],
       },
       {
         title: "Data stored locally on your device",
         paragraphs: [
-          "To remember your progress and preferences between sessions, the app saves a small amount of gameplay data on your device only. This data never leaves your device.",
+          "To remember your progress and preferences between sessions, the app saves gameplay data on your device, such as:",
         ],
         bullets: [
           "Game scores and your last few round results",
@@ -1245,18 +1256,19 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "How to clear your data",
         paragraphs: [
           "Inside the app, Settings → Reset data clears your game scores and round history. The other items listed above — your language and difficulty preferences, daily challenge progress, and achievement flags — are kept. To remove all of the data listed above, use your operating system's normal app controls instead: clear the app's storage or uninstall the app (Android). That is a broader action than Reset data.",
+          "These steps affect only the data stored on your device. They do not delete data that has already been collected and shared as described above.",
         ],
       },
       {
         title: "Children",
         paragraphs: [
-          "RPS Duel does not target children specifically and does not knowingly collect any personal information from children under 13. Because the app collects no personal information at all, no age-based data handling is required.",
+          "RPS Duel does not target children specifically, and Lunexa does not knowingly collect personal information from children under 13.",
         ],
       },
       {
         title: "Changes to this policy",
         paragraphs: [
-          "If a future version of RPS Duel changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes.",
+          "If a future version of RPS Duel changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes. This version of the policy was updated for version 1.0.5, which adds ads.",
         ],
       },
     ],
@@ -1267,33 +1279,40 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "RPS Duel · Gizlilik",
     heading: "RPS Duel — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 13.09.2026",
+    lastUpdated: "Son güncelleme: 28.10.2026",
     intro:
-      "RPS Duel, Lunexa Games tarafından geliştirilmiş tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, uygulamanın bilgilerinle ne yaptığını ve — daha önemlisi — ne yapmadığını açıklar.",
+      "RPS Duel, Lunexa Games tarafından geliştirilmiş, Android için tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, uygulamanın güncel sürümü için Google Play'de beyan edilen verileri ve uygulamanın cihazında sakladığı bilgileri açıklar.",
     sections: [
       {
         title: "Özet",
         paragraphs: [
-          "Uygulama tamamen cihazında çalışır. Hesap oluşturmaz, herhangi bir sunucuyla iletişim kurmaz, reklam göstermez ve analitik veya çökme raporlama içermez. Yerleşik bir rakibe karşı kısa bir Taş Kâğıt Makas oyunu oynar ve ilerlemeni yalnızca cihazında hatırlar.",
+          "RPS Duel'de hesap veya giriş yoktur. 25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir. Uygulama ayrıca, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama amacıyla üçüncü taraflarla paylaşır. 1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
         ],
       },
       {
-        title: "Toplamadığımız veriler",
+        title: "Toplanan ve paylaşılan veriler (1.0.5 sürümü)",
         paragraphs: [
-          "Bu politikanın yürürlük tarihi itibarıyla RPS Duel hiçbir kişisel bilgiyi toplamaz, iletmez veya paylaşmaz. Açıkça belirtmek gerekirse, uygulama şunları toplamaz:",
+          "RPS Duel 1.0.5 için Google Play'de beyan edilen veri güvenliği bilgileri aşağıdaki veri türlerini listeler. Her biri toplanır ve üçüncü taraflarla paylaşılır; hem toplamanın hem de paylaşmanın beyan edilen amacı reklam veya pazarlamadır:",
         ],
         bullets: [
-          "Ad, e-posta, telefon numarası veya herhangi bir hesap kimliği",
-          "Reklam kimlikleri (IDFA, AAID) veya diğer cihaz kimlikleri",
-          "Konum, kişiler, mikrofon, kamera veya sensör verileri",
-          "Analitik olaylar, kullanım telemetrisi veya çökme raporları",
-          "Kimliğinle ilişkilendirilmiş herhangi bir veri",
+          "Yaklaşık konum",
+          "Uygulama etkileşimleri",
+          "Teşhis verileri",
+          "Cihaz veya diğer kimlikler",
+        ],
+      },
+      {
+        title: "Bu verilerin nasıl işlendiği (1.0.5 sürümü)",
+        paragraphs: [
+          "Aynı beyana göre bu verilerin toplanması isteğe bağlı değil, zorunludur ve veriler aktarım sırasında şifrelenir.",
+          "Bu verileri alan üçüncü taraflar, verileri kendi gizlilik politikalarına göre işler. RPS Duel adını, e-posta adresini veya telefon numaranı istemez.",
+          "Cihazının reklam kimliğini Android ayarlarından sıfırlayabilir veya silebilirsin; kullanılabilen seçenekler Android sürümüne bağlıdır.",
         ],
       },
       {
         title: "Cihazında yerel olarak saklanan veriler",
         paragraphs: [
-          "Oturumlar arasında ilerlemeni ve tercihlerini hatırlamak için uygulama, yalnızca cihazına küçük miktarda oyun verisi kaydeder. Bu veriler cihazından asla çıkmaz.",
+          "Oturumlar arasında ilerlemeni ve tercihlerini hatırlamak için uygulama, cihazına aşağıdakiler gibi oyun verileri kaydeder:",
         ],
         bullets: [
           "Oyun skorları ve son birkaç el sonucu",
@@ -1307,18 +1326,19 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "Verilerini nasıl silersin",
         paragraphs: [
           "Uygulama içinde Ayarlar → Verileri sıfırla, oyun skorlarını ve el geçmişini siler. Yukarıda listelenen diğer veriler — dil ve zorluk tercihlerin, günlük meydan okuma ilerlemen ve başarım bayrakların — korunur. Yukarıda listelenen verilerin tamamını kaldırmak için bunun yerine işletim sisteminin normal uygulama kontrollerini kullan: uygulamanın depolamasını temizle veya uygulamayı kaldır (Android). Bu, Verileri sıfırla işleminden daha kapsamlı bir işlemdir.",
+          "Bu adımlar yalnızca cihazında saklanan verileri etkiler. Yukarıda açıklandığı gibi daha önce toplanmış ve paylaşılmış verileri silmez.",
         ],
       },
       {
         title: "Çocuklar",
         paragraphs: [
-          "RPS Duel özellikle çocuklara yönelik değildir ve 13 yaşın altındaki çocuklardan bilerek herhangi bir kişisel bilgi toplamaz. Uygulama zaten hiç kişisel bilgi toplamadığı için yaşa bağlı bir veri işleme gerekmez.",
+          "RPS Duel özellikle çocuklara yönelik değildir ve Lunexa, 13 yaşın altındaki çocuklardan bilerek kişisel bilgi toplamaz.",
         ],
       },
       {
         title: "Bu politikadaki değişiklikler",
         paragraphs: [
-          "RPS Duel'in ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir.",
+          "RPS Duel'in ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politikanın bu hâli, reklam ekleyen 1.0.5 sürümü için güncellenmiştir.",
         ],
       },
     ],
@@ -1329,33 +1349,40 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "RPS Duel · Privacidad",
     heading: "RPS Duel — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-09-13",
+    lastUpdated: "Última actualización: 2026-10-28",
     intro:
-      "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador creado por Lunexa Games (id de paquete: com.lunexa.games.rpsduel). Esta política describe qué hace la aplicación con tu información y — más importante — qué no hace.",
+      "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador para Android creado por Lunexa Games (id de paquete: com.lunexa.games.rpsduel). Esta política describe los datos declarados en Google Play para la versión actual de la aplicación y la información que la aplicación guarda en tu dispositivo.",
     sections: [
       {
         title: "Resumen",
         paragraphs: [
-          "La aplicación se ejecuta completamente en tu dispositivo. No crea cuentas, no se comunica con ningún servidor, no muestra anuncios y no incluye analítica ni informes de errores. Juega una partida rápida de Piedra Papel Tijera contra un oponente integrado y recuerda tu progreso únicamente en tu dispositivo.",
+          "RPS Duel no tiene cuentas ni inicio de sesión. La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios. Además, la aplicación recopila algunos datos de tu dispositivo y los comparte con terceros con fines publicitarios o de marketing, como se describe a continuación. Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
         ],
       },
       {
-        title: "Lo que no recopilamos",
+        title: "Datos recopilados y compartidos (versión 1.0.5)",
         paragraphs: [
-          "En la fecha de entrada en vigor de esta política, RPS Duel no recopila, transmite ni comparte ningún dato personal. En concreto, la aplicación no recopila:",
+          "La información de seguridad de los datos declarada en Google Play para RPS Duel 1.0.5 incluye los siguientes tipos de datos. Cada uno se recopila y se comparte con terceros, y la finalidad declarada tanto de la recopilación como del uso compartido es publicidad o marketing:",
         ],
         bullets: [
-          "Nombre, correo electrónico, teléfono o ningún identificador de cuenta",
-          "Identificadores publicitarios (IDFA, AAID) ni otros identificadores de dispositivo",
-          "Ubicación, contactos, micrófono, cámara ni datos de sensores",
-          "Eventos analíticos, telemetría de uso ni informes de errores",
-          "Ningún dato vinculado a tu identidad",
+          "Ubicación aproximada",
+          "Interacciones con la aplicación",
+          "Diagnóstico",
+          "Dispositivo u otros identificadores",
+        ],
+      },
+      {
+        title: "Cómo se tratan estos datos (versión 1.0.5)",
+        paragraphs: [
+          "Según la misma declaración, la recopilación de estos datos es obligatoria, no opcional, y los datos se cifran en tránsito.",
+          "Los terceros que reciben estos datos los tratan conforme a sus propias políticas de privacidad. RPS Duel no te pide tu nombre, tu correo electrónico ni tu número de teléfono.",
+          "Puedes restablecer o eliminar el identificador de publicidad de tu dispositivo en los ajustes de Android; las opciones disponibles dependen de tu versión de Android.",
         ],
       },
       {
         title: "Datos almacenados localmente en tu dispositivo",
         paragraphs: [
-          "Para recordar tu progreso y preferencias entre sesiones, la aplicación guarda una pequeña cantidad de datos de juego únicamente en tu dispositivo. Estos datos nunca salen de tu dispositivo.",
+          "Para recordar tu progreso y preferencias entre sesiones, la aplicación guarda en tu dispositivo datos de juego como los siguientes:",
         ],
         bullets: [
           "Puntuaciones y los resultados de las últimas rondas",
@@ -1369,18 +1396,19 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "Cómo borrar tus datos",
         paragraphs: [
           "Dentro de la aplicación, Ajustes → Restablecer datos borra tus puntuaciones y el historial de rondas. Los demás elementos de la lista anterior —tus preferencias de idioma y dificultad, el progreso del desafío diario y los indicadores de logros— se conservan. Para eliminar todos los datos de la lista anterior, usa en su lugar los controles habituales del sistema operativo: borra el almacenamiento de la aplicación o desinstálala (Android). Esa es una acción más amplia que Restablecer datos.",
+          "Estos pasos solo afectan a los datos guardados en tu dispositivo. No eliminan los datos que ya se hayan recopilado y compartido como se describe arriba.",
         ],
       },
       {
         title: "Niños",
         paragraphs: [
-          "RPS Duel no está dirigida específicamente a niños y no recopila intencionalmente datos personales de menores de 13 años. Como la aplicación no recopila ningún dato personal, no se requiere tratamiento de datos por edad.",
+          "RPS Duel no está dirigida específicamente a niños, y Lunexa no recopila intencionalmente datos personales de menores de 13 años.",
         ],
       },
       {
         title: "Cambios en esta política",
         paragraphs: [
-          "Si una versión futura de RPS Duel cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación.",
+          "Si una versión futura de RPS Duel cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación. Esta versión de la política se actualizó para la versión 1.0.5, que añade anuncios.",
         ],
       },
     ],

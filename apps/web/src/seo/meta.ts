@@ -102,17 +102,17 @@ export const RPS_DUEL_PRIVACY_META: PageCopy = {
   en: {
     title: "RPS Duel — Privacy Policy",
     description:
-      "Privacy policy for RPS Duel (com.lunexa.games.rpsduel), a single-player Rock Paper Scissors game by Lunexa Games. No account, no backend, no ads, no analytics, no personal data collected.",
+      "Privacy policy for RPS Duel by Lunexa Games. Version 1.0.5 shows ads: which data the app collects and shares for advertising, and what it stores on your device.",
   },
   tr: {
     title: "RPS Duel — Gizlilik Politikası",
     description:
-      "RPS Duel için gizlilik politikası (com.lunexa.games.rpsduel) — Lunexa Games tarafından geliştirilen tek oyunculu Taş Kâğıt Makas oyunu. Hesap yok, sunucu yok, reklam yok, analitik yok, kişisel veri toplanmaz.",
+      "Lunexa Games'in RPS Duel oyunu için gizlilik politikası. 1.0.5 sürümü reklam gösterir: reklam için toplanan ve paylaşılan veriler ile cihazında saklananlar.",
   },
   es: {
     title: "RPS Duel — Política de Privacidad",
     description:
-      "Política de privacidad de RPS Duel (com.lunexa.games.rpsduel), un juego de Piedra Papel Tijera para un solo jugador de Lunexa Games. Sin cuenta, sin backend, sin anuncios, sin analítica, sin datos personales.",
+      "Política de privacidad de RPS Duel (Lunexa Games). La versión 1.0.5 muestra anuncios: datos que recopila y comparte para publicidad y qué guarda en tu dispositivo.",
   },
 };
 
