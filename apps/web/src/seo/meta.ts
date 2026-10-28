@@ -102,17 +102,17 @@ export const RPS_DUEL_PRIVACY_META: PageCopy = {
   en: {
     title: "RPS Duel — Privacy Policy",
     description:
-      "Privacy policy for RPS Duel by Lunexa Games. Version 1.0.5 shows ads: which data the app collects and shares for advertising, and what it stores on your device.",
+      "Privacy policy for RPS Duel by Lunexa Games. Version 1.0.5 shows ads: the data declared for it on Google Play, and what the app stores on your device.",
   },
   tr: {
     title: "RPS Duel — Gizlilik Politikası",
     description:
-      "Lunexa Games'in RPS Duel oyunu için gizlilik politikası. 1.0.5 sürümü reklam gösterir: reklam için toplanan ve paylaşılan veriler ile cihazında saklananlar.",
+      "Lunexa Games'in RPS Duel oyunu için gizlilik politikası. 1.0.5 sürümü reklam gösterir: Google Play'de beyan edilen veriler ve cihazında saklananlar.",
   },
   es: {
     title: "RPS Duel — Política de Privacidad",
     description:
-      "Política de privacidad de RPS Duel (Lunexa Games). La versión 1.0.5 muestra anuncios: datos que recopila y comparte para publicidad y qué guarda en tu dispositivo.",
+      "Política de privacidad de RPS Duel (Lunexa Games). La versión 1.0.5 muestra anuncios: los datos declarados en Google Play y qué guarda en tu dispositivo.",
   },
 };
 

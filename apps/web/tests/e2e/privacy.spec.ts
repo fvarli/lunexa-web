@@ -72,10 +72,10 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       ads: "Version 1.0.5, available on Google Play since October 25, 2026, shows ads.",
       types: ["Approximate location", "App interactions", "Diagnostics", "Device or other IDs"],
       purpose: "the declared purpose of both the collection and the sharing is advertising or marketing",
-      handling: "collecting this data is required rather than optional, and the data is encrypted in transit.",
+      handling: "marks the collection of this data as required rather than optional, and states that the data is encrypted in transit.",
       earlier: "Versions before 1.0.5 did not show ads and did not collect or share this data.",
       retired: /does not show ads|does not contact a server|does not collect, transmit, or share|collects no personal information|This data never leaves your device/,
-      meta: "Privacy policy for RPS Duel by Lunexa Games. Version 1.0.5 shows ads: which data the app collects and shares for advertising, and what it stores on your device.",
+      meta: "Privacy policy for RPS Duel by Lunexa Games. Version 1.0.5 shows ads: the data declared for it on Google Play, and what the app stores on your device.",
     },
     {
       prefix: "/tr",
@@ -83,10 +83,10 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       ads: "25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir.",
       types: ["Yaklaşık konum", "Uygulama etkileşimleri", "Teşhis verileri", "Cihaz veya diğer kimlikler"],
       purpose: "hem toplamanın hem de paylaşmanın beyan edilen amacı reklam veya pazarlamadır",
-      handling: "bu verilerin toplanması isteğe bağlı değil, zorunludur ve veriler aktarım sırasında şifrelenir.",
+      handling: "bu verilerin toplanmasını isteğe bağlı değil zorunlu olarak işaretler ve verilerin aktarım sırasında şifrelendiğini belirtir.",
       earlier: "1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
       retired: /reklam göstermez|sunucuyla iletişim kurmaz|hiçbir kişisel bilgiyi toplamaz|hiç kişisel bilgi toplamadığı|cihazından asla çıkmaz/,
-      meta: "Lunexa Games'in RPS Duel oyunu için gizlilik politikası. 1.0.5 sürümü reklam gösterir: reklam için toplanan ve paylaşılan veriler ile cihazında saklananlar.",
+      meta: "Lunexa Games'in RPS Duel oyunu için gizlilik politikası. 1.0.5 sürümü reklam gösterir: Google Play'de beyan edilen veriler ve cihazında saklananlar.",
     },
     {
       prefix: "/es",
@@ -94,10 +94,10 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       ads: "La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios.",
       types: ["Ubicación aproximada", "Interacciones con la aplicación", "Diagnóstico", "Dispositivo u otros identificadores"],
       purpose: "la finalidad declarada tanto de la recopilación como del uso compartido es publicidad o marketing",
-      handling: "la recopilación de estos datos es obligatoria, no opcional, y los datos se cifran en tránsito.",
+      handling: "indica que la recopilación de estos datos es obligatoria, no opcional, y que los datos se cifran en tránsito.",
       earlier: "Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
       retired: /no muestra anuncios|no se comunica con ningún servidor|no recopila, transmite ni comparte|no recopila ningún dato personal|nunca salen de tu dispositivo/,
-      meta: "Política de privacidad de RPS Duel (Lunexa Games). La versión 1.0.5 muestra anuncios: datos que recopila y comparte para publicidad y qué guarda en tu dispositivo.",
+      meta: "Política de privacidad de RPS Duel (Lunexa Games). La versión 1.0.5 muestra anuncios: los datos declarados en Google Play y qué guarda en tu dispositivo.",
     },
   ];
 

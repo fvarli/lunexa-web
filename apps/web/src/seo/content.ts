@@ -1216,7 +1216,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Summary",
         paragraphs: [
-          "RPS Duel has no account or sign-in. Version 1.0.5, available on Google Play since October 25, 2026, shows ads. The app also collects some data from your device and shares it with third parties for advertising or marketing purposes, as described below. Versions before 1.0.5 did not show ads and did not collect or share this data.",
+          "RPS Duel has no account or sign-in. Version 1.0.5, available on Google Play since October 25, 2026, shows ads. According to the data safety information declared for it on Google Play, the app also collects some data from your device and shares it with third parties for advertising or marketing purposes, as described below. Versions before 1.0.5 did not show ads and did not collect or share this data.",
         ],
       },
       {
@@ -1234,7 +1234,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "How this data is handled (version 1.0.5)",
         paragraphs: [
-          "According to the same declaration, collecting this data is required rather than optional, and the data is encrypted in transit.",
+          "The same declaration marks the collection of this data as required rather than optional, and states that the data is encrypted in transit.",
           "The third parties that receive this data handle it under their own privacy policies. RPS Duel does not ask for your name, email address or phone number.",
           "You can reset or delete your device's advertising ID in your Android settings; the available options depend on your Android version.",
         ],
@@ -1286,7 +1286,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Özet",
         paragraphs: [
-          "RPS Duel'de hesap veya giriş yoktur. 25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir. Uygulama ayrıca, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama amacıyla üçüncü taraflarla paylaşır. 1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
+          "RPS Duel'de hesap veya giriş yoktur. 25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir. Google Play'de beyan edilen veri güvenliği bilgilerine göre uygulama ayrıca, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama amacıyla üçüncü taraflarla paylaşır. 1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
         ],
       },
       {
@@ -1304,7 +1304,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Bu verilerin nasıl işlendiği (1.0.5 sürümü)",
         paragraphs: [
-          "Aynı beyana göre bu verilerin toplanması isteğe bağlı değil, zorunludur ve veriler aktarım sırasında şifrelenir.",
+          "Aynı beyan, bu verilerin toplanmasını isteğe bağlı değil zorunlu olarak işaretler ve verilerin aktarım sırasında şifrelendiğini belirtir.",
           "Bu verileri alan üçüncü taraflar, verileri kendi gizlilik politikalarına göre işler. RPS Duel adını, e-posta adresini veya telefon numaranı istemez.",
           "Cihazının reklam kimliğini Android ayarlarından sıfırlayabilir veya silebilirsin; kullanılabilen seçenekler Android sürümüne bağlıdır.",
         ],
@@ -1356,7 +1356,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Resumen",
         paragraphs: [
-          "RPS Duel no tiene cuentas ni inicio de sesión. La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios. Además, la aplicación recopila algunos datos de tu dispositivo y los comparte con terceros con fines publicitarios o de marketing, como se describe a continuación. Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
+          "RPS Duel no tiene cuentas ni inicio de sesión. La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios. Según la información de seguridad de los datos declarada en Google Play, la aplicación también recopila algunos datos de tu dispositivo y los comparte con terceros con fines publicitarios o de marketing, como se describe a continuación. Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
         ],
       },
       {
@@ -1374,7 +1374,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Cómo se tratan estos datos (versión 1.0.5)",
         paragraphs: [
-          "Según la misma declaración, la recopilación de estos datos es obligatoria, no opcional, y los datos se cifran en tránsito.",
+          "La misma declaración indica que la recopilación de estos datos es obligatoria, no opcional, y que los datos se cifran en tránsito.",
           "Los terceros que reciben estos datos los tratan conforme a sus propias políticas de privacidad. RPS Duel no te pide tu nombre, tu correo electrónico ni tu número de teléfono.",
           "Puedes restablecer o eliminar el identificador de publicidad de tu dispositivo en los ajustes de Android; las opciones disponibles dependen de tu versión de Android.",
         ],
@@ -1915,7 +1915,7 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "RPS Duel · Terms",
     heading: "RPS Duel — Terms of Service",
-    lastUpdated: "Last updated: 2026-09-13",
+    lastUpdated: "Last updated: 2026-10-28",
     intro:
       "These terms apply to the RPS Duel mobile app made by Lunexa Games (package id: com.lunexa.games.rpsduel). The terms for the uselunexa.com website are separate and are published at uselunexa.com/terms.",
     sections: [
@@ -1935,7 +1935,7 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "No account",
         paragraphs: [
-          "RPS Duel does not require an account. Your progress and preferences are kept on your device, and we keep no copy of them — so we cannot restore them for you. Clearing the app's data or uninstalling the app removes them from the device; whether a copy survives in your operating system's own backup is outside our control.",
+          "RPS Duel does not require an account. Your progress and preferences are kept on your device, and we keep no backup copy of them — so we cannot restore them for you. Clearing the app's data or uninstalling the app removes them from the device; whether a copy survives in your operating system's own backup is outside our control.",
         ],
       },
       {
@@ -1998,7 +1998,7 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "RPS Duel · Şartlar",
     heading: "RPS Duel — Kullanım Şartları",
-    lastUpdated: "Son güncelleme: 13.09.2026",
+    lastUpdated: "Son güncelleme: 28.10.2026",
     intro:
       "Bu şartlar, Lunexa Games tarafından geliştirilen RPS Duel mobil uygulaması için geçerlidir (paket kimliği: com.lunexa.games.rpsduel). uselunexa.com web sitesinin şartları ayrıdır ve uselunexa.com/terms adresinde yayımlanır.",
     sections: [
@@ -2018,7 +2018,7 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Hesap yok",
         paragraphs: [
-          "RPS Duel hesap gerektirmez. İlerlemeniz ve tercihleriniz cihazınızda saklanır ve bizde hiçbir kopyası bulunmaz — bu nedenle bunları sizin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunları cihazdan siler; işletim sisteminizin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
+          "RPS Duel hesap gerektirmez. İlerlemeniz ve tercihleriniz cihazınızda saklanır ve bizde bunların hiçbir yedek kopyası bulunmaz — bu nedenle bunları sizin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunları cihazdan siler; işletim sisteminizin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
         ],
       },
       {
@@ -2081,7 +2081,7 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "RPS Duel · Términos",
     heading: "RPS Duel — Términos de Servicio",
-    lastUpdated: "Última actualización: 2026-09-13",
+    lastUpdated: "Última actualización: 2026-10-28",
     intro:
       "Estos términos se aplican a la aplicación móvil RPS Duel creada por Lunexa Games (id de paquete: com.lunexa.games.rpsduel). Los términos del sitio web uselunexa.com son independientes y se publican en uselunexa.com/terms.",
     sections: [
@@ -2101,7 +2101,7 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Sin cuenta",
         paragraphs: [
-          "RPS Duel no requiere una cuenta. Tu progreso y tus preferencias se guardan en tu dispositivo y no conservamos ninguna copia, por lo que no podemos restaurarlos por ti. Borrar los datos de la aplicación o desinstalarla los elimina del dispositivo; que quede una copia en la copia de seguridad de tu propio sistema operativo está fuera de nuestro control.",
+          "RPS Duel no requiere una cuenta. Tu progreso y tus preferencias se guardan en tu dispositivo y no conservamos ninguna copia de seguridad de ellos, por lo que no podemos restaurarlos por ti. Borrar los datos de la aplicación o desinstalarla los elimina del dispositivo; que quede una copia en la copia de seguridad de tu propio sistema operativo está fuera de nuestro control.",
         ],
       },
       {
