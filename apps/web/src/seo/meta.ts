@@ -138,17 +138,17 @@ export const CHESS_RESCUE_PRIVACY_META: PageCopy = {
   en: {
     title: "Chess Rescue — Privacy Policy",
     description:
-      "Privacy policy for Chess Rescue (com.lunexa.games.chessrescue), a single-player offline puzzle game by Lunexa Games. No account, no backend, no ads, no analytics, no personal data collected.",
+      "Privacy policy for Chess Rescue by Lunexa Games: version 1.3.0 adds Google AdMob ads and optional analytics; earlier versions are fully offline with no ads.",
   },
   tr: {
     title: "Chess Rescue — Gizlilik Politikası",
     description:
-      "Chess Rescue için gizlilik politikası (com.lunexa.games.chessrescue) — Lunexa Games tarafından geliştirilen tek oyunculu, çevrimdışı bulmaca oyunu. Hesap yok, sunucu yok, reklam yok, analitik yok, kişisel veri toplanmaz.",
+      "Chess Rescue gizlilik politikası (Lunexa Games): 1.3.0 sürümü Google AdMob reklamları ve isteğe bağlı analitik ekler; önceki sürümler çevrimdışı ve reklamsız.",
   },
   es: {
     title: "Chess Rescue — Política de Privacidad",
     description:
-      "Política de privacidad de Chess Rescue (com.lunexa.games.chessrescue), un juego de rompecabezas para un solo jugador y sin conexión de Lunexa Games. Sin cuenta, sin backend, sin anuncios, sin analítica, sin datos personales.",
+      "Política de privacidad de Chess Rescue (Lunexa Games): la 1.3.0 añade anuncios de Google AdMob y analítica opcional; las anteriores, sin conexión ni anuncios.",
   },
 };
 

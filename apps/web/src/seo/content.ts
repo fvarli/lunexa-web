@@ -1418,67 +1418,122 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   },
 };
 
+// ── Chess Rescue privacy policy ──
+// Version-aware. Versions up to 1.2.1 (the frozen 1.2.1+7 AAB) declare no
+// INTERNET permission and ship no Google SDK. 1.3.0 (source 22c4eea, signed
+// AAB fcbb5a9d) adds AdMob banners on Home and Success, UMP consent after the
+// first settled rescue (never at launch), and Firebase Analytics that is off
+// by default. The usage-statistics question appears once on Home; "Allow"
+// needs the player's own 18+/parental statement, and the Home "Usage
+// statistics" line changes the answer later. The app has no settings screen.
+// Every ad request is non-personalised, teen-treated and G-rated; AD_ID is
+// removed, but on Android 12 and lower Play services can still hand the
+// advertising ID to the Mobile Ads SDK;
+// usage statistics never use it. Withdrawal resets local analytics
+// data only. The only retention stated is the owner-verified GA4 setting
+// (events 2 months, users 14 months, reset on new activity), scoped to GA4
+// data; never extend it to AdMob or other Firebase data. Never claim deletion
+// routes, "we do not sell", or that withdrawal deletes data Google already
+// holds. Bump
+// `lastUpdated` whenever the app's data behaviour changes.
+
 export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "Chess Rescue · Privacy",
     heading: "Chess Rescue — Privacy Policy",
-    lastUpdated: "Last updated: 2026-05-29",
+    lastUpdated: "Last updated: 2026-11-01",
     intro:
-      "Chess Rescue is a single-player, offline puzzle game made by Lunexa Games (package id: com.lunexa.games.chessrescue). This policy describes what the app does — and, more importantly, what it does not do — with your information.",
+      "Chess Rescue is a single-player puzzle game for Android made by Lunexa Games (package id: com.lunexa.games.chessrescue). This policy describes what the app does with your information in version 1.3.0, which adds ads and optional analytics, and in earlier versions, which work entirely offline.",
     sections: [
       {
         title: "Summary",
         paragraphs: [
-          "The app runs entirely on your device. It does not create accounts, does not contact a server, does not show ads, and does not include analytics or crash reporting. It presents short chess-rescue puzzles offline and remembers your progress locally.",
+          "Chess Rescue has no accounts and does not ask for your name, email address or phone number. The puzzles play without an internet connection.",
+          "Versions up to 1.2.1 run entirely on your device: they do not request the internet permission, make no network connections, show no ads and include no analytics.",
+          "Version 1.3.0 shows small ads from Google AdMob: on the result screen after you solve a puzzle and at the bottom of the home screen, never during a puzzle. To request and show them, Google receives some technical information from your device, as described below. Version 1.3.0 also includes Google's Firebase software for optional usage statistics (analytics), which stay off unless you allow them.",
+        ],
+      },
+      {
+        title: "Advertising (version 1.3.0)",
+        paragraphs: [
+          "Ads are provided by Google AdMob. When the app requests an ad, the Google Mobile Ads SDK connects to Google's servers. Google receives information such as your device's IP address (from which an approximate location can be estimated), information about the ad and your interactions with it, diagnostic information about the app and the SDK, and identifiers such as the app set ID. Google uses this information to deliver and measure ads and to prevent fraud and abuse.",
+          "Every ad request from the app asks Google for non-personalised ads, applies Google's treatment for users who may be teenagers, and allows only ads rated suitable for general audiences. The app does not request the permission that Android 13 and later require to read your device's advertising ID. On Android 12 and earlier, Google Play services can still provide the advertising ID to the Google Mobile Ads SDK, and Google may use it to deliver and measure ads and to prevent fraud.",
+          "Google handles this information under its own privacy policy.",
+        ],
+      },
+      {
+        title: "Your privacy choices for ads (version 1.3.0)",
+        paragraphs: [
+          "The app does not contact Google's consent service when it starts. After your first solved puzzle in a session, or when you tap Privacy choices, it uses Google User Messaging Platform to check whether a consent message is required where you are.",
+          "Where one is required, for example in the European Economic Area, the United Kingdom and Switzerland, the message is shown on the home screen, never during a puzzle. Where Google requires it, Privacy choices appears on the home screen and on the result screen, so you can change your choice at any time.",
+          "If the consent status does not allow ads to be requested, the app shows no ads for the rest of that session. Depending on your choice, Google may show limited ads or no ads. The game works the same either way.",
+          "If you live in a US state with a consumer privacy law, Privacy choices also lets you opt out of the sale or sharing of your personal information for advertising.",
+          "These choices apply to ads only; they do not turn usage statistics on or off. Usage statistics have their own choice, described below.",
+        ],
+      },
+      {
+        title: "Usage statistics and Google Firebase (version 1.3.0)",
+        paragraphs: [
+          "Version 1.3.0 includes Google Analytics for Firebase. Usage statistics are off by default. On the home screen, normally before your first puzzle, the app asks once: “Help improve Chess Rescue?”. You can answer “Allow” or “Don't allow”. “Allow” works only after you tick “I am 18 or older, or a parent or guardian has agreed.” This statement is your own; the app does not check your age or whether a parent or guardian has agreed. “Don't allow” is always available, and the game works the same either way. Until you choose “Allow”, Google Analytics for Firebase collects no usage statistics events. This choice covers only those events: Google AdMob ads, described above, and other parts of the Firebase software, described below, may process some data regardless of your choice, including before you answer.",
+          "Your answer is saved on your device and kept when you close and reopen the app. To change it at any time, tap Usage statistics on the home screen; that line shows whether usage statistics are on or off.",
+          "If you allow usage statistics, the app records how the puzzles are played: when a puzzle starts, fails or is solved, and when an episode is completed, together with the episode, the puzzle's position in it, whether you had seen it before, how many wrong moves you made, and whether the episode was cleared for the first time. Google Analytics also collects some information automatically, such as when the app is first opened, sessions and engagement time, app updates, your device model, operating-system version and language, an approximate location derived from your IP address, and a random app-instance identifier. The Google Mobile Ads SDK also reports to Google Analytics when an ad is requested or shown, and ad requests can then include the app-instance identifier. Google Analytics is set not to collect your advertising ID. This information is sent to Google and used to understand how the game is played. Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months; the user-level period starts again whenever there is new activity from the same app instance. These periods are Google Analytics settings only: they do not apply to aggregated reports, to data processed for Google AdMob ads, or to other parts of the Firebase software.",
+          "If you later choose “Don't allow”, the app stops collecting usage statistics from then on and resets the analytics data stored on your device, including the app-instance identifier. This does not delete information that has already been sent to Google.",
+          "For questions or requests about information already sent to Google, contact us at hello@uselunexa.com. The app does not show the app-instance identifier, and the reset removes it from your device, so information already sent may not be linkable to your device.",
+          "Even while usage statistics are off, the Firebase software starts when you open the app and stores some technical data on your device. It may create random identifiers, such as a Firebase installation identifier, and may connect to Google's servers; when it does, Google receives your device's IP address.",
+          "Usage statistics and your privacy choices for ads are separate. Your choices for ads do not turn usage statistics on or off, and allowing usage statistics does not give consent for ads.",
         ],
       },
       {
         title: "What we do not collect",
         paragraphs: [
-          "As of the effective date of this policy, Chess Rescue does not collect, transmit, or share any personal information. Specifically, the app does not collect:",
+          "In no version does Chess Rescue collect:",
         ],
         bullets: [
           "Name, email address, phone number, or any account identifier",
-          "Advertising identifiers (IDFA, AAID) or other device identifiers",
-          "Location, contacts, microphone, camera, or sensor data",
-          "Analytics events, usage telemetry, or crash reports",
-          "Any data linked to your identity",
+          "Precise location, contacts, microphone, camera, or sensor data",
+          "Crash reports",
         ],
       },
       {
         title: "Data stored locally on your device",
         paragraphs: [
-          "To remember your progress between sessions, the app saves a small amount of gameplay data on your device only. This data never leaves your device.",
+          "To remember your progress between sessions, the app saves gameplay data on your device. This gameplay data stays on your device. In version 1.3.0, Google's SDKs also keep their own data on your device, such as your consent choice and the identifiers described above.",
+          "The gameplay data includes, for example:",
         ],
         bullets: [
           "Your current puzzle (how far you have progressed through the set)",
           "Which rescues you have already completed",
           "Whether you have seen the introduction",
           "A random seed used to lay out the puzzles",
+          "Your language choice",
+          "The records you have unlocked and the rescues you have saved",
+          "In version 1.3.0: how many days in a row you have completed a rescue, whether privacy choices are offered in your region, and your answer about usage statistics",
         ],
       },
       {
         title: "How to clear your data",
         paragraphs: [
           "Chess Rescue does not include an in-app reset control. You can remove all locally stored progress using your operating system's normal app controls: clear the app's storage (on Android, Settings → Apps → Chess Rescue → Storage) or uninstall the app.",
+          "In version 1.3.0, clearing the app's storage also removes the consent choice and identifiers that Google's SDKs keep on the device, and your answer about usage statistics, so the app asks again. It does not delete information Google has already received.",
         ],
       },
       {
         title: "Internet access",
         paragraphs: [
-          "Chess Rescue does not request the internet permission and makes no network connections. The game is fully playable offline.",
+          "Versions up to 1.2.1 do not request the internet permission and make no network connections. Version 1.3.0 requests internet access and uses it only for ads, the consent message, usage statistics if you allow them, and the Google services described above. The puzzles do not need a connection, and with no connection no ad is shown.",
         ],
       },
       {
         title: "Children",
         paragraphs: [
-          "Chess Rescue does not target children specifically and does not knowingly collect any personal information from children under 13. Because the app collects no personal information at all, no age-based data handling is required.",
+          "Chess Rescue does not target children specifically, and Lunexa does not knowingly collect personal information from children under 13. In version 1.3.0, every ad request applies Google's treatment for users who may be teenagers and asks for non-personalised ads rated suitable for general audiences.",
+          "In the usage statistics question, the app asks players under 18 to choose “Allow” only with permission from a parent or guardian. The app cannot verify age or that permission.",
         ],
       },
       {
         title: "Changes to this policy",
         paragraphs: [
-          "If a future version of Chess Rescue changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes.",
+          "If a future version of Chess Rescue changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes. This version of the policy was updated for version 1.3.0, which adds ads and optional analytics.",
         ],
       },
     ],
@@ -1489,63 +1544,99 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "Chess Rescue · Gizlilik",
     heading: "Chess Rescue — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 29.05.2026",
+    lastUpdated: "Son güncelleme: 01.11.2026",
     intro:
-      "Chess Rescue, Lunexa Games tarafından geliştirilmiş tek oyunculu, çevrimdışı bir bulmaca oyunudur (paket kimliği: com.lunexa.games.chessrescue). Bu politika, uygulamanın bilgilerinle ne yaptığını ve — daha önemlisi — ne yapmadığını açıklar.",
+      "Chess Rescue, Lunexa Games tarafından Android için geliştirilmiş tek oyunculu bir bulmaca oyunudur (paket kimliği: com.lunexa.games.chessrescue). Bu politika, uygulamanın bilgilerinle ne yaptığını reklam ve isteğe bağlı analitik ekleyen 1.3.0 sürümü ve tamamen çevrimdışı çalışan önceki sürümler için açıklar.",
     sections: [
       {
         title: "Özet",
         paragraphs: [
-          "Uygulama tamamen cihazında çalışır. Hesap oluşturmaz, herhangi bir sunucuyla iletişim kurmaz, reklam göstermez ve analitik veya çökme raporlama içermez. Kısa satranç kurtarış bulmacalarını çevrimdışı sunar ve ilerlemeni yalnızca cihazında hatırlar.",
+          "Chess Rescue'da hesap yoktur ve uygulama senden adını, e-posta adresini veya telefon numaranı istemez. Bulmacalar internet bağlantısı olmadan oynanır.",
+          "1.2.1'e kadarki sürümler tamamen cihazında çalışır: internet izni istemez, ağ bağlantısı kurmaz, reklam göstermez ve analitik içermez.",
+          "1.3.0 sürümü Google AdMob'dan küçük reklamlar gösterir: bir bulmacayı çözdükten sonra sonuç ekranında ve ana ekranın en altında; bulmaca sırasında asla. Bu reklamları istemek ve göstermek için Google, aşağıda açıklandığı gibi cihazından bazı teknik bilgiler alır. 1.3.0 sürümü ayrıca, sen izin vermedikçe kapalı kalan isteğe bağlı kullanım istatistikleri (analitik) için Google Firebase yazılımını içerir.",
+        ],
+      },
+      {
+        title: "Reklamlar (1.3.0 sürümü)",
+        paragraphs: [
+          "Reklamlar Google AdMob tarafından sağlanır. Uygulama bir reklam istediğinde Google Mobile Ads SDK, Google'ın sunucularına bağlanır. Google; cihazının IP adresi (buradan yaklaşık bir konum tahmin edilebilir), reklam ve reklamla etkileşimin hakkındaki bilgiler, uygulama ve SDK hakkındaki tanılama bilgileri ve uygulama grubu kimliği (app set ID) gibi kimlikler dahil bazı bilgiler alır. Google bu bilgileri reklamları sunmak ve ölçmek, dolandırıcılığı ve kötüye kullanımı önlemek için kullanır.",
+          "Uygulamanın her reklam isteği Google'dan kişiselleştirilmemiş reklam ister, genç olabilecek kullanıcılar için Google'ın uyguladığı işlemi uygular ve yalnızca genel izleyiciye uygun olarak derecelendirilmiş reklamlara izin verir. Uygulama, Android 13 ve sonrasında cihazının reklam kimliğini okumak için gereken izni istemez. Android 12 ve öncesinde Google Play hizmetleri reklam kimliğini yine de Google Mobile Ads SDK'ya sağlayabilir ve Google bunu reklamları sunmak ve ölçmek ve dolandırıcılığı önlemek için kullanabilir.",
+          "Google bu bilgileri kendi gizlilik politikasına göre işler.",
+        ],
+      },
+      {
+        title: "Reklamlar için gizlilik seçeneklerin (1.3.0 sürümü)",
+        paragraphs: [
+          "Uygulama açılırken Google'ın izin hizmetine bağlanmaz. Bir oturumda ilk bulmacanı çözdükten sonra ya da Gizlilik seçeneklerine dokunduğunda, bulunduğun yerde bir izin mesajı gerekip gerekmediğini Google User Messaging Platform ile kontrol eder.",
+          "Mesaj gerektiğinde (örneğin Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'de) ana ekranda gösterilir, bulmaca sırasında asla gösterilmez. Google gerektirdiğinde Gizlilik seçenekleri ana ekranda ve sonuç ekranında görünür; böylece seçimini istediğin zaman değiştirebilirsin.",
+          "İzin durumu reklam istenmesine izin vermiyorsa uygulama o oturumun geri kalanında reklam göstermez. Seçimine bağlı olarak Google sınırlı reklam gösterebilir veya hiç reklam göstermeyebilir. Oyun her iki durumda da aynı şekilde çalışır.",
+          "Tüketici gizliliği yasası olan bir ABD eyaletinde yaşıyorsan Gizlilik seçenekleri, kişisel bilgilerinin reklam amacıyla satışını veya paylaşımını reddetmene de olanak tanır.",
+          "Bu seçimler yalnızca reklamlar için geçerlidir; kullanım istatistiklerini açmaz veya kapatmaz. Kullanım istatistiklerinin aşağıda açıklanan kendi seçimi vardır.",
+        ],
+      },
+      {
+        title: "Kullanım istatistikleri ve Google Firebase (1.3.0 sürümü)",
+        paragraphs: [
+          "1.3.0 sürümü Google Analytics for Firebase'i içerir. Kullanım istatistikleri varsayılan olarak kapalıdır. Uygulama ana ekranda, normalde ilk bulmacandan önce, bir kez “Chess Rescue'yu geliştirmeye yardım eder misin?” diye sorar. “İzin ver” veya “İzin verme” seçeneğini seçebilirsin. “İzin ver” yalnızca “18 yaşında veya daha büyüğüm ya da ebeveynim veya vasim kabul etti.” ifadesini işaretledikten sonra çalışır. Bu ifade senin kendi beyanındır; uygulama yaşını veya bir ebeveynin ya da vasinin kabul edip etmediğini kontrol etmez. “İzin verme” her zaman seçilebilir ve oyun her iki durumda da aynı çalışır. “İzin ver” seçeneğini seçene kadar Google Analytics for Firebase kullanım istatistiği olayı toplamaz. Bu seçim yalnızca bu olayları kapsar: yukarıda açıklanan Google AdMob reklamları ve aşağıda açıklanan diğer Firebase yazılım bileşenleri, sen cevap vermeden önce de dahil olmak üzere, seçimine bakılmaksızın bazı verileri işleyebilir.",
+          "Cevabın cihazına kaydedilir ve uygulamayı kapatıp yeniden açtığında korunur. Cevabını istediğin zaman değiştirmek için ana ekrandaki Kullanım istatistikleri satırına dokun; bu satır kullanım istatistiklerinin açık mı kapalı mı olduğunu gösterir.",
+          "Kullanım istatistiklerine izin verirsen uygulama bulmacaların nasıl oynandığını kaydeder: bir bulmaca başladığında, başarısız olduğunda veya çözüldüğünde ve bir bölüm tamamlandığında; bununla birlikte bölümü, bulmacanın bölüm içindeki sırasını, bulmacayı daha önce görüp görmediğini, kaç yanlış hamle yaptığını ve bölümün ilk kez tamamlanıp tamamlanmadığını. Google Analytics ayrıca bazı bilgileri otomatik olarak toplar; örneğin uygulamanın ilk açılışı, oturumlar ve etkileşim süresi, uygulama güncellemeleri, cihaz modelin, işletim sistemi sürümün ve dilin, IP adresinden tahmin edilen yaklaşık konum ve rastgele bir uygulama örneği kimliği. Google Mobile Ads SDK da bir reklamın ne zaman istendiğini veya gösterildiğini Google Analytics'e bildirir ve reklam istekleri bu durumda uygulama örneği kimliğini içerebilir. Google Analytics, reklam kimliğini toplamayacak şekilde ayarlanmıştır. Bu bilgiler Google'a gönderilir ve oyunun nasıl oynandığını anlamak için kullanılır. Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı; aynı uygulama örneğinden yeni bir etkinlik geldiğinde kullanıcı düzeyindeki süre yeniden başlar. Bu süreler yalnızca Google Analytics ayarlarıdır: toplu raporlar, Google AdMob reklamları için işlenen veriler veya Firebase yazılımının diğer bileşenleri için geçerli değildir.",
+          "Daha sonra “İzin verme” seçeneğini seçersen uygulama o andan itibaren kullanım istatistiği toplamayı bırakır ve uygulama örneği kimliği dahil cihazında saklanan analitik verilerini sıfırlar. Bu, Google'a daha önce gönderilmiş bilgileri silmez.",
+          "Google'a daha önce gönderilmiş bilgilerle ilgili soruların veya taleplerin için hello@uselunexa.com adresinden bize ulaşabilirsin. Uygulama, uygulama örneği kimliğini göstermez ve sıfırlama bu kimliği cihazından kaldırır; bu nedenle daha önce gönderilmiş bilgiler cihazınla eşleştirilemeyebilir.",
+          "Kullanım istatistikleri kapalıyken bile Firebase yazılımı uygulamayı açtığında başlar ve cihazında bazı teknik veriler saklar. Firebase kurulum kimliği gibi rastgele kimlikler oluşturabilir ve Google'ın sunucularına bağlanabilir; bağlandığında Google cihazının IP adresini alır.",
+          "Kullanım istatistikleri ile reklamlar için gizlilik seçeneklerin birbirinden ayrıdır. Reklam seçimlerin kullanım istatistiklerini açmaz veya kapatmaz; kullanım istatistiklerine izin vermek de reklamlar için izin vermek anlamına gelmez.",
         ],
       },
       {
         title: "Toplamadığımız veriler",
         paragraphs: [
-          "Bu politikanın yürürlük tarihi itibarıyla Chess Rescue hiçbir kişisel bilgiyi toplamaz, iletmez veya paylaşmaz. Açıkça belirtmek gerekirse, uygulama şunları toplamaz:",
+          "Chess Rescue hiçbir sürümde şunları toplamaz:",
         ],
         bullets: [
           "Ad, e-posta, telefon numarası veya herhangi bir hesap kimliği",
-          "Reklam kimlikleri (IDFA, AAID) veya diğer cihaz kimlikleri",
-          "Konum, kişiler, mikrofon, kamera veya sensör verileri",
-          "Analitik olaylar, kullanım telemetrisi veya çökme raporları",
-          "Kimliğinle ilişkilendirilmiş herhangi bir veri",
+          "Kesin konum, kişiler, mikrofon, kamera veya sensör verileri",
+          "Çökme raporları",
         ],
       },
       {
         title: "Cihazında yerel olarak saklanan veriler",
         paragraphs: [
-          "Oturumlar arasında ilerlemeni hatırlamak için uygulama, yalnızca cihazına küçük miktarda oyun verisi kaydeder. Bu veriler cihazından asla çıkmaz.",
+          "Oturumlar arasında ilerlemeni hatırlamak için uygulama, cihazına oyun verileri kaydeder. Bu oyun verileri cihazında kalır. 1.3.0 sürümünde Google'ın SDK'ları da cihazında kendi verilerini saklar; örneğin izin seçimini ve yukarıda açıklanan kimlikleri.",
+          "Oyun verileri örneğin şunları içerir:",
         ],
         bullets: [
           "Mevcut bulmacan (set içinde ne kadar ilerlediğin)",
           "Tamamladığın kurtarışlar",
           "Tanıtımı görüp görmediğin",
           "Bulmacaları dizmek için kullanılan rastgele bir tohum (seed)",
+          "Dil seçimin",
+          "Açtığın rekorlar ve kaydettiğin kurtarışlar",
+          "1.3.0 sürümünde: kaç gün üst üste kurtarış tamamladığın, bölgende gizlilik seçeneklerinin sunulup sunulmadığı ve kullanım istatistikleri sorusuna verdiğin cevap",
         ],
       },
       {
         title: "Verilerini nasıl silersin",
         paragraphs: [
           "Chess Rescue, uygulama içinde bir sıfırlama denetimi içermez. Yerel olarak saklanan tüm ilerlemeyi işletim sisteminin normal uygulama kontrolleriyle kaldırabilirsin: uygulamanın verilerini temizle (Android'de Ayarlar → Uygulamalar → Chess Rescue → Depolama) veya uygulamayı kaldır.",
+          "1.3.0 sürümünde uygulamanın verilerini temizlemek, Google'ın SDK'larının cihazda tuttuğu izin seçimini ve kimlikleri, ayrıca kullanım istatistikleri cevabını da kaldırır; bu nedenle uygulama yeniden sorar. Google'ın daha önce aldığı bilgileri silmez.",
         ],
       },
       {
         title: "İnternet erişimi",
         paragraphs: [
-          "Chess Rescue internet izni istemez ve hiçbir ağ bağlantısı kurmaz. Oyun tamamen çevrimdışı oynanabilir.",
+          "1.2.1'e kadarki sürümler internet izni istemez ve hiçbir ağ bağlantısı kurmaz. 1.3.0 sürümü internet erişimi ister ve bunu yalnızca reklamlar, izin mesajı, izin verirsen kullanım istatistikleri ve yukarıda açıklanan Google hizmetleri için kullanır. Bulmacalar bağlantı gerektirmez; bağlantı yoksa reklam gösterilmez.",
         ],
       },
       {
         title: "Çocuklar",
         paragraphs: [
-          "Chess Rescue özellikle çocuklara yönelik değildir ve 13 yaşın altındaki çocuklardan bilerek herhangi bir kişisel bilgi toplamaz. Uygulama zaten hiç kişisel bilgi toplamadığı için yaşa bağlı bir veri işleme gerekmez.",
+          "Chess Rescue özellikle çocuklara yönelik değildir ve Lunexa, 13 yaşın altındaki çocuklardan bilerek kişisel bilgi toplamaz. 1.3.0 sürümünde her reklam isteği, genç olabilecek kullanıcılar için Google'ın uyguladığı işlemi uygular ve genel izleyiciye uygun, kişiselleştirilmemiş reklam ister.",
+          "Uygulama, kullanım istatistikleri sorusunda 18 yaşından küçük oyunculardan “İzin ver” seçeneğini yalnızca bir ebeveynin veya vasinin izniyle seçmelerini ister. Uygulama yaşı veya bu izni doğrulayamaz.",
         ],
       },
       {
         title: "Bu politikadaki değişiklikler",
         paragraphs: [
-          "Chess Rescue'nun ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir.",
+          "Chess Rescue'nun ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politikanın bu hâli, reklam ve isteğe bağlı analitik ekleyen 1.3.0 sürümü için güncellenmiştir.",
         ],
       },
     ],
@@ -1556,63 +1647,99 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "Chess Rescue · Privacidad",
     heading: "Chess Rescue — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-05-29",
+    lastUpdated: "Última actualización: 2026-11-01",
     intro:
-      "Chess Rescue es un juego de rompecabezas para un solo jugador y sin conexión creado por Lunexa Games (id de paquete: com.lunexa.games.chessrescue). Esta política describe qué hace la aplicación con tu información y — más importante — qué no hace.",
+      "Chess Rescue es un juego de rompecabezas para un solo jugador para Android creado por Lunexa Games (id de paquete: com.lunexa.games.chessrescue). Esta política describe qué hace la aplicación con tu información en la versión 1.3.0, que añade anuncios y analítica opcional, y en las versiones anteriores, que funcionan totalmente sin conexión.",
     sections: [
       {
         title: "Resumen",
         paragraphs: [
-          "La aplicación se ejecuta completamente en tu dispositivo. No crea cuentas, no se comunica con ningún servidor, no muestra anuncios y no incluye analítica ni informes de errores. Presenta breves rompecabezas de rescate de ajedrez sin conexión y recuerda tu progreso únicamente en tu dispositivo.",
+          "Chess Rescue no tiene cuentas y no te pide tu nombre, tu correo electrónico ni tu número de teléfono. Los rompecabezas se juegan sin conexión a internet.",
+          "Las versiones hasta la 1.2.1 se ejecutan completamente en tu dispositivo: no solicitan el permiso de internet, no realizan conexiones de red, no muestran anuncios y no incluyen analítica.",
+          "La versión 1.3.0 muestra pequeños anuncios de Google AdMob: en la pantalla de resultado después de resolver un rompecabezas y al final de la pantalla de inicio, nunca durante un rompecabezas. Para solicitarlos y mostrarlos, Google recibe cierta información técnica de tu dispositivo, como se describe a continuación. La versión 1.3.0 también incluye el software Firebase de Google para estadísticas de uso opcionales (analítica), que permanecen desactivadas a menos que las permitas.",
+        ],
+      },
+      {
+        title: "Publicidad (versión 1.3.0)",
+        paragraphs: [
+          "Los anuncios los proporciona Google AdMob. Cuando la aplicación solicita un anuncio, el SDK de Google Mobile Ads se conecta a los servidores de Google. Google recibe información como la dirección IP de tu dispositivo (a partir de la cual se puede estimar una ubicación aproximada), información sobre el anuncio y tu interacción con él, información de diagnóstico de la aplicación y del SDK, e identificadores como el identificador de conjunto de aplicaciones (app set ID). Google usa esta información para mostrar y medir anuncios y para prevenir el fraude y el abuso.",
+          "Cada solicitud de anuncio de la aplicación pide a Google anuncios no personalizados, aplica el tratamiento de Google para usuarios que pueden ser adolescentes y solo permite anuncios clasificados como aptos para todos los públicos. La aplicación no solicita el permiso que Android 13 y versiones posteriores exigen para leer el identificador de publicidad de tu dispositivo. En Android 12 y versiones anteriores, los servicios de Google Play pueden proporcionar igualmente el identificador de publicidad al SDK de Google Mobile Ads, y Google puede usarlo para mostrar y medir anuncios y para prevenir el fraude.",
+          "Google trata esta información conforme a su propia política de privacidad.",
+        ],
+      },
+      {
+        title: "Tus opciones de privacidad para los anuncios (versión 1.3.0)",
+        paragraphs: [
+          "La aplicación no se conecta al servicio de consentimiento de Google al iniciarse. Después de tu primer rompecabezas resuelto en una sesión, o cuando tocas Opciones de privacidad, usa Google User Messaging Platform para comprobar si donde estás se requiere un mensaje de consentimiento.",
+          "Cuando se requiere, por ejemplo en el Espacio Económico Europeo, el Reino Unido y Suiza, el mensaje se muestra en la pantalla de inicio, nunca durante un rompecabezas. Cuando Google lo requiere, Opciones de privacidad aparece en la pantalla de inicio y en la pantalla de resultado, para que puedas cambiar tu elección en cualquier momento.",
+          "Si el estado del consentimiento no permite solicitar anuncios, la aplicación no muestra anuncios durante el resto de esa sesión. Según tu elección, Google puede mostrar anuncios limitados o ningún anuncio. El juego funciona igual en ambos casos.",
+          "Si vives en un estado de EE. UU. con una ley de privacidad del consumidor, Opciones de privacidad también te permite oponerte a la venta o el intercambio de tu información personal con fines publicitarios.",
+          "Estas opciones se aplican solo a los anuncios; no activan ni desactivan las estadísticas de uso. Las estadísticas de uso tienen su propia elección, descrita abajo.",
+        ],
+      },
+      {
+        title: "Estadísticas de uso y Google Firebase (versión 1.3.0)",
+        paragraphs: [
+          "La versión 1.3.0 incluye Google Analytics for Firebase. Las estadísticas de uso están desactivadas de forma predeterminada. En la pantalla de inicio, normalmente antes de tu primer rompecabezas, la aplicación te pregunta una vez: “¿Nos ayudas a mejorar Chess Rescue?”. Puedes responder “Permitir” o “No permitir”. “Permitir” solo funciona después de marcar “Tengo 18 años o más, o mi madre, padre o tutor está de acuerdo.” Esta declaración es tuya; la aplicación no comprueba tu edad ni si tu madre, padre o tutor está de acuerdo. “No permitir” siempre está disponible, y el juego funciona igual en ambos casos. Hasta que elijas “Permitir”, Google Analytics for Firebase no recopila eventos de estadísticas de uso. Esta elección solo afecta a esos eventos: los anuncios de Google AdMob, descritos arriba, y otras partes del software Firebase, descritas abajo, pueden tratar algunos datos independientemente de tu elección, incluso antes de que respondas.",
+          "Tu respuesta se guarda en tu dispositivo y se mantiene al cerrar y volver a abrir la aplicación. Para cambiarla en cualquier momento, toca Estadísticas de uso en la pantalla de inicio; esa línea muestra si las estadísticas de uso están activadas o desactivadas.",
+          "Si permites las estadísticas de uso, la aplicación registra cómo se juegan los rompecabezas: cuándo un rompecabezas empieza, falla o se resuelve y cuándo se completa un episodio, junto con el episodio, la posición del rompecabezas dentro de él, si ya lo habías visto, cuántos movimientos erróneos hiciste y si el episodio se completó por primera vez. Google Analytics también recopila cierta información automáticamente, como la primera apertura de la aplicación, las sesiones y el tiempo de uso, las actualizaciones de la aplicación, el modelo de tu dispositivo, la versión del sistema operativo y el idioma, una ubicación aproximada derivada de tu dirección IP y un identificador aleatorio de instancia de la aplicación. El SDK de Google Mobile Ads también informa a Google Analytics de cuándo se solicita o se muestra un anuncio, y las solicitudes de anuncios pueden incluir entonces el identificador de instancia de la aplicación. Google Analytics está configurado para no recopilar tu identificador de publicidad. Esta información se envía a Google y se usa para entender cómo se juega. Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses; el plazo de los datos a nivel de usuario vuelve a empezar cada vez que hay nueva actividad desde la misma instancia de la aplicación. Estos plazos son solo ajustes de Google Analytics: no se aplican a los informes agregados, a los datos tratados para los anuncios de Google AdMob ni a otras partes del software Firebase.",
+          "Si más adelante eliges “No permitir”, la aplicación deja de recopilar estadísticas de uso a partir de ese momento y restablece los datos de analítica guardados en tu dispositivo, incluido el identificador de instancia de la aplicación. Esto no elimina la información que ya se haya enviado a Google.",
+          "Para preguntas o solicitudes sobre la información que ya se haya enviado a Google, escríbenos a hello@uselunexa.com. La aplicación no muestra el identificador de instancia de la aplicación, y el restablecimiento lo elimina de tu dispositivo, por lo que es posible que la información ya enviada no pueda vincularse a tu dispositivo.",
+          "Incluso con las estadísticas de uso desactivadas, el software Firebase se inicia al abrir la aplicación y guarda algunos datos técnicos en tu dispositivo. Puede crear identificadores aleatorios, como un identificador de instalación de Firebase, y puede conectarse a los servidores de Google; cuando lo hace, Google recibe la dirección IP de tu dispositivo.",
+          "Las estadísticas de uso y tus opciones de privacidad para los anuncios son independientes. Tus opciones para los anuncios no activan ni desactivan las estadísticas de uso, y permitir las estadísticas de uso no da consentimiento para los anuncios.",
         ],
       },
       {
         title: "Lo que no recopilamos",
         paragraphs: [
-          "En la fecha de entrada en vigor de esta política, Chess Rescue no recopila, transmite ni comparte ningún dato personal. En concreto, la aplicación no recopila:",
+          "En ninguna versión Chess Rescue recopila:",
         ],
         bullets: [
           "Nombre, correo electrónico, teléfono o ningún identificador de cuenta",
-          "Identificadores publicitarios (IDFA, AAID) ni otros identificadores de dispositivo",
-          "Ubicación, contactos, micrófono, cámara ni datos de sensores",
-          "Eventos analíticos, telemetría de uso ni informes de errores",
-          "Ningún dato vinculado a tu identidad",
+          "Ubicación precisa, contactos, micrófono, cámara ni datos de sensores",
+          "Informes de errores",
         ],
       },
       {
         title: "Datos almacenados localmente en tu dispositivo",
         paragraphs: [
-          "Para recordar tu progreso entre sesiones, la aplicación guarda una pequeña cantidad de datos de juego únicamente en tu dispositivo. Estos datos nunca salen de tu dispositivo.",
+          "Para recordar tu progreso entre sesiones, la aplicación guarda datos de juego en tu dispositivo. Estos datos de juego se quedan en tu dispositivo. En la versión 1.3.0, los SDK de Google también guardan sus propios datos en tu dispositivo, como tu elección de consentimiento y los identificadores descritos arriba.",
+          "Los datos de juego incluyen, por ejemplo:",
         ],
         bullets: [
           "Tu rompecabezas actual (cuánto has avanzado en el conjunto)",
           "Qué rescates has completado",
           "Si has visto la introducción",
           "Una semilla aleatoria usada para disponer los rompecabezas",
+          "Tu idioma",
+          "Los récords que has desbloqueado y los rescates que has guardado",
+          "En la versión 1.3.0: cuántos días seguidos has completado un rescate, si en tu región se ofrecen opciones de privacidad y tu respuesta sobre las estadísticas de uso",
         ],
       },
       {
         title: "Cómo borrar tus datos",
         paragraphs: [
           "Chess Rescue no incluye un control de restablecimiento dentro de la aplicación. Puedes eliminar todo el progreso almacenado localmente con los controles habituales del sistema operativo: borra los datos de la aplicación (en Android, Ajustes → Aplicaciones → Chess Rescue → Almacenamiento) o desinstálala.",
+          "En la versión 1.3.0, borrar los datos de la aplicación también elimina la elección de consentimiento y los identificadores que los SDK de Google guardan en el dispositivo, así como tu respuesta sobre las estadísticas de uso, por lo que la aplicación vuelve a preguntar. No elimina la información que Google ya haya recibido.",
         ],
       },
       {
         title: "Acceso a internet",
         paragraphs: [
-          "Chess Rescue no solicita el permiso de internet y no realiza conexiones de red. El juego es totalmente jugable sin conexión.",
+          "Las versiones hasta la 1.2.1 no solicitan el permiso de internet y no realizan conexiones de red. La versión 1.3.0 solicita acceso a internet y lo usa solo para los anuncios, el mensaje de consentimiento, las estadísticas de uso si las permites y los servicios de Google descritos arriba. Los rompecabezas no necesitan conexión, y sin conexión no se muestra ningún anuncio.",
         ],
       },
       {
         title: "Niños",
         paragraphs: [
-          "Chess Rescue no está dirigida específicamente a niños y no recopila intencionalmente datos personales de menores de 13 años. Como la aplicación no recopila ningún dato personal, no se requiere tratamiento de datos por edad.",
+          "Chess Rescue no está dirigida específicamente a niños, y Lunexa no recopila intencionalmente datos personales de menores de 13 años. En la versión 1.3.0, cada solicitud de anuncio aplica el tratamiento de Google para usuarios que pueden ser adolescentes y pide anuncios no personalizados y aptos para todos los públicos.",
+          "En la pregunta sobre estadísticas de uso, la aplicación pide a quienes tengan menos de 18 años que elijan “Permitir” solo con el permiso de su madre, padre o tutor. La aplicación no puede verificar la edad ni ese permiso.",
         ],
       },
       {
         title: "Cambios en esta política",
         paragraphs: [
-          "Si una versión futura de Chess Rescue cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación.",
+          "Si una versión futura de Chess Rescue cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación. Esta versión de la política se actualizó para la versión 1.3.0, que añade anuncios y analítica opcional.",
         ],
       },
     ],
