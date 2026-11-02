@@ -1200,8 +1200,10 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
 // shows ads. The data section restates the Play Console data safety
 // declaration for that release (four types, collected and shared, declared
 // purpose advertising or marketing) and nothing more: which SDKs receive the
-// data, analytics, ad personalisation and consent behaviour are not verified
-// against the released build, so this copy names none of them. Never state
+// data. R-REL-07 (RPS 0edda9f; code 678ff0f) adds what the declaration
+// omits: 1.0.5 sends Firebase Analytics usage statistics by default, with no
+// in-app choice, independent of ad consent, and without the advertising ID.
+// The local-data list follows the 678ff0f storage classes. Never state
 // retention periods or deletion routes the owner has not confirmed. Update
 // this and bump `lastUpdated` whenever the app's data behaviour changes.
 
@@ -1209,20 +1211,20 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "RPS Duel · Privacy",
     heading: "RPS Duel — Privacy Policy",
-    lastUpdated: "Last updated: 2026-10-28",
+    lastUpdated: "Last updated: 2026-11-02",
     intro:
-      "RPS Duel is a single-player Rock Paper Scissors game for Android made by Lunexa Games (package id: com.lunexa.games.rpsduel). This policy describes the data declared for the current version of the app on Google Play and the information the app stores on your device.",
+      "RPS Duel is a single-player Rock Paper Scissors game for Android made by Lunexa Games (package id: com.lunexa.games.rpsduel). This policy describes the data handled by the current version of the app, including the data declared for it on Google Play, and the information the app stores on your device.",
     sections: [
       {
         title: "Summary",
         paragraphs: [
-          "RPS Duel has no account or sign-in. Version 1.0.5, available on Google Play since October 25, 2026, shows ads. According to the data safety information declared for it on Google Play, the app also collects some data from your device and shares it with third parties for advertising or marketing purposes, as described below. Versions before 1.0.5 did not show ads and did not collect or share this data.",
+          "RPS Duel has no account or sign-in. Version 1.0.5, available on Google Play since October 25, 2026, shows ads. According to the data safety information declared for it on Google Play, the app also collects some data from your device and shares it with third parties for advertising or marketing purposes, as described below. Version 1.0.5 also sends usage statistics to Google Analytics for Firebase automatically, without asking, to understand how the game is played. The usage statistics are described separately below. Versions before 1.0.5 did not show ads and did not collect or share this data.",
         ],
       },
       {
         title: "Data collected and shared (version 1.0.5)",
         paragraphs: [
-          "The data safety information declared for RPS Duel 1.0.5 on Google Play lists the following data types. Each one is collected and shared with third parties, and the declared purpose of both the collection and the sharing is advertising or marketing:",
+          "The data safety information declared for RPS Duel 1.0.5 on Google Play lists the following data types. Each one is collected and shared with third parties, and the declared purposes of both the collection and the sharing include advertising or marketing:",
         ],
         bullets: [
           "Approximate location",
@@ -1235,8 +1237,15 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "How this data is handled (version 1.0.5)",
         paragraphs: [
           "The same declaration marks the collection of this data as required rather than optional, and states that the data is encrypted in transit.",
-          "The third parties that receive this data handle it under their own privacy policies. RPS Duel does not ask for your name, email address or phone number.",
+          "The third parties that receive this data handle it under their own privacy policies. Version 1.0.5 uses Google AdMob for its ads and Google Analytics for Firebase for usage statistics. RPS Duel does not ask for your name, email address or phone number.",
           "You can reset or delete your device's advertising ID in your Android settings; the available options depend on your Android version.",
+        ],
+      },
+      {
+        title: "Usage statistics (version 1.0.5)",
+        paragraphs: [
+          "Version 1.0.5 includes Google Analytics for Firebase and collects usage statistics by default: it does not ask before collecting them and has no setting to turn them off. The app records when you start your first game, complete a round, start or complete a daily challenge, change the CPU difficulty, or open Records or Collection, together with your interface language and selected difficulty. Google Analytics also collects some information automatically, such as information about your device and the app, an approximate location derived from your IP address and a random app-instance identifier. This information is sent to Google and used to understand how the game is played.",
+          "Google Analytics is set not to collect your advertising ID, and its advertising features are turned off, so these usage statistics are not used for ads. Ad privacy choices that Google may ask you to make apply to ads only; they do not turn usage statistics on or off.",
         ],
       },
       {
@@ -1245,17 +1254,20 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "To remember your progress and preferences between sessions, the app saves gameplay data on your device, such as:",
         ],
         bullets: [
-          "Game scores and your last few round results",
+          "Game scores and your round history (up to your last 500 rounds)",
+          "Lifetime totals (rounds played, wins and ties)",
           "Selected interface language (English, Turkish, or Spanish)",
           "Selected CPU difficulty (Easy, Normal, or Hard)",
+          "Sound setting (on or off)",
           "Daily challenge progress for the current day (resets automatically at local midnight)",
           "Achievement flags (four in total)",
+          "Collected moments, with the date of each",
         ],
       },
       {
         title: "How to clear your data",
         paragraphs: [
-          "Inside the app, Settings → Reset data clears your game scores and round history. The other items listed above — your language and difficulty preferences, daily challenge progress, and achievement flags — are kept. To remove all of the data listed above, use your operating system's normal app controls instead: clear the app's storage or uninstall the app (Android). That is a broader action than Reset data.",
+          "Inside the app, Settings → Reset data clears your game scores and round history. The other items listed above — your language, difficulty and sound settings, lifetime totals, daily challenge progress, achievement flags and collected moments — are kept. To remove all of the data listed above, use your operating system's normal app controls instead: clear the app's storage or uninstall the app (Android). That is a broader action than Reset data.",
           "These steps affect only the data stored on your device. They do not delete data that has already been collected and shared as described above.",
         ],
       },
@@ -1268,7 +1280,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Changes to this policy",
         paragraphs: [
-          "If a future version of RPS Duel changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes. This version of the policy was updated for version 1.0.5, which adds ads.",
+          "If a future version of RPS Duel changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes. This version of the policy was updated for version 1.0.5, which adds ads and usage statistics.",
         ],
       },
     ],
@@ -1279,20 +1291,20 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "RPS Duel · Gizlilik",
     heading: "RPS Duel — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 28.10.2026",
+    lastUpdated: "Son güncelleme: 02.11.2026",
     intro:
-      "RPS Duel, Lunexa Games tarafından geliştirilmiş, Android için tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, uygulamanın güncel sürümü için Google Play'de beyan edilen verileri ve uygulamanın cihazında sakladığı bilgileri açıklar.",
+      "RPS Duel, Lunexa Games tarafından geliştirilmiş, Android için tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, Google Play'de beyan edilen veriler dahil olmak üzere uygulamanın güncel sürümünün işlediği verileri ve uygulamanın cihazında sakladığı bilgileri açıklar.",
     sections: [
       {
         title: "Özet",
         paragraphs: [
-          "RPS Duel'de hesap veya giriş yoktur. 25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir. Google Play'de beyan edilen veri güvenliği bilgilerine göre uygulama ayrıca, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama amacıyla üçüncü taraflarla paylaşır. 1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
+          "RPS Duel'de hesap veya giriş yoktur. 25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir. Google Play'de beyan edilen veri güvenliği bilgilerine göre uygulama ayrıca, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama amacıyla üçüncü taraflarla paylaşır. 1.0.5 sürümü ayrıca, oyunun nasıl oynandığını anlamak için kullanım istatistiklerini sormadan, otomatik olarak Google Analytics for Firebase'e gönderir. Kullanım istatistikleri aşağıda ayrıca açıklanmıştır. 1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
         ],
       },
       {
         title: "Toplanan ve paylaşılan veriler (1.0.5 sürümü)",
         paragraphs: [
-          "RPS Duel 1.0.5 için Google Play'de beyan edilen veri güvenliği bilgileri aşağıdaki veri türlerini listeler. Her biri toplanır ve üçüncü taraflarla paylaşılır; hem toplamanın hem de paylaşmanın beyan edilen amacı reklam veya pazarlamadır:",
+          "RPS Duel 1.0.5 için Google Play'de beyan edilen veri güvenliği bilgileri aşağıdaki veri türlerini listeler. Her biri toplanır ve üçüncü taraflarla paylaşılır; hem toplamanın hem de paylaşmanın beyan edilen amaçları arasında reklam veya pazarlama yer alır:",
         ],
         bullets: [
           "Yaklaşık konum",
@@ -1305,8 +1317,15 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "Bu verilerin nasıl işlendiği (1.0.5 sürümü)",
         paragraphs: [
           "Aynı beyan, bu verilerin toplanmasını isteğe bağlı değil zorunlu olarak işaretler ve verilerin aktarım sırasında şifrelendiğini belirtir.",
-          "Bu verileri alan üçüncü taraflar, verileri kendi gizlilik politikalarına göre işler. RPS Duel adını, e-posta adresini veya telefon numaranı istemez.",
+          "Bu verileri alan üçüncü taraflar, verileri kendi gizlilik politikalarına göre işler. 1.0.5 sürümü reklamlar için Google AdMob'u, kullanım istatistikleri için Google Analytics for Firebase'i kullanır. RPS Duel adını, e-posta adresini veya telefon numaranı istemez.",
           "Cihazının reklam kimliğini Android ayarlarından sıfırlayabilir veya silebilirsin; kullanılabilen seçenekler Android sürümüne bağlıdır.",
+        ],
+      },
+      {
+        title: "Kullanım istatistikleri (1.0.5 sürümü)",
+        paragraphs: [
+          "1.0.5 sürümü Google Analytics for Firebase'i içerir ve kullanım istatistiklerini varsayılan olarak toplar: toplamadan önce sormaz ve bunları kapatmak için bir ayarı yoktur. Uygulama; ilk oyununu başlattığında, bir eli tamamladığında, bir günlük meydan okumayı başlattığında veya tamamladığında, CPU zorluğunu değiştirdiğinde ya da Kayıtlar veya Koleksiyon'u açtığında bunu, arayüz dilin ve seçili zorlukla birlikte kaydeder. Google Analytics ayrıca bazı bilgileri otomatik olarak toplar; örneğin cihazın ve uygulama hakkındaki bilgiler, IP adresinden tahmin edilen yaklaşık konum ve rastgele bir uygulama örneği kimliği. Bu bilgiler Google'a gönderilir ve oyunun nasıl oynandığını anlamak için kullanılır.",
+          "Google Analytics, reklam kimliğini toplamayacak şekilde ayarlanmıştır ve reklamla ilgili özellikleri kapalıdır; bu nedenle bu kullanım istatistikleri reklamlar için kullanılmaz. Google'ın sana sorabileceği reklam gizlilik tercihleri yalnızca reklamlar için geçerlidir; kullanım istatistiklerini açmaz veya kapatmaz.",
         ],
       },
       {
@@ -1315,17 +1334,20 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "Oturumlar arasında ilerlemeni ve tercihlerini hatırlamak için uygulama, cihazına aşağıdakiler gibi oyun verileri kaydeder:",
         ],
         bullets: [
-          "Oyun skorları ve son birkaç el sonucu",
+          "Oyun skorları ve el geçmişin (son 500 ele kadar)",
+          "Toplam istatistikler (oynanan el, galibiyet ve beraberlik sayısı)",
           "Seçili arayüz dili (İngilizce, Türkçe veya İspanyolca)",
           "Seçili CPU zorluğu (Kolay, Normal veya Zor)",
+          "Ses ayarı (açık veya kapalı)",
           "Bugünkü günlük meydan okuma ilerlemen (yerel gece yarısında otomatik sıfırlanır)",
           "Başarım bayrakları (toplam dört adet)",
+          "Toplanan anlar ve her birinin tarihi",
         ],
       },
       {
         title: "Verilerini nasıl silersin",
         paragraphs: [
-          "Uygulama içinde Ayarlar → Verileri sıfırla, oyun skorlarını ve el geçmişini siler. Yukarıda listelenen diğer veriler — dil ve zorluk tercihlerin, günlük meydan okuma ilerlemen ve başarım bayrakların — korunur. Yukarıda listelenen verilerin tamamını kaldırmak için bunun yerine işletim sisteminin normal uygulama kontrollerini kullan: uygulamanın depolamasını temizle veya uygulamayı kaldır (Android). Bu, Verileri sıfırla işleminden daha kapsamlı bir işlemdir.",
+          "Uygulama içinde Ayarlar → Verileri sıfırla, oyun skorlarını ve el geçmişini siler. Yukarıda listelenen diğer veriler — dil, zorluk ve ses ayarların, toplam istatistiklerin, günlük meydan okuma ilerlemen, başarım bayrakların ve toplanan anların — korunur. Yukarıda listelenen verilerin tamamını kaldırmak için bunun yerine işletim sisteminin normal uygulama kontrollerini kullan: uygulamanın depolamasını temizle veya uygulamayı kaldır (Android). Bu, Verileri sıfırla işleminden daha kapsamlı bir işlemdir.",
           "Bu adımlar yalnızca cihazında saklanan verileri etkiler. Yukarıda açıklandığı gibi daha önce toplanmış ve paylaşılmış verileri silmez.",
         ],
       },
@@ -1338,7 +1360,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Bu politikadaki değişiklikler",
         paragraphs: [
-          "RPS Duel'in ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politikanın bu hâli, reklam ekleyen 1.0.5 sürümü için güncellenmiştir.",
+          "RPS Duel'in ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politikanın bu hâli, reklam ve kullanım istatistikleri ekleyen 1.0.5 sürümü için güncellenmiştir.",
         ],
       },
     ],
@@ -1349,20 +1371,20 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "RPS Duel · Privacidad",
     heading: "RPS Duel — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-10-28",
+    lastUpdated: "Última actualización: 2026-11-02",
     intro:
-      "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador para Android creado por Lunexa Games (id de paquete: com.lunexa.games.rpsduel). Esta política describe los datos declarados en Google Play para la versión actual de la aplicación y la información que la aplicación guarda en tu dispositivo.",
+      "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador para Android creado por Lunexa Games (id de paquete: com.lunexa.games.rpsduel). Esta política describe los datos que trata la versión actual de la aplicación, incluidos los declarados para ella en Google Play, y la información que la aplicación guarda en tu dispositivo.",
     sections: [
       {
         title: "Resumen",
         paragraphs: [
-          "RPS Duel no tiene cuentas ni inicio de sesión. La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios. Según la información de seguridad de los datos declarada en Google Play, la aplicación también recopila algunos datos de tu dispositivo y los comparte con terceros con fines publicitarios o de marketing, como se describe a continuación. Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
+          "RPS Duel no tiene cuentas ni inicio de sesión. La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios. Según la información de seguridad de los datos declarada en Google Play, la aplicación también recopila algunos datos de tu dispositivo y los comparte con terceros con fines publicitarios o de marketing, como se describe a continuación. La versión 1.0.5 también envía estadísticas de uso a Google Analytics for Firebase automáticamente, sin preguntar, para entender cómo se juega. Las estadísticas de uso se describen por separado más abajo. Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
         ],
       },
       {
         title: "Datos recopilados y compartidos (versión 1.0.5)",
         paragraphs: [
-          "La información de seguridad de los datos declarada en Google Play para RPS Duel 1.0.5 incluye los siguientes tipos de datos. Cada uno se recopila y se comparte con terceros, y la finalidad declarada tanto de la recopilación como del uso compartido es publicidad o marketing:",
+          "La información de seguridad de los datos declarada en Google Play para RPS Duel 1.0.5 incluye los siguientes tipos de datos. Cada uno se recopila y se comparte con terceros, y las finalidades declaradas tanto de la recopilación como del uso compartido incluyen publicidad o marketing:",
         ],
         bullets: [
           "Ubicación aproximada",
@@ -1375,8 +1397,15 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "Cómo se tratan estos datos (versión 1.0.5)",
         paragraphs: [
           "La misma declaración indica que la recopilación de estos datos es obligatoria, no opcional, y que los datos se cifran en tránsito.",
-          "Los terceros que reciben estos datos los tratan conforme a sus propias políticas de privacidad. RPS Duel no te pide tu nombre, tu correo electrónico ni tu número de teléfono.",
+          "Los terceros que reciben estos datos los tratan conforme a sus propias políticas de privacidad. La versión 1.0.5 usa Google AdMob para los anuncios y Google Analytics for Firebase para las estadísticas de uso. RPS Duel no te pide tu nombre, tu correo electrónico ni tu número de teléfono.",
           "Puedes restablecer o eliminar el identificador de publicidad de tu dispositivo en los ajustes de Android; las opciones disponibles dependen de tu versión de Android.",
+        ],
+      },
+      {
+        title: "Estadísticas de uso (versión 1.0.5)",
+        paragraphs: [
+          "La versión 1.0.5 incluye Google Analytics for Firebase y recopila estadísticas de uso de forma predeterminada: no pregunta antes de recopilarlas y no tiene ningún ajuste para desactivarlas. La aplicación registra cuándo empiezas tu primera partida, completas una ronda, empiezas o completas un desafío diario, cambias la dificultad de la CPU o abres Registros o Colección, junto con el idioma de la interfaz y la dificultad seleccionada. Google Analytics también recopila cierta información automáticamente, como información sobre tu dispositivo y la aplicación, una ubicación aproximada derivada de tu dirección IP y un identificador aleatorio de instancia de la aplicación. Esta información se envía a Google y se usa para entender cómo se juega.",
+          "Google Analytics está configurado para no recopilar tu identificador de publicidad y sus funciones publicitarias están desactivadas, por lo que estas estadísticas de uso no se usan para anuncios. Las opciones de privacidad para los anuncios que Google pueda pedirte solo se aplican a los anuncios; no activan ni desactivan las estadísticas de uso.",
         ],
       },
       {
@@ -1385,17 +1414,20 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
           "Para recordar tu progreso y preferencias entre sesiones, la aplicación guarda en tu dispositivo datos de juego como los siguientes:",
         ],
         bullets: [
-          "Puntuaciones y los resultados de las últimas rondas",
+          "Puntuaciones y tu historial de rondas (hasta las últimas 500 rondas)",
+          "Totales acumulados (rondas jugadas, victorias y empates)",
           "Idioma de interfaz seleccionado (inglés, turco o español)",
           "Dificultad de CPU seleccionada (Fácil, Normal o Difícil)",
+          "Ajuste de sonido (activado o desactivado)",
           "Progreso del desafío diario actual (se reinicia automáticamente a medianoche local)",
           "Indicadores de logros (cuatro en total)",
+          "Momentos coleccionados, con la fecha de cada uno",
         ],
       },
       {
         title: "Cómo borrar tus datos",
         paragraphs: [
-          "Dentro de la aplicación, Ajustes → Restablecer datos borra tus puntuaciones y el historial de rondas. Los demás elementos de la lista anterior —tus preferencias de idioma y dificultad, el progreso del desafío diario y los indicadores de logros— se conservan. Para eliminar todos los datos de la lista anterior, usa en su lugar los controles habituales del sistema operativo: borra el almacenamiento de la aplicación o desinstálala (Android). Esa es una acción más amplia que Restablecer datos.",
+          "Dentro de la aplicación, Ajustes → Restablecer datos borra tus puntuaciones y el historial de rondas. Los demás elementos de la lista anterior —tus ajustes de idioma, dificultad y sonido, los totales acumulados, el progreso del desafío diario, los indicadores de logros y los momentos coleccionados— se conservan. Para eliminar todos los datos de la lista anterior, usa en su lugar los controles habituales del sistema operativo: borra el almacenamiento de la aplicación o desinstálala (Android). Esa es una acción más amplia que Restablecer datos.",
           "Estos pasos solo afectan a los datos guardados en tu dispositivo. No eliminan los datos que ya se hayan recopilado y compartido como se describe arriba.",
         ],
       },
@@ -1408,7 +1440,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Cambios en esta política",
         paragraphs: [
-          "Si una versión futura de RPS Duel cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación. Esta versión de la política se actualizó para la versión 1.0.5, que añade anuncios.",
+          "Si una versión futura de RPS Duel cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación. Esta versión de la política se actualizó para la versión 1.0.5, que añade anuncios y estadísticas de uso.",
         ],
       },
     ],
