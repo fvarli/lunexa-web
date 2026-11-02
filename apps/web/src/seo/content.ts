@@ -1198,33 +1198,35 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
 // App-specific privacy policy. Single source of truth for the policy that
 // the Play Store listing links to. Version 1.0.5 (Google Play, 2026-10-25)
 // shows ads. The data section restates the Play Console data safety
-// declaration for that release (four types, collected and shared, declared
-// purpose advertising or marketing) and nothing more: which SDKs receive the
-// data. R-REL-07 (RPS 0edda9f; code 678ff0f) adds what the declaration
-// omits: 1.0.5 sends Firebase Analytics usage statistics by default, with no
-// in-app choice, independent of ad consent, and without the advertising ID.
-// The local-data list follows the 678ff0f storage classes. Never state
-// retention periods or deletion routes the owner has not confirmed. Update
+// declaration for that release (four types, collected and shared; purposes
+// advertising or marketing, analytics, and fraud prevention, security and
+// compliance, also on the advertising ID). R-REL-07 (RPS 0edda9f, 87416b4;
+// code 678ff0f): 1.0.5 sends Firebase Analytics usage statistics by default,
+// with no in-app choice, independent of ad consent, and without the
+// advertising ID; the Google Mobile Ads SDK purposes are attributed to
+// Google's SDK disclosure. The local-data list follows the 678ff0f storage
+// classes. The only retention stated is the owner-confirmed GA4 setting,
+// scoped to Google Analytics; never state deletion routes. Update
 // this and bump `lastUpdated` whenever the app's data behaviour changes.
 
 export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "RPS Duel · Privacy",
     heading: "RPS Duel — Privacy Policy",
-    lastUpdated: "Last updated: 2026-11-02",
+    lastUpdated: "Last updated: 2026-11-03",
     intro:
       "RPS Duel is a single-player Rock Paper Scissors game for Android made by Lunexa Games (package id: com.lunexa.games.rpsduel). This policy describes the data handled by the current version of the app, including the data declared for it on Google Play, and the information the app stores on your device.",
     sections: [
       {
         title: "Summary",
         paragraphs: [
-          "RPS Duel has no account or sign-in. Version 1.0.5, available on Google Play since October 25, 2026, shows ads. According to the data safety information declared for it on Google Play, the app also collects some data from your device and shares it with third parties for advertising or marketing purposes, as described below. Version 1.0.5 also sends usage statistics to Google Analytics for Firebase automatically, without asking, to understand how the game is played. The usage statistics are described separately below. Versions before 1.0.5 did not show ads and did not collect or share this data.",
+          "RPS Duel has no account or sign-in. Version 1.0.5, available on Google Play since October 25, 2026, shows ads. According to the data safety information declared for it on Google Play, the app also collects some data from your device and shares it with third parties for advertising or marketing, for analytics, and for fraud prevention, security and compliance, as described below. Version 1.0.5 also sends usage statistics to Google Analytics for Firebase automatically, without asking, to understand how the game is played. The usage statistics are described separately below. Versions before 1.0.5 did not show ads and did not collect or share this data.",
         ],
       },
       {
         title: "Data collected and shared (version 1.0.5)",
         paragraphs: [
-          "The data safety information declared for RPS Duel 1.0.5 on Google Play lists the following data types. Each one is collected and shared with third parties, and the declared purposes of both the collection and the sharing include advertising or marketing:",
+          "The data safety information declared for RPS Duel 1.0.5 on Google Play lists the following data types. Each one is collected and shared with third parties, and the declared purposes of both the collection and the sharing are advertising or marketing; analytics; and fraud prevention, security and compliance:",
         ],
         bullets: [
           "Approximate location",
@@ -1238,6 +1240,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         paragraphs: [
           "The same declaration marks the collection of this data as required rather than optional, and states that the data is encrypted in transit.",
           "The third parties that receive this data handle it under their own privacy policies. Version 1.0.5 uses Google AdMob for its ads and Google Analytics for Firebase for usage statistics. RPS Duel does not ask for your name, email address or phone number.",
+          "Version 1.0.5 shows its ads through Google AdMob, using the Google Mobile Ads SDK. According to Google's data disclosure for this SDK, it collects data of the types listed above, including your device's advertising ID, and shares it with Google for these purposes: delivering ads and advertising or marketing; measuring ads and analytics; and fraud prevention, security and compliance. The data safety information declared on Google Play also lists your advertising ID with these three purposes. The analytics purpose declared for your advertising ID comes from the Google Mobile Ads SDK; Google Analytics for Firebase does not collect it.",
           "You can reset or delete your device's advertising ID in your Android settings; the available options depend on your Android version.",
         ],
       },
@@ -1245,7 +1248,9 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "Usage statistics (version 1.0.5)",
         paragraphs: [
           "Version 1.0.5 includes Google Analytics for Firebase and collects usage statistics by default: it does not ask before collecting them and has no setting to turn them off. The app records when you start your first game, complete a round, start or complete a daily challenge, change the CPU difficulty, or open Records or Collection, together with your interface language and selected difficulty. Google Analytics also collects some information automatically, such as information about your device and the app, an approximate location derived from your IP address and a random app-instance identifier. This information is sent to Google and used to understand how the game is played.",
+          "The Firebase software in the app also creates a random Firebase installation identifier. It is separate from the app-instance identifier and from your advertising ID, and Google Analytics sends it to Google together with the usage statistics.",
           "Google Analytics is set not to collect your advertising ID, and its advertising features are turned off, so these usage statistics are not used for ads. Ad privacy choices that Google may ask you to make apply to ads only; they do not turn usage statistics on or off.",
+          "Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months; the user-level period starts again whenever there is new activity from the same app instance. These periods are Google Analytics settings only: they do not apply to aggregated reports, to data processed for Google AdMob ads, to the data stored on your device, or to other parts of the Firebase software. Google applies these settings under its own processes, and information may not be removed as soon as a period ends.",
         ],
       },
       {
@@ -1291,20 +1296,20 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "RPS Duel · Gizlilik",
     heading: "RPS Duel — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 02.11.2026",
+    lastUpdated: "Son güncelleme: 03.11.2026",
     intro:
       "RPS Duel, Lunexa Games tarafından geliştirilmiş, Android için tek oyunculu bir Taş Kâğıt Makas oyunudur (paket kimliği: com.lunexa.games.rpsduel). Bu politika, Google Play'de beyan edilen veriler dahil olmak üzere uygulamanın güncel sürümünün işlediği verileri ve uygulamanın cihazında sakladığı bilgileri açıklar.",
     sections: [
       {
         title: "Özet",
         paragraphs: [
-          "RPS Duel'de hesap veya giriş yoktur. 25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir. Google Play'de beyan edilen veri güvenliği bilgilerine göre uygulama ayrıca, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama amacıyla üçüncü taraflarla paylaşır. 1.0.5 sürümü ayrıca, oyunun nasıl oynandığını anlamak için kullanım istatistiklerini sormadan, otomatik olarak Google Analytics for Firebase'e gönderir. Kullanım istatistikleri aşağıda ayrıca açıklanmıştır. 1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
+          "RPS Duel'de hesap veya giriş yoktur. 25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir. Google Play'de beyan edilen veri güvenliği bilgilerine göre uygulama ayrıca, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama, analiz ve dolandırıcılığı önleme, güvenlik ve uyumluluk amacıyla üçüncü taraflarla paylaşır. 1.0.5 sürümü ayrıca, oyunun nasıl oynandığını anlamak için kullanım istatistiklerini sormadan, otomatik olarak Google Analytics for Firebase'e gönderir. Kullanım istatistikleri aşağıda ayrıca açıklanmıştır. 1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
         ],
       },
       {
         title: "Toplanan ve paylaşılan veriler (1.0.5 sürümü)",
         paragraphs: [
-          "RPS Duel 1.0.5 için Google Play'de beyan edilen veri güvenliği bilgileri aşağıdaki veri türlerini listeler. Her biri toplanır ve üçüncü taraflarla paylaşılır; hem toplamanın hem de paylaşmanın beyan edilen amaçları arasında reklam veya pazarlama yer alır:",
+          "RPS Duel 1.0.5 için Google Play'de beyan edilen veri güvenliği bilgileri aşağıdaki veri türlerini listeler. Her biri toplanır ve üçüncü taraflarla paylaşılır; hem toplamanın hem de paylaşmanın beyan edilen amaçları reklam veya pazarlama; analiz; dolandırıcılığı önleme, güvenlik ve uyumluluktur:",
         ],
         bullets: [
           "Yaklaşık konum",
@@ -1318,6 +1323,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         paragraphs: [
           "Aynı beyan, bu verilerin toplanmasını isteğe bağlı değil zorunlu olarak işaretler ve verilerin aktarım sırasında şifrelendiğini belirtir.",
           "Bu verileri alan üçüncü taraflar, verileri kendi gizlilik politikalarına göre işler. 1.0.5 sürümü reklamlar için Google AdMob'u, kullanım istatistikleri için Google Analytics for Firebase'i kullanır. RPS Duel adını, e-posta adresini veya telefon numaranı istemez.",
+          "1.0.5 sürümü reklamlarını Google Mobile Ads SDK'yı kullanarak Google AdMob üzerinden gösterir. Google'ın bu SDK için yayımladığı veri açıklamasına göre SDK, cihazının reklam kimliği dahil yukarıda listelenen türlerdeki verileri toplar ve bunları Google ile şu amaçlarla paylaşır: reklam sunma ile reklam veya pazarlama; reklamları ölçme ile analiz; dolandırıcılığı önleme, güvenlik ve uyumluluk. Google Play'de beyan edilen veri güvenliği bilgileri reklam kimliğini de bu üç amaçla listeler. Reklam kimliği için beyan edilen analiz amacı Google Mobile Ads SDK'dan gelir; Google Analytics for Firebase reklam kimliğini toplamaz.",
           "Cihazının reklam kimliğini Android ayarlarından sıfırlayabilir veya silebilirsin; kullanılabilen seçenekler Android sürümüne bağlıdır.",
         ],
       },
@@ -1325,7 +1331,9 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "Kullanım istatistikleri (1.0.5 sürümü)",
         paragraphs: [
           "1.0.5 sürümü Google Analytics for Firebase'i içerir ve kullanım istatistiklerini varsayılan olarak toplar: toplamadan önce sormaz ve bunları kapatmak için bir ayarı yoktur. Uygulama; ilk oyununu başlattığında, bir eli tamamladığında, bir günlük meydan okumayı başlattığında veya tamamladığında, CPU zorluğunu değiştirdiğinde ya da Kayıtlar veya Koleksiyon'u açtığında bunu, arayüz dilin ve seçili zorlukla birlikte kaydeder. Google Analytics ayrıca bazı bilgileri otomatik olarak toplar; örneğin cihazın ve uygulama hakkındaki bilgiler, IP adresinden tahmin edilen yaklaşık konum ve rastgele bir uygulama örneği kimliği. Bu bilgiler Google'a gönderilir ve oyunun nasıl oynandığını anlamak için kullanılır.",
+          "Uygulamadaki Firebase yazılımı ayrıca rastgele bir Firebase kurulum kimliği oluşturur. Bu kimlik, uygulama örneği kimliğinden ve reklam kimliğinden ayrıdır; Google Analytics bunu kullanım istatistikleriyle birlikte Google'a gönderir.",
           "Google Analytics, reklam kimliğini toplamayacak şekilde ayarlanmıştır ve reklamla ilgili özellikleri kapalıdır; bu nedenle bu kullanım istatistikleri reklamlar için kullanılmaz. Google'ın sana sorabileceği reklam gizlilik tercihleri yalnızca reklamlar için geçerlidir; kullanım istatistiklerini açmaz veya kapatmaz.",
+          "Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı; aynı uygulama örneğinden yeni bir etkinlik geldiğinde kullanıcı düzeyindeki süre yeniden başlar. Bu süreler yalnızca Google Analytics ayarlarıdır: toplu raporlar, Google AdMob reklamları için işlenen veriler, cihazında saklanan veriler veya Firebase yazılımının diğer bileşenleri için geçerli değildir. Google bu ayarları kendi süreçlerine göre uygular; bilgiler bir süre dolar dolmaz kaldırılmayabilir.",
         ],
       },
       {
@@ -1371,20 +1379,20 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "RPS Duel · Privacidad",
     heading: "RPS Duel — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-11-02",
+    lastUpdated: "Última actualización: 2026-11-03",
     intro:
       "RPS Duel es un juego de Piedra Papel Tijera para un solo jugador para Android creado por Lunexa Games (id de paquete: com.lunexa.games.rpsduel). Esta política describe los datos que trata la versión actual de la aplicación, incluidos los declarados para ella en Google Play, y la información que la aplicación guarda en tu dispositivo.",
     sections: [
       {
         title: "Resumen",
         paragraphs: [
-          "RPS Duel no tiene cuentas ni inicio de sesión. La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios. Según la información de seguridad de los datos declarada en Google Play, la aplicación también recopila algunos datos de tu dispositivo y los comparte con terceros con fines publicitarios o de marketing, como se describe a continuación. La versión 1.0.5 también envía estadísticas de uso a Google Analytics for Firebase automáticamente, sin preguntar, para entender cómo se juega. Las estadísticas de uso se describen por separado más abajo. Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
+          "RPS Duel no tiene cuentas ni inicio de sesión. La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios. Según la información de seguridad de los datos declarada en Google Play, la aplicación también recopila algunos datos de tu dispositivo y los comparte con terceros con fines de publicidad o marketing, de análisis y de prevención del fraude, seguridad y cumplimiento, como se describe a continuación. La versión 1.0.5 también envía estadísticas de uso a Google Analytics for Firebase automáticamente, sin preguntar, para entender cómo se juega. Las estadísticas de uso se describen por separado más abajo. Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
         ],
       },
       {
         title: "Datos recopilados y compartidos (versión 1.0.5)",
         paragraphs: [
-          "La información de seguridad de los datos declarada en Google Play para RPS Duel 1.0.5 incluye los siguientes tipos de datos. Cada uno se recopila y se comparte con terceros, y las finalidades declaradas tanto de la recopilación como del uso compartido incluyen publicidad o marketing:",
+          "La información de seguridad de los datos declarada en Google Play para RPS Duel 1.0.5 incluye los siguientes tipos de datos. Cada uno se recopila y se comparte con terceros, y las finalidades declaradas tanto de la recopilación como del uso compartido son publicidad o marketing; análisis; y prevención del fraude, seguridad y cumplimiento:",
         ],
         bullets: [
           "Ubicación aproximada",
@@ -1398,6 +1406,7 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         paragraphs: [
           "La misma declaración indica que la recopilación de estos datos es obligatoria, no opcional, y que los datos se cifran en tránsito.",
           "Los terceros que reciben estos datos los tratan conforme a sus propias políticas de privacidad. La versión 1.0.5 usa Google AdMob para los anuncios y Google Analytics for Firebase para las estadísticas de uso. RPS Duel no te pide tu nombre, tu correo electrónico ni tu número de teléfono.",
+          "La versión 1.0.5 muestra sus anuncios a través de Google AdMob, mediante el SDK de Google Mobile Ads. Según la información sobre datos que Google publica para este SDK, el SDK recopila datos de los tipos indicados arriba, incluido el identificador de publicidad de tu dispositivo, y los comparte con Google para estos fines: mostrar anuncios y publicidad o marketing; medir los anuncios y análisis; y prevención del fraude, seguridad y cumplimiento. La información de seguridad de los datos declarada en Google Play también incluye tu identificador de publicidad con estas tres finalidades. La finalidad de análisis declarada para tu identificador de publicidad procede del SDK de Google Mobile Ads; Google Analytics for Firebase no lo recopila.",
           "Puedes restablecer o eliminar el identificador de publicidad de tu dispositivo en los ajustes de Android; las opciones disponibles dependen de tu versión de Android.",
         ],
       },
@@ -1405,7 +1414,9 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
         title: "Estadísticas de uso (versión 1.0.5)",
         paragraphs: [
           "La versión 1.0.5 incluye Google Analytics for Firebase y recopila estadísticas de uso de forma predeterminada: no pregunta antes de recopilarlas y no tiene ningún ajuste para desactivarlas. La aplicación registra cuándo empiezas tu primera partida, completas una ronda, empiezas o completas un desafío diario, cambias la dificultad de la CPU o abres Registros o Colección, junto con el idioma de la interfaz y la dificultad seleccionada. Google Analytics también recopila cierta información automáticamente, como información sobre tu dispositivo y la aplicación, una ubicación aproximada derivada de tu dirección IP y un identificador aleatorio de instancia de la aplicación. Esta información se envía a Google y se usa para entender cómo se juega.",
+          "El software Firebase de la aplicación también crea un identificador aleatorio de instalación de Firebase. Es distinto del identificador de instancia de la aplicación y de tu identificador de publicidad, y Google Analytics lo envía a Google junto con las estadísticas de uso.",
           "Google Analytics está configurado para no recopilar tu identificador de publicidad y sus funciones publicitarias están desactivadas, por lo que estas estadísticas de uso no se usan para anuncios. Las opciones de privacidad para los anuncios que Google pueda pedirte solo se aplican a los anuncios; no activan ni desactivan las estadísticas de uso.",
+          "Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses; el plazo de los datos a nivel de usuario vuelve a empezar cada vez que hay nueva actividad desde la misma instancia de la aplicación. Estos plazos son solo ajustes de Google Analytics: no se aplican a los informes agregados, a los datos tratados para los anuncios de Google AdMob, a los datos guardados en tu dispositivo ni a otras partes del software Firebase. Google aplica estos ajustes según sus propios procesos, y es posible que la información no se elimine en cuanto termine un plazo.",
         ],
       },
       {

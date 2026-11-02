@@ -61,17 +61,22 @@ test.describe("Quietly privacy policy — 1.1.0", () => {
 });
 
 // RPS Duel 1.0.5 is on Google Play and shows ads. The policy restates the Play
-// Console data safety declaration and adds the default-on Firebase Analytics
-// usage statistics it omits (R-REL-07). Personalisation, consent mechanics and
-// retention stay unclaimed.
+// Console data safety declaration (three purposes) and the default-on Firebase
+// Analytics usage statistics (R-REL-07). The GA4 retention setting is stated
+// for Google Analytics only; personalisation and consent mechanics stay
+// unclaimed.
 test.describe("RPS Duel privacy policy — 1.0.5", () => {
   const locales = [
     {
       prefix: "",
-      date: "Last updated: 2026-11-02",
+      date: "Last updated: 2026-11-03",
       ads: "Version 1.0.5, available on Google Play since October 25, 2026, shows ads.",
       types: ["Approximate location", "App interactions", "Diagnostics", "Device or other IDs"],
-      purpose: "the declared purposes of both the collection and the sharing include advertising or marketing",
+      purpose: "the declared purposes of both the collection and the sharing are advertising or marketing; analytics; and fraud prevention, security and compliance",
+      summary: "shares it with third parties for advertising or marketing, for analytics, and for fraud prevention, security and compliance, as described below.",
+      gma: "Version 1.0.5 shows its ads through Google AdMob, using the Google Mobile Ads SDK. According to Google's data disclosure for this SDK, it collects data of the types listed above, including your device's advertising ID, and shares it with Google for these purposes: delivering ads and advertising or marketing; measuring ads and analytics; and fraud prevention, security and compliance. The data safety information declared on Google Play also lists your advertising ID with these three purposes. The analytics purpose declared for your advertising ID comes from the Google Mobile Ads SDK; Google Analytics for Firebase does not collect it.",
+      fis: "The Firebase software in the app also creates a random Firebase installation identifier. It is separate from the app-instance identifier and from your advertising ID, and Google Analytics sends it to Google together with the usage statistics.",
+      retention: "Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months; the user-level period starts again whenever there is new activity from the same app instance. These periods are Google Analytics settings only: they do not apply to aggregated reports, to data processed for Google AdMob ads, to the data stored on your device, or to other parts of the Firebase software. Google applies these settings under its own processes, and information may not be removed as soon as a period ends.",
       handling: "marks the collection of this data as required rather than optional, and states that the data is encrypted in transit.",
       earlier: "Versions before 1.0.5 did not show ads and did not collect or share this data.",
       retired: /does not show ads|does not contact a server|does not collect, transmit, or share|collects no personal information|This data never leaves your device/,
@@ -84,10 +89,14 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
     },
     {
       prefix: "/tr",
-      date: "Son güncelleme: 02.11.2026",
+      date: "Son güncelleme: 03.11.2026",
       ads: "25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir.",
       types: ["Yaklaşık konum", "Uygulama etkileşimleri", "Teşhis verileri", "Cihaz veya diğer kimlikler"],
-      purpose: "hem toplamanın hem de paylaşmanın beyan edilen amaçları arasında reklam veya pazarlama yer alır",
+      purpose: "hem toplamanın hem de paylaşmanın beyan edilen amaçları reklam veya pazarlama; analiz; dolandırıcılığı önleme, güvenlik ve uyumluluktur",
+      summary: "bunları reklam veya pazarlama, analiz ve dolandırıcılığı önleme, güvenlik ve uyumluluk amacıyla üçüncü taraflarla paylaşır.",
+      gma: "1.0.5 sürümü reklamlarını Google Mobile Ads SDK'yı kullanarak Google AdMob üzerinden gösterir. Google'ın bu SDK için yayımladığı veri açıklamasına göre SDK, cihazının reklam kimliği dahil yukarıda listelenen türlerdeki verileri toplar ve bunları Google ile şu amaçlarla paylaşır: reklam sunma ile reklam veya pazarlama; reklamları ölçme ile analiz; dolandırıcılığı önleme, güvenlik ve uyumluluk. Google Play'de beyan edilen veri güvenliği bilgileri reklam kimliğini de bu üç amaçla listeler. Reklam kimliği için beyan edilen analiz amacı Google Mobile Ads SDK'dan gelir; Google Analytics for Firebase reklam kimliğini toplamaz.",
+      fis: "Uygulamadaki Firebase yazılımı ayrıca rastgele bir Firebase kurulum kimliği oluşturur. Bu kimlik, uygulama örneği kimliğinden ve reklam kimliğinden ayrıdır; Google Analytics bunu kullanım istatistikleriyle birlikte Google'a gönderir.",
+      retention: "Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı; aynı uygulama örneğinden yeni bir etkinlik geldiğinde kullanıcı düzeyindeki süre yeniden başlar. Bu süreler yalnızca Google Analytics ayarlarıdır: toplu raporlar, Google AdMob reklamları için işlenen veriler, cihazında saklanan veriler veya Firebase yazılımının diğer bileşenleri için geçerli değildir. Google bu ayarları kendi süreçlerine göre uygular; bilgiler bir süre dolar dolmaz kaldırılmayabilir.",
       handling: "bu verilerin toplanmasını isteğe bağlı değil zorunlu olarak işaretler ve verilerin aktarım sırasında şifrelendiğini belirtir.",
       earlier: "1.0.5'ten önceki sürümler reklam göstermiyor, bu verileri toplamıyor ve paylaşmıyordu.",
       retired: /reklam göstermez|sunucuyla iletişim kurmaz|hiçbir kişisel bilgiyi toplamaz|hiç kişisel bilgi toplamadığı|cihazından asla çıkmaz/,
@@ -100,10 +109,14 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
     },
     {
       prefix: "/es",
-      date: "Última actualización: 2026-11-02",
+      date: "Última actualización: 2026-11-03",
       ads: "La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios.",
       types: ["Ubicación aproximada", "Interacciones con la aplicación", "Diagnóstico", "Dispositivo u otros identificadores"],
-      purpose: "las finalidades declaradas tanto de la recopilación como del uso compartido incluyen publicidad o marketing",
+      purpose: "las finalidades declaradas tanto de la recopilación como del uso compartido son publicidad o marketing; análisis; y prevención del fraude, seguridad y cumplimiento",
+      summary: "los comparte con terceros con fines de publicidad o marketing, de análisis y de prevención del fraude, seguridad y cumplimiento, como se describe a continuación.",
+      gma: "La versión 1.0.5 muestra sus anuncios a través de Google AdMob, mediante el SDK de Google Mobile Ads. Según la información sobre datos que Google publica para este SDK, el SDK recopila datos de los tipos indicados arriba, incluido el identificador de publicidad de tu dispositivo, y los comparte con Google para estos fines: mostrar anuncios y publicidad o marketing; medir los anuncios y análisis; y prevención del fraude, seguridad y cumplimiento. La información de seguridad de los datos declarada en Google Play también incluye tu identificador de publicidad con estas tres finalidades. La finalidad de análisis declarada para tu identificador de publicidad procede del SDK de Google Mobile Ads; Google Analytics for Firebase no lo recopila.",
+      fis: "El software Firebase de la aplicación también crea un identificador aleatorio de instalación de Firebase. Es distinto del identificador de instancia de la aplicación y de tu identificador de publicidad, y Google Analytics lo envía a Google junto con las estadísticas de uso.",
+      retention: "Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses; el plazo de los datos a nivel de usuario vuelve a empezar cada vez que hay nueva actividad desde la misma instancia de la aplicación. Estos plazos son solo ajustes de Google Analytics: no se aplican a los informes agregados, a los datos tratados para los anuncios de Google AdMob, a los datos guardados en tu dispositivo ni a otras partes del software Firebase. Google aplica estos ajustes según sus propios procesos, y es posible que la información no se elimine en cuanto termine un plazo.",
       handling: "indica que la recopilación de estos datos es obligatoria, no opcional, y que los datos se cifran en tránsito.",
       earlier: "Las versiones anteriores a la 1.0.5 no mostraban anuncios y no recopilaban ni compartían estos datos.",
       retired: /no muestra anuncios|no se comunica con ningún servidor|no recopila, transmite ni comparte|no recopila ningún dato personal|nunca salen de tu dispositivo/,
@@ -126,12 +139,12 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
         await expect(main.getByRole("listitem").filter({ hasText: type })).toHaveCount(1);
       }
       await expect(main).toContainText(l.purpose);
-      // Stays true before and after Analytics is added as a declared purpose.
-      await expect(main).not.toContainText(/lists only advertising|amacı reklam veya pazarlamadır|yalnızca reklam veya pazarlamayı|finalidad declarada .* es publicidad|solo indica publicidad/);
+      // Advertising must never read as the only declared purpose.
+      await expect(main).not.toContainText(/lists only advertising|amacı reklam veya pazarlamadır|yalnızca reklam veya pazarlamayı|finalidad declarada .* es publicidad|solo indica publicidad|for advertising or marketing purposes|fines publicitarios o de marketing|reklam veya pazarlama amacıyla/);
       await expect(main).toContainText(l.handling);
       await expect(main).toContainText(l.earlier);
       await expect(main).not.toContainText(l.retired);
-      for (const s of [l.analytics, l.separate, l.vendors, ...l.local, l.kept]) {
+      for (const s of [l.analytics, l.separate, l.vendors, ...l.local, l.kept, l.summary, l.gma, l.fis, l.retention]) {
         await expect(main).toContainText(s);
       }
       // No personalisation, consent, retention or deletion-request claims.
