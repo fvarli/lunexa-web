@@ -44,3 +44,16 @@ Keep these four states separate. One does not imply another:
 - A local commit does not authorize publication.
 - Push, merge to `main`, deployment and Play Console publication each require explicit owner authorization for that specific scope.
 - Never infer publication authorization from passing tests or a completed implementation.
+
+# Dependency maintenance: Sentry `glob` overrides
+
+`package.json` `overrides` pin `glob` to `^14.0.2` under `@sentry/bundler-plugin-core` and `@sentry/bundler-plugins` only. They remediate GHSA-3g3m-2fjr-6pw4 (glob) and GHSA-g3hv-75wg-m249 (minimatch), which Sentry's own dependency ranges still pull in. They are a temporary compatibility measure, not a permanent pin.
+
+Remove them only when Sentry's own published dependency ranges resolve to patched versions (`glob` ≥ 14.0.2, `minimatch` ≥ 11.0.1). A newer Sentry release existing is not enough. Before removing:
+
+1. Remove the overrides on a branch and regenerate the lockfile.
+2. Verify the resolved tree: `npm ls glob minimatch --omit=dev` and the lockfile entries.
+3. From a clean `npm ci`, run `npm audit --omit=dev --audit-level=moderate`, `npm run build`, `npx tsc --noEmit`, `npm run lint` and the full Playwright suite.
+4. Confirm Sentry still works: `next.config.ts` and `src/instrumentation*.ts` unchanged, `Sentry.init` and `onRequestError` present, Sentry code in the client bundle.
+
+If any step fails, keep the overrides. Never weaken or bypass the audit gate to make a removal pass.
