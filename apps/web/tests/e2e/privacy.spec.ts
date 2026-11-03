@@ -310,6 +310,16 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       await expect(main).toContainText(/Version 1\.0\.5 also shows ads|1\.0\.5 sürümü ayrıca reklam gösterir|La versión 1\.0\.5 también muestra anuncios/);
     });
   }
+
+  // R-REL-12 reported this paragraph twice in the ES 1.0.5 usage section; it
+  // must appear once there (the later sections legitimately reuse others).
+  test("/es/privacy/rps-duel states the 1.0.5 usage-statistics paragraph once", async ({ page }) => {
+    await page.goto("/es/privacy/rps-duel");
+    const usage = page.locator("main section").filter({ has: page.getByRole("heading", { name: "Estadísticas de uso (versión 1.0.5)", exact: true }) });
+    await expect(usage).toHaveCount(1);
+    await expect(usage.locator("p")).toHaveCount(4);
+    await expect(usage.locator("p").filter({ hasText: "La versión 1.0.5 incluye Google Analytics for Firebase y recopila estadísticas de uso de forma predeterminada" })).toHaveCount(1);
+  });
 });
 
 // RPS Duel 1.0.6 (Patch B, R-REL-08): prepared ahead of the release, next to
