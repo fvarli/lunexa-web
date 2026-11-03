@@ -120,17 +120,17 @@ export const QUIETLY_PRIVACY_META: PageCopy = {
   en: {
     title: "Quietly — Privacy Policy",
     description:
-      "Privacy policy for Quietly, a media-saver Android app by Lunexa: one Google ad after a save, optional usage statistics, the servers Quietly contacts, and what it stores on your device.",
+      "Privacy policy for Quietly, a media-saver Android app by Lunexa: the servers it contacts and what it stores on your device. One ad after a save; usage statistics depend on your region and privacy choices.",
   },
   tr: {
     title: "Quietly — Gizlilik Politikası",
     description:
-      "Quietly için gizlilik politikası — Lunexa'nın Android medya kaydedicisi: kayıttan sonra tek bir Google reklamı, isteğe bağlı kullanım istatistikleri, Quietly'nin bağlandığı sunucular ve cihazında sakladıkları.",
+      "Quietly için gizlilik politikası — Lunexa'nın Android medya kaydedicisi: bağlandığı sunucular ve cihazınızda sakladıkları. Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğunuz bölgeye ve gizlilik tercihlerinize bağlıdır.",
   },
   es: {
     title: "Quietly — Política de Privacidad",
     description:
-      "Política de privacidad de Quietly, el guardador de medios Android de Lunexa: un anuncio de Google tras guardar, estadísticas de uso opcionales, los servidores a los que se conecta y lo que guarda en tu dispositivo.",
+      "Política de privacidad de Quietly, el guardador de medios Android de Lunexa: los servidores a los que se conecta y lo que guarda en tu dispositivo. Un anuncio después de guardar; las estadísticas de uso dependen de tu región y de tus preferencias de privacidad.",
   },
 };
 

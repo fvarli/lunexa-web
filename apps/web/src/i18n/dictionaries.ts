@@ -93,7 +93,7 @@ const en = {
     eyebrow: "Lunexa Apps",
     heading: "Apps, made with the same care",
     body: "A simple Android utility, on Google Play.",
-    quietly_desc: "Saves direct public media from links you paste into your device gallery. No account; one ad after a save, and usage statistics only if you turn them on.",
+    quietly_desc: "Saves direct public media from links you paste into your device gallery. No account. One ad after a save; usage statistics depend on your region and privacy choices.",
     quietly_badge_label: "Get Quietly on Google Play",
   },
   faq: {
@@ -427,7 +427,7 @@ const tr: Dictionary = {
     eyebrow: "Lunexa Uygulamaları",
     heading: "Aynı özenle yapılmış uygulamalar",
     body: "Android için sade bir yardımcı uygulama, Google Play'de.",
-    quietly_desc: "Yapıştırdığın bağlantılardaki doğrudan halka açık medyayı cihazının galerisine kaydeder. Hesap yok; kayıttan sonra tek bir reklam, kullanım istatistikleri ise yalnızca sen açarsan.",
+    quietly_desc: "Yapıştırdığın bağlantılardaki doğrudan halka açık medyayı cihazının galerisine kaydeder. Hesap yok. Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğunuz bölgeye ve gizlilik tercihlerinize bağlıdır.",
     quietly_badge_label: "Quietly'yi Google Play'den indirin",
   },
   faq: {
@@ -761,7 +761,7 @@ const es: Dictionary = {
     eyebrow: "Aplicaciones Lunexa",
     heading: "Aplicaciones, hechas con el mismo cuidado",
     body: "Una utilidad sencilla para Android, en Google Play.",
-    quietly_desc: "Guarda en la galería de tu dispositivo medios públicos directos de los enlaces que pegas. Sin cuenta; un anuncio después de guardar y estadísticas de uso solo si las activas.",
+    quietly_desc: "Guarda en la galería de tu dispositivo medios públicos directos de los enlaces que pegas. Sin cuenta. Un anuncio después de guardar; las estadísticas de uso dependen de tu región y de tus preferencias de privacidad.",
     quietly_badge_label: "Consigue Quietly en Google Play",
   },
   faq: {
