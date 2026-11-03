@@ -1472,7 +1472,12 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
 // Every ad request is non-personalised, teen-treated and G-rated; AD_ID is
 // removed, but on Android 12 and lower Play services can still hand the
 // advertising ID to the Mobile Ads SDK;
-// usage statistics never use it. Withdrawal resets local analytics
+// usage statistics never use it. 1.4.0 (mobile source 434e801; candidate not
+// frozen) changes only consent timing: once a consent update has succeeded
+// after a rescue (`cr_ads_consent_checked_v1` = true), later sessions also
+// refresh consent when Home opens, so the Home banner can load without a
+// rescue. New installs and 1.3.0 upgrades keep the post-rescue check.
+// Withdrawal resets local analytics
 // data only. The only retention stated is the owner-verified GA4 setting
 // (events 2 months, users 14 months, reset on new activity), scoped to GA4
 // data; never extend it to AdMob or other Firebase data. Never claim deletion
@@ -1486,18 +1491,18 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
     heading: "Chess Rescue — Privacy Policy",
     lastUpdated: "Last updated: 2026-11-01",
     intro:
-      "Chess Rescue is a single-player puzzle game for Android made by Lunexa Games (package id: com.lunexa.games.chessrescue). This policy describes what the app does with your information in version 1.3.0, which adds ads and optional analytics, and in earlier versions, which work entirely offline.",
+      "Chess Rescue is a single-player puzzle game for Android made by Lunexa Games (package id: com.lunexa.games.chessrescue). This policy describes what the app does with your information in versions 1.3.0 and 1.4.0, which include ads and optional analytics, and in earlier versions, which work entirely offline.",
     sections: [
       {
         title: "Summary",
         paragraphs: [
           "Chess Rescue has no accounts and does not ask for your name, email address or phone number. The puzzles play without an internet connection.",
           "Versions up to 1.2.1 run entirely on your device: they do not request the internet permission, make no network connections, show no ads and include no analytics.",
-          "Version 1.3.0 shows small ads from Google AdMob: on the result screen after you solve a puzzle and at the bottom of the home screen, never during a puzzle. To request and show them, Google receives some technical information from your device, as described below. Version 1.3.0 also includes Google's Firebase software for optional usage statistics (analytics), which stay off unless you allow them.",
+          "Version 1.3.0 shows small ads from Google AdMob: on the result screen after you solve a puzzle and at the bottom of the home screen, never during a puzzle. To request and show them, Google receives some technical information from your device, as described below. Version 1.3.0 also includes Google's Firebase software for optional usage statistics (analytics), which stay off unless you allow them. Version 1.4.0 handles your information in the same way as version 1.3.0, except for when it checks your ad consent and one extra item it stores on your device, both described below.",
         ],
       },
       {
-        title: "Advertising (version 1.3.0)",
+        title: "Advertising (versions 1.3.0 and 1.4.0)",
         paragraphs: [
           "Ads are provided by Google AdMob. When the app requests an ad, the Google Mobile Ads SDK connects to Google's servers. Google receives information such as your device's IP address (from which an approximate location can be estimated), information about the ad and your interactions with it, diagnostic information about the app and the SDK, and identifiers such as the app set ID. Google uses this information to deliver and measure ads and to prevent fraud and abuse.",
           "Every ad request from the app asks Google for non-personalised ads, applies Google's treatment for users who may be teenagers, and allows only ads rated suitable for general audiences. The app does not request the permission that Android 13 and later require to read your device's advertising ID. On Android 12 and earlier, Google Play services can still provide the advertising ID to the Google Mobile Ads SDK, and Google may use it to deliver and measure ads and to prevent fraud.",
@@ -1505,9 +1510,9 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
         ],
       },
       {
-        title: "Your privacy choices for ads (version 1.3.0)",
+        title: "Your privacy choices for ads (versions 1.3.0 and 1.4.0)",
         paragraphs: [
-          "The app does not contact Google's consent service when it starts. After your first solved puzzle in a session, or when you tap Privacy choices, it uses Google User Messaging Platform to check whether a consent message is required where you are.",
+          "In version 1.3.0, the app does not contact Google's consent service when it starts. After your first solved puzzle in a session, or when you tap Privacy choices, it uses Google User Messaging Platform to check whether a consent message is required where you are. Version 1.4.0 works the same way until it has completed that check once after a solved puzzle, for example after a new installation or an update from 1.3.0. It then remembers this on your device and, from your next session, also runs the check when the home screen opens, so the ad at the bottom of the home screen can appear without solving another puzzle, if your consent status allows ads to be requested.",
           "Where one is required, for example in the European Economic Area, the United Kingdom and Switzerland, the message is shown on the home screen, never during a puzzle. Where Google requires it, Privacy choices appears on the home screen and on the result screen, so you can change your choice at any time.",
           "If the consent status does not allow ads to be requested, the app shows no ads for the rest of that session. Depending on your choice, Google may show limited ads or no ads. The game works the same either way.",
           "If you live in a US state with a consumer privacy law, Privacy choices also lets you opt out of the sale or sharing of your personal information for advertising.",
@@ -1515,7 +1520,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
         ],
       },
       {
-        title: "Usage statistics and Google Firebase (version 1.3.0)",
+        title: "Usage statistics and Google Firebase (versions 1.3.0 and 1.4.0)",
         paragraphs: [
           "Version 1.3.0 includes Google Analytics for Firebase. Usage statistics are off by default. On the home screen, normally before your first puzzle, the app asks once: “Help improve Chess Rescue?”. You can answer “Allow” or “Don't allow”. “Allow” works only after you tick “I am 18 or older, or a parent or guardian has agreed.” This statement is your own; the app does not check your age or whether a parent or guardian has agreed. “Don't allow” is always available, and the game works the same either way. Until you choose “Allow”, Google Analytics for Firebase collects no usage statistics events. This choice covers only those events: Google AdMob ads, described above, and other parts of the Firebase software, described below, may process some data regardless of your choice, including before you answer.",
           "Your answer is saved on your device and kept when you close and reopen the app. To change it at any time, tap Usage statistics on the home screen; that line shows whether usage statistics are on or off.",
@@ -1551,6 +1556,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "Your language choice",
           "The records you have unlocked and the rescues you have saved",
           "In version 1.3.0: how many days in a row you have completed a rescue, whether privacy choices are offered in your region, and your answer about usage statistics",
+          "In version 1.4.0, also: whether the app has completed an ad consent check after a solved puzzle",
         ],
       },
       {
@@ -1576,7 +1582,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Changes to this policy",
         paragraphs: [
-          "If a future version of Chess Rescue changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes. This version of the policy was updated for version 1.3.0, which adds ads and optional analytics.",
+          "If a future version of Chess Rescue changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes. The policy was updated for version 1.3.0, which added ads and optional analytics, and again for version 1.4.0, which changes when the app checks your ad consent.",
         ],
       },
     ],
@@ -1589,18 +1595,18 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
     heading: "Chess Rescue — Gizlilik Politikası",
     lastUpdated: "Son güncelleme: 01.11.2026",
     intro:
-      "Chess Rescue, Lunexa Games tarafından Android için geliştirilmiş tek oyunculu bir bulmaca oyunudur (paket kimliği: com.lunexa.games.chessrescue). Bu politika, uygulamanın bilgilerinle ne yaptığını reklam ve isteğe bağlı analitik ekleyen 1.3.0 sürümü ve tamamen çevrimdışı çalışan önceki sürümler için açıklar.",
+      "Chess Rescue, Lunexa Games tarafından Android için geliştirilmiş tek oyunculu bir bulmaca oyunudur (paket kimliği: com.lunexa.games.chessrescue). Bu politika, uygulamanın bilgilerinle ne yaptığını reklam ve isteğe bağlı analitik içeren 1.3.0 ve 1.4.0 sürümleri ile tamamen çevrimdışı çalışan önceki sürümler için açıklar.",
     sections: [
       {
         title: "Özet",
         paragraphs: [
           "Chess Rescue'da hesap yoktur ve uygulama senden adını, e-posta adresini veya telefon numaranı istemez. Bulmacalar internet bağlantısı olmadan oynanır.",
           "1.2.1'e kadarki sürümler tamamen cihazında çalışır: internet izni istemez, ağ bağlantısı kurmaz, reklam göstermez ve analitik içermez.",
-          "1.3.0 sürümü Google AdMob'dan küçük reklamlar gösterir: bir bulmacayı çözdükten sonra sonuç ekranında ve ana ekranın en altında; bulmaca sırasında asla. Bu reklamları istemek ve göstermek için Google, aşağıda açıklandığı gibi cihazından bazı teknik bilgiler alır. 1.3.0 sürümü ayrıca, sen izin vermedikçe kapalı kalan isteğe bağlı kullanım istatistikleri (analitik) için Google Firebase yazılımını içerir.",
+          "1.3.0 sürümü Google AdMob'dan küçük reklamlar gösterir: bir bulmacayı çözdükten sonra sonuç ekranında ve ana ekranın en altında; bulmaca sırasında asla. Bu reklamları istemek ve göstermek için Google, aşağıda açıklandığı gibi cihazından bazı teknik bilgiler alır. 1.3.0 sürümü ayrıca, sen izin vermedikçe kapalı kalan isteğe bağlı kullanım istatistikleri (analitik) için Google Firebase yazılımını içerir. 1.4.0 sürümü bilgilerini, reklam izninin ne zaman kontrol edildiği ve cihazında sakladığı bir ek bilgi dışında 1.3.0 sürümüyle aynı şekilde işler; ikisi de aşağıda açıklanmıştır.",
         ],
       },
       {
-        title: "Reklamlar (1.3.0 sürümü)",
+        title: "Reklamlar (1.3.0 ve 1.4.0 sürümleri)",
         paragraphs: [
           "Reklamlar Google AdMob tarafından sağlanır. Uygulama bir reklam istediğinde Google Mobile Ads SDK, Google'ın sunucularına bağlanır. Google; cihazının IP adresi (buradan yaklaşık bir konum tahmin edilebilir), reklam ve reklamla etkileşimin hakkındaki bilgiler, uygulama ve SDK hakkındaki tanılama bilgileri ve uygulama grubu kimliği (app set ID) gibi kimlikler dahil bazı bilgiler alır. Google bu bilgileri reklamları sunmak ve ölçmek, dolandırıcılığı ve kötüye kullanımı önlemek için kullanır.",
           "Uygulamanın her reklam isteği Google'dan kişiselleştirilmemiş reklam ister, genç olabilecek kullanıcılar için Google'ın uyguladığı işlemi uygular ve yalnızca genel izleyiciye uygun olarak derecelendirilmiş reklamlara izin verir. Uygulama, Android 13 ve sonrasında cihazının reklam kimliğini okumak için gereken izni istemez. Android 12 ve öncesinde Google Play hizmetleri reklam kimliğini yine de Google Mobile Ads SDK'ya sağlayabilir ve Google bunu reklamları sunmak ve ölçmek ve dolandırıcılığı önlemek için kullanabilir.",
@@ -1608,9 +1614,9 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
         ],
       },
       {
-        title: "Reklamlar için gizlilik seçeneklerin (1.3.0 sürümü)",
+        title: "Reklamlar için gizlilik seçeneklerin (1.3.0 ve 1.4.0 sürümleri)",
         paragraphs: [
-          "Uygulama açılırken Google'ın izin hizmetine bağlanmaz. Bir oturumda ilk bulmacanı çözdükten sonra ya da Gizlilik seçeneklerine dokunduğunda, bulunduğun yerde bir izin mesajı gerekip gerekmediğini Google User Messaging Platform ile kontrol eder.",
+          "1.3.0 sürümünde uygulama açılırken Google'ın izin hizmetine bağlanmaz. Bir oturumda ilk bulmacanı çözdükten sonra ya da Gizlilik seçeneklerine dokunduğunda, bulunduğun yerde bir izin mesajı gerekip gerekmediğini Google User Messaging Platform ile kontrol eder. 1.4.0 sürümü de, çözülmüş bir bulmacadan sonra bu kontrolü bir kez tamamlayana kadar aynı şekilde çalışır; örneğin yeni bir kurulumdan veya 1.3.0 sürümünden güncellendikten sonra. Ardından bunu cihazında hatırlar ve bir sonraki oturumundan itibaren kontrolü ana ekran açıldığında da yapar; böylece izin durumun reklam istenmesine izin veriyorsa ana ekranın en altındaki reklam, başka bir bulmaca çözmeden de görünebilir.",
           "Mesaj gerektiğinde (örneğin Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre'de) ana ekranda gösterilir, bulmaca sırasında asla gösterilmez. Google gerektirdiğinde Gizlilik seçenekleri ana ekranda ve sonuç ekranında görünür; böylece seçimini istediğin zaman değiştirebilirsin.",
           "İzin durumu reklam istenmesine izin vermiyorsa uygulama o oturumun geri kalanında reklam göstermez. Seçimine bağlı olarak Google sınırlı reklam gösterebilir veya hiç reklam göstermeyebilir. Oyun her iki durumda da aynı şekilde çalışır.",
           "Tüketici gizliliği yasası olan bir ABD eyaletinde yaşıyorsan Gizlilik seçenekleri, kişisel bilgilerinin reklam amacıyla satışını veya paylaşımını reddetmene de olanak tanır.",
@@ -1618,7 +1624,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
         ],
       },
       {
-        title: "Kullanım istatistikleri ve Google Firebase (1.3.0 sürümü)",
+        title: "Kullanım istatistikleri ve Google Firebase (1.3.0 ve 1.4.0 sürümleri)",
         paragraphs: [
           "1.3.0 sürümü Google Analytics for Firebase'i içerir. Kullanım istatistikleri varsayılan olarak kapalıdır. Uygulama ana ekranda, normalde ilk bulmacandan önce, bir kez “Chess Rescue'yu geliştirmeye yardım eder misin?” diye sorar. “İzin ver” veya “İzin verme” seçeneğini seçebilirsin. “İzin ver” yalnızca “18 yaşında veya daha büyüğüm ya da ebeveynim veya vasim kabul etti.” ifadesini işaretledikten sonra çalışır. Bu ifade senin kendi beyanındır; uygulama yaşını veya bir ebeveynin ya da vasinin kabul edip etmediğini kontrol etmez. “İzin verme” her zaman seçilebilir ve oyun her iki durumda da aynı çalışır. “İzin ver” seçeneğini seçene kadar Google Analytics for Firebase kullanım istatistiği olayı toplamaz. Bu seçim yalnızca bu olayları kapsar: yukarıda açıklanan Google AdMob reklamları ve aşağıda açıklanan diğer Firebase yazılım bileşenleri, sen cevap vermeden önce de dahil olmak üzere, seçimine bakılmaksızın bazı verileri işleyebilir.",
           "Cevabın cihazına kaydedilir ve uygulamayı kapatıp yeniden açtığında korunur. Cevabını istediğin zaman değiştirmek için ana ekrandaki Kullanım istatistikleri satırına dokun; bu satır kullanım istatistiklerinin açık mı kapalı mı olduğunu gösterir.",
@@ -1654,6 +1660,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "Dil seçimin",
           "Açtığın rekorlar ve kaydettiğin kurtarışlar",
           "1.3.0 sürümünde: kaç gün üst üste kurtarış tamamladığın, bölgende gizlilik seçeneklerinin sunulup sunulmadığı ve kullanım istatistikleri sorusuna verdiğin cevap",
+          "1.4.0 sürümünde ayrıca: çözülmüş bir bulmacadan sonra reklam izni kontrolünün tamamlanıp tamamlanmadığı",
         ],
       },
       {
@@ -1679,7 +1686,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Bu politikadaki değişiklikler",
         paragraphs: [
-          "Chess Rescue'nun ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politikanın bu hâli, reklam ve isteğe bağlı analitik ekleyen 1.3.0 sürümü için güncellenmiştir.",
+          "Chess Rescue'nun ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politika, reklam ve isteğe bağlı analitik ekleyen 1.3.0 sürümü için ve ardından reklam izninin ne zaman kontrol edildiğini değiştiren 1.4.0 sürümü için güncellenmiştir.",
         ],
       },
     ],
@@ -1692,18 +1699,18 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
     heading: "Chess Rescue — Política de Privacidad",
     lastUpdated: "Última actualización: 2026-11-01",
     intro:
-      "Chess Rescue es un juego de rompecabezas para un solo jugador para Android creado por Lunexa Games (id de paquete: com.lunexa.games.chessrescue). Esta política describe qué hace la aplicación con tu información en la versión 1.3.0, que añade anuncios y analítica opcional, y en las versiones anteriores, que funcionan totalmente sin conexión.",
+      "Chess Rescue es un juego de rompecabezas para un solo jugador para Android creado por Lunexa Games (id de paquete: com.lunexa.games.chessrescue). Esta política describe qué hace la aplicación con tu información en las versiones 1.3.0 y 1.4.0, que incluyen anuncios y analítica opcional, y en las versiones anteriores, que funcionan totalmente sin conexión.",
     sections: [
       {
         title: "Resumen",
         paragraphs: [
           "Chess Rescue no tiene cuentas y no te pide tu nombre, tu correo electrónico ni tu número de teléfono. Los rompecabezas se juegan sin conexión a internet.",
           "Las versiones hasta la 1.2.1 se ejecutan completamente en tu dispositivo: no solicitan el permiso de internet, no realizan conexiones de red, no muestran anuncios y no incluyen analítica.",
-          "La versión 1.3.0 muestra pequeños anuncios de Google AdMob: en la pantalla de resultado después de resolver un rompecabezas y al final de la pantalla de inicio, nunca durante un rompecabezas. Para solicitarlos y mostrarlos, Google recibe cierta información técnica de tu dispositivo, como se describe a continuación. La versión 1.3.0 también incluye el software Firebase de Google para estadísticas de uso opcionales (analítica), que permanecen desactivadas a menos que las permitas.",
+          "La versión 1.3.0 muestra pequeños anuncios de Google AdMob: en la pantalla de resultado después de resolver un rompecabezas y al final de la pantalla de inicio, nunca durante un rompecabezas. Para solicitarlos y mostrarlos, Google recibe cierta información técnica de tu dispositivo, como se describe a continuación. La versión 1.3.0 también incluye el software Firebase de Google para estadísticas de uso opcionales (analítica), que permanecen desactivadas a menos que las permitas. La versión 1.4.0 trata tu información igual que la versión 1.3.0, salvo en el momento en que comprueba tu consentimiento para los anuncios y en un dato adicional que guarda en tu dispositivo; ambos se describen a continuación.",
         ],
       },
       {
-        title: "Publicidad (versión 1.3.0)",
+        title: "Publicidad (versiones 1.3.0 y 1.4.0)",
         paragraphs: [
           "Los anuncios los proporciona Google AdMob. Cuando la aplicación solicita un anuncio, el SDK de Google Mobile Ads se conecta a los servidores de Google. Google recibe información como la dirección IP de tu dispositivo (a partir de la cual se puede estimar una ubicación aproximada), información sobre el anuncio y tu interacción con él, información de diagnóstico de la aplicación y del SDK, e identificadores como el identificador de conjunto de aplicaciones (app set ID). Google usa esta información para mostrar y medir anuncios y para prevenir el fraude y el abuso.",
           "Cada solicitud de anuncio de la aplicación pide a Google anuncios no personalizados, aplica el tratamiento de Google para usuarios que pueden ser adolescentes y solo permite anuncios clasificados como aptos para todos los públicos. La aplicación no solicita el permiso que Android 13 y versiones posteriores exigen para leer el identificador de publicidad de tu dispositivo. En Android 12 y versiones anteriores, los servicios de Google Play pueden proporcionar igualmente el identificador de publicidad al SDK de Google Mobile Ads, y Google puede usarlo para mostrar y medir anuncios y para prevenir el fraude.",
@@ -1711,9 +1718,9 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
         ],
       },
       {
-        title: "Tus opciones de privacidad para los anuncios (versión 1.3.0)",
+        title: "Tus opciones de privacidad para los anuncios (versiones 1.3.0 y 1.4.0)",
         paragraphs: [
-          "La aplicación no se conecta al servicio de consentimiento de Google al iniciarse. Después de tu primer rompecabezas resuelto en una sesión, o cuando tocas Opciones de privacidad, usa Google User Messaging Platform para comprobar si donde estás se requiere un mensaje de consentimiento.",
+          "En la versión 1.3.0, la aplicación no se conecta al servicio de consentimiento de Google al iniciarse. Después de tu primer rompecabezas resuelto en una sesión, o cuando tocas Opciones de privacidad, usa Google User Messaging Platform para comprobar si donde estás se requiere un mensaje de consentimiento. La versión 1.4.0 funciona igual hasta que haya completado esa comprobación una vez después de un rompecabezas resuelto, por ejemplo después de una instalación nueva o de una actualización desde la 1.3.0. Después lo recuerda en tu dispositivo y, a partir de tu siguiente sesión, también hace la comprobación cuando se abre la pantalla de inicio, de modo que el anuncio al final de la pantalla de inicio puede aparecer sin resolver otro rompecabezas, si tu estado de consentimiento permite solicitar anuncios.",
           "Cuando se requiere, por ejemplo en el Espacio Económico Europeo, el Reino Unido y Suiza, el mensaje se muestra en la pantalla de inicio, nunca durante un rompecabezas. Cuando Google lo requiere, Opciones de privacidad aparece en la pantalla de inicio y en la pantalla de resultado, para que puedas cambiar tu elección en cualquier momento.",
           "Si el estado del consentimiento no permite solicitar anuncios, la aplicación no muestra anuncios durante el resto de esa sesión. Según tu elección, Google puede mostrar anuncios limitados o ningún anuncio. El juego funciona igual en ambos casos.",
           "Si vives en un estado de EE. UU. con una ley de privacidad del consumidor, Opciones de privacidad también te permite oponerte a la venta o el intercambio de tu información personal con fines publicitarios.",
@@ -1721,7 +1728,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
         ],
       },
       {
-        title: "Estadísticas de uso y Google Firebase (versión 1.3.0)",
+        title: "Estadísticas de uso y Google Firebase (versiones 1.3.0 y 1.4.0)",
         paragraphs: [
           "La versión 1.3.0 incluye Google Analytics for Firebase. Las estadísticas de uso están desactivadas de forma predeterminada. En la pantalla de inicio, normalmente antes de tu primer rompecabezas, la aplicación te pregunta una vez: “¿Nos ayudas a mejorar Chess Rescue?”. Puedes responder “Permitir” o “No permitir”. “Permitir” solo funciona después de marcar “Tengo 18 años o más, o mi madre, padre o tutor está de acuerdo.” Esta declaración es tuya; la aplicación no comprueba tu edad ni si tu madre, padre o tutor está de acuerdo. “No permitir” siempre está disponible, y el juego funciona igual en ambos casos. Hasta que elijas “Permitir”, Google Analytics for Firebase no recopila eventos de estadísticas de uso. Esta elección solo afecta a esos eventos: los anuncios de Google AdMob, descritos arriba, y otras partes del software Firebase, descritas abajo, pueden tratar algunos datos independientemente de tu elección, incluso antes de que respondas.",
           "Tu respuesta se guarda en tu dispositivo y se mantiene al cerrar y volver a abrir la aplicación. Para cambiarla en cualquier momento, toca Estadísticas de uso en la pantalla de inicio; esa línea muestra si las estadísticas de uso están activadas o desactivadas.",
@@ -1757,6 +1764,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "Tu idioma",
           "Los récords que has desbloqueado y los rescates que has guardado",
           "En la versión 1.3.0: cuántos días seguidos has completado un rescate, si en tu región se ofrecen opciones de privacidad y tu respuesta sobre las estadísticas de uso",
+          "En la versión 1.4.0, además: si la aplicación ya ha completado una comprobación del consentimiento para los anuncios después de un rompecabezas resuelto",
         ],
       },
       {
@@ -1782,7 +1790,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
       {
         title: "Cambios en esta política",
         paragraphs: [
-          "Si una versión futura de Chess Rescue cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación. Esta versión de la política se actualizó para la versión 1.3.0, que añade anuncios y analítica opcional.",
+          "Si una versión futura de Chess Rescue cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación. La política se actualizó para la versión 1.3.0, que añadió anuncios y analítica opcional, y de nuevo para la versión 1.4.0, que cambia el momento en que la aplicación comprueba tu consentimiento para los anuncios.",
         ],
       },
     ],

@@ -163,12 +163,13 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
 
 // Chess Rescue: versions up to 1.2.1 are offline and ad-free; 1.3.0 adds
 // AdMob, UMP and Firebase Analytics that is off until the player answers
-// the Home usage-statistics question. There is no settings screen, ad
+// the Home usage-statistics question; 1.4.0 also refreshes consent on Home
+// for returning players. There is no settings screen, ad
 // consent and usage statistics stay independent, and the advertising ID is
 // not claimed absent. The GA4 retention setting is stated for GA4 data only;
 // deletion routes, "we do not sell" and deletion-on-withdrawal must not be
 // claimed.
-test.describe("Chess Rescue privacy policy — 1.2.1 and 1.3.0", () => {
+test.describe("Chess Rescue privacy policy — 1.2.1, 1.3.0 and 1.4.0", () => {
   const locales = [
     {
       prefix: "",
@@ -183,6 +184,10 @@ test.describe("Chess Rescue privacy policy — 1.2.1 and 1.3.0", () => {
       withdrawal: "If you later choose “Don't allow”, the app stops collecting usage statistics from then on and resets the analytics data stored on your device, including the app-instance identifier. This does not delete information that has already been sent to Google.",
       independent: "Your choices for ads do not turn usage statistics on or off, and allowing usage statistics does not give consent for ads.",
       retention: "Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months; the user-level period starts again whenever there is new activity from the same app instance. These periods are Google Analytics settings only: they do not apply to aggregated reports, to data processed for Google AdMob ads, or to other parts of the Firebase software.",
+      v13Consent: "In version 1.3.0, the app does not contact Google's consent service when it starts. After your first solved puzzle in a session, or when you tap Privacy choices, it uses Google User Messaging Platform to check whether a consent message is required where you are.",
+      refresh: "Version 1.4.0 works the same way until it has completed that check once after a solved puzzle, for example after a new installation or an update from 1.3.0. It then remembers this on your device and, from your next session, also runs the check when the home screen opens, so the ad at the bottom of the home screen can appear without solving another puzzle, if your consent status allows ads to be requested.",
+      flag: "In version 1.4.0, also: whether the app has completed an ad consent check after a solved puzzle",
+      v14: "Version 1.4.0 handles your information in the same way as version 1.3.0, except for when it checks your ad consent and one extra item it stores on your device, both described below.",
       meta: "Privacy policy for Chess Rescue by Lunexa Games: version 1.3.0 adds Google AdMob ads and optional analytics; earlier versions are fully offline with no ads.",
     },
     {
@@ -198,6 +203,10 @@ test.describe("Chess Rescue privacy policy — 1.2.1 and 1.3.0", () => {
       withdrawal: "Daha sonra “İzin verme” seçeneğini seçersen uygulama o andan itibaren kullanım istatistiği toplamayı bırakır ve uygulama örneği kimliği dahil cihazında saklanan analitik verilerini sıfırlar. Bu, Google'a daha önce gönderilmiş bilgileri silmez.",
       independent: "Reklam seçimlerin kullanım istatistiklerini açmaz veya kapatmaz; kullanım istatistiklerine izin vermek de reklamlar için izin vermek anlamına gelmez.",
       retention: "Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı; aynı uygulama örneğinden yeni bir etkinlik geldiğinde kullanıcı düzeyindeki süre yeniden başlar. Bu süreler yalnızca Google Analytics ayarlarıdır: toplu raporlar, Google AdMob reklamları için işlenen veriler veya Firebase yazılımının diğer bileşenleri için geçerli değildir.",
+      v13Consent: "1.3.0 sürümünde uygulama açılırken Google'ın izin hizmetine bağlanmaz. Bir oturumda ilk bulmacanı çözdükten sonra ya da Gizlilik seçeneklerine dokunduğunda, bulunduğun yerde bir izin mesajı gerekip gerekmediğini Google User Messaging Platform ile kontrol eder.",
+      refresh: "1.4.0 sürümü de, çözülmüş bir bulmacadan sonra bu kontrolü bir kez tamamlayana kadar aynı şekilde çalışır; örneğin yeni bir kurulumdan veya 1.3.0 sürümünden güncellendikten sonra. Ardından bunu cihazında hatırlar ve bir sonraki oturumundan itibaren kontrolü ana ekran açıldığında da yapar; böylece izin durumun reklam istenmesine izin veriyorsa ana ekranın en altındaki reklam, başka bir bulmaca çözmeden de görünebilir.",
+      flag: "1.4.0 sürümünde ayrıca: çözülmüş bir bulmacadan sonra reklam izni kontrolünün tamamlanıp tamamlanmadığı",
+      v14: "1.4.0 sürümü bilgilerini, reklam izninin ne zaman kontrol edildiği ve cihazında sakladığı bir ek bilgi dışında 1.3.0 sürümüyle aynı şekilde işler; ikisi de aşağıda açıklanmıştır.",
       meta: "Chess Rescue gizlilik politikası (Lunexa Games): 1.3.0 sürümü Google AdMob reklamları ve isteğe bağlı analitik ekler; önceki sürümler çevrimdışı ve reklamsız.",
     },
     {
@@ -213,6 +222,10 @@ test.describe("Chess Rescue privacy policy — 1.2.1 and 1.3.0", () => {
       withdrawal: "Si más adelante eliges “No permitir”, la aplicación deja de recopilar estadísticas de uso a partir de ese momento y restablece los datos de analítica guardados en tu dispositivo, incluido el identificador de instancia de la aplicación. Esto no elimina la información que ya se haya enviado a Google.",
       independent: "Tus opciones para los anuncios no activan ni desactivan las estadísticas de uso, y permitir las estadísticas de uso no da consentimiento para los anuncios.",
       retention: "Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses; el plazo de los datos a nivel de usuario vuelve a empezar cada vez que hay nueva actividad desde la misma instancia de la aplicación. Estos plazos son solo ajustes de Google Analytics: no se aplican a los informes agregados, a los datos tratados para los anuncios de Google AdMob ni a otras partes del software Firebase.",
+      v13Consent: "En la versión 1.3.0, la aplicación no se conecta al servicio de consentimiento de Google al iniciarse. Después de tu primer rompecabezas resuelto en una sesión, o cuando tocas Opciones de privacidad, usa Google User Messaging Platform para comprobar si donde estás se requiere un mensaje de consentimiento.",
+      refresh: "La versión 1.4.0 funciona igual hasta que haya completado esa comprobación una vez después de un rompecabezas resuelto, por ejemplo después de una instalación nueva o de una actualización desde la 1.3.0. Después lo recuerda en tu dispositivo y, a partir de tu siguiente sesión, también hace la comprobación cuando se abre la pantalla de inicio, de modo que el anuncio al final de la pantalla de inicio puede aparecer sin resolver otro rompecabezas, si tu estado de consentimiento permite solicitar anuncios.",
+      flag: "En la versión 1.4.0, además: si la aplicación ya ha completado una comprobación del consentimiento para los anuncios después de un rompecabezas resuelto",
+      v14: "La versión 1.4.0 trata tu información igual que la versión 1.3.0, salvo en el momento en que comprueba tu consentimiento para los anuncios y en un dato adicional que guarda en tu dispositivo; ambos se describen a continuación.",
       meta: "Política de privacidad de Chess Rescue (Lunexa Games): la 1.3.0 añade anuncios de Google AdMob y analítica opcional; las anteriores, sin conexión ni anuncios.",
     },
   ];
@@ -221,12 +234,14 @@ test.describe("Chess Rescue privacy policy — 1.2.1 and 1.3.0", () => {
     test(`${l.prefix || "/"}privacy/chess-rescue describes both versions`, async ({ page }) => {
       await page.goto(`${l.prefix}/privacy/chess-rescue`);
       const main = page.locator("main");
-      for (const s of [l.earlier, l.ads, l.adRequest, l.adId, l.question, l.eligible, l.homeLine, l.scope, l.withdrawal, l.retention, l.independent]) {
+      for (const s of [l.earlier, l.ads, l.adRequest, l.adId, l.question, l.eligible, l.homeLine, l.scope, l.withdrawal, l.retention, l.independent, l.v13Consent, l.refresh, l.flag, l.v14]) {
         await expect(main).toContainText(s);
       }
       await expect(main).not.toContainText(/we do not sell|satmayız|no vendemos|Crashlytics|deletes? (the )?data|verileri siler|elimina los datos/i);
       await expect(main).not.toContainText(/AdMob (data|data is) (kept|retained)|Firebase data is kept|todos los datos se guardan|tüm veriler .* tutulur/i);
       await expect(main).not.toContainText(/does not contact a server|herhangi bir sunucuyla iletişim kurmaz|no se comunica con ningún servidor/);
+      // 1.4.0 is described by version only, never as available or released.
+      await expect(main).not.toContainText(/now available|available now|update now|artık (mevcut|kullanılabilir)|şimdi (mevcut|kullanılabilir)|ya disponible|disponible ahora|actualiza ahora|\b1\.[5-9]\.\d/i);
       await expect(main).not.toContainText(/app's settings|own setting|uygulamanın ayarlarından|kendi ayarı|ajustes de la aplicación|propio ajuste|AAID/);
       await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", l.meta);
     });
