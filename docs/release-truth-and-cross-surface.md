@@ -3,9 +3,9 @@
 This document owns **what may be claimed publicly, and when**.
 
 It exists because the Lunexa ecosystem has four different kinds of truth that
-are routinely confused for one another, and because confusing them has
-already produced a public statement that is one release away from being
-false in three languages (§2.2).
+are routinely confused for one another, and because confusing them once
+produced a public statement that was one release away from being false in
+three languages (§2.2, since superseded).
 
 ---
 
@@ -66,7 +66,8 @@ repositories · **Scope: LUNEXA-WIDE**:
 Both are recorded here rather than resolved, because resolving either
 requires reading the release system — currently the Play Console — which no
 repository can substitute for. The first is an **OPEN CONFLICT** between two
-sources; the second is a dated risk in currently-accurate copy.
+sources; the second was a dated risk in then-accurate copy and is now
+superseded (§2.2).
 
 ### 2.1 Is RPS Duel 1.0.4 public? — **OPEN CONFLICT**
 
@@ -82,7 +83,31 @@ strength of either. Guessing has a coin-flip chance of making the public
 changelog wrong — precisely the failure the changelog rule exists to
 prevent.
 
-### 2.2 The analytics / privacy-copy boundary — **dated risk**
+### 2.2 The analytics / privacy-copy boundary — **SUPERSEDED**
+
+**Current public truth (as of 2026-11-03).** **Evidence: VERIFIED**
+(`apps/web/src/seo/content.ts:1212-1253`, EN; TR and ES state the same) ·
+**Scope: PRODUCT-SPECIFIC**. The published RPS Duel 1.0.5 privacy policy no
+longer says the app has no analytics. It states that:
+
+- version 1.0.5 includes Google Analytics for Firebase and collects usage
+  statistics by default, with no in-app setting to turn them off
+  (`:1250`);
+- Google Analytics is set not to collect the Android advertising ID (`:1252`);
+- the Google Mobile Ads SDK and Google Analytics for Firebase have separate
+  roles: the analytics purpose declared for the advertising ID comes from the
+  Google Mobile Ads SDK, not from Google Analytics (`:1243`);
+- the Google Play Data Safety declaration lists three purposes: advertising
+  or marketing; analytics; and fraud prevention, security and compliance
+  (`:1223`, `:1229`).
+
+What the Play Console currently declares is release truth and is not
+evidenced by this repository; the policy attributes those statements to the
+declaration rather than asserting them independently.
+
+**Historical record (as written 2026-09-21; no longer current).** The text
+below is kept unchanged as the record of the risk. The line numbers it cites
+referred to the file at that time.
 
 The public copy described below is **accurate today**. The risk is that it
 becomes inaccurate on a specific future event, with no mechanism currently
