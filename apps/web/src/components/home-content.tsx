@@ -24,7 +24,7 @@ const GAMES = [
 
 /** Published non-game apps, kept apart from GAMES. `key` selects the `apps_cta.*` copy. */
 const APPS = [
-  { key: "quietly", slug: "quietly", name: "Quietly", url: QUIETLY_PLAY_URL },
+  { key: "quietly", slug: "quietly", name: "Quietly", url: QUIETLY_PLAY_URL, privacyPath: "/privacy/quietly" },
 ] as const;
 
 export default function HomeContent() {
@@ -300,6 +300,14 @@ export default function HomeContent() {
                       className="mt-3 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-80"
                     >
                       {WORK[locale].detailsLabel} →
+                    </Link>
+                    {/* The description summarises ads and usage statistics, so the card links the policy. */}
+                    <Link
+                      href={localeHref(locale, app.privacyPath)}
+                      aria-label={`${WORK[locale].privacyLabel}: ${app.name}`}
+                      className="ml-4 mt-3 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-80"
+                    >
+                      {WORK[locale].privacyLabel} →
                     </Link>
                   </div>
                   <GooglePlayBadge

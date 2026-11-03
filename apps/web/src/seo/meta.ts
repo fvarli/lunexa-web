@@ -102,17 +102,17 @@ export const RPS_DUEL_PRIVACY_META: PageCopy = {
   en: {
     title: "RPS Duel — Privacy Policy",
     description:
-      "Privacy policy for RPS Duel by Lunexa Games. Version 1.0.5 shows ads: the data declared for it on Google Play, and what the app stores on your device.",
+      "Privacy policy for RPS Duel by Lunexa Games: ads, usage statistics that depend on your region and choices, the data declared on Google Play, and what the app stores on your device.",
   },
   tr: {
     title: "RPS Duel — Gizlilik Politikası",
     description:
-      "Lunexa Games'in RPS Duel oyunu için gizlilik politikası. 1.0.5 sürümü reklam gösterir: Google Play'de beyan edilen veriler ve cihazında saklananlar.",
+      "Lunexa Games'in RPS Duel oyunu için gizlilik politikası: reklamlar, bölgene ve tercihlerine bağlı kullanım istatistikleri, Google Play'de beyan edilen veriler ve cihazında saklananlar.",
   },
   es: {
     title: "RPS Duel — Política de Privacidad",
     description:
-      "Política de privacidad de RPS Duel (Lunexa Games). La versión 1.0.5 muestra anuncios: los datos declarados en Google Play y qué guarda en tu dispositivo.",
+      "Política de privacidad de RPS Duel (Lunexa Games): anuncios, estadísticas de uso según tu región y tus elecciones, los datos declarados en Google Play y qué guarda en tu dispositivo.",
   },
 };
 
@@ -120,17 +120,17 @@ export const QUIETLY_PRIVACY_META: PageCopy = {
   en: {
     title: "Quietly — Privacy Policy",
     description:
-      "Privacy policy for Quietly, a media-saver Android app by Lunexa. Saves direct public media from URLs you paste. No account, no ads, no analytics, no scraping. Network use includes the server of the URL you paste, any servers it redirects to, and a Google connectivity check.",
+      "Privacy policy for Quietly, a media-saver Android app by Lunexa: one Google ad after a save, optional usage statistics, the servers Quietly contacts, and what it stores on your device.",
   },
   tr: {
     title: "Quietly — Gizlilik Politikası",
     description:
-      "Quietly için gizlilik politikası — Lunexa tarafından geliştirilen Android medya kaydedici uygulaması. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı kaydeder. Hesap yok, reklam yok, analitik yok, kazıma yok. Ağ kullanımı; yapıştırdığın URL'nin sunucusunu, yönlendirdiği sunucuları ve bir Google bağlantı kontrolünü içerir.",
+      "Quietly için gizlilik politikası — Lunexa'nın Android medya kaydedicisi: kayıttan sonra tek bir Google reklamı, isteğe bağlı kullanım istatistikleri, Quietly'nin bağlandığı sunucular ve cihazında sakladıkları.",
   },
   es: {
     title: "Quietly — Política de Privacidad",
     description:
-      "Política de privacidad de Quietly, una app Android de guardado de medios por Lunexa. Guarda medios públicos directos desde las URLs que pegas. Sin cuenta, sin anuncios, sin analítica, sin scraping. El uso de red incluye el servidor de la URL que pegas, los servidores a los que redirige y una comprobación de conectividad de Google.",
+      "Política de privacidad de Quietly, el guardador de medios Android de Lunexa: un anuncio de Google tras guardar, estadísticas de uso opcionales, los servidores a los que se conecta y lo que guarda en tu dispositivo.",
   },
 };
 
@@ -138,17 +138,17 @@ export const CHESS_RESCUE_PRIVACY_META: PageCopy = {
   en: {
     title: "Chess Rescue — Privacy Policy",
     description:
-      "Privacy policy for Chess Rescue by Lunexa Games: version 1.3.0 adds Google AdMob ads and optional analytics; earlier versions are fully offline with no ads.",
+      "Privacy policy for Chess Rescue by Lunexa Games: Google AdMob ads, including full-screen and optional rewarded ads, optional usage statistics, and what the app stores on your device.",
   },
   tr: {
     title: "Chess Rescue — Gizlilik Politikası",
     description:
-      "Chess Rescue gizlilik politikası (Lunexa Games): 1.3.0 sürümü Google AdMob reklamları ve isteğe bağlı analitik ekler; önceki sürümler çevrimdışı ve reklamsız.",
+      "Chess Rescue gizlilik politikası (Lunexa Games): tam ekran ve isteğe bağlı ödüllü reklamlar dahil Google AdMob reklamları, isteğe bağlı kullanım istatistikleri ve cihazında saklananlar.",
   },
   es: {
     title: "Chess Rescue — Política de Privacidad",
     description:
-      "Política de privacidad de Chess Rescue (Lunexa Games): la 1.3.0 añade anuncios de Google AdMob y analítica opcional; las anteriores, sin conexión ni anuncios.",
+      "Política de privacidad de Chess Rescue (Lunexa Games): anuncios de Google AdMob, incluidos los de pantalla completa y los recompensados opcionales, estadísticas de uso opcionales y qué guarda en tu dispositivo.",
   },
 };
 
@@ -230,17 +230,17 @@ export const CHESS_RESCUE_TERMS_META: PageCopy = {
   en: {
     title: "Chess Rescue — Terms of Service",
     description:
-      "Terms of service for Chess Rescue (com.lunexa.games.chessrescue), a single-player offline puzzle game by Lunexa Games. Entertainment only — not a chess training or certification product.",
+      "Terms of service for Chess Rescue (com.lunexa.games.chessrescue), a single-player chess-rules puzzle game by Lunexa Games. Entertainment only — not a chess training or certification product.",
   },
   tr: {
     title: "Chess Rescue — Kullanım Şartları",
     description:
-      "Chess Rescue için kullanım şartları (com.lunexa.games.chessrescue) — Lunexa Games tarafından geliştirilen tek oyunculu, çevrimdışı bulmaca oyunu. Yalnızca eğlence amaçlı — satranç eğitimi veya sertifikasyon ürünü değildir.",
+      "Chess Rescue için kullanım şartları (com.lunexa.games.chessrescue) — Lunexa Games tarafından geliştirilen tek oyunculu, satranç kurallı bulmaca oyunu. Yalnızca eğlence amaçlı — satranç eğitimi veya sertifikasyon ürünü değildir.",
   },
   es: {
     title: "Chess Rescue — Términos de Servicio",
     description:
-      "Términos de servicio de Chess Rescue (com.lunexa.games.chessrescue), un juego de rompecabezas para un solo jugador y sin conexión de Lunexa Games. Solo entretenimiento: no es un producto de entrenamiento ni certificación de ajedrez.",
+      "Términos de servicio de Chess Rescue (com.lunexa.games.chessrescue), un juego de rompecabezas con reglas de ajedrez para un solo jugador de Lunexa Games. Solo entretenimiento: no es un producto de entrenamiento ni certificación de ajedrez.",
   },
 };
 

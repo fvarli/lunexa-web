@@ -376,7 +376,7 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       vendors: "Version 1.0.5 uses Google AdMob for its ads and Google Analytics for Firebase for usage statistics.",
       local: ["Game scores and your round history (up to your last 500 rounds)", "Lifetime totals (rounds played, wins and ties)", "Sound setting (on or off)", "Collected moments, with the date of each"],
       kept: "— your language, difficulty and sound settings, lifetime totals, daily challenge progress, achievement flags, collected moments, your usage-statistics choice and your ad privacy choices —",
-      meta: "Privacy policy for RPS Duel by Lunexa Games. Version 1.0.5 shows ads: the data declared for it on Google Play, and what the app stores on your device.",
+      meta: "Privacy policy for RPS Duel by Lunexa Games: ads, usage statistics that depend on your region and choices, the data declared on Google Play, and what the app stores on your device.",
     },
     {
       prefix: "/tr",
@@ -397,7 +397,7 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       vendors: "1.0.5 sürümü reklamlar için Google AdMob'u, kullanım istatistikleri için Google Analytics for Firebase'i kullanır.",
       local: ["Oyun skorları ve el geçmişin (son 500 ele kadar)", "Toplam istatistikler (oynanan el, galibiyet ve beraberlik sayısı)", "Ses ayarı (açık veya kapalı)", "Toplanan anlar ve her birinin tarihi"],
       kept: "— dil, zorluk ve ses ayarların, toplam istatistiklerin, günlük meydan okuma ilerlemen, başarım bayrakların, toplanan anların, kullanım istatistikleri tercihin ve reklam gizlilik tercihlerin —",
-      meta: "Lunexa Games'in RPS Duel oyunu için gizlilik politikası. 1.0.5 sürümü reklam gösterir: Google Play'de beyan edilen veriler ve cihazında saklananlar.",
+      meta: "Lunexa Games'in RPS Duel oyunu için gizlilik politikası: reklamlar, bölgene ve tercihlerine bağlı kullanım istatistikleri, Google Play'de beyan edilen veriler ve cihazında saklananlar.",
     },
     {
       prefix: "/es",
@@ -418,7 +418,7 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       vendors: "La versión 1.0.5 usa Google AdMob para los anuncios y Google Analytics for Firebase para las estadísticas de uso.",
       local: ["Puntuaciones y tu historial de rondas (hasta las últimas 500 rondas)", "Totales acumulados (rondas jugadas, victorias y empates)", "Ajuste de sonido (activado o desactivado)", "Momentos coleccionados, con la fecha de cada uno"],
       kept: "—tus ajustes de idioma, dificultad y sonido, los totales acumulados, el progreso del desafío diario, los indicadores de logros, los momentos coleccionados, tu elección sobre las estadísticas de uso y tus opciones de privacidad publicitaria—",
-      meta: "Política de privacidad de RPS Duel (Lunexa Games). La versión 1.0.5 muestra anuncios: los datos declarados en Google Play y qué guarda en tu dispositivo.",
+      meta: "Política de privacidad de RPS Duel (Lunexa Games): anuncios, estadísticas de uso según tu región y tus elecciones, los datos declarados en Google Play y qué guarda en tu dispositivo.",
     },
   ];
 
@@ -464,7 +464,7 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       await page.goto(`${l.prefix}/support/rps-duel`);
       const main = page.locator("main");
       await expect(main).not.toContainText(/runs entirely on your device|and only there|tamamen cihazınızda çalışır|Yalnızca cihazınızda|funciona enteramente en tu dispositivo|Solo en tu dispositivo/);
-      await expect(main).toContainText(/Version 1\.0\.5 also shows ads|1\.0\.5 sürümü ayrıca reklam gösterir|La versión 1\.0\.5 también muestra anuncios/);
+      await expect(main).toContainText(/The app also shows ads and, depending on your region and choices, sends usage statistics|Uygulama ayrıca reklam gösterir ve bölgenize ve tercihlerinize bağlı olarak|La aplicación también muestra anuncios y, según tu región y tus elecciones, envía estadísticas de uso/);
     });
   }
 
@@ -784,7 +784,7 @@ test.describe("Chess Rescue privacy policy — 1.2.1, 1.3.0 and 1.4.0", () => {
       flag: "In version 1.4.0, also: whether the app has completed an ad consent check after a solved puzzle",
       v14: "Version 1.4.0 handles your information in the same way as version 1.3.0, except for when it checks your ad consent and one extra item it stores on your device, both described below.",
       date: "Last updated: 2026-11-03",
-      meta: "Privacy policy for Chess Rescue by Lunexa Games: version 1.3.0 adds Google AdMob ads and optional analytics; earlier versions are fully offline with no ads.",
+      meta: "Privacy policy for Chess Rescue by Lunexa Games: Google AdMob ads, including full-screen and optional rewarded ads, optional usage statistics, and what the app stores on your device.",
     },
     {
       prefix: "/tr",
@@ -804,7 +804,7 @@ test.describe("Chess Rescue privacy policy — 1.2.1, 1.3.0 and 1.4.0", () => {
       flag: "1.4.0 sürümünde ayrıca: çözülmüş bir bulmacadan sonra reklam izni kontrolünün tamamlanıp tamamlanmadığı",
       v14: "1.4.0 sürümü bilgilerini, reklam izninin ne zaman kontrol edildiği ve cihazında sakladığı bir ek bilgi dışında 1.3.0 sürümüyle aynı şekilde işler; ikisi de aşağıda açıklanmıştır.",
       date: "Son güncelleme: 03.11.2026",
-      meta: "Chess Rescue gizlilik politikası (Lunexa Games): 1.3.0 sürümü Google AdMob reklamları ve isteğe bağlı analitik ekler; önceki sürümler çevrimdışı ve reklamsız.",
+      meta: "Chess Rescue gizlilik politikası (Lunexa Games): tam ekran ve isteğe bağlı ödüllü reklamlar dahil Google AdMob reklamları, isteğe bağlı kullanım istatistikleri ve cihazında saklananlar.",
     },
     {
       prefix: "/es",
@@ -824,7 +824,7 @@ test.describe("Chess Rescue privacy policy — 1.2.1, 1.3.0 and 1.4.0", () => {
       flag: "En la versión 1.4.0, además: si la aplicación ya ha completado una comprobación del consentimiento para los anuncios después de un rompecabezas resuelto",
       v14: "La versión 1.4.0 trata tu información igual que la versión 1.3.0, salvo en el momento en que comprueba tu consentimiento para los anuncios y en un dato adicional que guarda en tu dispositivo; ambos se describen a continuación.",
       date: "Última actualización: 2026-11-03",
-      meta: "Política de privacidad de Chess Rescue (Lunexa Games): la 1.3.0 añade anuncios de Google AdMob y analítica opcional; las anteriores, sin conexión ni anuncios.",
+      meta: "Política de privacidad de Chess Rescue (Lunexa Games): anuncios de Google AdMob, incluidos los de pantalla completa y los recompensados opcionales, estadísticas de uso opcionales y qué guarda en tu dispositivo.",
     },
   ];
 

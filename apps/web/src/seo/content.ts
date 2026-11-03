@@ -683,7 +683,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "rps-duel",
         name: "RPS Duel",
         tagline: "A tactile rock-paper-scissors duel for Android",
-        body: "Single-player Rock Paper Scissors against a built-in CPU opponent, with a daily challenge, four achievements, three difficulty levels, and full English / Turkish / Spanish support. No account needed — your progress is saved on the device.",
+        body: "Single-player Rock Paper Scissors against a built-in CPU opponent, with a daily challenge, four achievements, three difficulty levels, and full English / Turkish / Spanish support. No account needed — your progress is saved on the device. Banner ads on the Records and Collection screens and a full-screen ad between matches; usage statistics depend on your region and your choices.",
         url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
@@ -696,7 +696,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "chess-rescue",
         name: "Chess Rescue",
         tagline: "A calm chess-rules puzzle game for Android",
-        body: "Single-player chess-rules puzzles built around the feel of an emotional comeback. No account needed, and your progress is saved on your device.",
+        body: "Single-player chess-rules puzzles built around the feel of an emotional comeback. No account needed, and your progress is saved on your device. Ads appear outside puzzles, an optional video ad can offer help with a puzzle, and usage statistics stay off unless you allow them.",
         url: CHESS_RESCUE_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "shared_preferences"],
         status: "live",
@@ -708,7 +708,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "quietly",
         name: "Quietly",
         tagline: "An Android media saver for direct public URLs",
-        body: "Quietly saves direct public media from URLs you paste into your device gallery. It only fetches what you ask for — no scraping, no logged-in or DRM-protected content. No accounts, no ads, no analytics, no telemetry.",
+        body: "Quietly saves direct public media from URLs you paste into your device gallery. It only fetches what you ask for — no scraping, no logged-in or DRM-protected content. No account. One ad from Google after a save, and usage statistics only if you turn them on. Your links, files and history are never sent with either.",
         url: QUIETLY_PLAY_URL,
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
         status: "live",
@@ -742,7 +742,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "rps-duel",
         name: "RPS Duel",
         tagline: "Android için dokunaklı bir taş kâğıt makas düellosu",
-        body: "Bilgisayara karşı oynanan Taş Kâğıt Makas; günlük görevler, kazanılabilecek dört başarı, üç zorluk seviyesi ve İngilizce, Türkçe, İspanyolca dil desteği. Hesap gerekmez — ilerlemen cihazında saklanır.",
+        body: "Bilgisayara karşı oynanan Taş Kâğıt Makas; günlük görevler, kazanılabilecek dört başarı, üç zorluk seviyesi ve İngilizce, Türkçe, İspanyolca dil desteği. Hesap gerekmez — ilerlemen cihazında saklanır. Kayıtlar ve Koleksiyon ekranlarında banner reklamlar, maçlar arasında tam ekran bir reklam; kullanım istatistikleri bulunduğun bölgeye ve tercihlerine bağlıdır.",
         url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
@@ -755,7 +755,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "chess-rescue",
         name: "Chess Rescue",
         tagline: "Android için sakin, satranç kurallı bir bulmaca oyunu",
-        body: "Duygusal bir geri dönüş hissi etrafında kurulmuş, satranç kurallı tek oyunculu bulmacalar. Hesap gerekmez; ilerlemen cihazına kaydedilir.",
+        body: "Duygusal bir geri dönüş hissi etrafında kurulmuş, satranç kurallı tek oyunculu bulmacalar. Hesap gerekmez; ilerlemen cihazına kaydedilir. Reklamlar bulmaca dışında görünür, isteğe bağlı bir video reklam bir bulmacada yardım önerebilir ve kullanım istatistikleri sen izin vermedikçe kapalı kalır.",
         url: CHESS_RESCUE_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "shared_preferences"],
         status: "live",
@@ -767,7 +767,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "quietly",
         name: "Quietly",
         tagline: "Doğrudan halka açık URL'ler için bir Android medya kaydedici",
-        body: "Quietly, yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. Yalnızca senin istediğini getirir — kazıma yok, oturum açılmış veya DRM korumalı içerik yok. Hesap yok, reklam yok, analitik yok, telemetri yok.",
+        body: "Quietly, yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. Yalnızca senin istediğini getirir — kazıma yok, oturum açılmış veya DRM korumalı içerik yok. Hesap yok. Kayıttan sonra Google'dan tek bir reklam; kullanım istatistikleri yalnızca sen açarsan. Bağlantıların, dosyaların ve geçmişin hiçbiriyle birlikte gönderilmez.",
         url: QUIETLY_PLAY_URL,
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
         status: "live",
@@ -801,7 +801,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "rps-duel",
         name: "RPS Duel",
         tagline: "Un duelo táctil de piedra papel tijera para Android",
-        body: "Piedra Papel Tijera para un solo jugador contra una CPU integrada, con desafío diario, cuatro logros, tres niveles de dificultad y soporte completo en inglés / turco / español. No requiere cuenta — tu progreso se guarda en el dispositivo.",
+        body: "Piedra Papel Tijera para un solo jugador contra una CPU integrada, con desafío diario, cuatro logros, tres niveles de dificultad y soporte completo en inglés / turco / español. No requiere cuenta — tu progreso se guarda en el dispositivo. Anuncios de banner en las pantallas Registros y Colección y un anuncio a pantalla completa entre partidos; las estadísticas de uso dependen de tu región y de tus elecciones.",
         url: RPS_DUEL_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "go_router", "shared_preferences"],
         status: "live",
@@ -814,7 +814,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "chess-rescue",
         name: "Chess Rescue",
         tagline: "Un juego de rompecabezas con reglas de ajedrez, tranquilo, para Android",
-        body: "Rompecabezas con reglas de ajedrez para un solo jugador, construidos en torno a la sensación de un retorno emocional. No necesitas cuenta y tu progreso se guarda en tu dispositivo.",
+        body: "Rompecabezas con reglas de ajedrez para un solo jugador, construidos en torno a la sensación de un retorno emocional. No necesitas cuenta y tu progreso se guarda en tu dispositivo. Los anuncios aparecen fuera de los rompecabezas, un anuncio en vídeo opcional puede ofrecer ayuda con un rompecabezas y las estadísticas de uso siguen desactivadas salvo que las permitas.",
         url: CHESS_RESCUE_PLAY_URL,
         stack: ["Flutter", "Dart", "Material 3", "shared_preferences"],
         status: "live",
@@ -826,7 +826,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "quietly",
         name: "Quietly",
         tagline: "Un guardador de medios Android para URLs públicas directas",
-        body: "Quietly guarda medios públicos directos desde las URLs que pegas en la galería de tu dispositivo. Solo descarga lo que tú pides — sin scraping, sin contenido protegido por inicio de sesión o DRM. Sin cuentas, sin anuncios, sin analítica, sin telemetría.",
+        body: "Quietly guarda medios públicos directos desde las URLs que pegas en la galería de tu dispositivo. Solo descarga lo que tú pides — sin scraping, sin contenido protegido por inicio de sesión o DRM. Sin cuenta. Un anuncio de Google después de guardar, y estadísticas de uso solo si las activas. Tus enlaces, archivos e historial nunca se envían con ninguno de ellos.",
         url: QUIETLY_PLAY_URL,
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
         status: "live",
@@ -955,8 +955,9 @@ export const RPS_DUEL_PRODUCT: Record<Locale, ProductDetailContent> = {
 // Two topics are deliberately absent. Uninstall and backup behaviour: the app
 // declares no backup rules, so the outcome is platform-determined and cannot be
 // stated from the source — the terms already carry the careful wording. Ads and
-// data collection: version 1.0.5 shows ads, and the answers only point to the
-// privacy policy, which is the source of truth for the data involved.
+// data collection: the app shows ads and sends region-dependent usage
+// statistics (1.1.0), and the answers only point to the privacy policy, which
+// is the source of truth for the data involved.
 
 /** One disclosure row. Shared by the FAQ and the troubleshooting list, which render through the same component. */
 type SupportTopic = { q: string; a: string };
@@ -1007,7 +1008,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "Does the game need an internet connection?",
-        a: "No. Rounds, the Daily Challenge, achievements and records all work with no connection. Version 1.0.5 also shows ads; the privacy policy describes the data involved.",
+        a: "No. Rounds, the Daily Challenge, achievements and records all work with no connection. The app also shows ads and, depending on your region and choices, sends usage statistics when it has a connection; the privacy policy describes the data involved.",
       },
       {
         q: "Which languages does the app support?",
@@ -1077,7 +1078,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "Oyun için internet bağlantısı gerekir mi?",
-        a: "Hayır. Eller, Günlük Görev, başarımlar ve kayıtlar bağlantı olmadan çalışır. 1.0.5 sürümü ayrıca reklam gösterir; ilgili veriler gizlilik politikasında açıklanır.",
+        a: "Hayır. Eller, Günlük Görev, başarımlar ve kayıtlar bağlantı olmadan çalışır. Uygulama ayrıca reklam gösterir ve bölgenize ve tercihlerinize bağlı olarak bağlantı olduğunda kullanım istatistikleri gönderir; ilgili veriler gizlilik politikasında açıklanır.",
       },
       {
         q: "Uygulama hangi dilleri destekler?",
@@ -1147,7 +1148,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "¿El juego necesita conexión a internet?",
-        a: "No. Las rondas, el Reto Diario, los logros y los récords funcionan sin conexión. La versión 1.0.5 también muestra anuncios; la política de privacidad describe los datos implicados.",
+        a: "No. Las rondas, el Reto Diario, los logros y los récords funcionan sin conexión. La aplicación también muestra anuncios y, según tu región y tus elecciones, envía estadísticas de uso cuando hay conexión; la política de privacidad describe los datos implicados.",
       },
       {
         q: "¿Qué idiomas admite la aplicación?",
