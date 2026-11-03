@@ -1489,7 +1489,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
   en: {
     eyebrow: "Chess Rescue · Privacy",
     heading: "Chess Rescue — Privacy Policy",
-    lastUpdated: "Last updated: 2026-11-01",
+    lastUpdated: "Last updated: 2026-11-03",
     intro:
       "Chess Rescue is a single-player puzzle game for Android made by Lunexa Games (package id: com.lunexa.games.chessrescue). This policy describes what the app does with your information in versions 1.3.0 and 1.4.0, which include ads and optional analytics, and in earlier versions, which work entirely offline.",
     sections: [
@@ -1593,7 +1593,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
   tr: {
     eyebrow: "Chess Rescue · Gizlilik",
     heading: "Chess Rescue — Gizlilik Politikası",
-    lastUpdated: "Son güncelleme: 01.11.2026",
+    lastUpdated: "Son güncelleme: 03.11.2026",
     intro:
       "Chess Rescue, Lunexa Games tarafından Android için geliştirilmiş tek oyunculu bir bulmaca oyunudur (paket kimliği: com.lunexa.games.chessrescue). Bu politika, uygulamanın bilgilerinle ne yaptığını reklam ve isteğe bağlı analitik içeren 1.3.0 ve 1.4.0 sürümleri ile tamamen çevrimdışı çalışan önceki sürümler için açıklar.",
     sections: [
@@ -1697,7 +1697,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
   es: {
     eyebrow: "Chess Rescue · Privacidad",
     heading: "Chess Rescue — Política de Privacidad",
-    lastUpdated: "Última actualización: 2026-11-01",
+    lastUpdated: "Última actualización: 2026-11-03",
     intro:
       "Chess Rescue es un juego de rompecabezas para un solo jugador para Android creado por Lunexa Games (id de paquete: com.lunexa.games.chessrescue). Esta política describe qué hace la aplicación con tu información en las versiones 1.3.0 y 1.4.0, que incluyen anuncios y analítica opcional, y en las versiones anteriores, que funcionan totalmente sin conexión.",
     sections: [

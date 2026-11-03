@@ -17,7 +17,7 @@ At the time of this update (2026-11-03), the verified production commit is `5455
 | Workstream | Status |
 |---|---|
 | RPS Duel Patch A v3 | CLOSED — production verified |
-| Chess Rescue 1.4.0 privacy | PREPARED — local only, not published |
+| Chess Rescue 1.4.0 privacy | PUBLISHED — version-labelled; 1.4.0 app not yet released |
 | RPS Duel Patch B / 1.0.6 | PENDING — not published |
 | Quietly W7 | PENDING — not published |
 
