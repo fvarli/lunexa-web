@@ -76,7 +76,7 @@ test.describe("Quietly privacy policy — 1.2.0 preparation", () => {
       texts: [
         "made by Lunexa Games.",
         "It uses the internet to fetch the media you ask for and to check whether you have a connection; version 1.2.0 also uses it to load an ad and — only if you allow it — to send usage statistics.",
-        "Quietly does not create accounts. Versions up to 1.1.0 do not show ads and do not include analytics or crash reporting. Version 1.2.0 shows one ad from Google after a save finishes, and it can send anonymous usage statistics to Google Analytics for Firebase — only if you turn that on. Your links, files and history are never sent with either.",
+        "Quietly does not create accounts. Versions up to 1.1.0 do not show ads and do not include analytics or crash reporting. Version 1.2.0 shows one ad from Google after a save finishes, and it can send usage statistics to Google Analytics for Firebase — only if you turn that on. Your links, files and history are never sent with either.",
         "and versions up to 1.1.0 do not include Google AdMob or Firebase.",
         "Quietly uses the internet for these purposes only:",
         "Quietly does not require an account. Version 1.2.0 includes Google AdMob (ads) and Google Analytics for Firebase (optional usage statistics), described below. When Quietly accesses a link or checks your connection, the servers involved may receive technical request information, such as your IP address and request headers. Quietly never sends any of the following to Lunexa, to Google's ad services or to Analytics:",
@@ -109,7 +109,7 @@ test.describe("Quietly privacy policy — 1.2.0 preparation", () => {
       texts: [
         "Lunexa Games tarafından geliştirilmiş",
         "İnterneti senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır; 1.2.0 sürümü ayrıca bir reklam yüklemek ve yalnızca izin verirsen kullanım istatistikleri göndermek için kullanır.",
-        "Quietly hesap oluşturmaz. 1.1.0 sürümüne kadarki sürümler reklam göstermez ve analitik veya çökme raporlama içermez. 1.2.0 sürümü bir kayıt tamamlandıktan sonra Google'dan tek bir reklam gösterir ve yalnızca sen açarsan Google Analytics for Firebase'e anonim kullanım istatistikleri gönderebilir. Bağlantıların, dosyaların ve geçmişin hiçbiriyle birlikte gönderilmez.",
+        "Quietly hesap oluşturmaz. 1.1.0 sürümüne kadarki sürümler reklam göstermez ve analitik veya çökme raporlama içermez. 1.2.0 sürümü bir kayıt tamamlandıktan sonra Google'dan tek bir reklam gösterir ve yalnızca sen açarsan Google Analytics for Firebase'e kullanım istatistikleri gönderebilir. Bağlantıların, dosyaların ve geçmişin hiçbiriyle birlikte gönderilmez.",
         "ve 1.1.0 sürümüne kadarki sürümler Google AdMob veya Firebase içermez.",
         "Quietly interneti yalnızca şu amaçlarla kullanır:",
         "Quietly hesap gerektirmez. 1.2.0 sürümü, aşağıda açıklanan Google AdMob'u (reklamlar) ve Google Analytics for Firebase'i (isteğe bağlı kullanım istatistikleri) içerir. Quietly bir bağlantıya eriştiğinde veya bağlantını kontrol ettiğinde, ilgili sunucular IP adresin ve istek başlıkları gibi teknik istek bilgilerini alabilir. Quietly aşağıdakilerin hiçbirini Lunexa'ya, Google'ın reklam hizmetlerine veya Analytics'e asla göndermez:",
@@ -142,7 +142,7 @@ test.describe("Quietly privacy policy — 1.2.0 preparation", () => {
       texts: [
         "creado por Lunexa Games.",
         "Usa internet para descargar los medios que pides y para comprobar si tienes conexión; la versión 1.2.0 también lo usa para cargar un anuncio y, solo si lo permites, para enviar estadísticas de uso.",
-        "Quietly no crea cuentas. Las versiones hasta la 1.1.0 no muestran anuncios y no incluyen analítica ni informes de errores. La versión 1.2.0 muestra un anuncio de Google cuando termina un guardado, y puede enviar estadísticas de uso anónimas a Google Analytics para Firebase, solo si lo activas. Tus enlaces, archivos e historial nunca se envían con ninguno de ellos.",
+        "Quietly no crea cuentas. Las versiones hasta la 1.1.0 no muestran anuncios y no incluyen analítica ni informes de errores. La versión 1.2.0 muestra un anuncio de Google cuando termina un guardado, y puede enviar estadísticas de uso a Google Analytics para Firebase, solo si lo activas. Tus enlaces, archivos e historial nunca se envían con ninguno de ellos.",
         "y las versiones hasta la 1.1.0 no incluyen Google AdMob ni Firebase.",
         "Quietly usa internet solo para estos fines:",
         "Quietly no requiere una cuenta. La versión 1.2.0 incluye Google AdMob (anuncios) y Google Analytics para Firebase (estadísticas de uso opcionales), que se describen más abajo. Cuando Quietly accede a un enlace o comprueba tu conexión, los servidores implicados pueden recibir información técnica de la solicitud, como tu dirección IP y las cabeceras de la solicitud. Quietly nunca envía nada de lo siguiente a Lunexa, a los servicios publicitarios de Google ni a Analytics:",
@@ -185,6 +185,9 @@ test.describe("Quietly privacy policy — 1.2.0 preparation", () => {
       const text = (await main.textContent()) ?? "";
       expect(text).not.toMatch(/from version 1\.2\.0|since version 1\.2\.0|1\.2\.0 and later|1\.2\.0 sürümünden itibaren|1\.2\.0 ve sonra|desde la versión 1\.2\.0|1\.2\.0 y posteriores|1\.2\.1|now available|available now|update now|ya disponible|artık (mevcut|kullanılabilir)|Version 1\.2\.0 added/i);
       expect(text).not.toMatch(/starts again whenever there is new activity|süre yeniden başlar|vuelve a empezar/);
+      // Usage statistics carry an app-instance identifier: never call them anonymous.
+      expect(text).not.toMatch(/anonymous|anonymi[sz]ed|anonim|anonimleştir|anónim[oa]s?|anonimizad[oa]s?/i);
+      await expect(stats).toContainText(/app-instance identifier|uygulama örneği kimliği|identificador de instancia de la app/);
       expect(text).not.toMatch(/legal bas[ie]s|hukuki (sebep|dayanak)|base jurídica|data controller|veri sorumlusu|responsable del tratamiento|postal address|(?<!e-)posta adresi|dirección postal/i);
     });
   }

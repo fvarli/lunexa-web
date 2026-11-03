@@ -1972,7 +1972,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
     heading: "Quietly — Privacy Policy",
     lastUpdated: "Last updated: 2026-10-25",
     intro:
-      "Quietly is a media saver made by Lunexa Games. The app saves direct public media from URLs you paste into your device gallery. It uses the internet to fetch the media you ask for and to check whether you have a connection; version 1.2.0 also uses it to load an ad and — only if you allow it — to send usage statistics. Quietly does not create accounts. Versions up to 1.1.0 do not show ads and do not include analytics or crash reporting. Version 1.2.0 shows one ad from Google after a save finishes, and it can send anonymous usage statistics to Google Analytics for Firebase — only if you turn that on. Your links, files and history are never sent with either.",
+      "Quietly is a media saver made by Lunexa Games. The app saves direct public media from URLs you paste into your device gallery. It uses the internet to fetch the media you ask for and to check whether you have a connection; version 1.2.0 also uses it to load an ad and — only if you allow it — to send usage statistics. Quietly does not create accounts. Versions up to 1.1.0 do not show ads and do not include analytics or crash reporting. Version 1.2.0 shows one ad from Google after a save finishes, and it can send usage statistics to Google Analytics for Firebase — only if you turn that on. Your links, files and history are never sent with either.",
     sections: [
       {
         title: "What we do not collect (up to version 1.1.0)",
@@ -2094,7 +2094,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
     heading: "Quietly — Gizlilik Politikası",
     lastUpdated: "Son güncelleme: 25.10.2026",
     intro:
-      "Quietly, Lunexa Games tarafından geliştirilmiş bir medya kaydedicidir. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. İnterneti senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır; 1.2.0 sürümü ayrıca bir reklam yüklemek ve yalnızca izin verirsen kullanım istatistikleri göndermek için kullanır. Quietly hesap oluşturmaz. 1.1.0 sürümüne kadarki sürümler reklam göstermez ve analitik veya çökme raporlama içermez. 1.2.0 sürümü bir kayıt tamamlandıktan sonra Google'dan tek bir reklam gösterir ve yalnızca sen açarsan Google Analytics for Firebase'e anonim kullanım istatistikleri gönderebilir. Bağlantıların, dosyaların ve geçmişin hiçbiriyle birlikte gönderilmez.",
+      "Quietly, Lunexa Games tarafından geliştirilmiş bir medya kaydedicidir. Yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. İnterneti senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır; 1.2.0 sürümü ayrıca bir reklam yüklemek ve yalnızca izin verirsen kullanım istatistikleri göndermek için kullanır. Quietly hesap oluşturmaz. 1.1.0 sürümüne kadarki sürümler reklam göstermez ve analitik veya çökme raporlama içermez. 1.2.0 sürümü bir kayıt tamamlandıktan sonra Google'dan tek bir reklam gösterir ve yalnızca sen açarsan Google Analytics for Firebase'e kullanım istatistikleri gönderebilir. Bağlantıların, dosyaların ve geçmişin hiçbiriyle birlikte gönderilmez.",
     sections: [
       {
         title: "Toplamadığımız veriler (1.1.0 sürümüne kadar)",
@@ -2216,7 +2216,7 @@ export const QUIETLY_PRIVACY: Record<Locale, LegalDocument> = {
     heading: "Quietly — Política de Privacidad",
     lastUpdated: "Última actualización: 2026-10-25",
     intro:
-      "Quietly es un guardador de medios creado por Lunexa Games. La aplicación guarda medios públicos directos desde URLs que pegas en la galería de tu dispositivo. Usa internet para descargar los medios que pides y para comprobar si tienes conexión; la versión 1.2.0 también lo usa para cargar un anuncio y, solo si lo permites, para enviar estadísticas de uso. Quietly no crea cuentas. Las versiones hasta la 1.1.0 no muestran anuncios y no incluyen analítica ni informes de errores. La versión 1.2.0 muestra un anuncio de Google cuando termina un guardado, y puede enviar estadísticas de uso anónimas a Google Analytics para Firebase, solo si lo activas. Tus enlaces, archivos e historial nunca se envían con ninguno de ellos.",
+      "Quietly es un guardador de medios creado por Lunexa Games. La aplicación guarda medios públicos directos desde URLs que pegas en la galería de tu dispositivo. Usa internet para descargar los medios que pides y para comprobar si tienes conexión; la versión 1.2.0 también lo usa para cargar un anuncio y, solo si lo permites, para enviar estadísticas de uso. Quietly no crea cuentas. Las versiones hasta la 1.1.0 no muestran anuncios y no incluyen analítica ni informes de errores. La versión 1.2.0 muestra un anuncio de Google cuando termina un guardado, y puede enviar estadísticas de uso a Google Analytics para Firebase, solo si lo activas. Tus enlaces, archivos e historial nunca se envían con ninguno de ellos.",
     sections: [
       {
         title: "Lo que no recopilamos (hasta la versión 1.1.0)",
