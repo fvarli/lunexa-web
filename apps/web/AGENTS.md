@@ -10,7 +10,7 @@ Org-wide rules live in [`docs/working-agreements.md`](../../docs/working-agreeme
 
 ## Production baseline
 
-At the time of this update (2026-11-03), the verified production commit is `54554230370d3df11df0a1c217a710458f3633b2` (reported by `/api/health`). This is a record, not a fixed value: every deploy moves it. Check `/api/health` and `origin/main` before relying on it.
+At the time of this update (2026-11-03), the verified production commit before this release was `2089aba154ef35220e711c227da4684baec39b94` (reported by `/api/health`). This is a record, not a fixed value: every deploy moves it. Check `/api/health` and `origin/main` before relying on it.
 
 ## Release status (as of 2026-11-03)
 
@@ -18,8 +18,14 @@ At the time of this update (2026-11-03), the verified production commit is `5455
 |---|---|
 | RPS Duel Patch A v3 | CLOSED — production verified |
 | Chess Rescue 1.4.0 privacy | PUBLISHED — version-labelled; 1.4.0 app not yet released |
-| RPS Duel Patch B / 1.0.6 | PENDING — not published |
-| Quietly W7 | PENDING — not published |
+| RPS Duel 1.0.6 privacy (Patch B) | PUBLISHED on the web — version-labelled; the 1.0.6 Google Play release is not verified as published |
+| Quietly 1.2.0 privacy (W7) | PUBLISHED on the web — version-labelled; the 1.2.0 Google Play release is not verified as published |
+| RPS Duel 1.0.7 / Quietly 1.2.1 | PENDING — new privacy text required: both change the usage-statistics default |
+
+Owner decisions recorded for this release:
+
+- **D-WEB-NOW:** the RPS 1.0.6 and Quietly 1.2.0 disclosures are published web-first, labelled by version, before the Google Play releases. Earlier-version text stays, and no page may say either version is available.
+- **D-CONTROLLER:** closed. No data-controller block; the existing "Lunexa Games" identity and `hello@uselunexa.com` contact stay. No legal entity, postal address or legal basis is stated.
 
 Update this table in the same change that moves a workstream.
 

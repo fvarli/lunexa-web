@@ -6,7 +6,7 @@ test.describe("Quietly privacy policy — 1.1.0", () => {
   const locales = [
     {
       prefix: "",
-      date: "Last updated: 2026-10-25",
+      date: "Last updated: 2026-11-03",
       cleanup: "In Quietly 1.1.0 and later, clearing your history can also delete the media copies Quietly keeps in its private storage, and the app asks you to confirm before it deletes them; in earlier versions, clearing history does not delete those copies.",
       gallery: "Clearing history does not delete files saved to your gallery.",
       queue: "Your save queue (Quietly 1.1.0 and later)",
@@ -17,7 +17,7 @@ test.describe("Quietly privacy policy — 1.1.0", () => {
     },
     {
       prefix: "/tr",
-      date: "Son güncelleme: 25.10.2026",
+      date: "Son güncelleme: 03.11.2026",
       cleanup: "Quietly 1.1.0 ve sonraki sürümlerde geçmişini temizlemek, Quietly'nin uygulamaya özel depolama alanında tuttuğu medya kopyalarını da silebilir; uygulama bunları silmeden önce senden onay ister. Önceki sürümlerde geçmişi temizlemek bu kopyaları silmez.",
       gallery: "Geçmişi temizlemek, galerine kaydedilen dosyaları silmez.",
       queue: "Kayıt kuyruğun (Quietly 1.1.0 ve sonrası)",
@@ -28,7 +28,7 @@ test.describe("Quietly privacy policy — 1.1.0", () => {
     },
     {
       prefix: "/es",
-      date: "Última actualización: 2026-10-25",
+      date: "Última actualización: 2026-11-03",
       cleanup: "En Quietly 1.1.0 y posteriores, borrar el historial también puede eliminar las copias de medios que Quietly conserva en su almacenamiento privado, y la aplicación te pide confirmación antes de eliminarlas; en versiones anteriores, borrar el historial no elimina esas copias.",
       gallery: "Borrar el historial no elimina los archivos guardados en tu galería.",
       queue: "Tu cola de guardado (Quietly 1.1.0 y posteriores)",
