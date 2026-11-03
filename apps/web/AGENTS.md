@@ -47,6 +47,15 @@ Keep these four states separate. One does not imply another:
 | Published website change | Merged to `main`, deployed, and verified on the live site. |
 | Pending Play Console declaration | A store declaration (for example Data Safety) that is saved or planned but not yet published by the owner. A website change does not publish it. |
 
+## Product claims outside the privacy pages
+
+Work cards, the homepage, landing and support pages, Terms, meta, Open Graph and structured data describe only the app version live on Google Play (as of 2026-11-03: RPS Duel 1.1.0, Chess Rescue 1.5.0, Quietly 1.2.0). D-WEB-NOW covers version-labelled privacy text only; it never lets marketing copy describe an upcoming version (for example Quietly 1.2.1's region-dependent usage statistics) as current.
+
+- No absolute "no ads", "no analytics", "no telemetry", "no tracking", "offline-only" or "anonymous" claims while the live app contradicts them. Offline *gameplay* may be stated as such.
+- A summary of ads or usage statistics links the app's privacy policy.
+- Dated release notes in `src/seo/updates.ts` describe their own version and are not rewritten.
+- `tests/e2e/product-claims.spec.ts` enforces this; update it with the copy.
+
 ## Authorization rule
 
 - This repository is public, and a push to `main` triggers CI and then the production deploy.
