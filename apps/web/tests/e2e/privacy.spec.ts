@@ -203,7 +203,7 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
     {
       prefix: "",
       date: "Last updated: 2026-11-03",
-      dataTitles: ["Data collected and shared (version 1.0.5)", "Data collected and shared (version 1.0.6)"],
+      dataTitles: ["Data collected and shared (version 1.0.5)", "Data collected and shared (version 1.0.6)", "Data collected and shared (version 1.1.0 and later)"],
       ads: "Version 1.0.5, available on Google Play since October 25, 2026, shows ads.",
       types: ["Approximate location", "App interactions", "Diagnostics", "Device or other IDs"],
       purpose: "the declared purposes of both the collection and the sharing are advertising or marketing; analytics; and fraud prevention, security and compliance",
@@ -224,7 +224,7 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
     {
       prefix: "/tr",
       date: "Son güncelleme: 03.11.2026",
-      dataTitles: ["Toplanan ve paylaşılan veriler (1.0.5 sürümü)", "Toplanan ve paylaşılan veriler (1.0.6 sürümü)"],
+      dataTitles: ["Toplanan ve paylaşılan veriler (1.0.5 sürümü)", "Toplanan ve paylaşılan veriler (1.0.6 sürümü)", "Toplanan ve paylaşılan veriler (1.1.0 ve sonraki sürümler)"],
       ads: "25 Ekim 2026'dan beri Google Play'de bulunan 1.0.5 sürümü reklam gösterir.",
       types: ["Yaklaşık konum", "Uygulama etkileşimleri", "Teşhis verileri", "Cihaz veya diğer kimlikler"],
       purpose: "hem toplamanın hem de paylaşmanın beyan edilen amaçları reklam veya pazarlama; analiz; dolandırıcılığı önleme, güvenlik ve uyumluluktur",
@@ -245,7 +245,7 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
     {
       prefix: "/es",
       date: "Última actualización: 2026-11-03",
-      dataTitles: ["Datos recopilados y compartidos (versión 1.0.5)", "Datos recopilados y compartidos (versión 1.0.6)"],
+      dataTitles: ["Datos recopilados y compartidos (versión 1.0.5)", "Datos recopilados y compartidos (versión 1.0.6)", "Datos recopilados y compartidos (versión 1.1.0 y posteriores)"],
       ads: "La versión 1.0.5, disponible en Google Play desde el 25 de octubre de 2026, muestra anuncios.",
       types: ["Ubicación aproximada", "Interacciones con la aplicación", "Diagnóstico", "Dispositivo u otros identificadores"],
       purpose: "las finalidades declaradas tanto de la recopilación como del uso compartido son publicidad o marketing; análisis; y prevención del fraude, seguridad y cumplimiento",
@@ -283,14 +283,14 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
       await expect(main).not.toContainText(/lists only advertising|amacı reklam veya pazarlamadır|yalnızca reklam veya pazarlamayı|finalidad declarada .* es publicidad|solo indica publicidad|for advertising or marketing purposes|fines publicitarios o de marketing|reklam veya pazarlama amacıyla/);
       await expect(main).toContainText(l.handling);
       await expect(main).toContainText(l.earlier);
-      // The 1.0.5 text: everything outside the 1.0.6 sections and items.
+      // The 1.0.5 text: everything outside the 1.0.6 and 1.1.0 sections and items.
       const v105 = await main.evaluate((el) => {
         const c = el.cloneNode(true) as HTMLElement;
         c.querySelectorAll("section").forEach((s) => {
-          if (/1\.0\.6/.test(s.querySelector("h2")?.textContent ?? "")) s.remove();
+          if (/1\.0\.6|1\.1\.0/.test(s.querySelector("h2")?.textContent ?? "")) s.remove();
         });
         c.querySelectorAll("p, li").forEach((n) => {
-          if (/1\.0\.6/.test(n.textContent ?? "")) n.remove();
+          if (/1\.0\.6|1\.1\.0/.test(n.textContent ?? "")) n.remove();
         });
         return c.textContent ?? "";
       });
@@ -322,19 +322,19 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
   });
 });
 
-// RPS Duel 1.0.6 (Patch B, R-REL-08): prepared ahead of the release, next to
-// the 1.0.5 text. Every 1.0.6 statement is labelled "version 1.0.6", never
-// "and later" (1.0.7 changes the analytics default), and nothing says 1.0.6
-// is already available. The GA4 retention text stays scoped as for 1.0.5;
+// RPS Duel 1.0.6 (Patch B, R-REL-08): published web-first, next to the 1.0.5
+// text. Every 1.0.6 statement is labelled "version 1.0.6", never "and later"
+// (1.1.0 changes the analytics default), except the R-REL-12 age sentence,
+// and nothing says 1.0.6 is already available. The GA4 retention text stays scoped as for 1.0.5;
 // no legal-basis or transfer statement is made.
 test.describe("RPS Duel privacy policy — 1.0.6 preparation", () => {
   const locales = [
     {
       prefix: "",
-      titles: ["Data collected and shared (version 1.0.6)", "How this data is handled (version 1.0.6)", "Your ad privacy choices (version 1.0.6)", "Usage statistics (version 1.0.6)", "Version 1.0.5 and updating", "Children and teens"],
+      titles: ["Data collected and shared (version 1.0.6)", "How this data is handled (version 1.0.6)", "Your ad privacy choices (version 1.0.6)", "Usage statistics (version 1.0.6)", "Earlier versions and updating", "Children and teens"],
       usageTitle: "Usage statistics (version 1.0.6)",
       texts: [
-        "Version 1.0.6 shows ads. According to the data safety information declared for it on Google Play, the app collects some data from your device and shares it with third parties for advertising or marketing, for analytics, and for fraud prevention, security and compliance, as described below. Usage statistics are optional in version 1.0.6: the app sends them to Google Analytics for Firebase only if you allow it. Version 1.0.5 sent them automatically, without asking; see “Version 1.0.5 and updating”.",
+        "Version 1.0.6 shows ads. According to the data safety information declared for it on Google Play, the app collects some data from your device and shares it with third parties for advertising or marketing, for analytics, and for fraud prevention, security and compliance, as described below. Usage statistics are optional in version 1.0.6: the app sends them to Google Analytics for Firebase only if you allow it. Version 1.0.5 sent them automatically, without asking; see “Earlier versions and updating”.",
         "The third parties that receive this data handle it under their own privacy policies. Version 1.0.6 uses Google AdMob for its ads, Google's User Messaging Platform to ask for and store your ad privacy choices, and, only if you allow it, Google Analytics for Firebase for usage statistics. RPS Duel does not ask for your name, email address or phone number.",
         "Version 1.0.6 shows banner ads through Google AdMob, using the Google Mobile Ads SDK, on the Records and Collection screens only, never during a duel. Every ad request asks Google to apply its treatment for users under the age of majority and limits ads to content rated G. According to Google's data disclosure for this SDK, it collects data of the types listed above, including your device's advertising ID, and shares it with Google for these purposes: delivering ads and advertising or marketing; measuring ads and analytics; and fraud prevention, security and compliance. The data safety information declared on Google Play also lists your advertising ID with these three purposes. The analytics purpose declared for your advertising ID comes from the Google Mobile Ads SDK; Google Analytics for Firebase does not collect it. The data used for ads is needed for the app's ads and cannot be switched off in the app.",
         "When the app starts, it asks Google's consent service whether a privacy choice about ads is needed where you are. If it is, for example in the European Economic Area, the United Kingdom or Switzerland, a consent form appears the first time you open Records or Collection, never during a duel. Where Google requires it, Settings → Privacy choices lets you change your answer at any time. Refusing personalised ads, or choosing not to have your data sold or shared, does not remove ads; the ads you see are then not personalised. If the app cannot reach the consent service, it shows no ads until it can.",
@@ -345,18 +345,19 @@ test.describe("RPS Duel privacy policy — 1.0.6 preparation", () => {
         "In version 1.0.6: your ad privacy choices, saved by Google's consent software",
         "— your language, difficulty and sound settings, lifetime totals, daily challenge progress, achievement flags, collected moments, your usage-statistics choice and your ad privacy choices — are kept.",
         "In version 1.0.6, turning off Settings → Usage statistics deletes the analytics data stored on your device; it does not delete statistics already sent.",
-        "In version 1.0.6, the app does not ask for your age. Because some players may be teenagers, every ad request asks Google to apply its treatment for users under the age of majority, and ads are limited to content rated G. Choices about usage statistics and ad privacy are made by the player in the app.",
-        "The policy was updated for version 1.0.5, which added ads and usage statistics, and again for version 1.0.6, which asks before collecting usage statistics, adds ad privacy choices and shows a second banner on the Collection screen.",
+        "In version 1.0.6 and later, the app does not ask for your age. Because some players may be teenagers, every ad request asks Google to apply its treatment for users under the age of majority, and ads are limited to content rated G. Choices about usage statistics and ad privacy are made by the player in the app.",
+        "If a future version of RPS Duel changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes. The policy was updated for version 1.0.5, which added ads and usage statistics, and again for version 1.0.6, which asks before collecting usage statistics, adds ad privacy choices and shows a second banner on the Collection screen, and for version 1.1.0, which turns usage statistics on after a one-time notice outside the European Economic Area, the United Kingdom, Switzerland and Türkiye, adds matches and levels kept on your device, and shows a full-screen ad between matches.",
       ],
       retention: "Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months",
       failClosed: "If the app cannot reach the consent service, it shows no ads until it can.",
+      laterAge: "In version 1.0.6 and later, the app does not ask for your age.",
     },
     {
       prefix: "/tr",
-      titles: ["Toplanan ve paylaşılan veriler (1.0.6 sürümü)", "Bu verilerin nasıl işlendiği (1.0.6 sürümü)", "Reklam gizlilik tercihlerin (1.0.6 sürümü)", "Kullanım istatistikleri (1.0.6 sürümü)", "1.0.5 sürümü ve güncelleme", "Çocuklar ve gençler"],
+      titles: ["Toplanan ve paylaşılan veriler (1.0.6 sürümü)", "Bu verilerin nasıl işlendiği (1.0.6 sürümü)", "Reklam gizlilik tercihlerin (1.0.6 sürümü)", "Kullanım istatistikleri (1.0.6 sürümü)", "Önceki sürümler ve güncelleme", "Çocuklar ve gençler"],
       usageTitle: "Kullanım istatistikleri (1.0.6 sürümü)",
       texts: [
-        "1.0.6 sürümü reklam gösterir. Google Play'de beyan edilen veri güvenliği bilgilerine göre uygulama, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama, analiz ve dolandırıcılığı önleme, güvenlik ve uyumluluk amacıyla üçüncü taraflarla paylaşır. 1.0.6 sürümünde kullanım istatistikleri isteğe bağlıdır: uygulama bunları yalnızca izin verirsen Google Analytics for Firebase'e gönderir. 1.0.5 sürümü bunları sormadan, otomatik olarak gönderiyordu; “1.0.5 sürümü ve güncelleme” bölümüne bak.",
+        "1.0.6 sürümü reklam gösterir. Google Play'de beyan edilen veri güvenliği bilgilerine göre uygulama, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama, analiz ve dolandırıcılığı önleme, güvenlik ve uyumluluk amacıyla üçüncü taraflarla paylaşır. 1.0.6 sürümünde kullanım istatistikleri isteğe bağlıdır: uygulama bunları yalnızca izin verirsen Google Analytics for Firebase'e gönderir. 1.0.5 sürümü bunları sormadan, otomatik olarak gönderiyordu; “Önceki sürümler ve güncelleme” bölümüne bak.",
         "Bu verileri alan üçüncü taraflar, verileri kendi gizlilik politikalarına göre işler. 1.0.6 sürümü reklamlar için Google AdMob'u, reklam gizlilik tercihlerini sormak ve saklamak için Google'ın Kullanıcı Mesajlaşma Platformu'nu ve yalnızca izin verirsen kullanım istatistikleri için Google Analytics for Firebase'i kullanır. RPS Duel adını, e-posta adresini veya telefon numaranı istemez.",
         "1.0.6 sürümü banner reklamlarını Google Mobile Ads SDK'yı kullanarak Google AdMob üzerinden yalnızca Kayıtlar ve Koleksiyon ekranlarında gösterir, düello sırasında asla göstermez. Her reklam isteğinde Google'dan reşit olmayan kullanıcılara yönelik uygulamasını kullanması istenir ve reklamlar G derecelendirmeli içerikle sınırlanır. Google'ın bu SDK için yayımladığı veri açıklamasına göre SDK, cihazının reklam kimliği dahil yukarıda listelenen türlerdeki verileri toplar ve bunları Google ile şu amaçlarla paylaşır: reklam sunma ile reklam veya pazarlama; reklamları ölçme ile analiz; dolandırıcılığı önleme, güvenlik ve uyumluluk. Google Play'de beyan edilen veri güvenliği bilgileri reklam kimliğini de bu üç amaçla listeler. Reklam kimliği için beyan edilen analiz amacı Google Mobile Ads SDK'dan gelir; Google Analytics for Firebase reklam kimliğini toplamaz. Reklamlar için kullanılan veriler uygulamadaki reklamlar için gereklidir ve uygulama içinden kapatılamaz.",
         "Uygulama açıldığında, bulunduğun yerde reklamlarla ilgili bir gizlilik tercihi gerekip gerekmediğini Google'ın onay hizmetine sorar. Gerekiyorsa, örneğin Avrupa Ekonomik Alanı, Birleşik Krallık veya İsviçre'de, onay formu Kayıtlar'ı veya Koleksiyon'u ilk açtığında görünür; düello sırasında asla görünmez. Google'ın gerektirdiği yerlerde Ayarlar → Gizlilik tercihleri ile yanıtını istediğin zaman değiştirebilirsin. Kişiselleştirilmiş reklamları reddetmek ya da verilerinin satılmamasını veya paylaşılmamasını seçmek reklamları kaldırmaz; o durumda gördüğün reklamlar kişiselleştirilmez. Uygulama onay hizmetine ulaşamazsa, ulaşana kadar reklam göstermez.",
@@ -367,18 +368,19 @@ test.describe("RPS Duel privacy policy — 1.0.6 preparation", () => {
         "1.0.6 sürümünde: Google'ın onay yazılımının kaydettiği reklam gizlilik tercihlerin",
         "— dil, zorluk ve ses ayarların, toplam istatistiklerin, günlük meydan okuma ilerlemen, başarım bayrakların, toplanan anların, kullanım istatistikleri tercihin ve reklam gizlilik tercihlerin — korunur.",
         "1.0.6 sürümünde Ayarlar → Kullanım istatistikleri'ni kapatmak cihazında saklanan analiz verilerini siler; daha önce gönderilmiş istatistikleri silmez.",
-        "1.0.6 sürümünde uygulama yaşını sormaz. Bazı oyuncular genç olabileceği için her reklam isteğinde Google'dan reşit olmayan kullanıcılara yönelik uygulamasını kullanması istenir ve reklamlar G derecelendirmeli içerikle sınırlanır. Kullanım istatistikleri ve reklam gizliliğiyle ilgili tercihleri uygulamada oyuncu yapar.",
-        "Politika, reklam ve kullanım istatistikleri ekleyen 1.0.5 sürümü için ve ardından kullanım istatistiklerinden önce izin isteyen, reklam gizlilik tercihleri ekleyen ve Koleksiyon ekranında ikinci bir banner gösteren 1.0.6 sürümü için güncellenmiştir.",
+        "1.0.6 ve sonraki sürümlerde uygulama yaşını sormaz. Bazı oyuncular genç olabileceği için her reklam isteğinde Google'dan reşit olmayan kullanıcılara yönelik uygulamasını kullanması istenir ve reklamlar G derecelendirmeli içerikle sınırlanır. Kullanım istatistikleri ve reklam gizliliğiyle ilgili tercihleri uygulamada oyuncu yapar.",
+        "RPS Duel'in ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politika, reklam ve kullanım istatistikleri ekleyen 1.0.5 sürümü için; kullanım istatistiklerinden önce izin isteyen, reklam gizlilik tercihleri ekleyen ve Koleksiyon ekranında ikinci bir banner gösteren 1.0.6 sürümü için; ve kullanım istatistiklerini Avrupa Ekonomik Alanı, Birleşik Krallık, İsviçre ve Türkiye dışında tek seferlik bir bildirimden sonra açan, cihazında saklanan maçlar ve seviyeler ekleyen ve maçlar arasında tam ekran bir reklam gösteren 1.1.0 sürümü için güncellenmiştir.",
       ],
       retention: "Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı",
       failClosed: "Uygulama onay hizmetine ulaşamazsa, ulaşana kadar reklam göstermez.",
+      laterAge: "1.0.6 ve sonraki sürümlerde uygulama yaşını sormaz.",
     },
     {
       prefix: "/es",
-      titles: ["Datos recopilados y compartidos (versión 1.0.6)", "Cómo se tratan estos datos (versión 1.0.6)", "Tus opciones de privacidad publicitaria (versión 1.0.6)", "Estadísticas de uso (versión 1.0.6)", "La versión 1.0.5 y la actualización", "Niños y adolescentes"],
+      titles: ["Datos recopilados y compartidos (versión 1.0.6)", "Cómo se tratan estos datos (versión 1.0.6)", "Tus opciones de privacidad publicitaria (versión 1.0.6)", "Estadísticas de uso (versión 1.0.6)", "Versiones anteriores y actualización", "Niños y adolescentes"],
       usageTitle: "Estadísticas de uso (versión 1.0.6)",
       texts: [
-        "La versión 1.0.6 muestra anuncios. Según la información de seguridad de los datos declarada en Google Play, la aplicación recopila algunos datos de tu dispositivo y los comparte con terceros con fines de publicidad o marketing, de análisis y de prevención del fraude, seguridad y cumplimiento, como se describe a continuación. En la versión 1.0.6 las estadísticas de uso son opcionales: la aplicación solo las envía a Google Analytics for Firebase si lo permites. La versión 1.0.5 las enviaba automáticamente, sin preguntar; consulta “La versión 1.0.5 y la actualización”.",
+        "La versión 1.0.6 muestra anuncios. Según la información de seguridad de los datos declarada en Google Play, la aplicación recopila algunos datos de tu dispositivo y los comparte con terceros con fines de publicidad o marketing, de análisis y de prevención del fraude, seguridad y cumplimiento, como se describe a continuación. En la versión 1.0.6 las estadísticas de uso son opcionales: la aplicación solo las envía a Google Analytics for Firebase si lo permites. La versión 1.0.5 las enviaba automáticamente, sin preguntar; consulta “Versiones anteriores y actualización”.",
         "Los terceros que reciben estos datos los tratan conforme a sus propias políticas de privacidad. La versión 1.0.6 usa Google AdMob para los anuncios, la Plataforma de Mensajes para Usuarios de Google para pedir y guardar tus opciones de privacidad publicitaria y, solo si lo permites, Google Analytics for Firebase para las estadísticas de uso. RPS Duel no te pide tu nombre, tu correo electrónico ni tu número de teléfono.",
         "La versión 1.0.6 muestra anuncios de banner a través de Google AdMob, mediante el SDK de Google Mobile Ads, solo en las pantallas Registros y Colección, nunca durante un duelo. Cada solicitud de anuncio pide a Google que aplique su tratamiento para usuarios menores de edad y limita los anuncios a contenido con clasificación G. Según la información sobre datos que Google publica para este SDK, el SDK recopila datos de los tipos indicados arriba, incluido el identificador de publicidad de tu dispositivo, y los comparte con Google para estos fines: mostrar anuncios y publicidad o marketing; medir los anuncios y análisis; y prevención del fraude, seguridad y cumplimiento. La información de seguridad de los datos declarada en Google Play también incluye tu identificador de publicidad con estas tres finalidades. La finalidad de análisis declarada para tu identificador de publicidad procede del SDK de Google Mobile Ads; Google Analytics for Firebase no lo recopila. Los datos usados para los anuncios son necesarios para los anuncios de la aplicación y no se pueden desactivar en ella.",
         "Al iniciarse, la aplicación consulta al servicio de consentimiento de Google si se necesita una elección de privacidad sobre anuncios donde estás. Si es así, por ejemplo en el Espacio Económico Europeo, el Reino Unido o Suiza, aparece un formulario de consentimiento la primera vez que abres Registros o Colección, nunca durante un duelo. Donde Google lo exija, Ajustes → Opciones de privacidad te permite cambiar tu respuesta en cualquier momento. Rechazar los anuncios personalizados, o elegir que no se vendan ni compartan tus datos, no elimina los anuncios; los anuncios que veas no estarán personalizados. Si la aplicación no puede contactar con el servicio de consentimiento, no muestra anuncios hasta que pueda.",
@@ -389,11 +391,12 @@ test.describe("RPS Duel privacy policy — 1.0.6 preparation", () => {
         "En la versión 1.0.6: tus opciones de privacidad publicitaria, guardadas por el software de consentimiento de Google",
         "—tus ajustes de idioma, dificultad y sonido, los totales acumulados, el progreso del desafío diario, los indicadores de logros, los momentos coleccionados, tu elección sobre las estadísticas de uso y tus opciones de privacidad publicitaria— se conservan.",
         "En la versión 1.0.6, desactivar Ajustes → Estadísticas de uso borra los datos de análisis guardados en tu dispositivo; no borra las estadísticas ya enviadas.",
-        "En la versión 1.0.6, la aplicación no pregunta tu edad. Como algunos jugadores pueden ser adolescentes, cada solicitud de anuncio pide a Google que aplique su tratamiento para usuarios menores de edad, y los anuncios se limitan a contenido con clasificación G. Las decisiones sobre las estadísticas de uso y la privacidad publicitaria las toma el jugador en la aplicación.",
-        "La política se actualizó para la versión 1.0.5, que añadió anuncios y estadísticas de uso, y de nuevo para la versión 1.0.6, que pregunta antes de recopilar estadísticas de uso, añade opciones de privacidad publicitaria y muestra un segundo banner en la pantalla Colección.",
+        "En la versión 1.0.6 y posteriores, la aplicación no pregunta tu edad. Como algunos jugadores pueden ser adolescentes, cada solicitud de anuncio pide a Google que aplique su tratamiento para usuarios menores de edad, y los anuncios se limitan a contenido con clasificación G. Las decisiones sobre las estadísticas de uso y la privacidad publicitaria las toma el jugador en la aplicación.",
+        "Si una versión futura de RPS Duel cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación. La política se actualizó para la versión 1.0.5, que añadió anuncios y estadísticas de uso; para la versión 1.0.6, que pregunta antes de recopilar estadísticas de uso, añade opciones de privacidad publicitaria y muestra un segundo banner en la pantalla Colección; y para la versión 1.1.0, que activa las estadísticas de uso tras un aviso único fuera del Espacio Económico Europeo, el Reino Unido, Suiza y Turquía, añade partidos y niveles guardados en tu dispositivo y muestra un anuncio a pantalla completa entre partidos.",
       ],
       retention: "Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses",
       failClosed: "Si la aplicación no puede contactar con el servicio de consentimiento, no muestra anuncios hasta que pueda.",
+      laterAge: "En la versión 1.0.6 y posteriores, la aplicación no pregunta tu edad.",
     },
   ];
 
@@ -410,11 +413,188 @@ test.describe("RPS Duel privacy policy — 1.0.6 preparation", () => {
       const usage = main.locator("section").filter({ has: page.getByRole("heading", { name: l.usageTitle, exact: true }) });
       await expect(usage).toContainText(l.retention);
       const text = (await main.textContent()) ?? "";
-      // 1.0.6 is described by version only, never as released or open-ended.
-      expect(text).not.toMatch(/1\.0\.6 (and later|ve sonraki|y posteriores)|1\.0\.7|now available|available now|update now|ya disponible|disponible ahora|actualiza ahora|artık (mevcut|kullanılabilir)|şimdi (mevcut|kullanılabilir)|bulunan 1\.0\.6|1\.0\.6, (available|disponible)/i);
-      // Only the fail-closed sentence may say that no ads are shown.
-      expect(text.replace(l.failClosed, "")).not.toMatch(/does not show ads|reklam göstermez|no muestra anuncios/);
+      // 1.0.6 is described by version only, never as released or open-ended;
+      // only the age sentence (R-REL-12 E9) spans 1.0.6 and later versions.
+      expect(text.replaceAll(l.laterAge, "")).not.toMatch(/1\.0\.6 (and later|ve sonraki|y posteriores)|1\.0\.7|now available|available now|update now|ya disponible|disponible ahora|actualiza ahora|artık (mevcut|kullanılabilir)|şimdi (mevcut|kullanılabilir)|bulunan 1\.0\.6|1\.0\.6, (available|disponible)/i);
+      // Only the fail-closed sentence (1.0.6 and 1.1.0) may say that no ads are shown.
+      expect(text.replaceAll(l.failClosed, "")).not.toMatch(/does not show ads|reklam göstermez|no muestra anuncios/);
       expect(text).not.toMatch(/legal bas[ie]s|hukuki (sebep|dayanak)|base jurídica|international transfer|uluslararası aktarım|transferencia internacional/i);
+    });
+  }
+});
+
+// RPS Duel 1.1.0 (R-REL-12, RPS 80ddb88): sections labelled "version 1.1.0
+// and later" next to the 1.0.5 and 1.0.6 text. Usage statistics follow the
+// documented region rule only (EEA, UK, Switzerland, Türkiye: opt-in;
+// elsewhere: on after a one-time notice; unknown region: off). The match-end
+// full-screen ad, and matches, level and XP on the device, are 1.1.0 only.
+test.describe("RPS Duel privacy policy — 1.1.0 and later", () => {
+  const locales = [
+    {
+      "prefix": "",
+      "titles": [
+        "Data collected and shared (version 1.1.0 and later)",
+        "How this data is handled (version 1.1.0 and later)",
+        "Your ad privacy choices (version 1.1.0 and later)",
+        "Usage statistics (version 1.1.0 and later)",
+        "Earlier versions and updating"
+      ],
+      "usageTitle": "Usage statistics (version 1.1.0 and later)",
+      "summary": "Version 1.1.0 and later show ads: banners on the Records and Collection screens and, between matches, a full-screen ad. According to the data safety information declared on Google Play, the app collects some data from your device and shares it with third parties for advertising or marketing, for analytics, and for fraud prevention, security and compliance, as described below. Whether the app sends usage statistics to Google Analytics for Firebase depends on where you are: in the European Economic Area, the United Kingdom, Switzerland and Türkiye only if you allow it; elsewhere after a one-time notice, until you turn them off; and not at all when the app cannot tell where you are. See “Usage statistics (version 1.1.0 and later)” and “Earlier versions and updating”.",
+      "dataIntro": "The data safety information declared for RPS Duel 1.1.0 on Google Play lists the following data types. Each one is collected and shared with third parties, and the declared purposes of both the collection and the sharing are advertising or marketing; analytics; and fraud prevention, security and compliance:",
+      "handled": [
+        "The third parties that receive this data handle it under their own privacy policies. The app uses Google AdMob for its ads, Google's User Messaging Platform to ask for and store your ad privacy choices, and, when usage statistics are on, Google Analytics for Firebase. RPS Duel does not ask for your name, email address or phone number.",
+        "The app shows its ads through Google AdMob, using the Google Mobile Ads SDK: banners on the Records and Collection screens, and a full-screen ad between matches. Neither appears during a duel. Every ad request asks Google to apply its treatment for users under the age of majority and limits ads to content rated G. According to Google's data disclosure for this SDK, it collects data of the types listed above, including your device's advertising ID, and shares it with Google for these purposes: delivering ads and advertising or marketing; measuring ads and analytics; and fraud prevention, security and compliance. The data safety information declared on Google Play also lists your advertising ID with these three purposes. The analytics purpose declared for your advertising ID comes from the Google Mobile Ads SDK; Google Analytics for Firebase does not collect it. The data used for ads is needed for the app's ads and cannot be switched off in the app.",
+        "The full-screen ad can appear only when you leave a match's result card for the next match. It is never shown during a match, after the first match after the app starts, more often than once every two completed matches, or within two minutes of the previous one, and it is not requested while Google's consent form is still waiting for your answer. If no ad is ready, the next match starts at once."
+      ],
+      "usageFirst": "The app includes Google Analytics for Firebase. When usage statistics are on, the app records when you start your first game, complete a round, start or complete a daily challenge, change the CPU difficulty, or open Records or Collection, and whether an ad (a banner or the full-screen ad) was requested, loaded, shown or closed, with any error code, together with your interface language and selected difficulty. Google Analytics also collects some information automatically, such as information about your device and the app, an approximate location derived from your IP address and a random app-instance identifier. This information is sent to Google and used to understand how the game is played. The game works the same whether usage statistics are on or off.",
+      "regionBullets": [
+        "In the European Economic Area, the United Kingdom, Switzerland and Türkiye, usage statistics are off unless you allow them. Before your first move, or between rounds if the app learns where you are later, the app asks once whether you want to help improve RPS Duel; “Allow” and “Don't allow” are equally prominent.",
+        "Elsewhere, the app shows a one-time notice before your first move, or between rounds, explaining what is collected. Usage statistics start only after that notice, unless you choose “Turn off” there.",
+        "If the app cannot tell where you are, for example when it is offline or Google's consent service does not answer, usage statistics stay off and the app tries again later.",
+        "Wherever you are, you can turn usage statistics on or off at any time in Settings → Usage statistics, and an answer you have given is kept."
+      ],
+      "usageAfter": [
+        "To decide whether you are in the European Economic Area, the United Kingdom or Switzerland, the app uses the answer of Google's consent service (the same one used for your ad privacy choices). To decide whether you are in Türkiye, it uses your SIM card's country or, without a SIM card, whether your device or app language or region is Turkish. The app does not store this information or send it anywhere, and checks it again each time it starts. These signals can be wrong, for example when you travel or use a VPN; then the rule for the region the app detects applies, and Settings still lets you change your choice.",
+        "The Firebase software in the app also creates a random Firebase installation identifier. It is separate from the app-instance identifier and from your advertising ID, and Google Analytics sends it to Google together with the usage statistics.",
+        "Google Analytics is set not to collect your advertising ID, and its advertising features are turned off, so these usage statistics are not used for ads. Your usage-statistics choice and your ad privacy choices are separate: neither changes the other. If you turn usage statistics off, the app stops sending them and deletes the analytics data stored on your device, including the app-instance identifier.",
+        "Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months; the user-level period starts again whenever there is new activity from the same app instance. These periods are Google Analytics settings only: they do not apply to aggregated reports, to data processed for Google AdMob ads, to the data stored on your device, or to other parts of the Firebase software. Google applies these settings under its own processes, and information may not be removed as soon as a period ends."
+      ],
+      "earlier": "Version 1.0.6 asked everyone before collecting usage statistics. When you update to 1.1.0 from 1.0.6, an answer you gave there is kept; if you did not answer, the rules in “Usage statistics (version 1.1.0 and later)” apply. When you update from 1.0.5, the analytics data that 1.0.5 stored on your device is deleted first, and the same rules then apply.",
+      "local": [
+        "From version 1.1.0: whether the one-time usage-statistics notice has been shown",
+        "From version 1.1.0: your level and experience points (XP)",
+        "From version 1.1.0: the match in progress and your chosen match format (best of 3 or best of 5)"
+      ],
+      "clear": "From version 1.1.0, Reset data also clears the match in progress. Your match-format setting, your level and XP and whether the usage-statistics notice has been shown are kept, like the other items above.",
+      "changes": "If a future version of RPS Duel changes the data the app stores or processes, this page will be updated and the date at the top of the page will reflect the change. Material changes will also be noted in the app's release notes. The policy was updated for version 1.0.5, which added ads and usage statistics, and again for version 1.0.6, which asks before collecting usage statistics, adds ad privacy choices and shows a second banner on the Collection screen, and for version 1.1.0, which turns usage statistics on after a one-time notice outside the European Economic Area, the United Kingdom, Switzerland and Türkiye, adds matches and levels kept on your device, and shows a full-screen ad between matches.",
+      "kids": "In version 1.0.6 and later, the app does not ask for your age. Because some players may be teenagers, every ad request asks Google to apply its treatment for users under the age of majority, and ads are limited to content rated G. Choices about usage statistics and ad privacy are made by the player in the app.",
+      "gaNoAdId": "Google Analytics is set not to collect your advertising ID",
+      "regions": "in the European Economic Area, the United Kingdom, Switzerland and Türkiye only if you allow it",
+      "canonical": "https://uselunexa.com/privacy/rps-duel"
+    },
+    {
+      "prefix": "/tr",
+      "titles": [
+        "Toplanan ve paylaşılan veriler (1.1.0 ve sonraki sürümler)",
+        "Bu verilerin nasıl işlendiği (1.1.0 ve sonraki sürümler)",
+        "Reklam gizlilik tercihlerin (1.1.0 ve sonraki sürümler)",
+        "Kullanım istatistikleri (1.1.0 ve sonraki sürümler)",
+        "Önceki sürümler ve güncelleme"
+      ],
+      "usageTitle": "Kullanım istatistikleri (1.1.0 ve sonraki sürümler)",
+      "summary": "1.1.0 ve sonraki sürümler reklam gösterir: Kayıtlar ve Koleksiyon ekranlarında banner ve maçlar arasında tam ekran bir reklam. Google Play'de beyan edilen veri güvenliği bilgilerine göre uygulama, aşağıda açıklandığı gibi cihazından bazı verileri toplar ve bunları reklam veya pazarlama, analiz ve dolandırıcılığı önleme, güvenlik ve uyumluluk amacıyla üçüncü taraflarla paylaşır. Uygulamanın kullanım istatistiklerini Google Analytics for Firebase'e gönderip göndermediği bulunduğun yere bağlıdır: Avrupa Ekonomik Alanı, Birleşik Krallık, İsviçre ve Türkiye'de yalnızca izin verirsen; diğer yerlerde tek seferlik bir bildirimden sonra, sen kapatana kadar; uygulama nerede olduğunu anlayamazsa hiç göndermez. “Kullanım istatistikleri (1.1.0 ve sonraki sürümler)” ve “Önceki sürümler ve güncelleme” bölümlerine bak.",
+      "dataIntro": "RPS Duel 1.1.0 için Google Play'de beyan edilen veri güvenliği bilgileri aşağıdaki veri türlerini listeler. Her biri toplanır ve üçüncü taraflarla paylaşılır; hem toplamanın hem de paylaşmanın beyan edilen amaçları reklam veya pazarlama; analiz; dolandırıcılığı önleme, güvenlik ve uyumluluktur:",
+      "handled": [
+        "Bu verileri alan üçüncü taraflar, verileri kendi gizlilik politikalarına göre işler. Uygulama reklamlar için Google AdMob'u, reklam gizlilik tercihlerini sormak ve saklamak için Google'ın Kullanıcı Mesajlaşma Platformu'nu ve kullanım istatistikleri açıkken Google Analytics for Firebase'i kullanır. RPS Duel adını, e-posta adresini veya telefon numaranı istemez.",
+        "Uygulama reklamlarını Google Mobile Ads SDK'yı kullanarak Google AdMob üzerinden gösterir: Kayıtlar ve Koleksiyon ekranlarında banner ve maçlar arasında tam ekran bir reklam. İkisi de düello sırasında asla görünmez. Her reklam isteğinde Google'dan reşit olmayan kullanıcılara yönelik uygulamasını kullanması istenir ve reklamlar G derecelendirmeli içerikle sınırlanır. Google'ın bu SDK için yayımladığı veri açıklamasına göre SDK, cihazının reklam kimliği dahil yukarıda listelenen türlerdeki verileri toplar ve bunları Google ile şu amaçlarla paylaşır: reklam sunma ile reklam veya pazarlama; reklamları ölçme ile analiz; dolandırıcılığı önleme, güvenlik ve uyumluluk. Google Play'de beyan edilen veri güvenliği bilgileri reklam kimliğini de bu üç amaçla listeler. Reklam kimliği için beyan edilen analiz amacı Google Mobile Ads SDK'dan gelir; Google Analytics for Firebase reklam kimliğini toplamaz. Reklamlar için kullanılan veriler uygulamadaki reklamlar için gereklidir ve uygulama içinden kapatılamaz.",
+        "Tam ekran reklam yalnızca bir maçın sonuç kartından bir sonraki maça geçerken görünebilir. Maç sırasında, uygulama açıldıktan sonraki ilk maçın ardından, her iki tamamlanan maçta birden sık veya bir öncekinden sonraki iki dakika içinde asla gösterilmez ve Google'ın onay formu yanıtını beklerken istenmez. Hazır bir reklam yoksa sonraki maç hemen başlar."
+      ],
+      "usageFirst": "Uygulama Google Analytics for Firebase'i içerir. Kullanım istatistikleri açıkken uygulama; ilk oyununu başlattığında, bir eli tamamladığında, bir günlük meydan okumayı başlattığında veya tamamladığında, CPU zorluğunu değiştirdiğinde ya da Kayıtlar veya Koleksiyon'u açtığında ve bir reklamın (banner veya tam ekran reklam) istenip istenmediğini, yüklenip yüklenmediğini, gösterilip gösterilmediğini veya kapatılıp kapatılmadığını, varsa hata koduyla birlikte, arayüz dilin ve seçili zorlukla kaydeder. Google Analytics ayrıca bazı bilgileri otomatik olarak toplar; örneğin cihazın ve uygulama hakkındaki bilgiler, IP adresinden tahmin edilen yaklaşık konum ve rastgele bir uygulama örneği kimliği. Bu bilgiler Google'a gönderilir ve oyunun nasıl oynandığını anlamak için kullanılır. Oyun, kullanım istatistikleri açık da olsa kapalı da olsa aynı çalışır.",
+      "regionBullets": [
+        "Avrupa Ekonomik Alanı, Birleşik Krallık, İsviçre ve Türkiye'de kullanım istatistikleri sen izin vermedikçe kapalıdır. İlk hamlenden önce, ya da uygulama nerede olduğunu daha sonra öğrenirse eller arasında, uygulama RPS Duel'i geliştirmeye yardım etmek isteyip istemediğini bir kez sorar; “İzin ver” ve “İzin verme” eşit ağırlıktadır.",
+        "Diğer yerlerde uygulama, ilk hamlenden önce ya da eller arasında, neyin toplandığını açıklayan tek seferlik bir bildirim gösterir. Kullanım istatistikleri yalnızca bu bildirimden sonra başlar; bildirimde “Kapat”ı seçersen başlamaz.",
+        "Uygulama nerede olduğunu anlayamazsa, örneğin çevrimdışıyken veya Google'ın onay hizmeti yanıt vermezse, kullanım istatistikleri kapalı kalır ve uygulama daha sonra yeniden dener.",
+        "Nerede olursan ol, kullanım istatistiklerini istediğin zaman Ayarlar → Kullanım istatistikleri'nden açıp kapatabilirsin; verdiğin yanıt korunur."
+      ],
+      "usageAfter": [
+        "Avrupa Ekonomik Alanı, Birleşik Krallık veya İsviçre'de olup olmadığına karar vermek için uygulama, Google'ın onay hizmetinin (reklam gizlilik tercihlerinde kullanılan hizmet) yanıtını kullanır. Türkiye'de olup olmadığına karar vermek için SIM kartının ülkesini, SIM kart yoksa cihazının ya da uygulamanın dilinin veya bölgesinin Türkçe/Türkiye olup olmadığını kullanır. Uygulama bu bilgiyi saklamaz, hiçbir yere göndermez ve her açılışta yeniden kontrol eder. Bu işaretler yanılabilir, örneğin seyahatte veya VPN kullanırken; o durumda uygulamanın algıladığı bölgenin kuralı uygulanır ve tercihini yine Ayarlar'dan değiştirebilirsin.",
+        "Uygulamadaki Firebase yazılımı ayrıca rastgele bir Firebase kurulum kimliği oluşturur. Bu kimlik, uygulama örneği kimliğinden ve reklam kimliğinden ayrıdır; Google Analytics bunu kullanım istatistikleriyle birlikte Google'a gönderir.",
+        "Google Analytics, reklam kimliğini toplamayacak şekilde ayarlanmıştır ve reklamla ilgili özellikleri kapalıdır; bu nedenle bu kullanım istatistikleri reklamlar için kullanılmaz. Kullanım istatistikleri tercihin ile reklam gizlilik tercihlerin birbirinden ayrıdır; biri diğerini değiştirmez. Kullanım istatistiklerini kapatırsan uygulama bunları göndermeyi bırakır ve uygulama örneği kimliği dahil cihazında saklanan analiz verilerini siler.",
+        "Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı; aynı uygulama örneğinden yeni bir etkinlik geldiğinde kullanıcı düzeyindeki süre yeniden başlar. Bu süreler yalnızca Google Analytics ayarlarıdır: toplu raporlar, Google AdMob reklamları için işlenen veriler, cihazında saklanan veriler veya Firebase yazılımının diğer bileşenleri için geçerli değildir. Google bu ayarları kendi süreçlerine göre uygular; bilgiler bir süre dolar dolmaz kaldırılmayabilir."
+      ],
+      "earlier": "1.0.6 sürümü kullanım istatistiklerini toplamadan önce herkese soruyordu. 1.0.6'dan 1.1.0'a güncellediğinde orada verdiğin yanıt korunur; yanıt vermediysen “Kullanım istatistikleri (1.1.0 ve sonraki sürümler)” bölümündeki kurallar uygulanır. 1.0.5'ten güncellediğinde, önce 1.0.5'in cihazında sakladığı analiz verileri silinir, ardından aynı kurallar uygulanır.",
+      "local": [
+        "1.1.0 sürümünden itibaren: tek seferlik kullanım istatistikleri bildiriminin gösterilip gösterilmediği",
+        "1.1.0 sürümünden itibaren: seviyen ve deneyim puanların (XP)",
+        "1.1.0 sürümünden itibaren: devam eden maç ve seçtiğin maç biçimi (3'te 2 veya 5'te 3)"
+      ],
+      "clear": "1.1.0 sürümünden itibaren Verileri sıfırla, devam eden maçı da siler. Maç biçimi ayarın, seviyen ve XP'n ve kullanım istatistikleri bildiriminin gösterilip gösterilmediği, yukarıdaki diğer veriler gibi korunur.",
+      "changes": "RPS Duel'in ileride bir sürümü, uygulamanın sakladığı veya işlediği verileri değiştirirse bu sayfa güncellenecek ve sayfanın üst kısmındaki tarih değişikliği yansıtacaktır. Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politika, reklam ve kullanım istatistikleri ekleyen 1.0.5 sürümü için; kullanım istatistiklerinden önce izin isteyen, reklam gizlilik tercihleri ekleyen ve Koleksiyon ekranında ikinci bir banner gösteren 1.0.6 sürümü için; ve kullanım istatistiklerini Avrupa Ekonomik Alanı, Birleşik Krallık, İsviçre ve Türkiye dışında tek seferlik bir bildirimden sonra açan, cihazında saklanan maçlar ve seviyeler ekleyen ve maçlar arasında tam ekran bir reklam gösteren 1.1.0 sürümü için güncellenmiştir.",
+      "kids": "1.0.6 ve sonraki sürümlerde uygulama yaşını sormaz. Bazı oyuncular genç olabileceği için her reklam isteğinde Google'dan reşit olmayan kullanıcılara yönelik uygulamasını kullanması istenir ve reklamlar G derecelendirmeli içerikle sınırlanır. Kullanım istatistikleri ve reklam gizliliğiyle ilgili tercihleri uygulamada oyuncu yapar.",
+      "gaNoAdId": "Google Analytics, reklam kimliğini toplamayacak şekilde ayarlanmıştır",
+      "regions": "Avrupa Ekonomik Alanı, Birleşik Krallık, İsviçre ve Türkiye'de yalnızca izin verirsen",
+      "canonical": "https://uselunexa.com/tr/privacy/rps-duel"
+    },
+    {
+      "prefix": "/es",
+      "titles": [
+        "Datos recopilados y compartidos (versión 1.1.0 y posteriores)",
+        "Cómo se tratan estos datos (versión 1.1.0 y posteriores)",
+        "Tus opciones de privacidad publicitaria (versión 1.1.0 y posteriores)",
+        "Estadísticas de uso (versión 1.1.0 y posteriores)",
+        "Versiones anteriores y actualización"
+      ],
+      "usageTitle": "Estadísticas de uso (versión 1.1.0 y posteriores)",
+      "summary": "La versión 1.1.0 y las posteriores muestran anuncios: banners en las pantallas Registros y Colección y, entre partidos, un anuncio a pantalla completa. Según la información de seguridad de los datos declarada en Google Play, la aplicación recopila algunos datos de tu dispositivo y los comparte con terceros con fines de publicidad o marketing, de análisis y de prevención del fraude, seguridad y cumplimiento, como se describe a continuación. Que la aplicación envíe estadísticas de uso a Google Analytics for Firebase depende de dónde estés: en el Espacio Económico Europeo, el Reino Unido, Suiza y Turquía, solo si lo permites; en el resto de lugares, tras un aviso único, hasta que las desactives; y nunca si la aplicación no puede saber dónde estás. Consulta “Estadísticas de uso (versión 1.1.0 y posteriores)” y “Versiones anteriores y actualización”.",
+      "dataIntro": "La información de seguridad de los datos declarada en Google Play para RPS Duel 1.1.0 incluye los siguientes tipos de datos. Cada uno se recopila y se comparte con terceros, y las finalidades declaradas tanto de la recopilación como del intercambio son publicidad o marketing; análisis; y prevención del fraude, seguridad y cumplimiento:",
+      "handled": [
+        "Los terceros que reciben estos datos los tratan conforme a sus propias políticas de privacidad. La aplicación usa Google AdMob para los anuncios, la Plataforma de Mensajes para Usuarios de Google para pedir y guardar tus opciones de privacidad publicitaria y, cuando las estadísticas de uso están activadas, Google Analytics for Firebase. RPS Duel no te pide tu nombre, tu correo electrónico ni tu número de teléfono.",
+        "La aplicación muestra sus anuncios a través de Google AdMob, mediante el SDK de Google Mobile Ads: banners en las pantallas Registros y Colección, y un anuncio a pantalla completa entre partidos. Ninguno aparece durante un duelo. Cada solicitud de anuncio pide a Google que aplique su tratamiento para usuarios menores de edad y limita los anuncios a contenido con clasificación G. Según la información sobre datos que Google publica para este SDK, el SDK recopila datos de los tipos indicados arriba, incluido el identificador de publicidad de tu dispositivo, y los comparte con Google para estos fines: mostrar anuncios y publicidad o marketing; medir los anuncios y análisis; y prevención del fraude, seguridad y cumplimiento. La información de seguridad de los datos declarada en Google Play también incluye tu identificador de publicidad con estas tres finalidades. La finalidad de análisis declarada para tu identificador de publicidad procede del SDK de Google Mobile Ads; Google Analytics for Firebase no lo recopila. Los datos usados para los anuncios son necesarios para los anuncios de la aplicación y no se pueden desactivar en ella.",
+        "El anuncio a pantalla completa solo puede aparecer cuando dejas la tarjeta de resultado de un partido para empezar el siguiente. Nunca se muestra durante un partido, tras el primer partido después de abrir la aplicación, más de una vez cada dos partidos completados ni en los dos minutos siguientes al anterior, y no se solicita mientras el formulario de consentimiento de Google espera tu respuesta. Si no hay ningún anuncio listo, el siguiente partido empieza enseguida."
+      ],
+      "usageFirst": "La aplicación incluye Google Analytics for Firebase. Cuando las estadísticas de uso están activadas, la aplicación registra cuándo empiezas tu primera partida, completas una ronda, empiezas o completas un desafío diario, cambias la dificultad de la CPU o abres Registros o Colección, y si un anuncio (un banner o el anuncio a pantalla completa) se solicitó, cargó, mostró o cerró, con su código de error si lo hay, junto con el idioma de la interfaz y la dificultad seleccionada. Google Analytics también recopila cierta información automáticamente, como información sobre tu dispositivo y la aplicación, una ubicación aproximada derivada de tu dirección IP y un identificador aleatorio de instancia de la aplicación. Esta información se envía a Google y se usa para entender cómo se juega. El juego funciona igual con las estadísticas de uso activadas o desactivadas.",
+      "regionBullets": [
+        "En el Espacio Económico Europeo, el Reino Unido, Suiza y Turquía, las estadísticas de uso están desactivadas salvo que las permitas. Antes de tu primer movimiento, o entre rondas si la aplicación sabe más tarde dónde estás, la aplicación te pregunta una vez si quieres ayudar a mejorar RPS Duel; “Permitir” y “No permitir” tienen el mismo peso.",
+        "En el resto de lugares, la aplicación muestra un aviso único antes de tu primer movimiento, o entre rondas, que explica qué se recopila. Las estadísticas de uso solo empiezan después de ese aviso, salvo que elijas “Desactivar” en él.",
+        "Si la aplicación no puede saber dónde estás, por ejemplo sin conexión o si el servicio de consentimiento de Google no responde, las estadísticas de uso siguen desactivadas y la aplicación lo vuelve a intentar más tarde.",
+        "Estés donde estés, puedes activar o desactivar las estadísticas de uso en cualquier momento en Ajustes → Estadísticas de uso, y se conserva la respuesta que hayas dado."
+      ],
+      "usageAfter": [
+        "Para saber si estás en el Espacio Económico Europeo, el Reino Unido o Suiza, la aplicación usa la respuesta del servicio de consentimiento de Google (el mismo de tus opciones de privacidad publicitaria). Para saber si estás en Turquía, usa el país de tu tarjeta SIM o, sin tarjeta SIM, si el idioma o la región de tu dispositivo o de la aplicación es turco o Turquía. La aplicación no guarda esta información ni la envía a ningún sitio, y la vuelve a comprobar cada vez que se inicia. Estas señales pueden fallar, por ejemplo cuando viajas o usas una VPN; entonces se aplica la regla de la región que detecte la aplicación, y en Ajustes puedes seguir cambiando tu elección.",
+        "El software Firebase de la aplicación también crea un identificador aleatorio de instalación de Firebase. Es distinto del identificador de instancia de la aplicación y de tu identificador de publicidad, y Google Analytics lo envía a Google junto con las estadísticas de uso.",
+        "Google Analytics está configurado para no recopilar tu identificador de publicidad y sus funciones publicitarias están desactivadas, por lo que estas estadísticas de uso no se usan para anuncios. Tu elección sobre las estadísticas de uso y tus opciones de privacidad publicitaria son independientes: ninguna cambia la otra. Si desactivas las estadísticas de uso, la aplicación deja de enviarlas y borra los datos de análisis guardados en tu dispositivo, incluido el identificador de instancia de la aplicación.",
+        "Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses; el plazo de los datos a nivel de usuario vuelve a empezar cada vez que hay nueva actividad desde la misma instancia de la aplicación. Estos plazos son solo ajustes de Google Analytics: no se aplican a los informes agregados, a los datos tratados para los anuncios de Google AdMob, a los datos guardados en tu dispositivo ni a otras partes del software Firebase. Google aplica estos ajustes según sus propios procesos, y es posible que la información no se elimine en cuanto termine un plazo."
+      ],
+      "earlier": "La versión 1.0.6 preguntaba a todos antes de recopilar estadísticas de uso. Al actualizar de la 1.0.6 a la 1.1.0, se conserva la respuesta que diste allí; si no respondiste, se aplican las reglas de “Estadísticas de uso (versión 1.1.0 y posteriores)”. Al actualizar desde la 1.0.5, primero se borran los datos de análisis que la 1.0.5 guardó en tu dispositivo y después se aplican las mismas reglas.",
+      "local": [
+        "Desde la versión 1.1.0: si ya se ha mostrado el aviso único sobre las estadísticas de uso",
+        "Desde la versión 1.1.0: tu nivel y tus puntos de experiencia (XP)",
+        "Desde la versión 1.1.0: el partido en curso y el formato de partido elegido (al mejor de 3 o al mejor de 5)"
+      ],
+      "clear": "Desde la versión 1.1.0, Restablecer datos también borra el partido en curso. Tu ajuste de formato de partido, tu nivel y tus XP y si se ha mostrado el aviso sobre las estadísticas de uso se conservan, como los demás elementos de la lista.",
+      "changes": "Si una versión futura de RPS Duel cambia los datos que la aplicación almacena o procesa, esta página se actualizará y la fecha en la parte superior reflejará el cambio. Los cambios importantes también se indicarán en las notas de versión de la aplicación. La política se actualizó para la versión 1.0.5, que añadió anuncios y estadísticas de uso; para la versión 1.0.6, que pregunta antes de recopilar estadísticas de uso, añade opciones de privacidad publicitaria y muestra un segundo banner en la pantalla Colección; y para la versión 1.1.0, que activa las estadísticas de uso tras un aviso único fuera del Espacio Económico Europeo, el Reino Unido, Suiza y Turquía, añade partidos y niveles guardados en tu dispositivo y muestra un anuncio a pantalla completa entre partidos.",
+      "kids": "En la versión 1.0.6 y posteriores, la aplicación no pregunta tu edad. Como algunos jugadores pueden ser adolescentes, cada solicitud de anuncio pide a Google que aplique su tratamiento para usuarios menores de edad, y los anuncios se limitan a contenido con clasificación G. Las decisiones sobre las estadísticas de uso y la privacidad publicitaria las toma el jugador en la aplicación.",
+      "gaNoAdId": "Google Analytics está configurado para no recopilar tu identificador de publicidad",
+      "regions": "en el Espacio Económico Europeo, el Reino Unido, Suiza y Turquía, solo si lo permites",
+      "canonical": "https://uselunexa.com/es/privacy/rps-duel"
+    }
+  ];
+
+  for (const l of locales) {
+    test(`${l.prefix || "/"}privacy/rps-duel adds the 1.1.0 region rule, full-screen ad and local match data`, async ({ page }) => {
+      await page.goto(`${l.prefix}/privacy/rps-duel`);
+      const main = page.locator("main");
+      for (const title of l.titles) {
+        await expect(main.getByRole("heading", { name: title, exact: true })).toHaveCount(1);
+      }
+      for (const t of [l.summary, l.dataIntro, ...l.handled, l.earlier, ...l.local, l.clear, l.changes, l.kids]) {
+        await expect(main).toContainText(t);
+      }
+      // Usage statistics: the opening paragraph, the region bullets, then the
+      // region signals, identifiers, ad separation and GA4 retention.
+      const usage = main.locator("section").filter({ has: page.getByRole("heading", { name: l.usageTitle, exact: true }) });
+      const paras = usage.locator("p");
+      await expect(paras).toHaveCount(1 + l.usageAfter.length);
+      await expect(paras.nth(0)).toHaveText(l.usageFirst);
+      for (const [i, t] of l.usageAfter.entries()) {
+        await expect(paras.nth(i + 1)).toHaveText(t);
+      }
+      const bullets = usage.getByRole("listitem");
+      await expect(bullets).toHaveCount(l.regionBullets.length);
+      for (const [i, t] of l.regionBullets.entries()) {
+        await expect(bullets.nth(i)).toHaveText(t);
+      }
+      await expect(usage).toContainText(l.gaNoAdId);
+      await expect(main).toContainText(l.regions);
+      const text = (await main.textContent()) ?? "";
+      // No availability claim, no 1.0.7 and no version after 1.1.0.
+      expect(text).not.toMatch(/1\.1\.0 (is|está) (now )?(available|disponible)|now available|available now|update now|ya disponible|disponible ahora|actualiza ahora|artık (mevcut|kullanılabilir)|şimdi (mevcut|kullanılabilir)|bulunan 1\.1|1\.0\.7|\b1\.(1\.[1-9]|[2-9]\.\d)/i);
+      expect(text).not.toMatch(/legal bas[ie]s|hukuki (sebep|dayanak)|base jurídica|international transfer|uluslararası aktarım|transferencia internacional|data controller|veri sorumlusu|responsable del tratamiento/i);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", l.canonical);
+      for (const lang of ["en", "tr", "es", "x-default"]) {
+        await expect(page.locator(`link[rel="alternate"][hreflang="${lang}"]`)).toHaveCount(1);
+      }
     });
   }
 });
