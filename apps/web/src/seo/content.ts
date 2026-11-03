@@ -1628,7 +1628,10 @@ export const RPS_DUEL_PRIVACY: Record<Locale, LegalDocument> = {
 // (events 2 months, users 14 months, reset on new activity), scoped to GA4
 // data; never extend it to AdMob or other Firebase data. Never claim deletion
 // routes, "we do not sell", or that withdrawal deletes data Google already
-// holds. Bump
+// holds. 1.5.0 (mobile docs/release/1.5.0-web-policy-text.md; D-MORE-ADS,
+// D-CR-RW, D-CR-SKIP14) adds one summary paragraph and one local-data item:
+// the full-screen ad and the optional rewarded help, requested like the
+// banners; no new data, SDK, permission or analytics event. Bump
 // `lastUpdated` whenever the app's data behaviour changes.
 
 export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
@@ -1645,6 +1648,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "Chess Rescue has no accounts and does not ask for your name, email address or phone number. The puzzles play without an internet connection.",
           "Versions up to 1.2.1 run entirely on your device: they do not request the internet permission, make no network connections, show no ads and include no analytics.",
           "Version 1.3.0 shows small ads from Google AdMob: on the result screen after you solve a puzzle and at the bottom of the home screen, never during a puzzle. To request and show them, Google receives some technical information from your device, as described below. Version 1.3.0 also includes Google's Firebase software for optional usage statistics (analytics), which stay off unless you allow them. Version 1.4.0 handles your information in the same way as version 1.3.0, except for when it checks your ad consent and one extra item it stores on your device, both described below.",
+          "From version 1.5.0, the app may also show a full-screen ad when you move on to the next puzzle or leave a finished episode: never during a puzzle, never in your first session, and at most once every few puzzles. After several missed attempts on the same puzzle, it may also offer an optional video ad that you choose to watch in return for help with that puzzle; you can always try again for free instead. These ads are requested in the same way as the others: not personalised, rated for all ages and with Google's protections for teenage users, and Google receives the same information described below. The app stores on your device when it last showed a full-screen ad, so that they stay spaced out.",
         ],
       },
       {
@@ -1703,6 +1707,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "The records you have unlocked and the rescues you have saved",
           "In version 1.3.0: how many days in a row you have completed a rescue, whether privacy choices are offered in your region, and your answer about usage statistics",
           "In version 1.4.0, also: whether the app has completed an ad consent check after a solved puzzle",
+          "When a full-screen ad was last shown (version 1.5.0 and later)",
         ],
       },
       {
@@ -1749,6 +1754,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "Chess Rescue'da hesap yoktur ve uygulama senden adını, e-posta adresini veya telefon numaranı istemez. Bulmacalar internet bağlantısı olmadan oynanır.",
           "1.2.1'e kadarki sürümler tamamen cihazında çalışır: internet izni istemez, ağ bağlantısı kurmaz, reklam göstermez ve analitik içermez.",
           "1.3.0 sürümü Google AdMob'dan küçük reklamlar gösterir: bir bulmacayı çözdükten sonra sonuç ekranında ve ana ekranın en altında; bulmaca sırasında asla. Bu reklamları istemek ve göstermek için Google, aşağıda açıklandığı gibi cihazından bazı teknik bilgiler alır. 1.3.0 sürümü ayrıca, sen izin vermedikçe kapalı kalan isteğe bağlı kullanım istatistikleri (analitik) için Google Firebase yazılımını içerir. 1.4.0 sürümü bilgilerini, reklam izninin ne zaman kontrol edildiği ve cihazında sakladığı bir ek bilgi dışında 1.3.0 sürümüyle aynı şekilde işler; ikisi de aşağıda açıklanmıştır.",
+          "1.5.0 sürümünden itibaren uygulama, bir sonraki bulmacaya geçerken veya biten bir bölümden çıkarken tam ekran bir reklam da gösterebilir: bulmaca sırasında asla, ilk oturumunda asla ve en fazla birkaç bulmacada bir. Aynı bulmacada birkaç başarısız denemeden sonra, o bulmacada yardım karşılığında izlemeyi seçebileceğin isteğe bağlı bir video reklam da önerebilir; bunun yerine her zaman ücretsiz olarak yeniden deneyebilirsin. Bu reklamlar diğerleriyle aynı şekilde istenir: kişiselleştirilmemiş, her yaşa uygun olarak derecelendirilmiş ve Google'ın gençlere yönelik korumalarıyla; Google aşağıda açıklanan bilgilerin aynısını alır. Uygulama, tam ekran reklamlar arasında boşluk bırakmak için son tam ekran reklamı ne zaman gösterdiğini cihazında saklar.",
         ],
       },
       {
@@ -1807,6 +1813,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "Açtığın rekorlar ve kaydettiğin kurtarışlar",
           "1.3.0 sürümünde: kaç gün üst üste kurtarış tamamladığın, bölgende gizlilik seçeneklerinin sunulup sunulmadığı ve kullanım istatistikleri sorusuna verdiğin cevap",
           "1.4.0 sürümünde ayrıca: çözülmüş bir bulmacadan sonra reklam izni kontrolünün tamamlanıp tamamlanmadığı",
+          "Son tam ekran reklamın ne zaman gösterildiği (1.5.0 ve sonrası)",
         ],
       },
       {
@@ -1853,6 +1860,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "Chess Rescue no tiene cuentas y no te pide tu nombre, tu correo electrónico ni tu número de teléfono. Los rompecabezas se juegan sin conexión a internet.",
           "Las versiones hasta la 1.2.1 se ejecutan completamente en tu dispositivo: no solicitan el permiso de internet, no realizan conexiones de red, no muestran anuncios y no incluyen analítica.",
           "La versión 1.3.0 muestra pequeños anuncios de Google AdMob: en la pantalla de resultado después de resolver un rompecabezas y al final de la pantalla de inicio, nunca durante un rompecabezas. Para solicitarlos y mostrarlos, Google recibe cierta información técnica de tu dispositivo, como se describe a continuación. La versión 1.3.0 también incluye el software Firebase de Google para estadísticas de uso opcionales (analítica), que permanecen desactivadas a menos que las permitas. La versión 1.4.0 trata tu información igual que la versión 1.3.0, salvo en el momento en que comprueba tu consentimiento para los anuncios y en un dato adicional que guarda en tu dispositivo; ambos se describen a continuación.",
+          "Desde la versión 1.5.0, la aplicación también puede mostrar un anuncio a pantalla completa al pasar al siguiente rompecabezas o al salir de un episodio terminado: nunca durante un rompecabezas, nunca en tu primera sesión y como mucho una vez cada varios rompecabezas. Tras varios intentos fallidos en el mismo rompecabezas, también puede ofrecerte un anuncio en vídeo opcional que eliges ver a cambio de ayuda con ese rompecabezas; en su lugar, siempre puedes volver a intentarlo gratis. Estos anuncios se solicitan igual que los demás: no personalizados, aptos para todas las edades y con las protecciones de Google para usuarios adolescentes, y Google recibe la misma información descrita a continuación. La aplicación guarda en tu dispositivo cuándo mostró el último anuncio a pantalla completa, para espaciarlos.",
         ],
       },
       {
@@ -1911,6 +1919,7 @@ export const CHESS_RESCUE_PRIVACY: Record<Locale, LegalDocument> = {
           "Los récords que has desbloqueado y los rescates que has guardado",
           "En la versión 1.3.0: cuántos días seguidos has completado un rescate, si en tu región se ofrecen opciones de privacidad y tu respuesta sobre las estadísticas de uso",
           "En la versión 1.4.0, además: si la aplicación ya ha completado una comprobación del consentimiento para los anuncios después de un rompecabezas resuelto",
+          "Cuándo se mostró el último anuncio a pantalla completa (versión 1.5.0 y posteriores)",
         ],
       },
       {

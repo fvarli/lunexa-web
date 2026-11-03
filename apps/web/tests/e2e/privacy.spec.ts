@@ -501,10 +501,87 @@ test.describe("Chess Rescue privacy policy — 1.2.1, 1.3.0 and 1.4.0", () => {
       await expect(main).not.toContainText(/we do not sell|satmayız|no vendemos|Crashlytics|deletes? (the )?data|verileri siler|elimina los datos/i);
       await expect(main).not.toContainText(/AdMob (data|data is) (kept|retained)|Firebase data is kept|todos los datos se guardan|tüm veriler .* tutulur/i);
       await expect(main).not.toContainText(/does not contact a server|herhangi bir sunucuyla iletişim kurmaz|no se comunica con ningún servidor/);
-      // 1.4.0 is described by version only, never as available or released.
-      await expect(main).not.toContainText(/now available|available now|update now|artık (mevcut|kullanılabilir)|şimdi (mevcut|kullanılabilir)|ya disponible|disponible ahora|actualiza ahora|\b1\.[5-9]\.\d/i);
+      // 1.4.0 and 1.5.0 are described by version only, never as available or
+      // released; no version after 1.5.0 is mentioned.
+      await expect(main).not.toContainText(/now available|available now|update now|artık (mevcut|kullanılabilir)|şimdi (mevcut|kullanılabilir)|ya disponible|disponible ahora|actualiza ahora|\b1\.(5\.[1-9]|[6-9]\.\d)/i);
       await expect(main).not.toContainText(/app's settings|own setting|uygulamanın ayarlarından|kendi ayarı|ajustes de la aplicación|propio ajuste|AAID/);
       await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", l.meta);
+    });
+  }
+});
+
+// Chess Rescue 1.5.0 (mobile docs/release/1.5.0-web-policy-text.md): one
+// summary paragraph labelled "from version 1.5.0" adds the full-screen ad and
+// the optional rewarded help, requested like the banners, and one local-data
+// item. The 1.3.0 and 1.4.0 text stays as it is.
+test.describe("Chess Rescue privacy policy — 1.5.0", () => {
+  const locales = [
+    {
+      prefix: "",
+      summaryTitle: "Summary",
+      v15: "From version 1.5.0, the app may also show a full-screen ad when you move on to the next puzzle or leave a finished episode: never during a puzzle, never in your first session, and at most once every few puzzles. After several missed attempts on the same puzzle, it may also offer an optional video ad that you choose to watch in return for help with that puzzle; you can always try again for free instead. These ads are requested in the same way as the others: not personalised, rated for all ages and with Google's protections for teenage users, and Google receives the same information described below. The app stores on your device when it last showed a full-screen ad, so that they stay spaced out.",
+      before: "Version 1.3.0 shows small ads from Google AdMob:",
+      localTitle: "Data stored locally on your device",
+      local: "When a full-screen ad was last shown (version 1.5.0 and later)",
+      v14local: "In version 1.4.0, also: whether the app has completed an ad consent check after a solved puzzle",
+      historical: ["Advertising (versions 1.3.0 and 1.4.0)", "Your privacy choices for ads (versions 1.3.0 and 1.4.0)", "Usage statistics and Google Firebase (versions 1.3.0 and 1.4.0)"],
+      date: "Last updated: 2026-11-03",
+      canonical: "https://uselunexa.com/privacy/chess-rescue",
+    },
+    {
+      prefix: "/tr",
+      summaryTitle: "Özet",
+      v15: "1.5.0 sürümünden itibaren uygulama, bir sonraki bulmacaya geçerken veya biten bir bölümden çıkarken tam ekran bir reklam da gösterebilir: bulmaca sırasında asla, ilk oturumunda asla ve en fazla birkaç bulmacada bir. Aynı bulmacada birkaç başarısız denemeden sonra, o bulmacada yardım karşılığında izlemeyi seçebileceğin isteğe bağlı bir video reklam da önerebilir; bunun yerine her zaman ücretsiz olarak yeniden deneyebilirsin. Bu reklamlar diğerleriyle aynı şekilde istenir: kişiselleştirilmemiş, her yaşa uygun olarak derecelendirilmiş ve Google'ın gençlere yönelik korumalarıyla; Google aşağıda açıklanan bilgilerin aynısını alır. Uygulama, tam ekran reklamlar arasında boşluk bırakmak için son tam ekran reklamı ne zaman gösterdiğini cihazında saklar.",
+      before: "1.3.0 sürümü Google AdMob'dan küçük reklamlar gösterir:",
+      localTitle: "Cihazında yerel olarak saklanan veriler",
+      local: "Son tam ekran reklamın ne zaman gösterildiği (1.5.0 ve sonrası)",
+      v14local: "1.4.0 sürümünde ayrıca: çözülmüş bir bulmacadan sonra reklam izni kontrolünün tamamlanıp tamamlanmadığı",
+      historical: ["Reklamlar (1.3.0 ve 1.4.0 sürümleri)", "Reklamlar için gizlilik seçeneklerin (1.3.0 ve 1.4.0 sürümleri)", "Kullanım istatistikleri ve Google Firebase (1.3.0 ve 1.4.0 sürümleri)"],
+      date: "Son güncelleme: 03.11.2026",
+      canonical: "https://uselunexa.com/tr/privacy/chess-rescue",
+    },
+    {
+      prefix: "/es",
+      summaryTitle: "Resumen",
+      v15: "Desde la versión 1.5.0, la aplicación también puede mostrar un anuncio a pantalla completa al pasar al siguiente rompecabezas o al salir de un episodio terminado: nunca durante un rompecabezas, nunca en tu primera sesión y como mucho una vez cada varios rompecabezas. Tras varios intentos fallidos en el mismo rompecabezas, también puede ofrecerte un anuncio en vídeo opcional que eliges ver a cambio de ayuda con ese rompecabezas; en su lugar, siempre puedes volver a intentarlo gratis. Estos anuncios se solicitan igual que los demás: no personalizados, aptos para todas las edades y con las protecciones de Google para usuarios adolescentes, y Google recibe la misma información descrita a continuación. La aplicación guarda en tu dispositivo cuándo mostró el último anuncio a pantalla completa, para espaciarlos.",
+      before: "La versión 1.3.0 muestra pequeños anuncios de Google AdMob:",
+      localTitle: "Datos almacenados localmente en tu dispositivo",
+      local: "Cuándo se mostró el último anuncio a pantalla completa (versión 1.5.0 y posteriores)",
+      v14local: "En la versión 1.4.0, además: si la aplicación ya ha completado una comprobación del consentimiento para los anuncios después de un rompecabezas resuelto",
+      historical: ["Publicidad (versiones 1.3.0 y 1.4.0)", "Tus opciones de privacidad para los anuncios (versiones 1.3.0 y 1.4.0)", "Estadísticas de uso y Google Firebase (versiones 1.3.0 y 1.4.0)"],
+      date: "Última actualización: 2026-11-03",
+      canonical: "https://uselunexa.com/es/privacy/chess-rescue",
+    },
+  ];
+
+  for (const l of locales) {
+    test(`${l.prefix || "/"}privacy/chess-rescue adds the 1.5.0 full-screen and rewarded ads`, async ({ page }) => {
+      await page.goto(`${l.prefix}/privacy/chess-rescue`);
+      const main = page.locator("main");
+      await expect(main).toContainText(l.date);
+      // The 1.5.0 paragraph sits in the summary, right after the 1.3.0 ads paragraph.
+      const summary = main.locator("section").filter({ has: page.getByRole("heading", { name: l.summaryTitle, exact: true }) });
+      const paras = summary.locator("p");
+      await expect(paras).toHaveCount(4);
+      await expect(paras.nth(2)).toContainText(l.before);
+      await expect(paras.nth(3)).toHaveText(l.v15);
+      await expect(main.getByText(l.v15, { exact: true })).toHaveCount(1);
+      // Earlier-version sections keep their 1.3.0/1.4.0 labels.
+      for (const title of l.historical) {
+        await expect(main.getByRole("heading", { name: title, exact: true })).toHaveCount(1);
+      }
+      const local = main.locator("section").filter({ has: page.getByRole("heading", { name: l.localTitle, exact: true }) });
+      await expect(local.getByRole("listitem").filter({ hasText: l.v14local })).toHaveCount(1);
+      await expect(local.getByRole("listitem").filter({ hasText: l.local })).toHaveCount(1);
+      // The rewarded ad is optional and help is never paywalled.
+      await expect(main).not.toContainText(/must watch|required to watch|izlemek zorunda|debes ver|obligatori[oa] ver/i);
+      // No availability claim and no version after 1.5.0.
+      await expect(main).not.toContainText(/1\.5\.0 (is|está) (now )?(available|disponible)|1\.5\.0 (sürümü )?(artık )?(mevcut|yayında)|on Google Play since|Google Play'de bulunan 1\.5|disponible en Google Play desde|\b1\.(5\.[1-9]|[6-9]\.\d)/i);
+      await expect(main).not.toContainText(/legal bas[ie]s|hukuki (sebep|dayanak)|base jurídica|international transfer|uluslararası aktarım|transferencia internacional|data controller|veri sorumlusu|responsable del tratamiento/i);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", l.canonical);
+      for (const lang of ["en", "tr", "es", "x-default"]) {
+        await expect(page.locator(`link[rel="alternate"][hreflang="${lang}"]`)).toHaveCount(1);
+      }
     });
   }
 });
