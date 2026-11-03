@@ -10,7 +10,7 @@ Org-wide rules live in [`docs/working-agreements.md`](../../docs/working-agreeme
 
 ## Production baseline
 
-At the time of this update (2026-11-03), the verified production commit before this release was `c75b03dbf65cf66f30c572890c72daf0dae3c3ff`, reported by `/api/health` (before that, `2089aba154ef35220e711c227da4684baec39b94`). This is a record, not a fixed value: every deploy moves it. Check `/api/health` and `origin/main` before relying on it.
+At the time of this update (2026-11-03), the verified production commit before this release was `0a6ee6eb725b4d16bcdb31ac7240a0d056418fd5`, reported by `/api/health` (earlier: `c75b03dbf65cf66f30c572890c72daf0dae3c3ff`, `2089aba154ef35220e711c227da4684baec39b94`). This is a record, not a fixed value: every deploy moves it. Check `/api/health` and `origin/main` before relying on it.
 
 ## Release status (as of 2026-11-03)
 
@@ -23,12 +23,12 @@ At the time of this update (2026-11-03), the verified production commit before t
 | Chess Rescue 1.5.0 privacy | PUBLISHED on the web — labelled "from version 1.5.0" / "1.5.0 and later" (full-screen ad, optional rewarded help, one local item); the 1.2.1, 1.3.0 and 1.4.0 text stays; the 1.5.0 Google Play release is not verified as published |
 | RPS Duel 1.1.0 privacy (R-REL-12) | PUBLISHED on the web — labelled "version 1.1.0 and later" (region-dependent usage statistics, match-end full-screen ad, matches/level/XP on the device); the 1.0.5 and 1.0.6 text stays; the 1.1.0 Google Play release is not verified as published |
 | RPS Duel 1.0.7 | SUPERSEDED — 1.0.7 and 1.1a ship together as 1.1.0 (R-REL-12); no separate 1.0.7 text |
-| Quietly 1.2.1 | PENDING — new privacy text required: it changes the usage-statistics default |
+| Quietly 1.2.1 privacy (D-ANL-1 §6 P3) | PUBLISHED on the web — labelled "1.2.1 and later" (region-dependent usage statistics, region signals, notice-shown flag); the 1.1.0 and 1.2.0 text stays; the 1.2.1 Google Play release is not verified as published. Product card and Terms (handoff W1′) not changed |
 
 Owner decisions recorded for these releases:
 
-- **D-WEB-NOW:** the RPS 1.0.6 and Quietly 1.2.0 disclosures, and then the Chess Rescue 1.5.0 and RPS 1.1.0 disclosures, are published web-first, labelled by version, before the Google Play releases. Earlier-version text stays, and no page may say any of these versions is available. A web deploy does not verify that a mobile release is published. Quietly W7 (1.2.0) stays published and unchanged.
-- **D-CONTROLLER:** closed. No data-controller block, including in the Chess 1.5.0 and RPS 1.1.0 text; the existing "Lunexa Games" identity and `hello@uselunexa.com` contact stay. No legal entity, postal address or legal basis is stated.
+- **D-WEB-NOW:** the RPS 1.0.6 and Quietly 1.2.0 disclosures, then the Chess Rescue 1.5.0 and RPS 1.1.0 disclosures, and then the Quietly 1.2.1 disclosures, are published web-first, labelled by version, before the Google Play releases. Earlier-version text stays, and no page may say any of these versions is available. A web deploy does not verify that a mobile release is published. Quietly W7 (1.2.0) stays published next to the 1.2.1 text.
+- **D-CONTROLLER:** closed. No data-controller block, including in the Chess 1.5.0, RPS 1.1.0 and Quietly 1.2.1 text; the existing "Lunexa Games" identity and `hello@uselunexa.com` contact stay. No legal entity, postal address or legal basis is stated.
 
 Update this table in the same change that moves a workstream.
 
