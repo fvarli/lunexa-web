@@ -42,6 +42,11 @@ export default function QuietlyPrivacyContent() {
                   ))}
                 </ul>
               )}
+              {section.afterBullets?.map((p, j) => (
+                <p key={`after-${j}`} className="mt-3">
+                  {p}
+                </p>
+              ))}
             </section>
           ))}
 

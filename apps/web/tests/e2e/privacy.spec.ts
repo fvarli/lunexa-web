@@ -1,5 +1,28 @@
 import { test, expect } from "@playwright/test";
 
+// Quietly 1.2.1 sentences that sit inside paragraphs shared with earlier
+// versions; the 1.2.0 checks strip them before testing the 1.2.0 wording.
+const QUIETLY_121: Record<string, { sentences: string[] }> = {
+  "": {
+    "sentences": [
+      "Version 1.2.1 and later work like version 1.2.0, except for usage statistics, described below. They can send usage statistics to Google Analytics for Firebase: in the EEA, the UK, Switzerland and Türkiye only if you turn that on, and elsewhere after a one-time notice, with a switch to turn it off.",
+      "Version 1.2.1 turned usage statistics on by default outside the EEA, the UK, Switzerland and Türkiye, after a one-time notice."
+    ]
+  },
+  "/tr": {
+    "sentences": [
+      "1.2.1 ve sonraki sürümler, aşağıda açıklanan kullanım istatistikleri dışında 1.2.0 sürümü gibi çalışır. Google Analytics for Firebase'e kullanım istatistikleri gönderebilirler: AEA'da, Birleşik Krallık'ta, İsviçre'de ve Türkiye'de yalnızca sen açarsan, diğer yerlerde tek seferlik bir bildirimden sonra; istediğin zaman kapatabilirsin.",
+      "1.2.1 sürümü, kullanım istatistiklerini AEA, Birleşik Krallık, İsviçre ve Türkiye dışında tek seferlik bir bildirimden sonra varsayılan olarak açtı."
+    ]
+  },
+  "/es": {
+    "sentences": [
+      "La versión 1.2.1 y las posteriores funcionan como la versión 1.2.0, salvo en las estadísticas de uso, que se describen más abajo. Pueden enviar estadísticas de uso a Google Analytics para Firebase: en el EEE, el Reino Unido, Suiza y Turquía solo si lo activas, y en otros lugares tras un aviso único, con un interruptor para desactivarlo.",
+      "La versión 1.2.1 activó por defecto las estadísticas de uso fuera del EEE, el Reino Unido, Suiza y Turquía, tras un aviso único."
+    ]
+  }
+};
+
 // Quietly 1.1.0 is on Google Play: the policy must describe its history
 // cleanup and save queue, and still be accurate for anyone on an older version.
 test.describe("Quietly privacy policy — 1.1.0", () => {
@@ -60,10 +83,11 @@ test.describe("Quietly privacy policy — 1.1.0", () => {
   }
 });
 
-// Quietly 1.2.0 (W7, WEB_HANDOFF v5): prepared next to the 1.1.0 text. The
+// Quietly 1.2.0 (W7, WEB_HANDOFF v5): published next to the 1.1.0 text. The
 // 1.1.0 statements stay, labelled "up to version 1.1.0" where 1.2.0 differs;
 // every 1.2.0 statement says "version 1.2.0", never open-ended (1.2.1 changes
-// the analytics default), and nothing says 1.2.0 is already available. The
+// the analytics default; its own text is checked below), and nothing says
+// 1.2.0 is already available. The
 // owner-confirmed GA4 periods are stated for Google Analytics only, without a
 // reset-on-activity claim. Identity is "Lunexa Games"; no controller block.
 test.describe("Quietly privacy policy — 1.2.0 preparation", () => {
@@ -183,12 +207,145 @@ test.describe("Quietly privacy policy — 1.2.0 preparation", () => {
       await expect(stats).toContainText(l.retention);
       await expect(main.locator('a[href="mailto:hello@uselunexa.com"]')).toHaveCount(1);
       const text = (await main.textContent()) ?? "";
-      expect(text).not.toMatch(/from version 1\.2\.0|since version 1\.2\.0|1\.2\.0 and later|1\.2\.0 sürümünden itibaren|1\.2\.0 ve sonra|desde la versión 1\.2\.0|1\.2\.0 y posteriores|1\.2\.1|now available|available now|update now|ya disponible|artık (mevcut|kullanılabilir)|Version 1\.2\.0 added/i);
+      // The 1.2.0 text: everything outside the 1.2.1 section and items, without
+      // the 1.2.1 sentences in the intro and the changes paragraph.
+      const v120Raw = await main.evaluate((el) => {
+        const c = el.cloneNode(true) as HTMLElement;
+        c.querySelectorAll("section").forEach((s) => {
+          if (/1\.2\.1/.test(s.querySelector("h2")?.textContent ?? "")) s.remove();
+        });
+        c.querySelectorAll("li").forEach((n) => {
+          if (/1\.2\.1/.test(n.textContent ?? "")) n.remove();
+        });
+        return c.textContent ?? "";
+      });
+      const v120 = QUIETLY_121[l.prefix].sentences.reduce((t, x) => t.replaceAll(x, ""), v120Raw);
+      expect(v120).not.toMatch(/from version 1\.2\.0|since version 1\.2\.0|1\.2\.0 and later|1\.2\.0 sürümünden itibaren|1\.2\.0 ve sonra|desde la versión 1\.2\.0|1\.2\.0 y posteriores|1\.2\.1|now available|available now|update now|ya disponible|artık (mevcut|kullanılabilir)|Version 1\.2\.0 added/i);
       expect(text).not.toMatch(/starts again whenever there is new activity|süre yeniden başlar|vuelve a empezar/);
       // Usage statistics carry an app-instance identifier: never call them anonymous.
       expect(text).not.toMatch(/anonymous|anonymi[sz]ed|anonim|anonimleştir|anónim[oa]s?|anonimizad[oa]s?/i);
       await expect(stats).toContainText(/app-instance identifier|uygulama örneği kimliği|identificador de instancia de la app/);
       expect(text).not.toMatch(/legal bas[ie]s|hukuki (sebep|dayanak)|base jurídica|data controller|veri sorumlusu|responsable del tratamiento|postal address|(?<!e-)posta adresi|dirección postal/i);
+    });
+  }
+});
+
+// Quietly 1.2.1 (D-ANL-1_IMPLEMENTATION §6 P3, WEB_HANDOFF 1.2.1, D-QT-121):
+// text labelled "1.2.1 and later" next to the 1.1.0 and 1.2.0 text. Usage
+// statistics follow the documented region rule only, the region signals are
+// stated with their limits, and the notice-shown flag is a local item. No
+// availability claim; no "anonymous"; no controller block.
+test.describe("Quietly privacy policy — 1.2.1 and later", () => {
+  const locales = [
+    {
+      "prefix": "",
+      "date": "Last updated: 2026-11-03",
+      "canonical": "https://uselunexa.com/privacy/quietly",
+      "statsTitle": "Usage statistics (Google Analytics for Firebase, version 1.2.1 and later)",
+      "intro121": "Version 1.2.1 and later work like version 1.2.0, except for usage statistics, described below. They can send usage statistics to Google Analytics for Firebase: in the EEA, the UK, Switzerland and Türkiye only if you turn that on, and elsewhere after a one-time notice, with a switch to turn it off.",
+      "lead": "Whether usage statistics are on depends on where you are. Quietly works this out each time it starts:",
+      "regionBullets": [
+        "in the EEA, the UK, Switzerland and Türkiye they are off unless you turn on Settings → Privacy → Share usage statistics;",
+        "elsewhere they are on after a one-time notice in the app, which lets you turn them off;",
+        "if Quietly can't tell where you are (for example when you're offline), they stay off."
+      ],
+      "after": [
+        "How the region is determined: for the EEA, the UK and Switzerland, Quietly uses the answer of Google's consent service, the same check Google uses for its ad consent message, based on your IP address. For Türkiye it uses your SIM card's country or, without a SIM, your device or app language. Quietly doesn't store the result or send it anywhere. A VPN or travel can change the answer.",
+        "A choice you make — in Settings or with “Turn off” on the notice — always applies, wherever you are, and choices made in version 1.2.0 are kept. It is separate from Google's ad consent: agreeing to one never turns on the other, and Google's ad consent is never used as consent for statistics.",
+        "When they're on, Quietly sends counts of the screens you open and how link checks and saves turn out — for example whether a save finished, failed or was cancelled, the kind of media, and the number of items in bands such as 1, 2–5 or 6+. Firebase also records some information automatically, such as app opens, sessions, the device model, OS version, language and approximate country.",
+        "Quietly never sends links, file names, titles, file sizes, your history or your advertising ID to Analytics, and usage statistics are not used for advertising.",
+        "Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months. These periods are Google Analytics settings only: they do not apply to aggregated reports, to data processed for Google AdMob ads, to the files and data stored on your device, or to other parts of the Firebase software. Google applies these settings under its own processes, and information may not be removed as soon as a period ends.",
+        "Turn usage statistics off at any time in the same place: collection stops, and the analytics data Firebase kept on your device and its app-instance identifier are reset."
+      ],
+      "network": "Google Analytics for Firebase (version 1.2.1 and later) — while usage statistics are on. See “Usage statistics” below.",
+      "local": "Whether the usage-statistics notice has been shown (Quietly 1.2.1 and later)",
+      "changes": "Version 1.2.1 turned usage statistics on by default outside the EEA, the UK, Switzerland and Türkiye, after a one-time notice."
+    },
+    {
+      "prefix": "/tr",
+      "date": "Son güncelleme: 03.11.2026",
+      "canonical": "https://uselunexa.com/tr/privacy/quietly",
+      "statsTitle": "Kullanım istatistikleri (Google Analytics for Firebase, 1.2.1 ve sonraki sürümler)",
+      "intro121": "1.2.1 ve sonraki sürümler, aşağıda açıklanan kullanım istatistikleri dışında 1.2.0 sürümü gibi çalışır. Google Analytics for Firebase'e kullanım istatistikleri gönderebilirler: AEA'da, Birleşik Krallık'ta, İsviçre'de ve Türkiye'de yalnızca sen açarsan, diğer yerlerde tek seferlik bir bildirimden sonra; istediğin zaman kapatabilirsin.",
+      "lead": "Kullanım istatistiklerinin açık olup olmadığı nerede olduğuna bağlıdır. Quietly bunu her açılışta belirler:",
+      "regionBullets": [
+        "AEA'da, Birleşik Krallık'ta, İsviçre'de ve Türkiye'de Ayarlar → Gizlilik → Kullanım istatistiklerini paylaş seçeneğini açmadıkça kapalıdır;",
+        "diğer yerlerde uygulamadaki tek seferlik bir bildirimden sonra açılır; bu bildirim kapatmana da izin verir;",
+        "Quietly nerede olduğunu anlayamazsa (örneğin çevrimdışıysan) kapalı kalır."
+      ],
+      "after": [
+        "Bölge nasıl belirlenir: AEA, Birleşik Krallık ve İsviçre için Quietly, Google'ın reklam izni mesajı için de kullandığı, IP adresine dayanan Google rıza hizmetinin yanıtını kullanır. Türkiye için SIM kartının ülkesini, SIM yoksa cihazının veya uygulamanın dilini kullanır. Quietly sonucu saklamaz ve hiçbir yere göndermez. VPN veya seyahat yanıtı değiştirebilir.",
+        "Ayarlar'da ya da bildirimdeki “Kapat” ile yaptığın seçim, nerede olursan ol her zaman geçerlidir; 1.2.0 sürümünde yaptığın seçimler korunur. Bu seçim Google'ın reklam izninden ayrıdır: birine izin vermek diğerini asla açmaz ve Google'ın reklam izni istatistikler için izin olarak kullanılmaz.",
+        "Açıkken Quietly, açtığın ekranların ve bağlantı kontrolleriyle kayıtların nasıl sonuçlandığının sayımlarını gönderir; örneğin bir kaydın tamamlanıp tamamlanmadığı, başarısız olup olmadığı veya iptal edilip edilmediği, medya türü ve 1, 2–5 ya da 6+ gibi aralıklarla öğe sayısı. Firebase ayrıca uygulama açılışları, oturumlar, cihaz modeli, işletim sistemi sürümü, dil ve yaklaşık ülke gibi bazı bilgileri otomatik olarak kaydeder.",
+        "Quietly, Analytics'e bağlantıları, dosya adlarını, başlıkları, dosya boyutlarını, geçmişini veya reklam kimliğini asla göndermez; kullanım istatistikleri reklam için kullanılmaz.",
+        "Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı. Bu süreler yalnızca Google Analytics ayarlarıdır: toplu raporlar, Google AdMob reklamları için işlenen veriler, cihazında saklanan dosyalar ve veriler veya Firebase yazılımının diğer bileşenleri için geçerli değildir. Google bu ayarları kendi süreçlerine göre uygular; bilgiler bir süre dolar dolmaz kaldırılmayabilir.",
+        "Kullanım istatistiklerini aynı yerden istediğin zaman kapatabilirsin: toplama durur, Firebase'in cihazında tuttuğu analitik veriler ve uygulama örneği kimliği sıfırlanır."
+      ],
+      "network": "Google Analytics for Firebase (1.2.1 ve sonraki sürümler) — kullanım istatistikleri açık olduğu sürece. Aşağıdaki “Kullanım istatistikleri” bölümüne bak.",
+      "local": "Kullanım istatistikleri bildiriminin gösterilip gösterilmediği (Quietly 1.2.1 ve sonrası)",
+      "changes": "1.2.1 sürümü, kullanım istatistiklerini AEA, Birleşik Krallık, İsviçre ve Türkiye dışında tek seferlik bir bildirimden sonra varsayılan olarak açtı."
+    },
+    {
+      "prefix": "/es",
+      "date": "Última actualización: 2026-11-03",
+      "canonical": "https://uselunexa.com/es/privacy/quietly",
+      "statsTitle": "Estadísticas de uso (Google Analytics para Firebase, versión 1.2.1 y posteriores)",
+      "intro121": "La versión 1.2.1 y las posteriores funcionan como la versión 1.2.0, salvo en las estadísticas de uso, que se describen más abajo. Pueden enviar estadísticas de uso a Google Analytics para Firebase: en el EEE, el Reino Unido, Suiza y Turquía solo si lo activas, y en otros lugares tras un aviso único, con un interruptor para desactivarlo.",
+      "lead": "Que las estadísticas de uso estén activadas depende de dónde estés. Quietly lo determina cada vez que se abre:",
+      "regionBullets": [
+        "en el EEE, el Reino Unido, Suiza y Turquía están desactivadas salvo que actives Ajustes → Privacidad → Compartir estadísticas de uso;",
+        "en otros lugares se activan tras un aviso único en la app, que también te permite desactivarlas;",
+        "si Quietly no puede saber dónde estás (por ejemplo, sin conexión), siguen desactivadas."
+      ],
+      "after": [
+        "Cómo se determina la región: para el EEE, el Reino Unido y Suiza, Quietly usa la respuesta del servicio de consentimiento de Google, la misma comprobación que Google usa para su mensaje de consentimiento de anuncios, basada en tu dirección IP. Para Turquía usa el país de tu tarjeta SIM o, sin SIM, el idioma del dispositivo o de la app. Quietly no guarda el resultado ni lo envía a ningún sitio. Una VPN o un viaje pueden cambiar la respuesta.",
+        "La elección que hagas —en Ajustes o con “Desactivar” en el aviso— se aplica siempre, estés donde estés, y se conservan las elecciones hechas en la versión 1.2.0. Es independiente del consentimiento de anuncios de Google: aceptar uno nunca activa el otro, y el consentimiento de anuncios de Google nunca se usa como consentimiento para las estadísticas.",
+        "Si las activas, Quietly envía recuentos de las pantallas que abres y de cómo terminan las comprobaciones de enlaces y los guardados; por ejemplo, si un guardado terminó, falló o se canceló, el tipo de medio y el número de elementos en rangos como 1, 2–5 o 6+. Firebase también registra cierta información automáticamente, como las aperturas de la app, las sesiones, el modelo del dispositivo, la versión del sistema, el idioma y el país aproximado.",
+        "Quietly nunca envía a Analytics enlaces, nombres de archivo, títulos, tamaños de archivo, tu historial ni tu identificador de publicidad, y las estadísticas de uso no se usan para publicidad.",
+        "Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses. Estos plazos son solo ajustes de Google Analytics: no se aplican a los informes agregados, a los datos tratados para los anuncios de Google AdMob, a los archivos y datos guardados en tu dispositivo ni a otras partes del software Firebase. Google aplica estos ajustes según sus propios procesos, y es posible que la información no se elimine en cuanto termine un plazo.",
+        "Desactiva las estadísticas de uso cuando quieras en el mismo lugar: la recopilación se detiene y se restablecen los datos de analítica que Firebase guardaba en tu dispositivo y su identificador de instancia de la app."
+      ],
+      "network": "Google Analytics para Firebase (versión 1.2.1 y posteriores) — mientras las estadísticas de uso estén activadas. Consulta “Estadísticas de uso” más abajo.",
+      "local": "Si ya se mostró el aviso de estadísticas de uso (Quietly 1.2.1 y posteriores)",
+      "changes": "La versión 1.2.1 activó por defecto las estadísticas de uso fuera del EEE, el Reino Unido, Suiza y Turquía, tras un aviso único."
+    }
+  ];
+
+  for (const l of locales) {
+    test(`${l.prefix || "/"}privacy/quietly adds the 1.2.1 region rule and notice`, async ({ page }) => {
+      await page.goto(`${l.prefix}/privacy/quietly`);
+      const main = page.locator("main");
+      await expect(main).toContainText(l.date);
+      await expect(main).toContainText(l.intro121);
+      await expect(main).toContainText(l.changes);
+      // Lead, the three region cases, then region signals, choices and the
+      // 1.2.0 paragraphs that still apply (events, never-sent list, GA4
+      // retention, turning off).
+      const stats = main.locator("section").filter({ has: page.getByRole("heading", { name: l.statsTitle, exact: true }) });
+      await expect(stats).toHaveCount(1);
+      const paras = stats.locator("p");
+      await expect(paras).toHaveCount(1 + l.after.length);
+      await expect(paras.nth(0)).toHaveText(l.lead);
+      for (const [i, t] of l.after.entries()) {
+        await expect(paras.nth(i + 1)).toHaveText(t);
+      }
+      const cases = stats.getByRole("listitem");
+      await expect(cases).toHaveCount(3);
+      for (const [i, t] of l.regionBullets.entries()) {
+        await expect(cases.nth(i)).toHaveText(t);
+      }
+      await expect(stats).toContainText(/app-instance identifier|uygulama örneği kimliği|identificador de instancia de la app/);
+      await expect(main.getByRole("listitem").filter({ hasText: l.network })).toHaveCount(1);
+      await expect(main.getByRole("listitem").filter({ hasText: l.local })).toHaveCount(1);
+      const text = (await main.textContent()) ?? "";
+      expect(text).not.toMatch(/1\.2\.1 (is|está) (now )?(available|disponible)|now available|available now|update now|ya disponible|disponible ahora|artık (mevcut|kullanılabilir)|şimdi (mevcut|kullanılabilir)|on Google Play since|\b1\.(2\.[2-9]|[3-9]\.\d)/i);
+      expect(text).not.toMatch(/anonymous|anonymi[sz]ed|anonim|anonimleştir|anónim[oa]s?|anonimizad[oa]s?/i);
+      expect(text).not.toMatch(/legal bas[ie]s|hukuki (sebep|dayanak)|base jurídica|data controller|veri sorumlusu|responsable del tratamiento|postal address|(?<!e-)posta adresi|dirección postal/i);
+      await expect(main.locator('a[href="mailto:hello@uselunexa.com"]')).toHaveCount(1);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", l.canonical);
+      for (const lang of ["en", "tr", "es", "x-default"]) {
+        await expect(page.locator(`link[rel="alternate"][hreflang="${lang}"]`)).toHaveCount(1);
+      }
     });
   }
 });
