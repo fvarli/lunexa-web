@@ -60,6 +60,136 @@ test.describe("Quietly privacy policy — 1.1.0", () => {
   }
 });
 
+// Quietly 1.2.0 (W7, WEB_HANDOFF v5): prepared next to the 1.1.0 text. The
+// 1.1.0 statements stay, labelled "up to version 1.1.0" where 1.2.0 differs;
+// every 1.2.0 statement says "version 1.2.0", never open-ended (1.2.1 changes
+// the analytics default), and nothing says 1.2.0 is already available. The
+// owner-confirmed GA4 periods are stated for Google Analytics only, without a
+// reset-on-activity claim. Identity is "Lunexa Games"; no controller block.
+test.describe("Quietly privacy policy — 1.2.0 preparation", () => {
+  const locales = [
+    {
+      prefix: "",
+      titles: ["What we do not collect (up to version 1.1.0)", "What leaves your device — and what never does (version 1.2.0)", "Advertising (Google AdMob, version 1.2.0)", "Usage statistics (Google Analytics for Firebase, version 1.2.0)"],
+      statsTitle: "Usage statistics (Google Analytics for Firebase, version 1.2.0)",
+      retention: "Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months. These periods are Google Analytics settings only: they do not apply to aggregated reports, to data processed for Google AdMob ads, to the files and data stored on your device, or to other parts of the Firebase software. Google applies these settings under its own processes, and information may not be removed as soon as a period ends.",
+      texts: [
+        "made by Lunexa Games.",
+        "It uses the internet to fetch the media you ask for and to check whether you have a connection; version 1.2.0 also uses it to load an ad and — only if you allow it — to send usage statistics.",
+        "Quietly does not create accounts. Versions up to 1.1.0 do not show ads and do not include analytics or crash reporting. Version 1.2.0 shows one ad from Google after a save finishes, and it can send anonymous usage statistics to Google Analytics for Firebase — only if you turn that on. Your links, files and history are never sent with either.",
+        "and versions up to 1.1.0 do not include Google AdMob or Firebase.",
+        "Quietly uses the internet for these purposes only:",
+        "Quietly does not require an account. Version 1.2.0 includes Google AdMob (ads) and Google Analytics for Firebase (optional usage statistics), described below. When Quietly accesses a link or checks your connection, the servers involved may receive technical request information, such as your IP address and request headers. Quietly never sends any of the following to Lunexa, to Google's ad services or to Analytics:",
+        "The links you paste, or anything about the pages or files they point to",
+        "Your saved media, file names, titles or file sizes",
+        "Your history, your save queue or anything in your clipboard",
+        "Name, email address, phone number or any account identifier",
+        "Contacts, microphone, camera or precise location",
+        "Google AdMob (version 1.2.0) — after a save finishes, Quietly asks Google for one ad to show on the confirmation screen. It doesn't ask when you're offline, or on mobile data while “Save on Wi-Fi only” is on. See “Advertising” below.",
+        "Google Analytics for Firebase (version 1.2.0) — only if you turn on usage statistics. See “Usage statistics” below.",
+        "Advertising ID and Android ad services (AD_ID, ACCESS_ADSERVICES_*; version 1.2.0) — used by Google AdMob to show and measure the ad, and to prevent fraud. You can reset or delete your advertising ID in your device settings. Quietly's usage statistics don't use it.",
+        "Quietly is free and shows one banner ad from Google, on the screen that confirms a save. Nothing else in the app shows ads, and there are no full-screen or video ads.",
+        "To show and measure the ad, Google AdMob collects information such as your device's advertising ID, your IP address and approximate location derived from it, device and app details, and how you interact with the ad. Google uses this as described in How Google uses information from sites or apps that use our services (https://policies.google.com/technologies/partner-sites).",
+        "Where the law requires it — for example in the EEA, the UK, Switzerland and some US states — Google asks for your choice first, and you can change it at any time in Settings → Privacy → Ad privacy choices. Quietly asks Google to treat every ad request as coming from a teenager, so ads are not personalised, remarketing is off, and only ads suitable for all ages are shown. Saying no doesn't turn ads off: Google may still show a limited ad.",
+        "Usage statistics are off unless you turn on Settings → Privacy → Share usage statistics. Your choice is separate from Google's ad consent: agreeing to one never turns on the other.",
+        "When they're on, Quietly sends counts of the screens you open and how link checks and saves turn out — for example whether a save finished, failed or was cancelled, the kind of media, and the number of items in bands such as 1, 2–5 or 6+. Firebase also records some information automatically, such as app opens, sessions, the device model, OS version, language and approximate country.",
+        "Quietly never sends links, file names, titles, file sizes, your history or your advertising ID to Analytics, and usage statistics are not used for advertising.",
+        "Lunexa has set Google Analytics to keep event-level data for 2 months and user-level data for 14 months. These periods are Google Analytics settings only: they do not apply to aggregated reports, to data processed for Google AdMob ads, to the files and data stored on your device, or to other parts of the Firebase software. Google applies these settings under its own processes, and information may not be removed as soon as a period ends.",
+        "Turn usage statistics off at any time in the same place: collection stops, and the analytics data Firebase kept on your device and its app-instance identifier are reset.",
+        "Quietly is not directed at children, and Lunexa does not knowingly collect personal information from children under 13.",
+        "Material changes will also be noted in the app's release notes. The policy was updated for version 1.2.0, which adds Google AdMob and optional Google Analytics for Firebase.",
+      ],
+      v110: ["Advertising identifiers (IDFA, AAID) or other device identifiers", "Analytics events, usage telemetry, or crash reports"],
+    },
+    {
+      prefix: "/tr",
+      titles: ["Toplamadığımız veriler (1.1.0 sürümüne kadar)", "Cihazından neler çıkar, neler asla çıkmaz (1.2.0 sürümü)", "Reklamlar (Google AdMob, 1.2.0 sürümü)", "Kullanım istatistikleri (Google Analytics for Firebase, 1.2.0 sürümü)"],
+      statsTitle: "Kullanım istatistikleri (Google Analytics for Firebase, 1.2.0 sürümü)",
+      retention: "Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı. Bu süreler yalnızca Google Analytics ayarlarıdır: toplu raporlar, Google AdMob reklamları için işlenen veriler, cihazında saklanan dosyalar ve veriler veya Firebase yazılımının diğer bileşenleri için geçerli değildir. Google bu ayarları kendi süreçlerine göre uygular; bilgiler bir süre dolar dolmaz kaldırılmayabilir.",
+      texts: [
+        "Lunexa Games tarafından geliştirilmiş",
+        "İnterneti senin istediğin medyayı indirmek ve bağlantın olup olmadığını kontrol etmek için kullanır; 1.2.0 sürümü ayrıca bir reklam yüklemek ve yalnızca izin verirsen kullanım istatistikleri göndermek için kullanır.",
+        "Quietly hesap oluşturmaz. 1.1.0 sürümüne kadarki sürümler reklam göstermez ve analitik veya çökme raporlama içermez. 1.2.0 sürümü bir kayıt tamamlandıktan sonra Google'dan tek bir reklam gösterir ve yalnızca sen açarsan Google Analytics for Firebase'e anonim kullanım istatistikleri gönderebilir. Bağlantıların, dosyaların ve geçmişin hiçbiriyle birlikte gönderilmez.",
+        "ve 1.1.0 sürümüne kadarki sürümler Google AdMob veya Firebase içermez.",
+        "Quietly interneti yalnızca şu amaçlarla kullanır:",
+        "Quietly hesap gerektirmez. 1.2.0 sürümü, aşağıda açıklanan Google AdMob'u (reklamlar) ve Google Analytics for Firebase'i (isteğe bağlı kullanım istatistikleri) içerir. Quietly bir bağlantıya eriştiğinde veya bağlantını kontrol ettiğinde, ilgili sunucular IP adresin ve istek başlıkları gibi teknik istek bilgilerini alabilir. Quietly aşağıdakilerin hiçbirini Lunexa'ya, Google'ın reklam hizmetlerine veya Analytics'e asla göndermez:",
+        "Yapıştırdığın bağlantılar veya gösterdikleri sayfalar ya da dosyalarla ilgili herhangi bir şey",
+        "Kaydettiğin medya, dosya adları, başlıklar veya dosya boyutları",
+        "Geçmişin, kayıt kuyruğun veya panondaki herhangi bir şey",
+        "Ad, e-posta adresi, telefon numarası veya herhangi bir hesap kimliği",
+        "Kişiler, mikrofon, kamera veya kesin konum",
+        "Google AdMob (1.2.0 sürümü) — bir kayıt tamamlandıktan sonra Quietly, onay ekranında göstermek için Google'dan tek bir reklam ister. Çevrimdışıyken veya “Yalnızca Wi-Fi'de kaydet” açıkken mobil verideyken istemez. Aşağıdaki “Reklamlar” bölümüne bak.",
+        "Google Analytics for Firebase (1.2.0 sürümü) — yalnızca kullanım istatistiklerini açarsan. Aşağıdaki “Kullanım istatistikleri” bölümüne bak.",
+        "Reklam kimliği ve Android reklam hizmetleri (AD_ID, ACCESS_ADSERVICES_*; 1.2.0 sürümü) — Google AdMob tarafından reklamı göstermek ve ölçmek ve dolandırıcılığı önlemek için kullanılır. Reklam kimliğini cihaz ayarlarından sıfırlayabilir veya silebilirsin. Quietly'nin kullanım istatistikleri bunu kullanmaz.",
+        "Quietly ücretsizdir ve bir kaydı onaylayan ekranda Google'dan tek bir banner reklam gösterir. Uygulamanın başka hiçbir yerinde reklam yoktur; tam ekran veya video reklam da yoktur.",
+        "Reklamı göstermek ve ölçmek için Google AdMob; cihazının reklam kimliği, IP adresin ve ondan çıkarılan yaklaşık konum, cihaz ve uygulama bilgileri ve reklamla etkileşimin gibi bilgileri toplar. Google bu bilgileri, Google'ın hizmetlerimizi kullanan site veya uygulamalardan gelen bilgileri nasıl kullandığı sayfasında (https://policies.google.com/technologies/partner-sites) anlatıldığı şekilde kullanır.",
+        "Yasanın gerektirdiği yerlerde (örneğin AEA, Birleşik Krallık, İsviçre ve bazı ABD eyaletleri) Google önce seçimini sorar; bunu istediğin zaman Ayarlar → Gizlilik → Reklam gizliliği seçenekleri bölümünden değiştirebilirsin. Quietly her reklam isteğinde Google'dan isteği bir gençten geliyormuş gibi ele almasını ister; bu yüzden reklamlar kişiselleştirilmez, yeniden pazarlama kapalıdır ve yalnızca her yaşa uygun reklamlar gösterilir. Hayır demen reklamları kapatmaz: Google yine de sınırlı bir reklam gösterebilir.",
+        "Kullanım istatistikleri, Ayarlar → Gizlilik → Kullanım istatistiklerini paylaş seçeneğini açmadıkça kapalıdır. Bu seçim Google'ın reklam izninden ayrıdır: birine izin vermek diğerini asla açmaz.",
+        "Açıkken Quietly, açtığın ekranların ve bağlantı kontrolleriyle kayıtların nasıl sonuçlandığının sayımlarını gönderir; örneğin bir kaydın tamamlanıp tamamlanmadığı, başarısız olup olmadığı veya iptal edilip edilmediği, medya türü ve 1, 2–5 ya da 6+ gibi aralıklarla öğe sayısı. Firebase ayrıca uygulama açılışları, oturumlar, cihaz modeli, işletim sistemi sürümü, dil ve yaklaşık ülke gibi bazı bilgileri otomatik olarak kaydeder.",
+        "Quietly, Analytics'e bağlantıları, dosya adlarını, başlıkları, dosya boyutlarını, geçmişini veya reklam kimliğini asla göndermez; kullanım istatistikleri reklam için kullanılmaz.",
+        "Lunexa, Google Analytics'i etkinlik düzeyindeki verileri 2 ay, kullanıcı düzeyindeki verileri 14 ay tutacak şekilde ayarladı. Bu süreler yalnızca Google Analytics ayarlarıdır: toplu raporlar, Google AdMob reklamları için işlenen veriler, cihazında saklanan dosyalar ve veriler veya Firebase yazılımının diğer bileşenleri için geçerli değildir. Google bu ayarları kendi süreçlerine göre uygular; bilgiler bir süre dolar dolmaz kaldırılmayabilir.",
+        "Kullanım istatistiklerini aynı yerden istediğin zaman kapatabilirsin: toplama durur, Firebase'in cihazında tuttuğu analitik veriler ve uygulama örneği kimliği sıfırlanır.",
+        "Quietly çocuklara yönelik değildir ve Lunexa, 13 yaşın altındaki çocuklardan bilerek kişisel bilgi toplamaz.",
+        "Önemli değişiklikler ayrıca uygulamanın sürüm notlarında da belirtilir. Politika, Google AdMob ve isteğe bağlı Google Analytics for Firebase ekleyen 1.2.0 sürümü için güncellenmiştir.",
+      ],
+      v110: ["Reklam kimlikleri (IDFA, AAID) veya diğer cihaz kimlikleri", "Analitik olaylar, kullanım telemetrisi veya çökme raporları"],
+    },
+    {
+      prefix: "/es",
+      titles: ["Lo que no recopilamos (hasta la versión 1.1.0)", "Qué sale de tu dispositivo y qué nunca sale (versión 1.2.0)", "Publicidad (Google AdMob, versión 1.2.0)", "Estadísticas de uso (Google Analytics para Firebase, versión 1.2.0)"],
+      statsTitle: "Estadísticas de uso (Google Analytics para Firebase, versión 1.2.0)",
+      retention: "Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses. Estos plazos son solo ajustes de Google Analytics: no se aplican a los informes agregados, a los datos tratados para los anuncios de Google AdMob, a los archivos y datos guardados en tu dispositivo ni a otras partes del software Firebase. Google aplica estos ajustes según sus propios procesos, y es posible que la información no se elimine en cuanto termine un plazo.",
+      texts: [
+        "creado por Lunexa Games.",
+        "Usa internet para descargar los medios que pides y para comprobar si tienes conexión; la versión 1.2.0 también lo usa para cargar un anuncio y, solo si lo permites, para enviar estadísticas de uso.",
+        "Quietly no crea cuentas. Las versiones hasta la 1.1.0 no muestran anuncios y no incluyen analítica ni informes de errores. La versión 1.2.0 muestra un anuncio de Google cuando termina un guardado, y puede enviar estadísticas de uso anónimas a Google Analytics para Firebase, solo si lo activas. Tus enlaces, archivos e historial nunca se envían con ninguno de ellos.",
+        "y las versiones hasta la 1.1.0 no incluyen Google AdMob ni Firebase.",
+        "Quietly usa internet solo para estos fines:",
+        "Quietly no requiere una cuenta. La versión 1.2.0 incluye Google AdMob (anuncios) y Google Analytics para Firebase (estadísticas de uso opcionales), que se describen más abajo. Cuando Quietly accede a un enlace o comprueba tu conexión, los servidores implicados pueden recibir información técnica de la solicitud, como tu dirección IP y las cabeceras de la solicitud. Quietly nunca envía nada de lo siguiente a Lunexa, a los servicios publicitarios de Google ni a Analytics:",
+        "Los enlaces que pegas, ni nada sobre las páginas o archivos a los que apuntan",
+        "Tus medios guardados, nombres de archivo, títulos ni tamaños de archivo",
+        "Tu historial, tu cola de guardado ni nada de tu portapapeles",
+        "Nombre, correo electrónico, número de teléfono ni ningún identificador de cuenta",
+        "Contactos, micrófono, cámara ni ubicación precisa",
+        "Google AdMob (versión 1.2.0) — cuando termina un guardado, Quietly pide a Google un anuncio para mostrarlo en la pantalla de confirmación. No lo pide cuando no tienes conexión, ni con datos móviles mientras “Guardar solo con Wi-Fi” está activado. Consulta “Publicidad” más abajo.",
+        "Google Analytics para Firebase (versión 1.2.0) — solo si activas las estadísticas de uso. Consulta “Estadísticas de uso” más abajo.",
+        "Identificador de publicidad y servicios de anuncios de Android (AD_ID, ACCESS_ADSERVICES_*; versión 1.2.0) — los usa Google AdMob para mostrar y medir el anuncio y para prevenir el fraude. Puedes restablecer o eliminar tu identificador de publicidad en los ajustes del dispositivo. Las estadísticas de uso de Quietly no lo usan.",
+        "Quietly es gratis y muestra un único anuncio de banner de Google, en la pantalla que confirma un guardado. En ninguna otra parte de la app hay anuncios, ni a pantalla completa ni de vídeo.",
+        "Para mostrar y medir el anuncio, Google AdMob recopila información como el identificador de publicidad de tu dispositivo, tu dirección IP y la ubicación aproximada que se deriva de ella, datos del dispositivo y de la app, y cómo interactúas con el anuncio. Google la usa como se describe en Cómo usa Google la información de sitios web o aplicaciones que utilizan nuestros servicios (https://policies.google.com/technologies/partner-sites).",
+        "Donde la ley lo exige (por ejemplo, en el EEE, el Reino Unido, Suiza y algunos estados de EE. UU.), Google te pide antes tu elección, y puedes cambiarla cuando quieras en Ajustes → Privacidad → Opciones de privacidad de anuncios. Quietly pide a Google que trate cada solicitud de anuncio como si viniera de un adolescente, por lo que los anuncios no se personalizan, el remarketing está desactivado y solo se muestran anuncios aptos para todas las edades. Decir que no no desactiva los anuncios: Google puede seguir mostrando un anuncio limitado.",
+        "Las estadísticas de uso están desactivadas salvo que actives Ajustes → Privacidad → Compartir estadísticas de uso. Tu elección es independiente del consentimiento de anuncios de Google: aceptar uno nunca activa el otro.",
+        "Si las activas, Quietly envía recuentos de las pantallas que abres y de cómo terminan las comprobaciones de enlaces y los guardados; por ejemplo, si un guardado terminó, falló o se canceló, el tipo de medio y el número de elementos en rangos como 1, 2–5 o 6+. Firebase también registra cierta información automáticamente, como las aperturas de la app, las sesiones, el modelo del dispositivo, la versión del sistema, el idioma y el país aproximado.",
+        "Quietly nunca envía a Analytics enlaces, nombres de archivo, títulos, tamaños de archivo, tu historial ni tu identificador de publicidad, y las estadísticas de uso no se usan para publicidad.",
+        "Lunexa ha configurado Google Analytics para guardar los datos a nivel de evento durante 2 meses y los datos a nivel de usuario durante 14 meses. Estos plazos son solo ajustes de Google Analytics: no se aplican a los informes agregados, a los datos tratados para los anuncios de Google AdMob, a los archivos y datos guardados en tu dispositivo ni a otras partes del software Firebase. Google aplica estos ajustes según sus propios procesos, y es posible que la información no se elimine en cuanto termine un plazo.",
+        "Desactiva las estadísticas de uso cuando quieras en el mismo lugar: la recopilación se detiene y se restablecen los datos de analítica que Firebase guardaba en tu dispositivo y su identificador de instancia de la app.",
+        "Quietly no está dirigida a niños, y Lunexa no recopila intencionalmente datos personales de menores de 13 años.",
+        "Los cambios importantes también se indicarán en las notas de versión de la aplicación. La política se actualizó para la versión 1.2.0, que añade Google AdMob y Google Analytics para Firebase opcional.",
+      ],
+      v110: ["Identificadores publicitarios (IDFA, AAID) ni otros identificadores de dispositivo", "Eventos analíticos, telemetría de uso ni informes de errores"],
+    },
+  ];
+
+  for (const l of locales) {
+    test(`${l.prefix || "/"}privacy/quietly labels the 1.2.0 disclosures`, async ({ page }) => {
+      await page.goto(`${l.prefix}/privacy/quietly`);
+      const main = page.locator("main");
+      for (const title of l.titles) {
+        await expect(main.getByRole("heading", { name: title, exact: true })).toHaveCount(1);
+      }
+      for (const s of [...l.texts, ...l.v110]) {
+        await expect(main).toContainText(s);
+      }
+      const stats = main.locator("section").filter({ has: page.getByRole("heading", { name: l.statsTitle, exact: true }) });
+      await expect(stats).toContainText(l.retention);
+      await expect(main.locator('a[href="mailto:hello@uselunexa.com"]')).toHaveCount(1);
+      const text = (await main.textContent()) ?? "";
+      expect(text).not.toMatch(/from version 1\.2\.0|since version 1\.2\.0|1\.2\.0 and later|1\.2\.0 sürümünden itibaren|1\.2\.0 ve sonra|desde la versión 1\.2\.0|1\.2\.0 y posteriores|1\.2\.1|now available|available now|update now|ya disponible|artık (mevcut|kullanılabilir)|Version 1\.2\.0 added/i);
+      expect(text).not.toMatch(/starts again whenever there is new activity|süre yeniden başlar|vuelve a empezar/);
+      expect(text).not.toMatch(/legal bas[ie]s|hukuki (sebep|dayanak)|base jurídica|data controller|veri sorumlusu|responsable del tratamiento|postal address|(?<!e-)posta adresi|dirección postal/i);
+    });
+  }
+});
+
 // RPS Duel 1.0.5 is on Google Play and shows ads. The policy restates the Play
 // Console data safety declaration (three purposes) and the default-on Firebase
 // Analytics usage statistics (R-REL-07). The GA4 retention setting is stated
