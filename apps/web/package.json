@@ -36,5 +36,13 @@
     "Firefox >= 108",
     "Safari >= 16",
     "Edge >= 108"
-  ]
+  ],
+  "overrides": {
+    "@sentry/bundler-plugin-core": {
+      "glob": "^14.0.2"
+    },
+    "@sentry/bundler-plugins": {
+      "glob": "^14.0.2"
+    }
+  }
 }
