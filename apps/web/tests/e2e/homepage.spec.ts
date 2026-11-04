@@ -54,7 +54,7 @@ const DEVELOPER_PLAY = "https://play.google.com/store/apps/developer?id=Use+Lune
 test.describe("Published games discovery", () => {
   const locales = [
     { prefix: "", rps: /Get RPS Duel on Google Play/, chess: /Get Chess Rescue on Google Play/, all: /See all our apps on Google Play/ },
-    { prefix: "/tr", rps: /RPS Duel'i Google Play'den indirin/, chess: /Chess Rescue'yu Google Play'den indirin/, all: /Google Play'deki tüm uygulamalarımızı gör/ },
+    { prefix: "/tr", rps: /RPS Duel'i Google Play'den indir/, chess: /Chess Rescue'yu Google Play'den indir/, all: /Google Play'deki tüm uygulamalarımızı gör/ },
     { prefix: "/es", rps: /Consigue RPS Duel en Google Play/, chess: /Consigue Chess Rescue en Google Play/, all: /Ver todas nuestras aplicaciones en Google Play/ },
   ];
 
@@ -90,9 +90,9 @@ test.describe("Quietly on Google Play", () => {
     },
     {
       prefix: "/tr",
-      homeBadge: /Quietly'yi Google Play'den indirin/,
+      homeBadge: /Quietly'yi Google Play'den indir/,
       gamesHeading: "Aynı özenle yapılmış oyunlar",
-      workBadge: "Quietly'yi Google Play'den indirin",
+      workBadge: "Quietly'yi Google Play'den indir",
       live: "Google Play'de yayında",
       obsolete: /bekleniyor|henüz|yakında|incelemede|kapalı test/i,
     },

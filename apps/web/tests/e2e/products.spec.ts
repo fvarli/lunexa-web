@@ -39,9 +39,9 @@ const LOCALES = [
   {
     prefix: "/tr",
     badge: {
-      "rps-duel": "RPS Duel'i Google Play'den indirin",
-      "chess-rescue": "Chess Rescue'yu Google Play'den indirin",
-      quietly: "Quietly'yi Google Play'den indirin",
+      "rps-duel": "RPS Duel'i Google Play'den indir",
+      "chess-rescue": "Chess Rescue'yu Google Play'den indir",
+      quietly: "Quietly'yi Google Play'den indir",
     },
     details: "Detayları gör",
     pages: {

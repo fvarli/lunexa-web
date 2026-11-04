@@ -413,7 +413,7 @@ export const UPDATES_PAGE: Record<Locale, UpdatesPageCopy> = {
     heading: "Ürün güncellemeleri",
     lead: "Yayınladığımız uygulamaların sürümleri. Buradaki her kayıt, mağazada yayında olan bir sürümü anlatır; yayınlanmamış çalışmaların önizlemesi yer almaz.",
     categoryLabels: { new: "Yeni", improved: "İyileştirildi", fixed: "Düzeltildi" },
-    storeLabel: "Google Play'den edinin",
+    storeLabel: "Google Play'den edin",
     productLabel: "Ürün sayfası",
   },
   es: {

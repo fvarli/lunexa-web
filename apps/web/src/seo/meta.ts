@@ -71,7 +71,7 @@ export const CONTACT_META: PageCopy = {
   tr: {
     title: "İletişim",
     description:
-      "Lunexa ile iletişime geçin. Projeniz hakkında sohbet etmeyi ve size nasıl yardımcı olabileceğimizi keşfetmeyi çok isteriz.",
+      "Lunexa ile iletişime geç. Projen hakkında sohbet etmeyi ve sana nasıl yardımcı olabileceğimizi keşfetmeyi çok isteriz.",
   },
   es: {
     title: "Contacto",
@@ -89,7 +89,7 @@ export const PRIVACY_META: PageCopy = {
   tr: {
     title: "Gizlilik Politikası",
     description:
-      "Lunexa verilerinizi nasıl işler. Gizlilik politikamız neleri topladığımızı, neden topladığımızı ve haklarınızı açıklar.",
+      "Lunexa verilerini nasıl işler. Gizlilik politikamız neleri topladığımızı, neden topladığımızı ve haklarını açıklar.",
   },
   es: {
     title: "Política de Privacidad",
@@ -125,7 +125,7 @@ export const QUIETLY_PRIVACY_META: PageCopy = {
   tr: {
     title: "Quietly — Gizlilik Politikası",
     description:
-      "Quietly için gizlilik politikası — Lunexa'nın Android medya kaydedicisi: bağlandığı sunucular ve cihazınızda sakladıkları. Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğunuz bölgeye ve gizlilik tercihlerinize bağlıdır.",
+      "Quietly için gizlilik politikası — Lunexa'nın Android medya kaydedicisi: bağlandığı sunucular ve cihazında sakladıkları. Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğun bölgeye ve gizlilik tercihlerine bağlıdır.",
   },
   es: {
     title: "Quietly — Política de Privacidad",
@@ -199,7 +199,7 @@ export const RPS_DUEL_SUPPORT_META: PageCopy = {
   tr: {
     title: "RPS Duel — Destek ve SSS",
     description:
-      "Lunexa Games'ten RPS Duel için yardım: hesaplar, çevrimdışı oynanış, diller, zorluk seviyeleri, Günlük Görev, başarımlar ve kayıtlarınızı kaybetmeden skor tablosunu sıfırlama.",
+      "Lunexa Games'ten RPS Duel için yardım: hesaplar, çevrimdışı oynanış, diller, zorluk seviyeleri, Günlük Görev, başarımlar ve kayıtlarını kaybetmeden skor tablosunu sıfırlama.",
   },
   es: {
     title: "RPS Duel — Soporte y preguntas frecuentes",
@@ -253,7 +253,7 @@ export const QUIETLY_TERMS_META: PageCopy = {
   tr: {
     title: "Quietly — Kullanım Şartları",
     description:
-      "Quietly için kullanım şartları — Lunexa tarafından geliştirilen Android medya kaydedici uygulaması. Yalnızca yetkili kullanım — yalnızca sahibi olduğunuz veya kaydetme izniniz olan medyayı kaydedin. Üçüncü taraf medya üzerinde hak verilmez.",
+      "Quietly için kullanım şartları — Lunexa tarafından geliştirilen Android medya kaydedici uygulaması. Yalnızca yetkili kullanım — yalnızca sahibi olduğun veya kaydetme iznin olan medyayı kaydet. Üçüncü taraf medya üzerinde hak verilmez.",
   },
   es: {
     title: "Quietly — Términos de Servicio",
@@ -271,7 +271,7 @@ export const ABOUT_META: PageCopy = {
   tr: {
     title: "Hakkımızda",
     description:
-      "Lunexa; tasarım zanaatını, mühendislik titizliğini ve uygulamalı zekayı birleştiren bir dijital ürün stüdyosudur. Hikayemizi, değerlerimizi ve nasıl çalıştığımızı öğrenin.",
+      "Lunexa; tasarım zanaatını, mühendislik titizliğini ve uygulamalı zekayı birleştiren bir dijital ürün stüdyosudur. Hikayemizi, değerlerimizi ve nasıl çalıştığımızı öğren.",
   },
   es: {
     title: "Acerca de Lunexa",

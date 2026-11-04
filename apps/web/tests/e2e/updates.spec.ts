@@ -20,7 +20,7 @@ test.describe("Updates — first production releases", () => {
       chess: "Chess Rescue Google Play'de yayında",
       quietlyDate: "20 Ekim 2026",
       chessDate: "14 Ekim 2026",
-      store: /Google Play'den edinin/,
+      store: /Google Play'den edin(?!in)/,
     },
     {
       prefix: "/es",

@@ -463,8 +463,8 @@ test.describe("RPS Duel privacy policy — 1.0.5", () => {
     test(`${l.prefix || "/"}support/rps-duel no longer says everything stays on the device`, async ({ page }) => {
       await page.goto(`${l.prefix}/support/rps-duel`);
       const main = page.locator("main");
-      await expect(main).not.toContainText(/runs entirely on your device|and only there|tamamen cihazınızda çalışır|Yalnızca cihazınızda|funciona enteramente en tu dispositivo|Solo en tu dispositivo/);
-      await expect(main).toContainText(/The app also shows ads and, depending on your region and choices, sends usage statistics|Uygulama ayrıca reklam gösterir ve bölgenize ve tercihlerinize bağlı olarak|La aplicación también muestra anuncios y, según tu región y tus elecciones, envía estadísticas de uso/);
+      await expect(main).not.toContainText(/runs entirely on your device|and only there|tamamen cihazınızda çalışır|Yalnızca cihazınızda|tamamen cihazında çalışır|Yalnızca cihazında|funciona enteramente en tu dispositivo|Solo en tu dispositivo/);
+      await expect(main).toContainText(/The app also shows ads and, depending on your region and choices, sends usage statistics|Uygulama ayrıca reklam gösterir ve bölgene ve tercihlerine bağlı olarak|La aplicación también muestra anuncios y, según tu región y tus elecciones, envía estadísticas de uso/);
     });
   }
 

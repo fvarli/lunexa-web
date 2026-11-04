@@ -393,7 +393,7 @@ const tr: Dictionary = {
     items: {
       clarity_title: "Karmaşa yerine netlik",
       clarity_desc:
-        "En iyi yazılımın hissettirmeyen yazılım olduğuna inanırız. Dağınıklık yok, karışıklık yok — sadece beklediğiniz gibi çalışan çözümler.",
+        "En iyi yazılımın hissettirmeyen yazılım olduğuna inanırız. Dağınıklık yok, karışıklık yok — sadece beklediğin gibi çalışan çözümler.",
       speed_title: "Bir özellik olarak hız",
       speed_desc:
         "Performans sonradan düşünülecek bir şey değil. Her milisaniye önemli. Hızlı ürünleri hızlı temeller üzerine inşa ederiz.",
@@ -409,26 +409,26 @@ const tr: Dictionary = {
     eyebrow: "Sırada Ne Var",
     heading: "Ufukta yeni bir şey var",
     subtitle:
-      "İlk Lunexa ürünleri yayında, sıradaki dalga ise geliştiriliyor. Yakın durun.",
+      "İlk Lunexa ürünleri yayında, sıradaki dalga ise geliştiriliyor. Yakın dur.",
     badge: "Geliştirme aşamasında",
   },
   games_cta: {
     eyebrow: "Lunexa Games",
     heading: "Aynı özenle yapılmış oyunlar",
     body: "Android için iki tek oyunculu oyun, ikisi de Google Play'de.",
-    badge_label: "Google Play'den indirin",
+    badge_label: "Google Play'den indir",
     rps_desc: "Taş Kâğıt Makas'ta bilgisayara karşı mücadele et, günlük görevleri tamamla ve başarılar kazan.",
-    rps_badge_label: "RPS Duel'i Google Play'den indirin",
+    rps_badge_label: "RPS Duel'i Google Play'den indir",
     chess_desc: "Geri dönüş hissi etrafında kurulmuş, satranç kurallı bulmacalar.",
-    chess_badge_label: "Chess Rescue'yu Google Play'den indirin",
+    chess_badge_label: "Chess Rescue'yu Google Play'den indir",
     developer_link: "Google Play'deki tüm uygulamalarımızı gör",
   },
   apps_cta: {
     eyebrow: "Lunexa Uygulamaları",
     heading: "Aynı özenle yapılmış uygulamalar",
     body: "Android için sade bir yardımcı uygulama, Google Play'de.",
-    quietly_desc: "Yapıştırdığın bağlantılardaki doğrudan halka açık medyayı cihazının galerisine kaydeder. Hesap yok. Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğunuz bölgeye ve gizlilik tercihlerinize bağlıdır.",
-    quietly_badge_label: "Quietly'yi Google Play'den indirin",
+    quietly_desc: "Yapıştırdığın bağlantılardaki doğrudan halka açık medyayı cihazının galerisine kaydeder. Hesap yok. Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğun bölgeye ve gizlilik tercihlerine bağlıdır.",
+    quietly_badge_label: "Quietly'yi Google Play'den indir",
   },
   faq: {
     eyebrow: "SSS",
@@ -456,31 +456,31 @@ const tr: Dictionary = {
     eyebrow: "İletişim",
     heading: "Konuşalım",
     subtitle:
-      "Aklınızda bir proje var mı ya da sadece merhaba demek mi istiyorsunuz? Sizi duymayı çok isteriz.",
+      "Aklında bir proje var mı ya da sadece merhaba demek mi istiyorsun? Seni duymayı çok isteriz.",
   },
   contact_page: {
     eyebrow: "İletişim",
     heading: "Birlikte bir şey inşa edelim",
     subtitle:
-      "İster aklınızda bir proje olsun, ister çalışmalarımız hakkında bir sorunuz olsun, ister sadece merhaba demek isteyin — sizi duymayı çok isteriz.",
+      "İster aklında bir proje olsun, ister çalışmalarımız hakkında sormak istediğin bir şey olsun, ister sadece merhaba demek iste — seni duymayı çok isteriz.",
     email_heading: "E-posta",
     response_heading: "Yanıt süresi",
     response_time: "Genellikle bir iş günü içinde yanıtlıyoruz.",
     agreement_prefix: "Bize ulaşarak ",
     privacy_link: "Gizlilik Politikası",
-    agreement_suffix: "'nı kabul etmiş olursunuz.",
+    agreement_suffix: "'nı kabul etmiş olursun.",
   },
   form: {
     name_label: "İsim",
-    name_placeholder: "Adınız",
+    name_placeholder: "Adın",
     email_label: "E-posta",
-    email_placeholder: "siz@ornek.com",
+    email_placeholder: "sen@ornek.com",
     message_label: "Mesaj",
-    message_placeholder: "Projenizden bahsedin...",
+    message_placeholder: "Projenden bahset...",
     submit: "Mesaj Gönder",
     submitting: "Gönderiliyor...",
-    success_title: "Mesajınız gönderildi",
-    success_body: "Bize ulaştığınız için teşekkürler. Kısa süre içinde dönüş yapacağız.",
+    success_title: "Mesajın gönderildi",
+    success_body: "Bize ulaştığın için teşekkürler. Kısa süre içinde dönüş yapacağız.",
     send_another: "Başka bir mesaj gönder",
     errors: {
       name_min: "İsim en az 2 karakter olmalı",
@@ -488,12 +488,12 @@ const tr: Dictionary = {
       email_required: "E-posta zorunlu",
       message_min: "Mesaj en az 10 karakter olmalı",
       message_max: "Mesaj en fazla 2000 karakter olabilir",
-      fix_above: "Lütfen yukarıdaki hataları düzeltin ve tekrar deneyin.",
-      network: "Sunucuya ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.",
-      rate_limit: "Çok fazla istek gönderildi. Birkaç dakika sonra tekrar deneyin.",
-      captcha_required: "Göndermeden önce doğrulamayı tamamlayın.",
+      fix_above: "Lütfen yukarıdaki hataları düzelt ve tekrar dene.",
+      network: "Sunucuya ulaşılamadı. Bağlantını kontrol edip tekrar dene.",
+      rate_limit: "Çok fazla istek gönderildi. Birkaç dakika sonra tekrar dene.",
+      captcha_required: "Göndermeden önce doğrulamayı tamamla.",
       unexpected: "Sunucudan beklenmeyen bir yanıt alındı.",
-      generic: "Bir şeyler ters gitti. Tekrar deneyin.",
+      generic: "Bir şeyler ters gitti. Tekrar dene.",
     },
   },
   footer: {
@@ -507,7 +507,7 @@ const tr: Dictionary = {
     description_prefix:
       "Siteyi çalıştırmak ve geliştirmek için zorunlu ve analitik çerezleri (Google Analytics dahil) kullanıyoruz. Pazarlama çerezleri isteğe bağlıdır. Detaylar için ",
     privacy_link: "Gizlilik Politikası",
-    description_suffix: " sayfamızı inceleyebilirsiniz.",
+    description_suffix: " sayfamızı inceleyebilirsin.",
     necessary_title: "Zorunlu çerezler",
     necessary_desc:
       "Güvenlik, oturum ve tercihler gibi temel site işlevleri için gereklidir.",
@@ -525,13 +525,13 @@ const tr: Dictionary = {
   notfound: {
     eyebrow: "404",
     heading: "Sayfa bulunamadı",
-    body: "Aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+    body: "Aradığın sayfa mevcut değil veya taşınmış olabilir.",
     home: "Ana sayfaya dön",
   },
   error: {
     eyebrow: "Hata",
     heading: "Bir şeyler ters gitti",
-    body: "Beklenmeyen bir hata oluştu. Tekrar deneyebilir veya ana sayfaya dönebilirsiniz.",
+    body: "Beklenmeyen bir hata oluştu. Tekrar deneyebilir veya ana sayfaya dönebilirsin.",
     retry: "Tekrar dene",
     home: "Ana sayfaya dön",
   },
@@ -547,36 +547,36 @@ const tr: Dictionary = {
     product_policies_quietly: "Quietly — medya kaydedici (Android)",
     overview_title: "Genel Bakış",
     overview_body:
-      "Lunexa (\u201cbiz\u201d) uselunexa.com web sitesini işletir. Bu politika, sitemizi ziyaret ettiğinizde veya iletişim formumuzu kullandığınızda hangi bilgileri topladığımızı ve bunları nasıl işlediğimizi açıklar.",
+      "Lunexa (\u201cbiz\u201d) uselunexa.com web sitesini işletir. Bu politika, sitemizi ziyaret ettiğinde veya iletişim formumuzu kullandığında hangi bilgileri topladığımızı ve bunları nasıl işlediğimizi açıklar.",
     collect_title: "Hangi bilgileri topluyoruz",
     collect_p1:
-      "İletişim formumuzu gönderdiğinizde adınızı, e-posta adresinizi ve mesaj içeriğinizi topluyoruz. Bu bilgileri yalnızca talebinizi yanıtlamak için kullanırız.",
+      "İletişim formumuzu gönderdiğinde adını, e-posta adresini ve mesaj içeriğini topluyoruz. Bu bilgileri yalnızca talebini yanıtlamak için kullanırız.",
     collect_newsletter:
-      "Bülten aboneliğinizi onayladığınızda ek olarak IP adresinizi, kullanıcı aracısı (tarayıcı/cihaz bilgisi) kaydınızı, yönlendiren URL'yi, tercih ettiğiniz dili ve kabul ettiğiniz onay metninin sürümünü kaydediyoruz. Bu veriler kötüye kullanımın önlenmesi, teslimat sorunlarının giderilmesi ve yasal uyumluluk için kullanılır. Aboneliğiniz aktif olduğu sürece saklanır; abonelikten çıkmanız veya hesap silme talebinde bulunmanız durumunda kaldırılır.",
+      "Bülten aboneliğini onayladığında ek olarak IP adresini, kullanıcı aracısı (tarayıcı/cihaz bilgisi) kaydını, yönlendiren URL'yi, tercih ettiğin dili ve kabul ettiğin onay metninin sürümünü kaydediyoruz. Bu veriler kötüye kullanımın önlenmesi, teslimat sorunlarının giderilmesi ve yasal uyumluluk için kullanılır. Aboneliğin aktif olduğu sürece saklanır; abonelikten çıkman veya hesap silme talebinde bulunman durumunda kaldırılır.",
     collect_p2:
-      "Web sunucumuz; IP adresiniz, tarayıcı türünüz ve ziyaret edilen sayfalar gibi standart teknik verileri otomatik olarak kaydedebilir. Bu veriler yalnızca güvenlik takibi ve temel analiz amacıyla kullanılır.",
-    usage_title: "Verilerinizi nasıl kullanıyoruz",
-    usage_item_1: "İletişim formu üzerinden gönderdiğiniz mesajlara yanıt vermek için",
+      "Web sunucumuz; IP adresin, tarayıcı türün ve ziyaret edilen sayfalar gibi standart teknik verileri otomatik olarak kaydedebilir. Bu veriler yalnızca güvenlik takibi ve temel analiz amacıyla kullanılır.",
+    usage_title: "Verilerini nasıl kullanıyoruz",
+    usage_item_1: "İletişim formu üzerinden gönderdiğin mesajlara yanıt vermek için",
     usage_item_2: "Sitemizin güvenliğini izlemek ve sürdürmek için",
     usage_item_3: "Genel kullanım örüntülerini anlamak ve sitemizi iyileştirmek için",
     usage_body:
-      "Kişisel bilgilerinizi pazarlama amacıyla üçüncü taraflarla paylaşmıyoruz, satmıyoruz veya kiralamıyoruz.",
+      "Kişisel bilgilerini pazarlama amacıyla üçüncü taraflarla paylaşmıyoruz, satmıyoruz veya kiralamıyoruz.",
     retention_title: "Veri saklama",
     retention_body:
-      "İletişim formu gönderimleri yalnızca talebinizi ele almak için gerekli süre boyunca saklanır. Sunucu logları güvenlik amacıyla en fazla 90 gün süreyle saklanır.",
+      "İletişim formu gönderimleri yalnızca talebini ele almak için gerekli süre boyunca saklanır. Sunucu logları güvenlik amacıyla en fazla 90 gün süreyle saklanır.",
     cookies_title: "Çerezler ve Analitik",
     cookies_body:
-      "Bu web sitesi; temel işlevsellik için zorunlu çerezler ve site kullanımını anlamak için analitik çerezler kullanır. Google Analytics 4 kullanıyoruz; bu hizmet tarayıcınıza çerezler (_ga ve _ga_* gibi) yerleştirir ve sayfa görüntülemeleri, cihaz tipi, tarayıcı, yaklaşık coğrafi konum ve yönlendiren kaynak gibi anonim verileri toplar. Bu veriler Google tarafından Amerika Birleşik Devletleri'nde işlenir. Bu web sitesinde gezinerek bu kullanımı kabul etmiş olursunuz. Site genelinde devre dışı bırakmayı tercih ederseniz https://tools.google.com/dlpage/gaoptout adresinden Google Analytics Devre Dışı Bırakma tarayıcı eklentisini yükleyebilirsiniz.",
-    rights_title: "Haklarınız",
+      "Bu web sitesi; temel işlevsellik için zorunlu çerezler ve site kullanımını anlamak için analitik çerezler kullanır. Google Analytics 4 kullanıyoruz; bu hizmet tarayıcına çerezler (_ga ve _ga_* gibi) yerleştirir ve sayfa görüntülemeleri, cihaz tipi, tarayıcı, yaklaşık coğrafi konum ve yönlendiren kaynak gibi anonim verileri toplar. Bu veriler Google tarafından Amerika Birleşik Devletleri'nde işlenir. Bu web sitesinde gezinerek bu kullanımı kabul etmiş olursun. Site genelinde devre dışı bırakmayı tercih edersen https://tools.google.com/dlpage/gaoptout adresinden Google Analytics Devre Dışı Bırakma tarayıcı eklentisini yükleyebilirsin.",
+    rights_title: "Hakların",
     rights_body_prefix:
-      "Sizinle ilgili tuttuğumuz kişisel verilere erişme, düzeltilmesini veya silinmesini talep etme hakkına sahipsiniz. Talep iletmek için şu adrese yazın: ",
+      "Seninle ilgili tuttuğumuz kişisel verilere erişme, düzeltilmesini veya silinmesini talep etme hakkına sahipsin. Talep iletmek için şu adrese yaz: ",
     rights_body_suffix: ".",
     changes_title: "Politika değişiklikleri",
     changes_body:
       "Bu politikayı zaman zaman güncelleyebiliriz. Değişiklikler, güncellenmiş bir revizyon tarihiyle bu sayfada yayınlanır.",
     contact_title: "İletişim",
     contact_body_prefix:
-      "Bu gizlilik politikasıyla ilgili sorularınız için bizimle iletişime geçin: ",
+      "Bu gizlilik politikasıyla ilgili soruların için bizimle iletişime geç: ",
     contact_body_suffix: ".",
   },
   terms_page: {
@@ -585,22 +585,22 @@ const tr: Dictionary = {
     last_updated: "Son güncelleme: Nisan 2026",
     product_terms_title: "Ürüne özel şartlar",
     product_terms_intro:
-      "Her Lunexa uygulamasının kendi kullanım şartları vardır. Aşağıdaki sayfa yalnızca uselunexa.com web sitesini kapsar. Bir uygulama için ilgili bağlantıyı izleyin:",
+      "Her Lunexa uygulamasının kendi kullanım şartları vardır. Aşağıdaki sayfa yalnızca uselunexa.com web sitesini kapsar. Bir uygulama için ilgili bağlantıyı izle:",
     product_terms_rps_duel: "RPS Duel — mobil oyun (Android)",
     product_terms_chess_rescue: "Chess Rescue — mobil bulmaca oyunu (Android)",
     product_terms_quietly: "Quietly — medya kaydedici (Android)",
     agreement_title: "Anlaşma",
     agreement_body:
-      "uselunexa.com'a erişerek ve kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız, lütfen bu web sitesini kullanmayın.",
+      "uselunexa.com'a erişerek ve kullanarak bu şartları kabul etmiş olursun. Kabul etmiyorsan, lütfen bu web sitesini kullanma.",
     use_title: "Bu web sitesinin kullanımı",
     use_body:
-      "Bu web sitesi Lunexa ve hizmetleri hakkında bilgi verme amacıyla sunulmaktadır. Siteyi gezebilir, bize ulaşmak için iletişim formunu kullanabilirsiniz. Yanlış bilgi göndermek, çalışmasını aksatmaya çalışmak veya içeriği kazımak için otomatik araçlar kullanmak dahil, siteyi kötüye kullanmayacağınızı kabul edersiniz.",
+      "Bu web sitesi Lunexa ve hizmetleri hakkında bilgi verme amacıyla sunulmaktadır. Siteyi gezebilir, bize ulaşmak için iletişim formunu kullanabilirsin. Yanlış bilgi göndermek, çalışmasını aksatmaya çalışmak veya içeriği kazımak için otomatik araçlar kullanmak dahil, siteyi kötüye kullanmayacağını kabul edersin.",
     ip_title: "Fikri mülkiyet",
     ip_body:
-      "Bu web sitesindeki tüm içerik \u2014 metin, tasarım, grafik ve kod dahil \u2014 aksi belirtilmedikçe Lunexa'nın mülküdür. Önceden yazılı izin almadan içeriğimizi çoğaltamaz, dağıtamaz veya türev çalışmalar oluşturamazsınız.",
+      "Bu web sitesindeki tüm içerik \u2014 metin, tasarım, grafik ve kod dahil \u2014 aksi belirtilmedikçe Lunexa'nın mülküdür. Önceden yazılı izin almadan içeriğimizi çoğaltamaz, dağıtamaz veya türev çalışmalar oluşturamazsın.",
     form_title: "İletişim formu",
     form_body:
-      "İletişim formumuz üzerinden bir mesaj gönderdiğinizde, sağladığınız bilgileri talebinize yanıt vermek için kullanmamıza izin vermiş olursunuz. Yanıt süreleri konusunda garanti vermiyoruz. Zararlı, saldırgan veya spam içerikli mesajlar yanıtlanmadan atılabilir.",
+      "İletişim formumuz üzerinden bir mesaj gönderdiğinde, sağladığın bilgileri talebine yanıt vermek için kullanmamıza izin vermiş olursun. Yanıt süreleri konusunda garanti vermiyoruz. Zararlı, saldırgan veya spam içerikli mesajlar yanıtlanmadan atılabilir.",
     disclaimer_title: "Sorumluluk reddi",
     disclaimer_body:
       "Bu web sitesi ve içeriği, herhangi bir açık veya zımni garanti olmaksızın \u201colduğu gibi\u201d sunulmaktadır. Lunexa, sitenin her zaman erişilebilir veya hatasız olacağını garanti etmez.",
@@ -609,9 +609,9 @@ const tr: Dictionary = {
       "Yasaların izin verdiği en geniş ölçüde, Lunexa bu web sitesinin kullanımından kaynaklanan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
     changes_title: "Değişiklikler",
     changes_body:
-      "Bu şartları herhangi bir zamanda değiştirebiliriz. Değişiklikler yayınlandıktan sonra web sitesini kullanmaya devam etmeniz, güncellenmiş şartları kabul ettiğiniz anlamına gelir.",
+      "Bu şartları herhangi bir zamanda değiştirebiliriz. Değişiklikler yayınlandıktan sonra web sitesini kullanmaya devam etmen, güncellenmiş şartları kabul ettiğin anlamına gelir.",
     contact_title: "İletişim",
-    contact_body_prefix: "Bu şartlarla ilgili sorular için bize ulaşın: ",
+    contact_body_prefix: "Bu şartlarla ilgili sorular için bize ulaş: ",
     contact_body_suffix: ".",
   },
   language: {
@@ -623,48 +623,48 @@ const tr: Dictionary = {
   },
   newsletter: {
     eyebrow: "Bülten",
-    heading: "Gündemi kaçırmayın",
+    heading: "Gündemi kaçırma",
     subtitle:
-      "Neler yaptığımıza dair arada gelen notlar. Spam yok, dilediğiniz zaman çıkabilirsiniz.",
+      "Neler yaptığımıza dair arada gelen notlar. Spam yok, dilediğin zaman çıkabilirsin.",
     name_label: "Ad",
-    name_placeholder: "Adınız",
+    name_placeholder: "Adın",
     email_label: "E-posta",
-    email_placeholder: "siz@ornek.com",
+    email_placeholder: "sen@ornek.com",
     consent_prefix: "Lunexa bültenini almayı kabul ediyorum ve ",
     privacy_link: "Gizlilik Politikası",
     consent_suffix: "'nı okudum.",
     submit: "Abone Ol",
     submitting: "Gönderiliyor...",
-    sent_title: "Gelen kutunuza bakın",
+    sent_title: "Gelen kutuna bak",
     sent_body:
-      "Size bir doğrulama bağlantısı gönderdik. Aboneliği tamamlamak için 15 dakika içinde açın.",
-    name_required: "Lütfen adınızı girin (en az 2 karakter).",
-    consent_required: "Devam etmek için bülten şartlarını kabul edin.",
-    rate_limit: "Çok fazla istek. Birkaç dakika sonra tekrar deneyin.",
-    network_error: "Sunucuya ulaşılamadı. Lütfen tekrar deneyin.",
-    generic_error: "Bir şeyler ters gitti. Tekrar deneyin.",
-    blog_link: "Ya da blogdaki son notları okuyun",
+      "Sana bir doğrulama bağlantısı gönderdik. Aboneliği tamamlamak için 15 dakika içinde aç.",
+    name_required: "Lütfen adını gir (en az 2 karakter).",
+    consent_required: "Devam etmek için bülten şartlarını kabul et.",
+    rate_limit: "Çok fazla istek. Birkaç dakika sonra tekrar dene.",
+    network_error: "Sunucuya ulaşılamadı. Lütfen tekrar dene.",
+    generic_error: "Bir şeyler ters gitti. Tekrar dene.",
+    blog_link: "Ya da blogdaki son notları oku",
   },
   newsletter_confirmed: {
     eyebrow_ok: "Bülten",
     eyebrow_err: "Bağlantı süresi doldu",
-    ok_title: "Aboneliğiniz onaylandı",
+    ok_title: "Aboneliğin onaylandı",
     ok_body:
-      "Listedesiniz. Neler yaptığımıza dair arada size ulaşacağız.",
+      "Listedesin. Neler yaptığımıza dair arada sana ulaşacağız.",
     expired_title: "Bu bağlantı artık geçerli değil",
     expired_body:
-      "Onay bağlantıları 15 dakika sonra sona erer. Ana sayfadan yeni bir tane talep edebilirsiniz.",
+      "Onay bağlantıları 15 dakika sonra sona erer. Ana sayfadan yeni bir tane talep edebilirsin.",
     home: "Ana sayfaya dön",
   },
   newsletter_unsubscribed: {
     eyebrow_ok: "Bülten",
     eyebrow_err: "Bağlantı süresi doldu",
-    ok_title: "Abonelikten çıktınız",
+    ok_title: "Abonelikten çıktın",
     ok_body:
-      "Bundan sonra bülten e-postası almayacaksınız. İstediğiniz zaman ana sayfadan yeniden abone olabilirsiniz.",
+      "Bundan sonra bülten e-postası almayacaksın. İstediğin zaman ana sayfadan yeniden abone olabilirsin.",
     expired_title: "Bu bağlantı artık geçerli değil",
     expired_body:
-      "Abonelikten çıkma bağlantıları 30 gün sonra geçersiz olur. Hâlâ çıkmak istiyorsanız hello@uselunexa.com adresine yazın.",
+      "Abonelikten çıkma bağlantıları 30 gün sonra geçersiz olur. Hâlâ çıkmak istiyorsan hello@uselunexa.com adresine yaz.",
     home: "Ana sayfaya dön",
   },
 };

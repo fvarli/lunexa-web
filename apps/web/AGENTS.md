@@ -53,9 +53,18 @@ Work cards, the homepage, landing and support pages, Terms, meta, Open Graph and
 
 - No absolute "no ads", "no analytics", "no telemetry", "no tracking", "offline-only" or "anonymous" claims while the live app contradicts them. Offline *gameplay* may be stated as such.
 - A summary of ads or usage statistics links the app's privacy policy.
-- Quietly's product-facing statement, owner-approved for 1.2.0 and 1.2.1: "One ad after a save; usage statistics depend on your region and privacy choices." (TR "Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğunuz bölgeye ve gizlilik tercihlerinize bağlıdır.", ES "Un anuncio después de guardar; las estadísticas de uso dependen de tu región y de tus preferencias de privacidad."). It must not be replaced with "only if you turn them on", "optional", "always opt-in" or "always on".
+- Quietly's product-facing statement, owner-approved for 1.2.0 and 1.2.1: "One ad after a save; usage statistics depend on your region and privacy choices." (TR "Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğun bölgeye ve gizlilik tercihlerine bağlıdır.", ES "Un anuncio después de guardar; las estadísticas de uso dependen de tu región y de tus preferencias de privacidad."). It must not be replaced with "only if you turn them on", "optional", "always opt-in" or "always on".
 - Dated release notes in `src/seo/updates.ts` describe their own version and are not rewritten.
 - `tests/e2e/product-claims.spec.ts` enforces this; update it with the copy.
+
+## Turkish address (D-WEB-TR-SEN)
+
+All Turkish user-facing copy uses consistent informal singular "sen" address: marketing, product cards, the homepage, support, privacy policies, Terms, blog posts, form and error messages, meta, Open Graph, Twitter and structured data. New Turkish content and edits follow this rule.
+
+- In privacy and Terms text, only the form of address and the grammatical agreement it requires change; rights, obligations, conditions, numbers, version labels and dates stay as they are.
+- Exceptions are exact phrases with a route and a reason, listed in `EXCEPTIONS` in `tests/e2e/turkish-address-consistency.spec.ts` (currently: the four home FAQ questions, written in the visitor's voice to the Lunexa team). Never add a broad pattern exemption.
+- That test scans every Turkish sitemap URL and fails on formal "siz" forms; update it with the copy.
+- English and Spanish are unaffected.
 
 ## Authorization rule
 

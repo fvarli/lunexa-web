@@ -165,7 +165,7 @@ export const ABOUT: Record<Locale, AboutContent> = {
         },
       ],
     },
-    cta_lead: "Aklınızda bir proje mi var?",
+    cta_lead: "Aklında bir proje mi var?",
     cta_button: "Konuşalım",
   },
   es: {
@@ -246,19 +246,19 @@ export const SERVICES_INDEX: Record<Locale, ServicesIndexContent> = {
         slug: "mobile",
         title: "Mobil Uygulamalar",
         body: "Native hissettiren, hızlı yüklenen ve gerçek dünya ağlarında ayakta kalan iOS ve Android uygulamaları. Swift, Kotlin, React Native, Expo.",
-        link_label: "Mobili keşfedin",
+        link_label: "Mobili keşfet",
       },
       {
         slug: "web",
         title: "Web Platformları",
         body: "Pazarlama siteleri, SaaS panelleri, içerik platformları. Next.js, React 19, Tailwind, edge-first deployment.",
-        link_label: "Web'i keşfedin",
+        link_label: "Web'i keşfet",
       },
       {
         slug: "intelligent",
         title: "Akıllı Sistemler",
         body: "LLM destekli ürün özellikleri, retrieval augmented generation, iş akışı otomasyonu. Gösterişli demolar değil, pragmatik AI.",
-        link_label: "Akıllı sistemleri keşfedin",
+        link_label: "Akıllı sistemleri keşfet",
       },
     ],
   },
@@ -323,7 +323,7 @@ export const SERVICE_MOBILE: Record<Locale, ServiceDetailContent> = {
     eyebrow: "Hizmetler · Mobil",
     heading: "Mobil Uygulamalar",
     lead:
-      "İnsanların ana ekranında tutmak isteyeceği bir mobil ürün teslim edin. Startup'lar, ürün ekipleri ve kurumsal şirketler için native ve cross-platform uygulamalar geliştiriyoruz.",
+      "İnsanların ana ekranında tutmak isteyeceği bir mobil ürün teslim et. Startup'lar, ürün ekipleri ve kurumsal şirketler için native ve cross-platform uygulamalar geliştiriyoruz.",
     audience_title: "Kimler için",
     audience_body:
       "App odaklı bir fikri doğrulayan kurucular. Yavaş legacy uygulamasını değiştiren ürün ekipleri. Mevcut web ürününü iOS ve Android'e taşıyan şirketler.",
@@ -342,8 +342,8 @@ export const SERVICE_MOBILE: Record<Locale, ServiceDetailContent> = {
       "Artırımlı geliştirme — iki hafta içinde çalışan uygulama, haftalık paydaş demoları",
       "Prodüksiyon lansmanı — izlenen sürüm, iterasyon backlog'u zaten kapsamlandı",
     ],
-    cta_lead: "Mobil lansman mı planlıyorsunuz?",
-    cta_button: "Sohbete başlayın",
+    cta_lead: "Mobil lansman mı planlıyorsun?",
+    cta_button: "Sohbete başla",
   },
   es: {
     eyebrow: "Servicios · Móvil",
@@ -404,14 +404,14 @@ export const SERVICE_WEB: Record<Locale, ServiceDetailContent> = {
     eyebrow: "Hizmetler · Web",
     heading: "Web Platformları",
     lead:
-      "Markanızın hak ettiği web ürününü inşa edin. Pazarlama siteleri, SaaS panelleri, içerik merkezleri — Next.js ve modern altyapı üzerinde performans odaklı web platformları teslim ederiz.",
+      "Markanın hak ettiği web ürününü inşa et. Pazarlama siteleri, SaaS panelleri, içerik merkezleri — Next.js ve modern altyapı üzerinde performans odaklı web platformları teslim ederiz.",
     audience_title: "Kimler için",
     audience_body:
       "Legacy CMS'den yükselten şirketler. İlk SaaS arayüzünü çıkaran startup'lar. Ürününün pitch deck'i kadar özenli hissettirmesini isteyen ekipler.",
     delivery_title: "Neler teslim ediyoruz",
     delivery_items: [
       "Server components, streaming ve edge caching ile Next.js 16 App Router",
-      "Template klişelerine değil markanıza ayarlanmış Tailwind CSS tasarım sistemi",
+      "Template klişelerine değil markana ayarlanmış Tailwind CSS tasarım sistemi",
       "Auth, faturalama, roller, admin araçları — sonradan eklenen değil entegre",
       "SEO odaklı mimari: metadata, structured data, sitemap, hreflang",
       "Her ana sayfada teslim sözleşmesi olarak Lighthouse 95+",
@@ -423,8 +423,8 @@ export const SERVICE_WEB: Record<Locale, ServiceDetailContent> = {
       "Geliştirme — feature flag'lerin arkasında haftalık prodüksiyon deploy'ları",
       "Lansman — SEO migrasyon planı, monitoring, devir dokümanları",
     ],
-    cta_lead: "Güzel bir şey teslim etmeye hazır mısınız?",
-    cta_button: "Sohbete başlayın",
+    cta_lead: "Güzel bir şey teslim etmeye hazır mısın?",
+    cta_button: "Sohbete başla",
   },
   es: {
     eyebrow: "Servicios · Web",
@@ -493,19 +493,19 @@ export const SERVICE_INTELLIGENT: Record<Locale, ServiceDetailContent> = {
     delivery_items: [
       "LLM destekli ürün özellikleri (sohbet, özetleme, sınıflandırma, veri çıkarma)",
       "Gerçek embedding'ler ve gerçek eval'larla Retrieval Augmented Generation",
-      "LLM'leri mevcut araçlarınıza ve verilerinize bağlayan iş akışı otomasyonu",
+      "LLM'leri mevcut araçlarına ve verilerine bağlayan iş akışı otomasyonu",
       "Prompt versiyonlama, evaluation harness'ları, cost + latency observability",
-      "Fallback stratejileri — model çalışmadığında ürününüz çalışmaya devam eder",
+      "Fallback stratejileri — model çalışmadığında ürünün çalışmaya devam eder",
     ],
     process_title: "Nasıl çalışıyoruz",
     process_items: [
-      "Kapsamlama — problemi model seçimi değil kullanıcı sonuçları cinsinden çerçeveleyin",
+      "Kapsamlama — problemi model seçimi değil kullanıcı sonuçları cinsinden çerçevele",
       "Eval-first — bir prompt yazılmadan önce başarı tanımlanır",
       "İterasyon — prompt, eval, teslim, ölç döngüsü",
       "Prodüksiyonlaştırma — rate limit'ler, caching, observability, maliyet koruması",
     ],
-    cta_lead: "Gerçekten üretime giden AI mı istiyorsunuz?",
-    cta_button: "Sohbete başlayın",
+    cta_lead: "Gerçekten üretime giden AI mı istiyorsun?",
+    cta_button: "Sohbete başla",
   },
   es: {
     eyebrow: "Servicios · Inteligente",
@@ -551,7 +551,7 @@ export const BLOG_INDEX: Record<Locale, BlogIndexContent> = {
     lead:
       "Lunexa'da dijital ürün geliştirmeye dair ara ara yazılar — zanaat, araçlar ve dersler.",
     empty:
-      "Yazılar yakında geliyor. Yayınlandığında haberdar olmak için bültene abone olun.",
+      "Yazılar yakında geliyor. Yayınlandığında haberdar olmak için bültene abone ol.",
   },
   es: {
     eyebrow: "Blog",
@@ -767,7 +767,7 @@ export const WORK: Record<Locale, WorkContent> = {
         slug: "quietly",
         name: "Quietly",
         tagline: "Doğrudan halka açık URL'ler için bir Android medya kaydedici",
-        body: "Quietly, yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. Yalnızca senin istediğini getirir — kazıma yok, oturum açılmış veya DRM korumalı içerik yok. Hesap yok. Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğunuz bölgeye ve gizlilik tercihlerinize bağlıdır. Bağlantıların, dosyaların ve geçmişin hiçbiriyle birlikte gönderilmez.",
+        body: "Quietly, yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeder. Yalnızca senin istediğini getirir — kazıma yok, oturum açılmış veya DRM korumalı içerik yok. Hesap yok. Kaydetme işleminden sonra bir reklam; kullanım istatistikleri bulunduğun bölgeye ve gizlilik tercihlerine bağlıdır. Bağlantıların, dosyaların ve geçmişin hiçbiriyle birlikte gönderilmez.",
         url: QUIETLY_PLAY_URL,
         stack: ["Flutter", "Dart", "Riverpod", "http", "gal"],
         status: "live",
@@ -1058,7 +1058,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
   tr: {
     eyebrow: "Lunexa Games",
     heading: "RPS Duel Destek",
-    lead: "RPS Duel hakkında en sık aldığımız soruların yanıtları ve bir şey çalışmadığında bize nasıl ulaşacağınız.",
+    lead: "RPS Duel hakkında en sık aldığımız soruların yanıtları ve bir şey çalışmadığında bize nasıl ulaşacağın.",
     facts: [
       "Android",
       "Hesap gerekmez",
@@ -1066,7 +1066,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       "English · Türkçe · Español",
     ],
     linksHeading: "Bağlantılar",
-    playLabel: "Google Play'den edinin",
+    playLabel: "Google Play'den edin",
     productLabel: "RPS Duel hakkında",
     privacyLabel: "Gizlilik politikası",
     termsLabel: "Kullanım şartları",
@@ -1074,19 +1074,19 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
     faq: [
       {
         q: "Oynamak için hesap gerekir mi?",
-        a: "Hayır. RPS Duel'de giriş, profil ve çevrimiçi oyun yoktur. Skorlarınız, başarımlarınız ve ayarlarınız cihazınızda kalır.",
+        a: "Hayır. RPS Duel'de giriş, profil ve çevrimiçi oyun yoktur. Skorların, başarımların ve ayarların cihazında kalır.",
       },
       {
         q: "Oyun için internet bağlantısı gerekir mi?",
-        a: "Hayır. Eller, Günlük Görev, başarımlar ve kayıtlar bağlantı olmadan çalışır. Uygulama ayrıca reklam gösterir ve bölgenize ve tercihlerinize bağlı olarak bağlantı olduğunda kullanım istatistikleri gönderir; ilgili veriler gizlilik politikasında açıklanır.",
+        a: "Hayır. Eller, Günlük Görev, başarımlar ve kayıtlar bağlantı olmadan çalışır. Uygulama ayrıca reklam gösterir ve bölgene ve tercihlerine bağlı olarak bağlantı olduğunda kullanım istatistikleri gönderir; ilgili veriler gizlilik politikasında açıklanır.",
       },
       {
         q: "Uygulama hangi dilleri destekler?",
-        a: "İngilizce, Türkçe ve İspanyolca. RPS Duel ilk açılışta cihazınızın dilini kullanır; dilediğiniz zaman Ayarlar → Dil bölümünden değiştirebilirsiniz.",
+        a: "İngilizce, Türkçe ve İspanyolca. RPS Duel ilk açılışta cihazının dilini kullanır; dilediğin zaman Ayarlar → Dil bölümünden değiştirebilirsin.",
       },
       {
         q: "Zorluk seviyeleri nasıl çalışır?",
-        a: "Kolay sizin lehinize, Normal hamlesini rastgele seçer, Zor ise rakibin lehinedir. Zorluk önceki ellerinizden öğrenmez ve geçmişinize göre uyum sağlamaz — her el kendi başına belirlenir. Ayarlar → Zorluk bölümünden değiştirebilirsiniz.",
+        a: "Kolay senin lehine, Normal hamlesini rastgele seçer, Zor ise rakibin lehinedir. Zorluk önceki ellerinden öğrenmez ve geçmişine göre uyum sağlamaz — her el kendi başına belirlenir. Ayarlar → Zorluk bölümünden değiştirebilirsin.",
       },
       {
         q: "Günlük Görev nasıl çalışır?",
@@ -1098,7 +1098,7 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
       },
       {
         q: "İlerlemem nerede saklanıyor?",
-        a: "Cihazınızda. RPS Duel'de bulut kaydı, cihazlar arası eşitleme veya dışa aktarma yoktur; ilerleme bir cihazdan diğerine taşınamaz.",
+        a: "Cihazında. RPS Duel'de bulut kaydı, cihazlar arası eşitleme veya dışa aktarma yoktur; ilerleme bir cihazdan diğerine taşınamaz.",
       },
       {
         q: "RPS Duel iPhone'da var mı?",
@@ -1109,20 +1109,20 @@ export const RPS_DUEL_SUPPORT: Record<Locale, SupportContent> = {
     troubleshooting: [
       {
         q: "Uygulama yanlış dilde",
-        a: "Ayarlar → Dil bölümünü açıp English, Türkçe veya Español seçin. Siz bir dil seçene kadar uygulama cihazınızın dilini kullanır.",
+        a: "Ayarlar → Dil bölümünü açıp English, Türkçe veya Español seç. Sen bir dil seçene kadar uygulama cihazının dilini kullanır.",
       },
       {
         q: "Hiç ses duyamıyorum",
-        a: "Ses varsayılan olarak açıktır. Önce Ayarlar → Ses seçeneğinin açık olduğunu, ardından cihazınızın ses düzeyini ve sessiz/titreşim düğmesini kontrol edin.",
+        a: "Ses varsayılan olarak açıktır. Önce Ayarlar → Ses seçeneğinin açık olduğunu, ardından cihazının ses düzeyini ve sessiz/titreşim düğmesini kontrol et.",
       },
       {
         q: "Skor tablosuna sıfırdan başlamak istiyorum",
-        a: "Ayarlar → Verileri sıfırla, skorlarınızı ve el geçmişinizi siler; uygulama bunu yapmadan önce onay ister. Başarımlarınız, genel kayıtlarınız ve ayarlarınız korunur. Bunun için Android'in kendi depolamayı temizleme seçeneğini kullanmayın: o seçenek yalnızca skor tablosunu değil, RPS Duel'in kaydettiği her şeyi — başarımlar ve kayıtlar dahil — siler.",
+        a: "Ayarlar → Verileri sıfırla, skorlarını ve el geçmişini siler; uygulama bunu yapmadan önce onay ister. Başarımların, genel kayıtların ve ayarların korunur. Bunun için Android'in kendi depolamayı temizleme seçeneğini kullanma: o seçenek yalnızca skor tablosunu değil, RPS Duel'in kaydettiği her şeyi — başarımlar ve kayıtlar dahil — siler.",
       },
     ],
     contactHeading: "Hâlâ yardım mı gerekiyor?",
-    contactBody: "Sorunuzun yanıtı burada yoksa ya da uygulama bu sayfada anlatıldığı gibi davranmıyorsa bize yazın. Cihaz modelinizi, Android sürümünüzü ve o sırada ne yaptığınızı belirtmeniz sorunu yeniden oluşturmamıza yardımcı olur.",
-    contactLabel: "Bize ulaşın",
+    contactBody: "Sorunun yanıtı burada yoksa ya da uygulama bu sayfada anlatıldığı gibi davranmıyorsa bize yaz. Cihaz modelini, Android sürümünü ve o sırada ne yaptığını belirtmen sorunu yeniden oluşturmamıza yardımcı olur.",
+    contactLabel: "Bize ulaş",
     backLabel: "RPS Duel'e dön",
   },
   es: {
@@ -2677,7 +2677,7 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Genel bakış",
         paragraphs: [
-          "RPS Duel'i yükleyerek veya kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.",
+          "RPS Duel'i yükleyerek veya kullanarak bu şartları kabul etmiş olursun. Kabul etmiyorsan lütfen uygulamayı kullanma.",
           "Uygulamanın bilgilerle ne yaptığı ayrıca RPS Duel Gizlilik Politikası'nda açıklanmıştır.",
         ],
       },
@@ -2690,29 +2690,29 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Hesap yok",
         paragraphs: [
-          "RPS Duel hesap gerektirmez. İlerlemeniz ve tercihleriniz cihazınızda saklanır ve bizde bunların hiçbir yedek kopyası bulunmaz — bu nedenle bunları sizin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunları cihazdan siler; işletim sisteminizin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
+          "RPS Duel hesap gerektirmez. İlerlemen ve tercihlerin cihazında saklanır ve bizde bunların hiçbir yedek kopyası bulunmaz — bu nedenle bunları senin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunları cihazdan siler; işletim sisteminin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
         ],
       },
       {
-        title: "Uygulamayı kullanma lisansınız",
+        title: "Uygulamayı kullanma lisansın",
         paragraphs: [
-          "Lunexa Games, RPS Duel'i sahip olduğunuz veya kontrol ettiğiniz cihazlara kurmanız ve kendi ticari olmayan kullanımınız için kullanmanız amacıyla size kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsınız.",
+          "Lunexa Games, RPS Duel'i sahip olduğun veya kontrol ettiğin cihazlara kurman ve kendi ticari olmayan kullanımın için kullanman amacıyla sana kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsın.",
         ],
       },
       {
         title: "Kabul edilebilir kullanım",
-        paragraphs: ["Şunları yapmamayı kabul edersiniz:"],
+        paragraphs: ["Şunları yapmamayı kabul edersin:"],
         bullets: [
           "Yasaların bu kısıtlamayı yasakladığı durumlar dışında uygulamayı değiştirmek, tersine mühendislik uygulamak veya derlemesini çözmek",
           "Uygulamanın amaçlanan çalışma biçimini atlatmak veya buna müdahale etmek",
-          "Uygulamayı yeniden dağıtmak veya kendinize aitmiş gibi sunmak",
+          "Uygulamayı yeniden dağıtmak veya kendine aitmiş gibi sunmak",
           "Uygulamayı geçerli yasaları ihlal edecek şekilde kullanmak",
         ],
       },
       {
         title: "Fikri mülkiyet",
         paragraphs: [
-          "Uygulama — kodu, tasarımı, görselleri, metni ve sesi dahil — aksi belirtilmedikçe Lunexa Games'e aittir. Bu şartlar size herhangi bir mülkiyet devretmez.",
+          "Uygulama — kodu, tasarımı, görselleri, metni ve sesi dahil — aksi belirtilmedikçe Lunexa Games'e aittir. Bu şartlar sana herhangi bir mülkiyet devretmez.",
         ],
       },
       {
@@ -2724,7 +2724,7 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Uygulama mağazaları üzerinden dağıtım",
         paragraphs: [
-          "RPS Duel, Google Play üzerinden dağıtılmaktadır. Bu mağazayı kullanmanız, bu şartlardan ayrı olan Google'ın kendi koşullarına tabidir.",
+          "RPS Duel, Google Play üzerinden dağıtılmaktadır. Bu mağazayı kullanman, bu şartlardan ayrı olan Google'ın kendi koşullarına tabidir.",
         ],
       },
       {
@@ -2736,18 +2736,18 @@ export const RPS_DUEL_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Sorumluluğun sınırlandırılması",
         paragraphs: [
-          "Yasaların izin verdiği en geniş ölçüde, Lunexa Games uygulamayı kullanmanızdan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
+          "Yasaların izin verdiği en geniş ölçüde, Lunexa Games uygulamayı kullanmandan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
         ],
       },
       {
         title: "Bu şartlardaki değişiklikler",
         paragraphs: [
-          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmeniz bunları kabul ettiğiniz anlamına gelir.",
+          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmen bunları kabul ettiğin anlamına gelir.",
         ],
       },
     ],
     contactTitle: "İletişim",
-    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsiniz: ",
+    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsin: ",
     contactBodySuffix: ".",
   },
   es: {
@@ -2934,42 +2934,42 @@ export const CHESS_RESCUE_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Genel bakış",
         paragraphs: [
-          "Chess Rescue'yu yükleyerek veya kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.",
+          "Chess Rescue'yu yükleyerek veya kullanarak bu şartları kabul etmiş olursun. Kabul etmiyorsan lütfen uygulamayı kullanma.",
           "Uygulamanın bilgilerle ne yaptığı ayrıca Chess Rescue Gizlilik Politikası'nda açıklanmıştır.",
         ],
       },
       {
         title: "Yalnızca eğlence amaçlı",
         paragraphs: [
-          "Chess Rescue, eğlence amacıyla oynanan bir bulmaca oyunudur. Bulmacaları satrancın taş hareket kurallarını kullanır, ancak uygulama bir eğitim, koçluk veya sertifikasyon ürünü değildir. Satranç yeteneğinizde veya puanınızda herhangi bir gelişme vaat etmez ve bu amaçla kullanılmamalıdır.",
+          "Chess Rescue, eğlence amacıyla oynanan bir bulmaca oyunudur. Bulmacaları satrancın taş hareket kurallarını kullanır, ancak uygulama bir eğitim, koçluk veya sertifikasyon ürünü değildir. Satranç yeteneğinde veya puanında herhangi bir gelişme vaat etmez ve bu amaçla kullanılmamalıdır.",
         ],
       },
       {
         title: "Çevrimdışı oynanış ve hesap yok",
         paragraphs: [
-          "Chess Rescue hesap gerektirmez ve oynamak için ağ bağlantısına ihtiyaç duymaz. İlerlemeniz cihazınızda saklanır ve bizde hiçbir kopyası bulunmaz — bu nedenle bunu sizin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunu cihazdan siler; işletim sisteminizin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
+          "Chess Rescue hesap gerektirmez ve oynamak için ağ bağlantısına ihtiyaç duymaz. İlerlemen cihazında saklanır ve bizde hiçbir kopyası bulunmaz — bu nedenle bunu senin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunu cihazdan siler; işletim sisteminin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
         ],
       },
       {
-        title: "Uygulamayı kullanma lisansınız",
+        title: "Uygulamayı kullanma lisansın",
         paragraphs: [
-          "Lunexa Games, Chess Rescue'yu sahip olduğunuz veya kontrol ettiğiniz cihazlara kurmanız ve kendi ticari olmayan kullanımınız için kullanmanız amacıyla size kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsınız.",
+          "Lunexa Games, Chess Rescue'yu sahip olduğun veya kontrol ettiğin cihazlara kurman ve kendi ticari olmayan kullanımın için kullanman amacıyla sana kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsın.",
         ],
       },
       {
         title: "Kabul edilebilir kullanım",
-        paragraphs: ["Şunları yapmamayı kabul edersiniz:"],
+        paragraphs: ["Şunları yapmamayı kabul edersin:"],
         bullets: [
           "Yasaların bu kısıtlamayı yasakladığı durumlar dışında uygulamayı değiştirmek, tersine mühendislik uygulamak veya derlemesini çözmek",
           "Uygulamanın amaçlanan çalışma biçimini atlatmak veya buna müdahale etmek",
-          "Uygulamayı yeniden dağıtmak veya kendinize aitmiş gibi sunmak",
+          "Uygulamayı yeniden dağıtmak veya kendine aitmiş gibi sunmak",
           "Uygulamayı geçerli yasaları ihlal edecek şekilde kullanmak",
         ],
       },
       {
         title: "Fikri mülkiyet",
         paragraphs: [
-          "Uygulama — kodu, tasarımı, görselleri, metni ve bulmaca seti dahil — aksi belirtilmedikçe Lunexa Games'e aittir. Bu şartlar size herhangi bir mülkiyet devretmez.",
+          "Uygulama — kodu, tasarımı, görselleri, metni ve bulmaca seti dahil — aksi belirtilmedikçe Lunexa Games'e aittir. Bu şartlar sana herhangi bir mülkiyet devretmez.",
         ],
       },
       {
@@ -2981,7 +2981,7 @@ export const CHESS_RESCUE_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Uygulama mağazaları üzerinden dağıtım",
         paragraphs: [
-          "Chess Rescue'yu bir uygulama mağazası üzerinden edindiğinizde, o mağazanın kendi koşulları da indirmeniz için geçerlidir ve bu şartlardan ayrıdır.",
+          "Chess Rescue'yu bir uygulama mağazası üzerinden edindiğinde, o mağazanın kendi koşulları da indirmen için geçerlidir ve bu şartlardan ayrıdır.",
         ],
       },
       {
@@ -2993,18 +2993,18 @@ export const CHESS_RESCUE_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Sorumluluğun sınırlandırılması",
         paragraphs: [
-          "Yasaların izin verdiği en geniş ölçüde, Lunexa Games uygulamayı kullanmanızdan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
+          "Yasaların izin verdiği en geniş ölçüde, Lunexa Games uygulamayı kullanmandan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
         ],
       },
       {
         title: "Bu şartlardaki değişiklikler",
         paragraphs: [
-          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmeniz bunları kabul ettiğiniz anlamına gelir.",
+          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmen bunları kabul ettiğin anlamına gelir.",
         ],
       },
     ],
     contactTitle: "İletişim",
-    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsiniz: ",
+    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsin: ",
     contactBodySuffix: ".",
   },
   es: {
@@ -3208,57 +3208,57 @@ export const QUIETLY_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Genel bakış",
         paragraphs: [
-          "Quietly'yi yükleyerek veya kullanarak bu şartları kabul etmiş olursunuz. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.",
-          "Quietly, yapıştırdığınız URL'lerdeki doğrudan halka açık medyayı cihazınızın galerisine kaydeden bir araçtır. Uygulamanın bilgilerle ne yaptığı ayrıca Quietly Gizlilik Politikası'nda açıklanmıştır.",
+          "Quietly'yi yükleyerek veya kullanarak bu şartları kabul etmiş olursun. Kabul etmiyorsan lütfen uygulamayı kullanma.",
+          "Quietly, yapıştırdığın URL'lerdeki doğrudan halka açık medyayı cihazının galerisine kaydeden bir araçtır. Uygulamanın bilgilerle ne yaptığı ayrıca Quietly Gizlilik Politikası'nda açıklanmıştır.",
         ],
       },
       {
         title: "Yalnızca yetkili kullanım",
         paragraphs: [
-          "Quietly'yi yalnızca kaydetmeye hakkınız olan medyayı kaydetmek için kullanabilirsiniz. Bu; sahibi olduğunuz, kendi oluşturduğunuz, hak sahibinden kaydetme izni aldığınız veya başka bir şekilde yasal olarak kaydetmeye yetkili olduğunuz medya anlamına gelir.",
-          "Neyi kaydetmeyi seçtiğinizden ve telif hakkı yasasına, medyanın geldiği platformun koşullarına ve geçerli diğer tüm yasalara uymaktan yalnızca siz sorumlusunuz.",
+          "Quietly'yi yalnızca kaydetmeye hakkın olan medyayı kaydetmek için kullanabilirsin. Bu; sahibi olduğun, kendi oluşturduğun, hak sahibinden kaydetme izni aldığın veya başka bir şekilde yasal olarak kaydetmeye yetkili olduğun medya anlamına gelir.",
+          "Neyi kaydetmeyi seçtiğinden ve telif hakkı yasasına, medyanın geldiği platformun koşullarına ve geçerli diğer tüm yasalara uymaktan yalnızca sen sorumlusun.",
         ],
       },
       {
         title: "Quietly'nin yapmadıkları",
         paragraphs: [
-          "Quietly sayfa kazıma yapmaz ve sosyal platform akışlarını ayrıştırmaz. Oturum açılmış veya DRM korumalı içeriğe erişmez, erişim kontrollerini veya koruma önlemlerini atlatmaz. Hiçbir platformu taklit etmez ve sizin adınıza sunucu tarafında bir indirme hizmeti çalıştırmaz. Yalnızca siz istediğinizde, yapıştırdığınızı getirir.",
-          "Quietly, sağladığınız bir URL'deki medyanın haklarına sahip olup olmadığınızı denetlemez. Bu denetimin yokluğu bir izin değildir ve yetkisiz bir kaydı kabul edilebilir hale getirmez.",
+          "Quietly sayfa kazıma yapmaz ve sosyal platform akışlarını ayrıştırmaz. Oturum açılmış veya DRM korumalı içeriğe erişmez, erişim kontrollerini veya koruma önlemlerini atlatmaz. Hiçbir platformu taklit etmez ve senin adına sunucu tarafında bir indirme hizmeti çalıştırmaz. Yalnızca sen istediğinde, yapıştırdığını getirir.",
+          "Quietly, sağladığın bir URL'deki medyanın haklarına sahip olup olmadığını denetlemez. Bu denetimin yokluğu bir izin değildir ve yetkisiz bir kaydı kabul edilebilir hale getirmez.",
         ],
       },
       {
         title: "Üçüncü taraf medya üzerinde hak verilmez",
         paragraphs: [
-          "Quietly, kaydettiğiniz hiçbir medya üzerinde size hak vermez. O medyanın hakları, hak sahibi kimse onda kalır. Bir dosyayı Quietly ile kaydetmeniz, onu yeniden yayımlama, paylaşma veya ticari olarak kullanma hakkı vermez.",
+          "Quietly, kaydettiğin hiçbir medya üzerinde sana hak vermez. O medyanın hakları, hak sahibi kimse onda kalır. Bir dosyayı Quietly ile kaydetmen, onu yeniden yayımlama, paylaşma veya ticari olarak kullanma hakkı vermez.",
         ],
       },
       {
         title: "Hesap yok",
         paragraphs: [
-          "Quietly hesap gerektirmez. Ayarlarınız ve kaydettiğiniz öğelerin geçmişi cihazınızda saklanır ve bizde hiçbir kopyası bulunmaz — bu nedenle bunları sizin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunları cihazdan siler; işletim sisteminizin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
+          "Quietly hesap gerektirmez. Ayarların ve kaydettiğin öğelerin geçmişi cihazında saklanır ve bizde hiçbir kopyası bulunmaz — bu nedenle bunları senin için geri yükleyemeyiz. Uygulama verilerini temizlemek veya uygulamayı kaldırmak bunları cihazdan siler; işletim sisteminin kendi yedeğinde bir kopyanın kalıp kalmadığı bizim kontrolümüz dışındadır.",
         ],
       },
       {
-        title: "Uygulamayı kullanma lisansınız",
+        title: "Uygulamayı kullanma lisansın",
         paragraphs: [
-          "Lunexa, Quietly'yi sahip olduğunuz veya kontrol ettiğiniz cihazlara kurmanız ve kendi ticari olmayan kullanımınız için kullanmanız amacıyla size kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsınız.",
+          "Lunexa, Quietly'yi sahip olduğun veya kontrol ettiğin cihazlara kurman ve kendi ticari olmayan kullanımın için kullanman amacıyla sana kişisel, münhasır olmayan ve devredilemez bir lisans verir. Uygulamayı satamaz, kiralayamaz, alt lisanslayamaz veya yeniden dağıtamazsın.",
         ],
       },
       {
         title: "Kabul edilebilir kullanım",
-        paragraphs: ["Şunları yapmamayı kabul edersiniz:"],
+        paragraphs: ["Şunları yapmamayı kabul edersin:"],
         bullets: [
-          "Quietly'yi kaydetmeye hakkınız olmayan medyayı kaydetmek için kullanmak",
+          "Quietly'yi kaydetmeye hakkın olmayan medyayı kaydetmek için kullanmak",
           "Quietly'yi herhangi bir erişim kontrolünü, ödeme duvarını veya koruma önlemini atlatmak için kullanmak",
           "Yasaların bu kısıtlamayı yasakladığı durumlar dışında uygulamayı değiştirmek, tersine mühendislik uygulamak veya derlemesini çözmek",
-          "Uygulamayı yeniden dağıtmak veya kendinize aitmiş gibi sunmak",
+          "Uygulamayı yeniden dağıtmak veya kendine aitmiş gibi sunmak",
           "Uygulamayı geçerli yasaları ihlal edecek şekilde kullanmak",
         ],
       },
       {
         title: "Fikri mülkiyet",
         paragraphs: [
-          "Uygulama — kodu, tasarımı ve metni dahil — aksi belirtilmedikçe Lunexa'ya aittir. Bu şartlar size herhangi bir mülkiyet devretmez ve uygulama aracılığıyla elde edilen medya üzerinde size hiçbir hak vermez.",
+          "Uygulama — kodu, tasarımı ve metni dahil — aksi belirtilmedikçe Lunexa'ya aittir. Bu şartlar sana herhangi bir mülkiyet devretmez ve uygulama aracılığıyla elde edilen medya üzerinde sana hiçbir hak vermez.",
         ],
       },
       {
@@ -3270,7 +3270,7 @@ export const QUIETLY_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Uygulama mağazaları üzerinden dağıtım",
         paragraphs: [
-          "Quietly'yi bir uygulama mağazası üzerinden edindiğinizde, o mağazanın kendi koşulları da indirmeniz için geçerlidir ve bu şartlardan ayrıdır.",
+          "Quietly'yi bir uygulama mağazası üzerinden edindiğinde, o mağazanın kendi koşulları da indirmen için geçerlidir ve bu şartlardan ayrıdır.",
         ],
       },
       {
@@ -3282,18 +3282,18 @@ export const QUIETLY_TERMS: Record<Locale, LegalDocument> = {
       {
         title: "Sorumluluğun sınırlandırılması",
         paragraphs: [
-          "Yasaların izin verdiği en geniş ölçüde, Lunexa uygulamayı kullanmanızdan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan — kaydetmeyi seçtiğiniz medyadan doğan talepler dahil — sorumlu tutulamaz.",
+          "Yasaların izin verdiği en geniş ölçüde, Lunexa uygulamayı kullanmandan doğan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan — kaydetmeyi seçtiğin medyadan doğan talepler dahil — sorumlu tutulamaz.",
         ],
       },
       {
         title: "Bu şartlardaki değişiklikler",
         paragraphs: [
-          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmeniz bunları kabul ettiğiniz anlamına gelir.",
+          "Bu şartları istediğimiz zaman güncelleyebiliriz. Sayfanın üst kısmındaki tarih değişikliği yansıtacaktır ve güncellenmiş şartlar yayımlandıktan sonra uygulamayı kullanmaya devam etmen bunları kabul ettiğin anlamına gelir.",
         ],
       },
     ],
     contactTitle: "İletişim",
-    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsiniz: ",
+    contactBodyPrefix: "Bu şartlarla ilgili soruları şu adrese yazabilirsin: ",
     contactBodySuffix: ".",
   },
   es: {
